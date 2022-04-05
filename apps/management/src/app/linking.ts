@@ -1,6 +1,6 @@
 import { getStateFromPath, PathConfig } from '@react-navigation/native';
 import { LinkingOptions } from '@react-navigation/native/lib/typescript/src/types';
-import * as Linking from 'expo-linking';
+import * as Linking from 'expo-linking'; 
 
 type ScreenLinkingOptions = Parameters<typeof getStateFromPath>[1];
 type ScreenRoutingOptions<T extends object> = {
@@ -13,13 +13,11 @@ export const appLinking: LinkingOptions<object> = {
   prefixes: [appLink],
   config: {
     screens: {
-      Public: {
-        initialRouteName: '',
-        screens: {}
+      AccountAccess: {
+        initialRouteName: 'AccountAcces'
       },
-      Private: {
-        initialRouteName: '',
-        screens: {}
+      Main: {
+        initialRouteName: 'Main'
       }
     }
   }

@@ -1,14 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { ReactElement, useEffect } from 'react';
+import React, { ReactElement } from 'react';
 import { Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { appFacade } from './facade';
 
 export function App(): ReactElement {
-
-  useEffect(() => {
-    appFacade.init();
-  }, []);
 
   return (
     <SafeAreaView style={style.container}>
