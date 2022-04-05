@@ -1,9 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { Text, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { appFacade } from './facade';
 
 export function App(): ReactElement {
+
+  useEffect(() => {
+    appFacade.init();
+  }, []);
 
   return (
     <SafeAreaView style={style.container}>
@@ -11,7 +16,7 @@ export function App(): ReactElement {
         translucent={true}
         backgroundColor='transparent'
         style='light' />
-      <Text style={{color: 'white'}}>Management app</Text>
+      <Text style={{ color: 'white' }}>Management app</Text>
     </SafeAreaView>
   );
 }
