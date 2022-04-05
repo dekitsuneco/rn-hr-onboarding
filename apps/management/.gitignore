@@ -1,0 +1,16 @@
+node_modules/
+.expo/
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+.DS_Store
+.eslintcache
+.env
+
+# Added for compatibility with expo-cli. Please use app.config.ts instead.
+app.json
