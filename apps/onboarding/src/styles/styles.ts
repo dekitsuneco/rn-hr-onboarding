@@ -1,6 +1,5 @@
 import { Dimensions } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { createStyles } from './extended-stylesheet';
 import { variables } from './variables';
 
 export const screenWidth = Dimensions.get('window').width;
@@ -13,4 +12,4 @@ EStyleSheet.build({
   $screenWidth: screenWidth
 });
 
-export const commonStyle = createStyles({});
+export const commonStyle = {};
