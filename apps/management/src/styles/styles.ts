@@ -10,4 +10,3 @@ EStyleSheet.build({
   $rem: rem,
   $screenWidth: screenWidth
 });
-

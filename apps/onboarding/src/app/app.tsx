@@ -5,7 +5,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { appFacade } from './facade';
 
 export function App(): ReactElement {
-
   useEffect(() => {
     appFacade.init();
   }, []);
@@ -13,9 +12,9 @@ export function App(): ReactElement {
   return (
     <SafeAreaView style={style.screen}>
       <StatusBar
-            translucent={true}
-            backgroundColor='transparent'
-            style='light' />
+        translucent={true}
+        backgroundColor='transparent'
+        style='light' />
       <Text style={style.text}>Onboarding App</Text>
     </SafeAreaView>
   );
@@ -24,11 +23,11 @@ export function App(): ReactElement {
 const style = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: '#fff',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   text: {
-    color: '#000',
-  },
+    color: '#000'
+  }
 });

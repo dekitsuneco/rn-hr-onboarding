@@ -1,5 +1,7 @@
 class AppFacade {
-  public init(): void {}
+  public init(): void {
+    // TODO: implement this
+  }
 }
 
 export const appFacade = new AppFacade();
