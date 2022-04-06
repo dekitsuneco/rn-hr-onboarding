@@ -13,9 +13,7 @@ export default function Root(): ReactElement {
     });
   }
 
-  return (
-    <App />
-  );
+  return <App />;
 }
 
 registerRootComponent(Root);

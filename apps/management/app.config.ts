@@ -17,9 +17,9 @@ export const defaultAppConfig = {
 };
 
 const defaultExpoConfig: ExpoConfig = {
-  name: 'RN Starter Dev',
-  slug: 'react-native-starter-dev',
-  scheme: 'rnstarterdev',
+  name: 'HR Management Dev',
+  slug: 'hr-management-dev',
+  scheme: 'hr-management-dev',
   owner: 'ronas_it',
   entryPoint: 'index.js',
   version: '0.0.1',
@@ -54,21 +54,6 @@ const defaultExpoConfig: ExpoConfig = {
     config: 'metro.config.js',
     sourceExts: ['ts', 'tsx', 'js', 'jsx', 'json', 'wasm', 'svg']
   },
-  // TODO: Configure this to use Sentry or remove
-  // hooks: {
-  //   postPublish: [
-  //     {
-  //       file: 'sentry-expo/upload-sourcemaps',
-  //       config: {
-  //         url: 'https://your-sentry-url',
-  //         organization: 'your-sentry-organization',
-  //         project: 'your-sentry-project',
-  //         authToken: 'your-sentry-token'
-  //       }
-  //     }
-  //   ]
-  // },
-  // plugins: ['sentry-expo'],
   extra: defaultAppConfig
 };
 
@@ -79,9 +64,9 @@ module.exports = () => {
 
   if (env === 'production') {
     return merge(defaultExpoConfig, <PartialConfig>{
-      name: 'RN Starter Prod',
-      slug: 'react-native-starter-prod',
-      scheme: 'rnstarter',
+      name: 'HR Management',
+      slug: 'hr-management',
+      scheme: 'hr-management',
       extra: {
         production: true
       }

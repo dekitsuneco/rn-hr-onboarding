@@ -3,12 +3,13 @@ import { LinkingOptions } from '@react-navigation/native/lib/typescript/src/type
 import * as Linking from 'expo-linking'; 
 import { AccountAccesNavigationParams } from './accountAcces/navigation';
 
+
 type ScreenLinkingOptions = Parameters<typeof getStateFromPath>[1];
 type ScreenRoutingOptions<T extends object> = {
   [key in keyof T]?: string | ScreenLinkingOptions | PathConfig<object>;
 };
 
-const appLink = Linking.makeUrl('/');
+const appLink = Linking.createURL('/');
 
 export const appLinking: LinkingOptions<object> = {
   prefixes: [appLink],

@@ -17,9 +17,6 @@
       "@styles": [
         "src/styles"
       ],
-      "@tests/*": [
-        "src/tests/*"
-      ],
       "@app/*": [
         "src/app/*"
       ]

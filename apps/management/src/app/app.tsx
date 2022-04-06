@@ -11,7 +11,6 @@ import { appLinking } from './linking';
 const Stack = createStackNavigator();
 
 export function App(): ReactElement {
-
   return (
     <SafeAreaView style={style.container}>
       <StatusBar
