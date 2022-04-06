@@ -1,5 +1,3 @@
-class AppFacade {
- 
-}
+class AppFacade {}
 
 export const appFacade = new AppFacade();

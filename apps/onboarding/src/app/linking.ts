@@ -14,10 +14,10 @@ export const appLinking: LinkingOptions<object> = {
   config: {
     screens: {
       AccountAccess: {
-        initialRouteName: 'Login',
+        initialRouteName: 'Login'
       },
       Main: {
-        initialRouteName: 'Main',
+        initialRouteName: 'Main'
       }
     }
   }
