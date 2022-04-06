@@ -25,13 +25,11 @@ export function OnboardingScreen(): JSX.Element {
 const style = StyleSheet.create({
   screen: {
     flex: 1,
-    backgroundColor: '#000',
     justifyContent: 'center',
     alignItems: 'center'
   },
   text: {
-    color: '#fff',
     fontSize: 30,
-    margin: 15
+    marginBottom: 15
   }
 });

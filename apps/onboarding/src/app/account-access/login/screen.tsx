@@ -14,10 +14,18 @@ export function LoginScreen(): JSX.Element {
     navigation.navigate('Main');
   };
 
+  const handleForgotPasswordBtn = (): void => {
+    navigation.navigate('ForgotPassword');
+  };
+
   return (
     <View style={style.screen}>
       <Text style={style.text}>Login Screen</Text>
-      <Button title='Go to Main screen' onPress={handleLoginBtn} />
+      <View style={style.btnGroup}>
+        <Button title='Go to Main screen' onPress={handleLoginBtn} />
+        <View style={style.divider} />
+        <Button title='Go to Forgot Password screen' onPress={handleForgotPasswordBtn} />
+      </View>
     </View>
   );
 }
@@ -29,8 +37,13 @@ const style = StyleSheet.create({
     alignItems: 'center'
   },
   text: {
-    color: '#fff',
     fontSize: 30,
-    margin: 15
+    marginBottom: 40
+  },
+  btnGroup: {
+    alignItems: 'stretch'
+  },
+  divider: {
+    marginBottom: 20
   }
 });
