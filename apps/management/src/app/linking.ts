@@ -16,7 +16,7 @@ export const appLinking: LinkingOptions<object> = {
   config: {
     screens: {
       AccountAccess: {
-        initialRouteName: 'AccountAcces',
+        initialRouteName: 'AccountAccess',
         screens: <ScreenRoutingOptions<AccountAccesNavigationParams>>{
           Login: 'login',
           ForgotPassword: 'forgot-password',
