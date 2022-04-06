@@ -6,6 +6,7 @@ import { ScriptsScreen } from './scripts/screen';
 import { SettingsScreen } from './settings/screen';
 import { Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { isBigScreen } from '@styles';
 
 export type MainNavigationParams = {
   Dashboard: undefined;
@@ -14,11 +15,14 @@ export type MainNavigationParams = {
   Settings: undefined;
 };
 
+const defaultStatus = isBigScreen ? 'open' : 'closed';
+
 const Drawer = createDrawerNavigator<MainNavigationParams>();
 
 export function MainNavigation(): ReactElement {
   return (
     <Drawer.Navigator
+      defaultStatus={defaultStatus}
       screenOptions={{
         header: ({ navigation }) => {
           return (

@@ -74,7 +74,8 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.5.5",
     "sentry-expo": "^4.0.0",
-    "yup": "^0.32.11"
+    "yup": "^0.32.11",
+    "modules": "../../packages/modules"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
