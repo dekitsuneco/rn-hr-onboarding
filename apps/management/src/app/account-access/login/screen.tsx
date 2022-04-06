@@ -3,7 +3,7 @@ import { View, StyleSheet, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { loginScreenFacade } from './facade';
 
-export function Logincreen(): ReactElement {
+export function LoginScreen(): ReactElement {
   const handleSignInPress = (): void => {
     loginScreenFacade.navigateToMain();
   };
