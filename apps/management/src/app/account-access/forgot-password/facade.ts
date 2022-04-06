@@ -4,6 +4,7 @@ class ForgotPasswordScreenFacade {
   public goBack(): void {
     appNavigationService.goBack();
   }
+
   public navigateToLinkSent(): void {
     appNavigationService.navigate('LinkSent');
   }
