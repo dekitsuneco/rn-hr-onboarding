@@ -4,14 +4,14 @@ import { AchievementsScreen } from './achievements/screen';
 import { ProfileScreen } from './profile/screen';
 import React, { ReactElement } from 'react';
 
-const Stack = createBottomTabNavigator();
+const Tab = createBottomTabNavigator();
 
 export function MainNavigation(): ReactElement {
   return (
-    <Stack.Navigator>
-      <Stack.Screen name='Onboarding' component={OnboardingScreen} />
-      <Stack.Screen name='Achievements' component={AchievementsScreen} />
-      <Stack.Screen name='ProfileScreen' component={ProfileScreen} />
-    </Stack.Navigator>
+    <Tab.Navigator>
+      <Tab.Screen name='Onboarding' component={OnboardingScreen} />
+      <Tab.Screen name='Achievements' component={AchievementsScreen} />
+      <Tab.Screen name='ProfileScreen' component={ProfileScreen} />
+    </Tab.Navigator>
   );
 }
