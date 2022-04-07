@@ -8,7 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { AccountAccessNavigation } from './account-access/navigation';
 import { MainNavigation } from './main/navigation';
 import { appLinking } from './linking';
-import { navigationRef } from '@shared/navigation';
+import { navigationRef } from 'modules/navigation';
 
 const Stack = createStackNavigator();
 
