@@ -1,8 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { ReactElement, useEffect } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { appFacade } from './facade';
+import { AccountAccessNavigation } from '@app/account-access/navigation';
+import { MainNavigation } from '@app/main/navigation';
+
+const Stack = createStackNavigator();
 
 export function App(): ReactElement {
   useEffect(() => {
@@ -11,23 +17,24 @@ export function App(): ReactElement {
 
   return (
     <SafeAreaView style={style.screen}>
-      <StatusBar
-        translucent={true}
-        backgroundColor='transparent'
-        style='light' />
-      <Text style={style.text}>Onboarding App</Text>
+      <NavigationContainer>
+        <View>
+          <StatusBar
+            translucent={true}
+            backgroundColor='transparent'
+            style='light' />
+        </View>
+        <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='AccountAccess'>
+          <Stack.Screen name='AccountAccess' component={AccountAccessNavigation} />
+          <Stack.Screen name='Main' component={MainNavigation} />
+        </Stack.Navigator>
+      </NavigationContainer>
     </SafeAreaView>
   );
 }
 
 const style = StyleSheet.create({
   screen: {
-    flex: 1,
-    backgroundColor: '#fff',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  text: {
-    color: '#000'
+    flex: 1
   }
 });

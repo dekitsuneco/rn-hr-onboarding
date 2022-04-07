@@ -23,7 +23,7 @@ const defaultExpoConfig: ExpoConfig = {
   owner: 'ronas_it',
   entryPoint: 'index.js',
   version: '0.0.1',
-  orientation: 'portrait',
+  orientation: 'default',
   backgroundColor: '#000000',
   icon: './src/assets/images/icon.png',
   splash: {
