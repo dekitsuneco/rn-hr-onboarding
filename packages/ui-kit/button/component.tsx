@@ -1,6 +1,6 @@
-import { AppActivityIndicator } from '@shared/activity-indicator';
-import { AppText, TextTheme } from '@shared/text';
-import { createStyles, variables } from '@styles';
+import { AppActivityIndicator } from '../activity-indicator';
+import { AppText, TextTheme } from '../text';
+import { createStyles, variables } from '../styles';
 import React, { ReactElement, useMemo } from 'react';
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
@@ -23,8 +23,6 @@ export function AppButton({
   children,
   ...restProps
 }: Props): ReactElement {
-  isLoading = true;
-
   const renderedContent = useMemo(() => {
     if (isLoading) {
       return <AppActivityIndicator
