@@ -18,7 +18,7 @@ export function AppButton({
   style: elementStyle = {},
   isDisabled,
   isLoading,
-  theme: mode = 'primary',
+  theme = 'primary',
   size = 'default',
   children,
   ...restProps
@@ -27,13 +27,13 @@ export function AppButton({
     if (isLoading) {
       return <AppActivityIndicator
         size={'small'}
-        color={textStyle[mode].color}
+        color={textStyle[theme].color}
         style={style.activityIndicator} />;
     }
 
     return title ? (
       <AppText
-        style={[textStyle.button, textStyle[mode], isDisabled && disabledTextStyle[mode]]}
+        style={[textStyle.button, textStyle[theme], isDisabled && disabledTextStyle[theme]]}
         theme={size === 'default' ? TextTheme.MEDIUM : TextTheme.SMALL}>
         {/* // TODO Leading Icon */}
         {title}
