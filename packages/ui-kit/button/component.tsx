@@ -43,7 +43,7 @@ export function AppButton({
     ) : (
       children
     );
-  }, [isDisabled, title, children]);
+  }, [isDisabled, isLoading, theme, size, title, children]);
 
   return (
     <TouchableOpacity
