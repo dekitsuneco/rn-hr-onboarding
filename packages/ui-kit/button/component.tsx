@@ -47,7 +47,7 @@ export function AppButton({
 
   return (
     <TouchableHighlight
-      style={[style.button, style[size], style[theme], isDisabled && disabledStyle[theme], elementStyle]}
+      style={[style.button, style[theme], style[size], isDisabled && disabledStyle[theme], elementStyle]}
       disabled={isDisabled}
       {...restProps}>
       {renderedContent}
@@ -129,59 +129,5 @@ const disabledTextStyle = createStyles({
   },
   tertiary: {
     opacity: 0.4
-  }
-});
-
-const hoveredStyle = createStyles({
-  primary: {
-    backgroundColor: variables.color.primaryDark,
-    borderColor: variables.color.primaryDark
-  },
-  secondary: {
-    backgroundColor: variables.color.primary + '33',
-    borderColor: variables.color.primary + '33'
-  },
-  tertiary: {
-    backgroundColor: 'transparent',
-    borderColor: 'transparent'
-  }
-});
-
-const hoveredTextStyle = createStyles({
-  primary: {
-    color: variables.color.white
-  },
-  secondary: {
-    color: variables.color.primaryDark
-  },
-  tertiary: {
-    color: variables.color.primaryDark
-  }
-});
-
-const pressedStyle = createStyles({
-  primary: {
-    backgroundColor: variables.color.primaryDarker,
-    borderColor: variables.color.primaryDarker
-  },
-  secondary: {
-    backgroundColor: variables.color.primaryDarker + '33',
-    borderColor: variables.color.primaryDarker + '33'
-  },
-  tertiary: {
-    backgroundColor: 'transparent',
-    borderColor: 'transparent'
-  }
-});
-
-const pressedTextStyle = createStyles({
-  primary: {
-    color: variables.color.white
-  },
-  secondary: {
-    color: variables.color.primaryDark
-  },
-  tertiary: {
-    color: variables.color.primaryDarker
   }
 });
