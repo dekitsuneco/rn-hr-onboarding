@@ -1,4 +1,3 @@
-//import { createStyles, variables } from '@styles';
 import { createStyles, variables } from '../styles';
 import React, { ReactElement } from 'react';
 import { Text, TextProps } from 'react-native';

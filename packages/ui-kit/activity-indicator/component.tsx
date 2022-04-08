@@ -1,4 +1,3 @@
-//import { variables } from '@styles';
 import { variables } from '../styles';
 import React, { ReactElement } from 'react';
 import { ActivityIndicator, ActivityIndicatorProps } from 'react-native';
