@@ -2,9 +2,9 @@ import { AppActivityIndicator } from '../activity-indicator';
 import { AppText, TextTheme } from '../text';
 import { createStyles, variables } from '../styles';
 import React, { ReactElement, useMemo } from 'react';
-import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { TouchableHighlight, TouchableHighlightProps } from 'react-native';
 
-interface Props extends TouchableOpacityProps {
+interface Props extends TouchableHighlightProps {
   title?: string;
   isDisabled?: boolean;
   isLoading?: boolean;
@@ -46,13 +46,12 @@ export function AppButton({
   }, [isDisabled, isLoading, theme, size, title, children]);
 
   return (
-    <TouchableOpacity
-      activeOpacity={1}
-      style={[style.button, style[size], style[mode], isDisabled && disabledStyle[mode], elementStyle]}
+    <TouchableHighlight
+      style={[style.button, style[size], style[theme], isDisabled && disabledStyle[theme], elementStyle]}
       disabled={isDisabled}
       {...restProps}>
       {renderedContent}
-    </TouchableOpacity>
+    </TouchableHighlight>
   );
 }
 
