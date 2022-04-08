@@ -47,6 +47,7 @@ export function AppButton({
 
   return (
     <TouchableHighlight
+      underlayColor={pressedStyle[theme].backgroundColor}
       style={[style.button, style[theme], style[size], isDisabled && disabledStyle[theme], elementStyle]}
       disabled={isDisabled}
       {...restProps}>
@@ -129,5 +130,20 @@ const disabledTextStyle = createStyles({
   },
   tertiary: {
     opacity: 0.4
+  }
+});
+
+const pressedStyle = createStyles({
+  primary: {
+    backgroundColor: variables.color.primaryDarker,
+    borderColor: variables.color.primaryDarker
+  },
+  secondary: {
+    backgroundColor: variables.color.primaryDarker + '33',
+    borderColor: variables.color.primaryDarker + '33'
+  },
+  tertiary: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent'
   }
 });
