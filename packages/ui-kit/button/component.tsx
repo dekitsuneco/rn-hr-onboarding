@@ -80,8 +80,8 @@ const style = createStyles({
     borderColor: variables.color.primary + '1A'
   },
   tertiary: {
-    backgroundColor: variables.color.white,
-    borderColor: variables.color.white
+    backgroundColor: 'transparent',
+    borderColor: 'transparent'
   },
   activityIndicator: {
     width: 30,
@@ -115,11 +115,16 @@ const disabledStyle = createStyles({
     backgroundColor: variables.color.primary + '12',
     borderColor: variables.color.primary + '12'
   },
-  tertiary: {}
+  tertiary: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent'
+  }
 });
 
 const disabledTextStyle = createStyles({
-  primary: {},
+  primary: {
+    color: variables.color.white
+  },
   secondary: {
     opacity: 0.4
   },
@@ -130,16 +135,23 @@ const disabledTextStyle = createStyles({
 
 const hoveredStyle = createStyles({
   primary: {
-    backgroundColor: variables.color.primaryDark
+    backgroundColor: variables.color.primaryDark,
+    borderColor: variables.color.primaryDark
   },
   secondary: {
-    backgroundColor: variables.color.primary + '33'
+    backgroundColor: variables.color.primary + '33',
+    borderColor: variables.color.primary + '33'
   },
-  tertiary: {}
+  tertiary: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent'
+  }
 });
 
 const hoveredTextStyle = createStyles({
-  primary: {},
+  primary: {
+    color: variables.color.white
+  },
   secondary: {
     color: variables.color.primaryDark
   },
@@ -150,16 +162,23 @@ const hoveredTextStyle = createStyles({
 
 const pressedStyle = createStyles({
   primary: {
-    backgroundColor: variables.color.primaryDarker
+    backgroundColor: variables.color.primaryDarker,
+    borderColor: variables.color.primaryDarker
   },
   secondary: {
-    backgroundColor: variables.color.primaryDarker + '33'
+    backgroundColor: variables.color.primaryDarker + '33',
+    borderColor: variables.color.primaryDarker + '33'
   },
-  tertiary: {}
+  tertiary: {
+    backgroundColor: 'transparent',
+    borderColor: 'transparent'
+  }
 });
 
 const pressedTextStyle = createStyles({
-  primary: {},
+  primary: {
+    color: variables.color.white
+  },
   secondary: {
     color: variables.color.primaryDark
   },
