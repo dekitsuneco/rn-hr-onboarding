@@ -12,7 +12,7 @@ export function AccountAccessNavigation(): ReactElement {
   }, []);
 
   return (
-    <Stack.Navigator>
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
       <Stack.Screen name='Login' component={LoginScreen} />
       <Stack.Screen name='ForgotPassword' component={ForgotPasswordScreen} />
     </Stack.Navigator>
