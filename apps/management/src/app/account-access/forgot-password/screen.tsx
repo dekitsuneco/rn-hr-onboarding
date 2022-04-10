@@ -21,7 +21,7 @@ export function ForgotPasswordScreen(): ReactElement {
     <AccountAccessLayout>
       <View>
         <View style={style.titleContainer}>
-          <TouchableOpacity onPressIn={handleGoBackPress}>
+          <TouchableOpacity onPress={handleGoBackPress}>
             <Icon name='arrowLeft' style={{ marginRight: 10 }} />
           </TouchableOpacity>
           <AppText theme={TextTheme.LARGE}>Forgot Password</AppText>
