@@ -1,4 +1,4 @@
-import { NavigationContainerRef } from '@react-navigation/native';
+import { NavigationContainerRef, StackActions } from '@react-navigation/native';
 import * as React from 'react';
 
 export const navigationRef = React.createRef<NavigationContainerRef<object>>();
@@ -12,8 +12,8 @@ class AppNavigationService {
     navigationRef.current?.goBack();
   }
 
-  public popScreen(): void {
-    navigationRef.current?.dispatch;
+  public popToTop(): void {
+    navigationRef.current?.dispatch(StackActions.popToTop());
   }
 }
 
