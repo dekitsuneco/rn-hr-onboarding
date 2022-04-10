@@ -75,7 +75,8 @@
     "rxjs": "^7.5.5",
     "sentry-expo": "^4.0.0",
     "yup": "^0.32.11",
-    "modules": "*"
+    "modules": "*",
+    "ui-kit": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

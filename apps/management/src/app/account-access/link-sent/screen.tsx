@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { AccountAccessLayout } from '../shared/account-access-layout';
 import { linkSentScreenFacade } from './facade';
 
 export function LinkSentScreen(): ReactElement {
@@ -9,12 +10,14 @@ export function LinkSentScreen(): ReactElement {
   };
 
   return (
-    <View style={style.container}>
-      <Text style={{ marginBottom: 50 }}>Done! We’ve sent you the password recovery link.</Text>
-      <TouchableOpacity onPress={handleBackPress}>
-        <Text style={style.link}>Back to Sign In</Text>
-      </TouchableOpacity>
-    </View>
+    <AccountAccessLayout>
+      <View style={style.container}>
+        <Text style={{ marginBottom: 50 }}>Done! We’ve sent you the password recovery link.</Text>
+        <TouchableOpacity onPress={handleBackPress}>
+          <Text style={style.link}>Back to Sign In</Text>
+        </TouchableOpacity>
+      </View>
+    </AccountAccessLayout>
   );
 }
 

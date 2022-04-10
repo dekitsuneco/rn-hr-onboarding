@@ -11,6 +11,10 @@ class AppNavigationService {
   public goBack(): void {
     navigationRef.current?.goBack();
   }
+
+  public popScreen(): void {
+    navigationRef.current?.dispatch;
+  }
 }
 
 export const appNavigationService = new AppNavigationService();

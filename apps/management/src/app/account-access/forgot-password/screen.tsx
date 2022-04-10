@@ -1,6 +1,7 @@
 import React, { ReactElement } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { AccountAccessLayout } from '../shared/account-access-layout';
 import { forgotPasswordScreenFacade } from './facade';
 
 export function ForgotPasswordScreen(): ReactElement {
@@ -13,14 +14,16 @@ export function ForgotPasswordScreen(): ReactElement {
   };
 
   return (
-    <View style={style.container}>
-      <TouchableOpacity onPress={handleGoBackPress} style={{ marginBottom: 50 }}>
-        <Text style={style.linkText}>Go Back</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleResetpress} style={style.button}>
-        <Text style={style.buttonText}>Reset Password</Text>
-      </TouchableOpacity>
-    </View>
+    <AccountAccessLayout>
+      <View style={style.container}>
+        <TouchableOpacity onPress={handleGoBackPress} style={{ marginBottom: 50 }}>
+          <Text style={style.linkText}>Go Back</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleResetpress} style={style.button}>
+          <Text style={style.buttonText}>Reset Password</Text>
+        </TouchableOpacity>
+      </View>
+    </AccountAccessLayout>
   );
 }
 

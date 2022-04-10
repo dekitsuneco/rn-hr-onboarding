@@ -1,6 +1,8 @@
+import { Icons } from '@assets/icons/icons';
 import React, { ReactElement } from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { AccountAccessLayout } from '../shared/account-access-layout';
 import { loginScreenFacade } from './facade';
 
 export function LoginScreen(): ReactElement {
@@ -13,14 +15,17 @@ export function LoginScreen(): ReactElement {
   };
 
   return (
-    <View style={style.container}>
-      <TouchableOpacity onPress={handleSignInPress} style={style.button}>
-        <Text style={style.buttonText}>Sign-in</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleForgotPasswordPress}>
-        <Text style={style.linkText}>Forgot Password?</Text>
-      </TouchableOpacity>
-    </View>
+    <AccountAccessLayout>
+      <View style={style.container}>
+        {Icons.logo()}
+        <TouchableOpacity onPress={handleSignInPress} style={style.button}>
+          <Text style={style.buttonText}>Sign-in</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleForgotPasswordPress}>
+          <Text style={style.linkText}>Forgot Password?</Text>
+        </TouchableOpacity>
+      </View>
+    </AccountAccessLayout>
   );
 }
 
