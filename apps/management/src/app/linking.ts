@@ -1,6 +1,8 @@
 import { getStateFromPath, PathConfig } from '@react-navigation/native';
 import { LinkingOptions } from '@react-navigation/native/lib/typescript/src/types';
 import * as Linking from 'expo-linking';
+import { AccountAccessNavigationParams } from './account-access/navigation';
+import { MainNavigationParams } from './main/navigation';
 
 type ScreenLinkingOptions = Parameters<typeof getStateFromPath>[1];
 type ScreenRoutingOptions<T extends object> = {
@@ -14,10 +16,21 @@ export const appLinking: LinkingOptions<object> = {
   config: {
     screens: {
       AccountAccess: {
-        initialRouteName: 'AccountAccess'
+        initialRouteName: 'AccountAccess',
+        screens: <ScreenRoutingOptions<AccountAccessNavigationParams>>{
+          Login: 'login',
+          ForgotPassword: 'forgot-password',
+          LinkSent: 'link-sent'
+        }
       },
       Main: {
-        initialRouteName: 'Main'
+        initialRouteName: 'Main',
+        screens: <ScreenRoutingOptions<MainNavigationParams>>{
+          Dashboard: 'dashboard:',
+          Employees: 'employees',
+          Scripts: 'scripts',
+          Settings: 'settings'
+        }
       }
     }
   }
