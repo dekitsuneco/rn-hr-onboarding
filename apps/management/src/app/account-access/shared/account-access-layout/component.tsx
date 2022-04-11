@@ -37,11 +37,12 @@ const style = createStyles({
     height: '100%',
     backgroundColor: variables.color.white,
     justifyContent: 'center',
-    alignItems: 'center'
+    alignItems: 'center',
+    maxWidth: 600
   },
   '@media (max-width: 768)': {
     content: {
-      maxWidth: 600
+      maxWidth: '100%'
     }
   }
 });
