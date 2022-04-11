@@ -77,7 +77,8 @@
     "yup": "^0.32.11",
     "ui-kit": "*",
     "assets": "*",
-    "modules": "*"
+    "modules": "*",
+    "utils": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

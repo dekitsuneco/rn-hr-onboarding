@@ -1,3 +1,17 @@
 {
-  
+  "ACCOUNT_ACCESS": {
+    "LOGIN": {
+      "BUTTON_SIGN_IN": "Sign In",
+      "BUTTON_FORGOT_PASSWORD": "Forgot password?"
+    },
+    "LINK_SENT": {
+      "BUTTON_BACK": "Back to Sign In",
+      "TEXT_LINK_SENT": "Done! We’ve sent you the password recovery link."
+    },
+    "FORGOT_PASSWORD": {
+      "TEXT_TITLE": "Forgot Password",
+      "TEXT_FORGOT_PASSWORD": "Forgot your password? \nNo problem, just enter your email \naddress and we will sort it out.",
+      "BUTTON_RESET": "Reset Password"
+    }
+  }
 }

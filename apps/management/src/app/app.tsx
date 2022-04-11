@@ -9,10 +9,19 @@ import { AccountAccessNavigation } from './account-access/navigation';
 import { MainNavigation } from './main/navigation';
 import { appLinking } from './linking';
 import { navigationRef } from 'modules/navigation';
+import { useLanguage } from 'utils/i18n';
 
 const Stack = createStackNavigator();
+const setLanguage = useLanguage(
+  {
+    en: require('@assets/i18n/en.json')
+  },
+  'en'
+);
 
 export function App(): ReactElement {
+  setLanguage('en');
+
   return (
     <SafeAreaView style={style.container}>
       <StatusBar
