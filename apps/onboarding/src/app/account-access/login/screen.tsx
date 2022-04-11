@@ -3,6 +3,9 @@ import { View, Text, StyleSheet, ImageBackground } from 'react-native';
 import { loginFacade } from './facade';
 import { useNavigation } from '@react-navigation/native';
 import { FlexCenter } from '../shared/components/flex-center';
+import { Icon } from 'ui-kit/icon';
+import { AppButton } from 'ui-kit/button';
+import { appNavigationService } from 'modules/navigation';
 
 export function LoginScreen(): JSX.Element {
   useEffect(() => {
@@ -16,7 +19,7 @@ export function LoginScreen(): JSX.Element {
   };
 
   const handleForgotPasswordBtn = (): void => {
-    navigation.navigate('ForgotPassword');
+    appNavigationService.navigate('ForgotPassword');
   };
 
   return (
@@ -29,12 +32,22 @@ export function LoginScreen(): JSX.Element {
           <View style={style.column}>
             <FlexCenter>
               <View style={style.iconContainer}>
-                <Text style={style.icon}>Icon</Text>
+                <Icon name='logoUnboarding' />
               </View>
             </FlexCenter>
           </View>
-          <View style={[style.column, style.contentColumn]}>
-            <Text>Lorem ipsum dolor sit amet consectetur adipisicing elit. Tempora, ipsa.</Text>
+          <View style={style.column}>
+            <View style={style.contentColumn}>
+              <View style={style.loginForm}>
+                <Text>Login Form</Text>
+              </View>
+              <View style={{}}>
+                <AppButton
+                  title='Forgot password?'
+                  theme='tertiary'
+                  onPress={handleForgotPasswordBtn} />
+              </View>
+            </View>
           </View>
         </View>
       </ImageBackground>
@@ -47,8 +60,7 @@ const style = StyleSheet.create({
     flex: 1
   },
   bgImage: {
-    width: '100%',
-    height: '100%'
+    flex: 1
   },
   columnContainer: {
     flex: 1,
@@ -68,7 +80,13 @@ const style = StyleSheet.create({
     height: 41
   },
   contentColumn: {
+    flex: 1,
+    flexDirection: 'column',
     backgroundColor: 'white',
     padding: 40
+  },
+  loginForm: {
+    marginBottom: 34,
+    height: 196
   }
 });

@@ -7,6 +7,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { appFacade } from './facade';
 import { AccountAccessNavigation } from '@app/account-access/navigation';
 import { MainNavigation } from '@app/main/navigation';
+import { navigationRef } from 'modules/navigation';
 
 const Stack = createStackNavigator();
 
@@ -17,12 +18,12 @@ export function App(): ReactElement {
 
   return (
     <SafeAreaView style={style.screen}>
-      <NavigationContainer>
+      <NavigationContainer ref={navigationRef}>
         <View>
           <StatusBar
             translucent={true}
             backgroundColor='transparent'
-            style='light' />
+            style='dark' />
         </View>
         <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName='AccountAccess'>
           <Stack.Screen name='AccountAccess' component={AccountAccessNavigation} />
