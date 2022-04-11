@@ -1,18 +1,13 @@
-import { variables } from '@styles';
+import { variables, createStyles } from '@styles';
 import React, { ReactElement } from 'react';
 import { ImageBackground, View } from 'react-native';
-import { useWindowDimensions } from 'react-native';
 import { commonStyle } from 'ui-kit/styles';
-import { createStyles } from '@styles';
 
 interface AccountAccessLayoutProps {
   children: React.ReactNode;
 }
 
 export function AccountAccessLayout({ children }: AccountAccessLayoutProps): ReactElement {
-  const windowWidth = useWindowDimensions().width;
-  const maxWidth = windowWidth > 768 ? 600 : windowWidth;
-
   return (
     <View style={{ flex: 1 }}>
       <View style={style.backgroundContainer}>
@@ -22,7 +17,7 @@ export function AccountAccessLayout({ children }: AccountAccessLayoutProps): Rea
           style={style.backgroundImage}
         />
       </View>
-      <View style={[style.content, commonStyle.container, { maxWidth }]}>{children}</View>
+      <View style={[commonStyle.container, style.content]}>{children}</View>
     </View>
   );
 }
@@ -43,5 +38,10 @@ const style = createStyles({
     backgroundColor: variables.color.white,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  '@media (max-width: 768)': {
+    content: {
+      maxWidth: 600
+    }
   }
 });
