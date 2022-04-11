@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, ImageBackground } from 'react-native';
+import { View, StyleSheet, ImageBackground } from 'react-native';
 import { loginFacade } from './facade';
 import { useNavigation } from '@react-navigation/native';
 import { FlexCenter } from '../shared/components/flex-center';
@@ -15,7 +15,7 @@ export function LoginScreen(): JSX.Element {
   const navigation = useNavigation();
 
   const handleLoginBtn = (): void => {
-    navigation.navigate('Main');
+    appNavigationService.navigate('Main');
   };
 
   const handleForgotPasswordBtn = (): void => {
@@ -39,7 +39,7 @@ export function LoginScreen(): JSX.Element {
           <View style={style.column}>
             <View style={style.contentColumn}>
               <View style={style.loginForm}>
-                <Text>Login Form</Text>
+                <AppButton title='Sign in' onPress={handleLoginBtn} />
               </View>
               <View style={{}}>
                 <AppButton
@@ -87,6 +87,8 @@ const style = StyleSheet.create({
   },
   loginForm: {
     marginBottom: 34,
-    height: 196
+    height: 196,
+    alignItems: 'center',
+    justifyContent: 'flex-end'
   }
 });

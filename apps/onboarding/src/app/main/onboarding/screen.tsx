@@ -2,6 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { onboardingFacade } from './facade';
+import { appNavigationService } from 'modules/navigation';
 
 export function OnboardingScreen(): JSX.Element {
   useEffect(() => {
@@ -11,7 +12,7 @@ export function OnboardingScreen(): JSX.Element {
   const navigation = useNavigation();
 
   const handleOnboardingBtn = (): void => {
-    navigation.navigate('AccountAccess');
+    appNavigationService.navigate('AccountAccess');
   };
 
   return (
