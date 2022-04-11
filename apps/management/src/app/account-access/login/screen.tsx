@@ -1,9 +1,14 @@
 import React, { ReactElement } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { AccountAccessLayout } from '../shared/account-access-layout';
 import { loginScreenFacade } from './facade';
+import { Icon } from 'ui-kit/icon';
+import { AppButton } from 'ui-kit/button';
+import { createStyles } from 'ui-kit/styles';
+import { useTranslation } from 'utils/i18n';
 
 export function LoginScreen(): ReactElement {
+  const translate = useTranslation('ACCOUNT_ACCESS.LOGIN');
+
   const handleSignInPress = (): void => {
     loginScreenFacade.navigateToMain();
   };
@@ -13,38 +18,27 @@ export function LoginScreen(): ReactElement {
   };
 
   return (
-    <View style={style.container}>
-      <TouchableOpacity onPress={handleSignInPress} style={style.button}>
-        <Text style={style.buttonText}>Sign-in</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleForgotPasswordPress}>
-        <Text style={style.linkText}>Forgot Password?</Text>
-      </TouchableOpacity>
-    </View>
+    <AccountAccessLayout>
+      <Icon name='logoManagement' style={style.icon} />
+      <AppButton
+        title={translate('BUTTON_SIGN_IN')}
+        style={style.signInButton}
+        onPress={handleSignInPress} />
+      <AppButton
+        title={translate('BUTTON_FORGOT_PASSWORD')}
+        theme='tertiary'
+        onPress={handleForgotPasswordPress} />
+    </AccountAccessLayout>
   );
 }
 
-const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white'
+const style = createStyles({
+  icon: {
+    marginBottom: 118,
+    padding: 4
   },
-  button: {
-    backgroundColor: '#26A0F8',
-    height: 44,
+  signInButton: {
     width: 300,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 50,
-    borderRadius: 10
-  },
-  buttonText: {
-    color: 'white'
-  },
-  linkText: {
-    color: '#26A0F8',
-    fontSize: 15
+    marginBottom: 70
   }
 });

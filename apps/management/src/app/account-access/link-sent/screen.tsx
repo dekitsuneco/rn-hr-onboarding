@@ -1,32 +1,31 @@
 import React, { ReactElement } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { AccountAccessLayout } from '../shared/account-access-layout';
 import { linkSentScreenFacade } from './facade';
+import { AppText } from 'ui-kit/text';
+import { AppButton } from 'ui-kit/button';
+import { createStyles } from 'ui-kit/styles';
+import { useTranslation } from 'utils/i18n';
 
 export function LinkSentScreen(): ReactElement {
+  const translate = useTranslation('ACCOUNT_ACCESS.LINK_SENT');
+
   const handleBackPress = (): void => {
-    linkSentScreenFacade.navigateToLogin();
+    linkSentScreenFacade.popToTop();
   };
 
   return (
-    <View style={style.container}>
-      <Text style={{ marginBottom: 50 }}>Done! We’ve sent you the password recovery link.</Text>
-      <TouchableOpacity onPress={handleBackPress}>
-        <Text style={style.link}>Back to Sign In</Text>
-      </TouchableOpacity>
-    </View>
+    <AccountAccessLayout>
+      <AppText style={style.text}>{translate('TEXT_LINK_SENT')}</AppText>
+      <AppButton
+        title={translate('BUTTON_BACK')}
+        theme='tertiary'
+        onPress={handleBackPress} />
+    </AccountAccessLayout>
   );
 }
 
-const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  link: {
-    color: '#26A0F8',
-    fontSize: 15
+const style = createStyles({
+  text: {
+    marginBottom: 50
   }
 });

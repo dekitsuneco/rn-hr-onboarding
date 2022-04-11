@@ -1,9 +1,16 @@
+import { createStyles } from '@styles';
 import React, { ReactElement } from 'react';
-import { View, StyleSheet, Text } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { View, TouchableOpacity } from 'react-native';
+import { AccountAccessLayout } from '../shared/account-access-layout';
 import { forgotPasswordScreenFacade } from './facade';
+import { AppText, TextTheme } from 'ui-kit/text';
+import { AppButton } from 'ui-kit/button';
+import { Icon } from 'ui-kit/icon';
+import { useTranslation } from 'utils/i18n';
 
 export function ForgotPasswordScreen(): ReactElement {
+  const translate = useTranslation('ACCOUNT_ACCESS.FORGOT_PASSWORD');
+
   const handleGoBackPress = (): void => {
     forgotPasswordScreenFacade.goBack();
   };
@@ -13,39 +20,38 @@ export function ForgotPasswordScreen(): ReactElement {
   };
 
   return (
-    <View style={style.container}>
-      <TouchableOpacity onPress={handleGoBackPress} style={{ marginBottom: 50 }}>
-        <Text style={style.linkText}>Go Back</Text>
-      </TouchableOpacity>
-      <TouchableOpacity onPress={handleResetpress} style={style.button}>
-        <Text style={style.buttonText}>Reset Password</Text>
-      </TouchableOpacity>
-    </View>
+    <AccountAccessLayout>
+      <View>
+        <View style={style.titleContainer}>
+          <TouchableOpacity onPress={handleGoBackPress}>
+            <Icon name='arrowLeft' style={style.icon} />
+          </TouchableOpacity>
+          <AppText theme={TextTheme.LARGE}>{translate('TEXT_TITLE')}</AppText>
+        </View>
+        <AppText theme={TextTheme.SMALL} style={style.text}>
+          {translate('TEXT_FORGOT_PASSWORD')}{' '}
+        </AppText>
+        <AppButton
+          title={translate('BUTTON_RESET')}
+          style={style.resetButton}
+          onPress={handleResetpress} />
+      </View>
+    </AccountAccessLayout>
   );
 }
 
-const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white'
+const style = createStyles({
+  titleContainer: {
+    flexDirection: 'row',
+    alignItems: 'center'
   },
-  button: {
-    backgroundColor: '#26A0F8',
-    height: 44,
-    width: 300,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginBottom: 50,
-    borderRadius: 10
+  icon: {
+    marginRight: 10
   },
-  buttonText: {
-    color: 'white',
-    fontSize: 15
+  text: {
+    marginVertical: 60
   },
-  linkText: {
-    color: '#26A0F8',
-    fontSize: 15
+  resetButton: {
+    width: 300
   }
 });

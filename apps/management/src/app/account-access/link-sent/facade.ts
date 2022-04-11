@@ -1,8 +1,8 @@
 import { appNavigationService } from 'modules/navigation';
 
 class LinkSentScreenFacade {
-  public navigateToLogin(): void {
-    appNavigationService.navigate('Login');
+  public popToTop(): void {
+    appNavigationService.popToTop();
   }
 }
 
