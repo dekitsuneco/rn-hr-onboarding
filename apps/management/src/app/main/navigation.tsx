@@ -19,12 +19,12 @@ export type MainNavigationParams = {
 const Drawer = createDrawerNavigator<MainNavigationParams>();
 
 export function MainNavigation(): ReactElement {
-  const { isBigScreen } = useScreenDimensions();
+  const { isTablet } = useScreenDimensions();
 
   return (
     <Drawer.Navigator
-      drawerContent={(props) => <CustomDrawerPanel {...props} />}
-      defaultStatus={isBigScreen ? 'open' : 'closed'}
+      drawerContent={CustomDrawerPanel}
+      defaultStatus={isTablet ? 'open' : 'closed'}
       screenOptions={{
         header: ({ navigation }) => {
           return (

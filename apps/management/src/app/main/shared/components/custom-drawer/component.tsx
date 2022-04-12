@@ -4,10 +4,9 @@ import { View } from 'react-native';
 import { Icon } from 'ui-kit/icon';
 import { createStyles } from 'ui-kit/styles';
 import { useTranslation } from 'utils/i18n';
-import { Icons } from '../../../../../../../../packages/assets/icons/icons';
-import { CurrentUserItem } from './current-user-item/component';
-import { CustomDrawerItem } from './custom-drawer-item/component';
+import { Icons } from 'assets/icons';
 import { customDrawerFacade } from './facade';
+import { CustomDrawerItem, CurrentUserItem } from './components';
 
 export function CustomDrawerPanel(props: DrawerContentComponentProps): ReactElement {
   const translate = useTranslation('MAIN.NAVIGATION');
@@ -34,7 +33,7 @@ export function CustomDrawerPanel(props: DrawerContentComponentProps): ReactElem
           label={translate('BUTTON_LOGOUT')}
           icon='logout'
           onPress={() => {
-            customDrawerFacade.popToTop();
+            customDrawerFacade.logout();
           }}
         />
       </View>

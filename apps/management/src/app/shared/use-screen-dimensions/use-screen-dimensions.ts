@@ -1,8 +1,9 @@
+import { variables } from '@styles';
 import { useWindowDimensions } from 'react-native';
 
-export function useScreenDimensions(): { isBigScreen: boolean; width: number; height: number } {
+export function useScreenDimensions(): { isTablet: boolean; width: number; height: number } {
   const { width, height } = useWindowDimensions();
-  const isBigScreen = width > 768;
+  const isTablet = width > variables.breakpoints.tablet;
 
-  return { isBigScreen, width, height };
+  return { isTablet, width, height };
 }

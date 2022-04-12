@@ -11,7 +11,7 @@ class CustomDrawerFacade {
     return currentScreen === screen;
   }
 
-  public popToTop(): void {
+  public logout(): void {
     appNavigationService.popToTop();
   }
 }

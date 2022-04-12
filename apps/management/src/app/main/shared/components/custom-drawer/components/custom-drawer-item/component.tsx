@@ -4,7 +4,7 @@ import { View, TouchableOpacity } from 'react-native';
 import { Icon } from 'ui-kit/icon';
 import { createStyles } from 'ui-kit/styles';
 import { AppText, TextTheme } from 'ui-kit/text';
-import { Icons } from '../../../../../../../../../packages/assets/icons/icons';
+import { Icons } from 'assets/icons';
 
 interface Props {
   label: string;
@@ -17,10 +17,10 @@ export function CustomDrawerItem({ label, icon, onPress, isActive }: Props): Rea
   return (
     <TouchableOpacity style={style.container} onPress={onPress}>
       <View style={style.menuItem}>
-        <View style={[style.icon, isActive && { backgroundColor: variables.color.backgroundSecondary }]}>
+        <View style={[style.icon, isActive && style.iconActive]}>
           <Icon name={icon} />
         </View>
-        <AppText theme={TextTheme.SMALL} style={[style.text, { fontWeight: isActive ? '700' : '400' }]}>
+        <AppText theme={TextTheme.SMALL} style={[style.text, isActive && style.textActive]}>
           {label}
         </AppText>
       </View>
@@ -44,7 +44,13 @@ const style = createStyles({
     alignItems: 'center',
     borderRadius: 22
   },
+  iconActive: {
+    backgroundColor: variables.color.backgroundSecondary
+  },
   text: {
     color: variables.color.textSecondary
+  },
+  textActive: {
+    fontWeight: '700'
   }
 });
