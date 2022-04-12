@@ -20,7 +20,7 @@ export function FormGroup({
 }: FormGroupProps): ReactElement {
   const renderedLabel = useMemo(() => {
     return (
-      label && (
+      !!label && (
         <AppText theme={TextTheme.SMALL} style={style.formGroupLabel}>
           {label}
         </AppText>
@@ -30,7 +30,7 @@ export function FormGroup({
 
   const renderedMessage = useMemo(() => {
     return (
-      message && (
+      !!message && (
         <AppText theme={TextTheme.SMALLEST} style={[style.formGroupMessage, hasError && style.formGroupErrorMessage]}>
           {message}
         </AppText>
