@@ -13,5 +13,14 @@
       "TEXT_FORGOT_PASSWORD": "Forgot your password? \nNo problem, just enter your email \naddress and we will sort it out.",
       "BUTTON_RESET": "Reset Password"
     }
+  },
+  "MAIN": {
+    "NAVIGATION": {
+      "DASHBOARD": "Dashboard",
+      "EMPLOYEES": "Employees",
+      "SCRIPTS": "Scripts",
+      "SETTINGS": "Settings",
+      "BUTTON_LOGOUT": "Logout"
+    }
   }
 }
