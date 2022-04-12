@@ -1,4 +1,4 @@
-import { commonStyle, variables, createStyles } from '../styles';
+import { variables, createStyles } from '../styles';
 import { InputType } from './enums';
 import React, { ReactElement, useMemo, useState } from 'react';
 import { TouchableOpacity, View, TextInput, TextInputProps, StyleProp, ViewStyle } from 'react-native';
@@ -8,22 +8,20 @@ export interface AppTextInputProps extends TextInputProps {
   controlStyle?: StyleProp<ViewStyle>;
   disabled?: boolean;
   hasError?: boolean;
-  floatingLabel?: string;
   icon?: typeof Icon;
-  iconPosition?: 'left' | 'right';
+  iconType?: 'leading' | 'trailing';
   iconContainerStyle?: StyleProp<ViewStyle>;
   handleIconPress?: () => void;
   type?: InputType;
 }
 
 export function AppTextInput({
-  controlStyle: inputContainerStyle = {},
+  controlStyle = {},
   style: elementStyle = {},
   hasError,
   disabled: isDisabled,
-  floatingLabel,
   icon,
-  iconPosition = 'right',
+  iconType = 'trailing',
   iconContainerStyle,
   handleIconPress,
   type = InputType.TEXT,
@@ -52,13 +50,13 @@ export function AppTextInput({
     editable: !isDisabled,
     placeholderTextColor:
       isDisabled || isFocused ? stylePlaceholder.focusedOrDisabled.color : stylePlaceholder.default.color,
-    style: [commonStyle.formInput, elementStyle, isDisabled && commonStyle.formInputDisabled]
+    style: [styleInput.textInput, elementStyle]
   };
 
   const renderedIcon = useMemo(() => {
     if (type === InputType.PASSWORD) {
       return (
-        <TouchableOpacity style={commonStyle.formInputIcon} onPress={() => setMaskedInput(!isMaskedInput)}>
+        <TouchableOpacity style={styleIcon.common} onPress={() => setMaskedInput(!isMaskedInput)}>
           <View>
             <Icon name={isMaskedInput ? 'eye' : 'eyeHide'} />
           </View>
@@ -71,25 +69,23 @@ export function AppTextInput({
     }
 
     return handleIconPress ? (
-      <TouchableOpacity
-        onPress={handleIconPress}
-        style={[commonStyle.formInputIcon, styleIcon[iconPosition], iconContainerStyle]}>
+      <TouchableOpacity onPress={handleIconPress} style={[styleIcon.common, styleIcon[iconType], iconContainerStyle]}>
         <View>{icon}</View>
       </TouchableOpacity>
     ) : (
-      <View style={[commonStyle.formInputIcon, styleIcon[iconPosition], iconContainerStyle]}>{icon}</View>
+      <View style={[styleIcon.common, styleIcon[iconType], iconContainerStyle]}>{icon}</View>
     );
   }, [icon, handleIconPress, isMaskedInput, type]);
 
   return (
     <View
       style={[
-        commonStyle.formControl,
-        isFocused && commonStyle.formControlFocus,
-        hasError && commonStyle.formControlError,
-        isDisabled && commonStyle.formInputDisabled,
-        icon && styleTextInput[iconPosition],
-        inputContainerStyle
+        styleControl.common,
+        isFocused && styleControl.focus,
+        hasError && styleControl.error,
+        isDisabled && styleControl.disabled,
+        icon && styleInput[iconType],
+        controlStyle
       ]}>
       <TextInput
         secureTextEntry={isMaskedInput && type === InputType.PASSWORD}
@@ -102,20 +98,63 @@ export function AppTextInput({
   );
 }
 
-const styleTextInput = createStyles({
-  right: {
-    paddingRight: 50
+const styleControl = createStyles({
+  common: {
+    position: 'relative',
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingLeft: 20,
+    paddingRight: 20,
+    backgroundColor: variables.color.backgroundSecondary,
+    borderColor: variables.color.backgroundSecondary,
+    borderWidth: 1,
+    borderRadius: 10
   },
-  left: {
+  focus: {
+    backgroundColor: variables.color.background,
+    borderColor: variables.color.primary
+  },
+  error: {
+    backgroundColor: variables.color.backgroundTertiary,
+    borderColor: variables.color.danger
+  },
+  disabled: {
+    backgroundColor: variables.color.gray + '33',
+    opacity: 0.5
+  }
+});
+
+const styleInput = createStyles({
+  textInput: {
+    flex: 1,
+    height: 44,
+    paddingTop: 10,
+    paddingBottom: 10,
+    color: variables.color.textPrimary,
+    fontSize: variables.fontSize.medium
+  },
+  leading: {
     paddingLeft: 50
+  },
+  trailing: {
+    paddingRight: 50
   }
 });
 
 const styleIcon = createStyles({
-  right: {
+  common: {
+    position: 'absolute',
+    top: 0,
+    right: 20,
+    justifyContent: 'center',
+    height: '100%',
+    width: 30
+  },
+  trailing: {
     right: 15
   },
-  left: {
+  leading: {
     right: 0,
     left: 15
   }
