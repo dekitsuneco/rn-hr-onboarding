@@ -17,42 +17,45 @@ export const commonStyle = createStyles({
   container: {
     paddingHorizontal: variables.contentOffset
   },
+  formControl: {
+    position: 'relative',
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingLeft: 20,
+    paddingRight: 20,
+    backgroundColor: variables.color.backgroundSecondary,
+    borderColor: variables.color.backgroundSecondary,
+    borderWidth: 1,
+    borderRadius: 10
+  },
   formInput: {
-    color: variables.color.white,
-    fontSize: variables.fontSize.medium,
+    flex: 1,
     height: 44,
     paddingTop: 10,
     paddingBottom: 10,
-    flex: 1
+    color: variables.color.textPrimary,
+    fontSize: variables.fontSize.medium
+  },
+  formControlFocus: {
+    backgroundColor: variables.color.background,
+    borderColor: variables.color.primary
+  },
+  formControlError: {
+    backgroundColor: variables.color.backgroundTertiary,
+    borderColor: variables.color.danger
   },
   formInputDisabled: {
+    backgroundColor: variables.color.gray + '33',
     opacity: 0.5
   },
   formInputIcon: {
-    top: 0,
-    height: '100%',
     position: 'absolute',
-    width: 30,
+    top: 0,
+    right: 20,
     justifyContent: 'center',
-    right: 20
-  },
-  formControl: {
-    position: 'relative',
-    borderWidth: 1,
-    backgroundColor: variables.color.backgroundSecondary,
-    borderColor: variables.color.backgroundSecondary,
-    borderRadius: 10,
-    flexDirection: 'row',
-    paddingLeft: 20,
-    paddingRight: 20,
-    width: '100%',
-    alignItems: 'center'
-  },
-  formControlError: {
-    borderColor: variables.color.danger
-  },
-  formControlFocus: {
-    borderColor: variables.color.primary
+    height: '100%',
+    width: 30
   },
   row: {
     display: 'flex',
