@@ -1,11 +1,11 @@
 import React, { ReactElement, useEffect } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { forgotPasswordFacade } from './facade';
 import { appNavigationService } from 'modules/navigation';
+import { useTranslation } from 'utils/i18n';
 
 export function ForgotPasswordScreen(): ReactElement {
-  const navigation = useNavigation();
+  const translate = useTranslation('ACCOUNT_ACCESS.FORGOT_PASSWORD');
 
   useEffect((): void => {
     forgotPasswordFacade.init();
@@ -17,8 +17,8 @@ export function ForgotPasswordScreen(): ReactElement {
 
   return (
     <View style={style.screen}>
-      <Text style={style.text}>Forgot Password Screen</Text>
-      <Button title='Go back' onPress={handleGoBackBtn} />
+      <Text style={style.text}>{translate('TEXT_TITLE')}</Text>
+      <Button title={translate('BUTTON_GO_BACK')} onPress={handleGoBackBtn} />
     </View>
   );
 }

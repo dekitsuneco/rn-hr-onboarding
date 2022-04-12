@@ -1,4 +1,3 @@
-import { useNavigation } from '@react-navigation/native';
 import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { onboardingFacade } from './facade';
@@ -8,8 +7,6 @@ export function OnboardingScreen(): JSX.Element {
   useEffect(() => {
     onboardingFacade.init();
   }, []);
-
-  const navigation = useNavigation();
 
   const handleOnboardingBtn = (): void => {
     appNavigationService.navigate('AccountAccess');

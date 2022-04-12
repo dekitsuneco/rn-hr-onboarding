@@ -1,18 +1,18 @@
 import React, { useEffect } from 'react';
 import { View, StyleSheet, ImageBackground } from 'react-native';
 import { loginFacade } from './facade';
-import { useNavigation } from '@react-navigation/native';
 import { FlexCenter } from '../shared/components/flex-center';
 import { Icon } from 'ui-kit/icon';
 import { AppButton } from 'ui-kit/button';
 import { appNavigationService } from 'modules/navigation';
+import { useTranslation } from 'utils/i18n';
 
 export function LoginScreen(): JSX.Element {
+  const translate = useTranslation('ACCOUNT_ACCESS.LOGIN');
+
   useEffect(() => {
     loginFacade.init();
   }, []);
-
-  const navigation = useNavigation();
 
   const handleLoginBtn = (): void => {
     appNavigationService.navigate('Main');
@@ -39,13 +39,14 @@ export function LoginScreen(): JSX.Element {
           <View style={style.column}>
             <View style={style.contentColumn}>
               <View style={style.loginForm}>
-                <AppButton title='Sign in' onPress={handleLoginBtn} />
+                <AppButton title={translate('BUTTON_SIGN_IN')} onPress={handleLoginBtn} />
               </View>
               <View style={{}}>
                 <AppButton
-                  title='Forgot password?'
+                  title={translate('BUTTON_FORGOT_PASSWORD')}
                   theme='tertiary'
-                  onPress={handleForgotPasswordBtn} />
+                  onPress={handleForgotPasswordBtn}
+                />
               </View>
             </View>
           </View>
