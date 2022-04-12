@@ -56,7 +56,10 @@ export function AppTextInput({
   const renderedIcon = useMemo(() => {
     if (type === InputType.PASSWORD) {
       return (
-        <TouchableOpacity style={styleIcon.common} onPress={() => setMaskedInput(!isMaskedInput)}>
+        <TouchableOpacity
+          disabled={isDisabled}
+          style={styleIcon.common}
+          onPress={() => setMaskedInput(!isMaskedInput)}>
           <View>
             <Icon name={isMaskedInput ? 'eye' : 'eyeHide'} />
           </View>
@@ -69,7 +72,10 @@ export function AppTextInput({
     }
 
     return handleIconPress ? (
-      <TouchableOpacity onPress={handleIconPress} style={[styleIcon.common, styleIcon[iconType], iconContainerStyle]}>
+      <TouchableOpacity
+        disabled={isDisabled}
+        onPress={handleIconPress}
+        style={[styleIcon.common, styleIcon[iconType], iconContainerStyle]}>
         <View>{icon}</View>
       </TouchableOpacity>
     ) : (
