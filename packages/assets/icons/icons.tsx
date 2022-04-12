@@ -7,5 +7,6 @@ export const Icons = {
   settings: Svg(require('./settings.svg')),
   scripts: Svg(require('./scripts.svg')),
   employees: Svg(require('./employees.svg')),
-  logout: Svg(require('./logout.svg'))
+  logout: Svg(require('./logout.svg')),
+  logoOnboarding: Svg(require('./logo-onboarding.svg'))
 };

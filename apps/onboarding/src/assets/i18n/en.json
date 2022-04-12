@@ -1,4 +1,13 @@
 {
-  "ACCOUNT_ACCESS": {},
+  "ACCOUNT_ACCESS": {
+    "FORGOT_PASSWORD": {
+      "TEXT_TITLE": "Forgot Password Screen",
+      "BUTTON_GO_BACK": "Go back"
+    },
+    "LOGIN": {
+      "BUTTON_SIGN_IN": "Sign in",
+      "BUTTON_FORGOT_PASSWORD": "Forgot password?"
+    }
+  },
   "MAIN": {}
 }
