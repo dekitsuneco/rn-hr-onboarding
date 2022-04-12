@@ -3,7 +3,7 @@ import { InputType } from '../text-input';
 import { AppTextInput } from '../text-input';
 import React, { ReactElement, useState } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
-import { Icons } from 'assets/icons';
+import { Icons } from 'assets/icons/icons';
 import { Icon } from '../icon';
 
 export interface InputFormGroupProps {
