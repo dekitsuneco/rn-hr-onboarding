@@ -95,10 +95,8 @@ export function AppTextInput({
       ]}>
       <TextInput
         secureTextEntry={isMaskedInput && type === InputType.PASSWORD}
-        placeholder={'Placeholder'}
         {...commonInputProps}
-        {...restProps}
-      />
+        {...restProps} />
       {renderedIcon}
     </View>
   );
