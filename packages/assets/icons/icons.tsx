@@ -7,5 +7,6 @@ export const Icons = {
   eye: Svg(require('./eye.svg')),
   eyeHide: Svg(require('./eye-hide.svg')),
   logoManagement: Svg(require('./logo.svg')),
+  logoOnboarding: Svg(require('./logo-onboarding.svg')),
   search: Svg(require('./search.svg'))
 };

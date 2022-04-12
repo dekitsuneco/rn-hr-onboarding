@@ -26,5 +26,9 @@ export const commonStyle = createStyles({
   col: {
     flex: 1,
     marginHorizontal: 5
+  },
+  flexCenter: {
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 });

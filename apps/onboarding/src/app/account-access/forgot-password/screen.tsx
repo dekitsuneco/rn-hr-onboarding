@@ -1,23 +1,23 @@
 import React, { ReactElement, useEffect } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
 import { forgotPasswordFacade } from './facade';
+import { useTranslation } from 'utils/i18n';
 
 export function ForgotPasswordScreen(): ReactElement {
-  const navigation = useNavigation();
+  const translate = useTranslation('ACCOUNT_ACCESS.FORGOT_PASSWORD');
 
   useEffect((): void => {
     forgotPasswordFacade.init();
   }, []);
 
   const handleGoBackBtn = () => {
-    navigation.goBack();
+    forgotPasswordFacade.goBack();
   };
 
   return (
     <View style={style.screen}>
-      <Text style={style.text}>Forgot Password Screen</Text>
-      <Button title='Go back' onPress={handleGoBackBtn} />
+      <Text style={style.text}>{translate('TEXT_TITLE')}</Text>
+      <Button title={translate('BUTTON_GO_BACK')} onPress={handleGoBackBtn} />
     </View>
   );
 }
@@ -29,7 +29,7 @@ const style = StyleSheet.create({
     alignItems: 'center'
   },
   text: {
-    fontSize: 30,
+    fontSize: 24,
     marginBottom: 15
   }
 });

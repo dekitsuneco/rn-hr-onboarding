@@ -1,49 +1,83 @@
 import React, { useEffect } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, StyleSheet, ImageBackground } from 'react-native';
 import { loginFacade } from './facade';
-import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'utils/i18n';
+import { Icon } from 'ui-kit/icon';
+import { AppButton } from 'ui-kit/button';
+import { variables, commonStyle } from '@styles';
 
 export function LoginScreen(): JSX.Element {
+  const translate = useTranslation('ACCOUNT_ACCESS.LOGIN');
+
   useEffect(() => {
     loginFacade.init();
   }, []);
 
-  const navigation = useNavigation();
-
   const handleLoginBtn = (): void => {
-    navigation.navigate('Main');
+    loginFacade.navigate('Main');
   };
 
   const handleForgotPasswordBtn = (): void => {
-    navigation.navigate('ForgotPassword');
+    loginFacade.navigate('ForgotPassword');
   };
 
   return (
     <View style={style.screen}>
-      <Text style={style.text}>Login Screen</Text>
-      <View style={style.btnGroup}>
-        <Button title='Go to Main screen' onPress={handleLoginBtn} />
-        <View style={style.divider} />
-        <Button title='Go to Forgot Password screen' onPress={handleForgotPasswordBtn} />
-      </View>
+      <ImageBackground
+        style={style.bgImage}
+        source={require('@assets/images/background.png')}
+        resizeMode='cover'>
+        <View style={style.columnContainer}>
+          <View style={[commonStyle.flexCenter, style.column]}>
+            <View style={[commonStyle.flexCenter, style.iconContainer]}>
+              <Icon name='logoOnboarding' />
+            </View>
+          </View>
+          <View style={style.column}>
+            <View style={style.contentColumn}>
+              <View style={style.loginForm}>
+                <AppButton title={translate('BUTTON_SIGN_IN')} onPress={handleLoginBtn} />
+              </View>
+              <AppButton
+                title={translate('BUTTON_FORGOT_PASSWORD')}
+                theme='tertiary'
+                onPress={handleForgotPasswordBtn}
+              />
+            </View>
+          </View>
+        </View>
+      </ImageBackground>
     </View>
   );
 }
 
 const style = StyleSheet.create({
   screen: {
+    flex: 1
+  },
+  bgImage: {
+    flex: 1
+  },
+  columnContainer: {
+    flex: 1
+  },
+  column: {
+    flex: 0.5
+  },
+  iconContainer: {
+    backgroundColor: variables.color.background,
+    width: 134,
+    aspectRatio: 1,
+    borderRadius: 100
+  },
+  contentColumn: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
+    backgroundColor: variables.color.background,
+    padding: 40
   },
-  text: {
-    fontSize: 30,
-    marginBottom: 40
-  },
-  btnGroup: {
-    alignItems: 'stretch'
-  },
-  divider: {
-    marginBottom: 20
+  loginForm: {
+    marginBottom: 34,
+    alignItems: 'center',
+    justifyContent: 'flex-start'
   }
 });

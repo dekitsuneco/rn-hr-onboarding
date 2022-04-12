@@ -24,25 +24,26 @@ const defaultExpoConfig: ExpoConfig = {
   entryPoint: 'index.js',
   version: '0.0.1',
   orientation: 'portrait',
-  backgroundColor: '#000000',
+  backgroundColor: '#FFFFFF',
   icon: './src/assets/images/icon.png',
   splash: {
     image: './src/assets/images/splash.png',
     resizeMode: 'contain',
-    backgroundColor: '#000000'
+    backgroundColor: '#FFFFFF'
   },
   assetBundlePatterns: ['./src/assets/images/*', './src/assets/fonts/*', './src/assets/i18n/*'],
-  userInterfaceStyle: 'dark',
+  userInterfaceStyle: 'light',
   ios: {
     buildNumber: '1',
     supportsTablet: false,
     bundleIdentifier: 'com.ronasit.rnstarter.dev',
-    backgroundColor: '#000000',
+    backgroundColor: '#FFFFFF',
     config: {
       usesNonExemptEncryption: false
     }
   },
   android: {
+    userInterfaceStyle: 'light',
     versionCode: 1,
     package: 'com.ronasit.rnstarter.dev',
     permissions: []
