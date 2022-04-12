@@ -1,7 +1,6 @@
 import React, { ReactElement, useEffect } from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { forgotPasswordFacade } from './facade';
-import { appNavigationService } from 'modules/navigation';
 import { useTranslation } from 'utils/i18n';
 
 export function ForgotPasswordScreen(): ReactElement {
@@ -12,7 +11,7 @@ export function ForgotPasswordScreen(): ReactElement {
   }, []);
 
   const handleGoBackBtn = () => {
-    appNavigationService.goBack();
+    forgotPasswordFacade.goBack();
   };
 
   return (
