@@ -8,7 +8,7 @@ export interface AppTextInputProps extends TextInputProps {
   controlStyle?: StyleProp<ViewStyle>;
   disabled?: boolean;
   hasError?: boolean;
-  icon?: typeof Icon;
+  icon?: ReactElement;
   iconType?: 'leading' | 'trailing';
   iconContainerStyle?: StyleProp<ViewStyle>;
   handleIconPress?: () => void;

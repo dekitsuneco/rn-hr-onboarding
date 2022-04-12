@@ -1,7 +1,7 @@
 import { FormGroup } from '../form-group';
 import { InputType } from '../text-input';
 import { AppTextInput } from '../text-input';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useState, useCallback } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import { Icons } from 'assets/icons/icons';
 import { Icon } from '../icon';
@@ -22,7 +22,7 @@ export function InputFormGroup({
 }: InputFormGroupProps): ReactElement {
   const [hasError, setError] = useState(false);
 
-  const typeToIcon = (type: InputType): keyof typeof Icons => {
+  const getIconForInputType = useCallback((): keyof typeof Icons => {
     switch (type) {
       case InputType.SEARCH:
         return 'search';
@@ -33,12 +33,11 @@ export function InputFormGroup({
       default:
         return null;
     }
-  };
+  }, [type]);
 
-  const correspondingIconName = typeToIcon(type);
+  const correspondingIconName = getIconForInputType();
 
-  const icon: typeof Icon =
-    correspondingIconName && ((<Icon name={correspondingIconName} />) as unknown as typeof Icon);
+  const icon: ReactElement = !!correspondingIconName && <Icon name={correspondingIconName} />;
 
   return (
     <FormGroup
