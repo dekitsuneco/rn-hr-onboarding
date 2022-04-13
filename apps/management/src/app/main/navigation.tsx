@@ -6,7 +6,8 @@ import { ScriptsScreen } from './scripts/screen';
 import { SettingsScreen } from './settings/screen';
 import { Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { isBigScreen } from '@styles';
+import { useScreenDimensions } from '@shared/use-screen-dimensions';
+import { CustomDrawerPanel } from './shared/components';
 
 export type MainNavigationParams = {
   Dashboard: undefined;
@@ -15,14 +16,15 @@ export type MainNavigationParams = {
   Settings: undefined;
 };
 
-const defaultStatus = isBigScreen ? 'open' : 'closed';
-
 const Drawer = createDrawerNavigator<MainNavigationParams>();
 
 export function MainNavigation(): ReactElement {
+  const { isTablet } = useScreenDimensions();
+
   return (
     <Drawer.Navigator
-      defaultStatus={defaultStatus}
+      drawerContent={CustomDrawerPanel}
+      defaultStatus={isTablet ? 'open' : 'closed'}
       screenOptions={{
         header: ({ navigation }) => {
           return (
