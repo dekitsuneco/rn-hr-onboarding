@@ -51,6 +51,7 @@ export function MainNavigation(): ReactElement {
 
 const style = createStyles({
   tabBar: {
+    position: 'absolute',
     backgroundColor: variables.color.white,
     borderRadius: 16,
     shadowColor: variables.color.boxShadow,
