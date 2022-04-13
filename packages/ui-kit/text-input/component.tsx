@@ -36,13 +36,9 @@ export function AppTextInput({
     value: value,
     onChangeText: (input: string) => {
       setValue(input);
-
-      setIsFocused(input.length === 0);
     },
     onFocus: () => {
-      if (value.length === 0) {
-        setIsFocused(true);
-      }
+      setIsFocused(true);
     },
     onBlur: () => {
       setIsFocused(false);
