@@ -6,10 +6,13 @@ import React, { ReactElement } from 'react';
 import { createStyles } from 'ui-kit/styles';
 import { variables } from '@styles';
 import { Icon } from 'ui-kit/icon';
+import { useTranslation } from 'utils/i18n';
 
 const Tab = createBottomTabNavigator();
 
 export function MainNavigation(): ReactElement {
+  const translate = useTranslation('MAIN.NAVIGATION');
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -22,21 +25,24 @@ export function MainNavigation(): ReactElement {
         name='Onboarding'
         component={OnboardingScreen}
         options={{
-          tabBarIcon: ({ focused }) => <Icon name={focused ? 'onboardingActive' : 'onboarding'} />
+          tabBarIcon: ({ focused }) => <Icon name={focused ? 'onboardingActive' : 'onboarding'} />,
+          title: translate('ONBOARDING')
         }}
       />
       <Tab.Screen
         name='Achievements'
         component={AchievementsScreen}
         options={{
-          tabBarIcon: ({ focused }) => <Icon name={focused ? 'achievementsActive' : 'achievements'} />
+          tabBarIcon: ({ focused }) => <Icon name={focused ? 'achievementsActive' : 'achievements'} />,
+          title: translate('ACHIEVEMENTS')
         }}
       />
       <Tab.Screen
         name='ProfileScreen'
         component={ProfileScreen}
         options={{
-          tabBarIcon: ({ focused }) => <Icon name={focused ? 'profileActive' : 'profile'} />
+          tabBarIcon: ({ focused }) => <Icon name={focused ? 'profileActive' : 'profile'} />,
+          title: translate('PROFILE')
         }}
       />
     </Tab.Navigator>

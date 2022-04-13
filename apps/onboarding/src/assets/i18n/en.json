@@ -9,5 +9,11 @@
       "BUTTON_FORGOT_PASSWORD": "Forgot password?"
     }
   },
-  "MAIN": {}
+  "MAIN": {
+    "NAVIGATION": {
+      "ONBOARDING": "Onboarding",
+      "ACHIEVEMENTS": "Achievements",
+      "PROFILE": "Profile"
+    }
+  }
 }
