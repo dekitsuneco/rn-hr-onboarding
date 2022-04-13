@@ -12,6 +12,6 @@ export const Icons = {
   logoManagement: Svg(require('./logo.svg')),
   logoOnboarding: Svg(require('./logo-onboarding.svg')),
   scripts: Svg(require('./scripts.svg')),
-  search: Svg(require('./search.svg'))
-  settings: Svg(require('./settings.svg')),
+  search: Svg(require('./search.svg')),
+  settings: Svg(require('./settings.svg'))
 };
