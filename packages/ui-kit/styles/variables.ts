@@ -20,7 +20,8 @@ export const variables = {
     statusNeutral: '#8294A2',
     statusSuccess: '#50F826',
     statusDanger: '#E72005',
-    statusProgress: '#26A0F8'
+    statusProgress: '#26A0F8',
+    boxShadow: '#525F77'
   },
   fontSize: {
     smallest: '0.85rem',
