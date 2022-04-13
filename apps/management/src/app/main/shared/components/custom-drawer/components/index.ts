@@ -1,3 +1,2 @@
-import { CustomDrawerItem } from './custom-drawer-item/component';
-import { CurrentUserItem } from './current-user-item/component';
-export { CustomDrawerItem, CurrentUserItem };
+export * from './custom-drawer-item/component';
+export * from './current-user-item/component';

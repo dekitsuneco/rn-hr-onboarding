@@ -9,10 +9,7 @@ export function CurrentUserItem(): ReactElement {
   return (
     <View style={style.container}>
       <View style={style.imageContainer}>
-        <Avatar
-          theme={AvatarTheme.SMALLEST}
-          uri='http://risovach.ru/upload/2020/01/generator/chernyy-vlastelin_228838310_orig_.jpg'
-        />
+        <Avatar theme={AvatarTheme.SMALLEST} uri='https://i.ytimg.com/vi/ID0B8lvQVQU/maxresdefault.jpg' />
       </View>
       <AppText theme={TextTheme.SMALL}>Petya Ivanov</AppText>
     </View>

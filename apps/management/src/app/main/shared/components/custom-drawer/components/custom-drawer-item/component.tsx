@@ -42,7 +42,8 @@ const style = createStyles({
     height: 44,
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: 22
+    borderRadius: 22,
+    overflow: 'hidden'
   },
   iconActive: {
     backgroundColor: variables.color.backgroundSecondary
