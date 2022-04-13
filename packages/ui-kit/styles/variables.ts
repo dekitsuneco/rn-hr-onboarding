@@ -35,5 +35,8 @@ export const variables = {
     sfProDisplayRegular: 'SFProDisplayRegular',
     sfProTextRegular: 'SFProTextRegular',
     sfProTextSemiBold: 'SFProTextSemiBold'
+  },
+  breakpoints: {
+    tablet: 768
   }
 };
