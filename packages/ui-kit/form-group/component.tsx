@@ -32,6 +32,8 @@ export function FormGroup<T = AppTextInputProps>({
 
   const hasError = hasValidationErrors && (isSubmitted || isTouched);
 
+  const messageOrError = hasError ? (errors[name] as string) : message;
+
   useEffect(() => {
     onErrorStateChange?.(hasError);
   }, [hasError]);
@@ -48,13 +50,13 @@ export function FormGroup<T = AppTextInputProps>({
 
   const renderedMessage = useMemo(() => {
     return (
-      !!message && (
+      !!messageOrError && (
         <AppText theme={TextTheme.SMALLEST} style={[style.formGroupMessage, hasError && style.formGroupErrorMessage]}>
-          {hasError ? (errors[name] as string) : message}
+          {messageOrError}
         </AppText>
       )
     );
-  }, [message, hasError]);
+  }, [message, messageOrError, hasError]);
 
   return (
     <View style={[style.formGroup, containerStyle]}>
