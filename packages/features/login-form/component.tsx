@@ -6,17 +6,21 @@ import { InputFormGroup } from 'ui-kit/input-form-group';
 import { AppButton } from 'ui-kit/button';
 import { createStyles, variables } from 'ui-kit/styles';
 import { useFormik } from 'formik';
-import { LoginForm } from './login';
-import { useTranslation } from 'utils/i18n';
+import { LoginForm } from './forms/login';
 
-export function LoginGroup(onSubmit: () => void, onSignIn: () => void, onForgotPassword: () => void): ReactElement {
-  const translate = useTranslation('PUBLIC.LOGIN');
+export interface LoginGroupProps {
+  onSubmit: () => void;
+  onForgotPassword: () => void;
+}
 
+export function LoginGroup({ onSubmit, onForgotPassword }: LoginGroupProps): ReactElement {
   const formik = useFormik({
     initialValues: new LoginForm(),
     validationSchema: LoginForm.validationSchema,
     onSubmit: onSubmit
   });
+
+  const { handleSubmit } = formik;
 
   return (
     <View style={style.form}>
@@ -27,29 +31,30 @@ export function LoginGroup(onSubmit: () => void, onSignIn: () => void, onForgotP
         <InputFormGroup<LoginForm>
           containerStyle={[style.input, style.middleItem]}
           type={InputType.TEXT}
-          placeholder={translate('PLACEHOLDER_EMAIL')}
+          placeholder={'Email'}
+          autoCapitalize='none'
           formik={formik}
           name={'email' as keyof LoginForm}
         />
         <InputFormGroup<LoginForm>
           containerStyle={[style.input, style.middleItem]}
           type={InputType.PASSWORD}
-          placeholder={translate('PLACEHOLDER_EMAIL')}
+          placeholder={'Password'}
+          autoCapitalize='none'
           formik={formik}
-          name={'email' as keyof LoginForm}
+          name={'password' as keyof LoginForm}
         />
         <AppButton
           style={style.signInButton}
-          title={translate('BUTTON_SIGN_IN')}
-          onPress={onSignIn} />
+          title={'Sign In'}
+          onPress={() => handleSubmit()} />
       </View>
       <View style={style.bottom}>
         <AppButton
           style={style.forgotButton}
-          title={translate('BUTTON_FORGOT_PASSWORD')}
+          title={'Forgot password?'}
           theme='tertiary'
-          onPress={onForgotPassword}
-        />
+          onPress={onForgotPassword} />
       </View>
     </View>
   );
@@ -84,7 +89,3 @@ const style = createStyles({
   },
   forgotButton: {}
 });
-
-//* Create login form
-//* Add Formik & Yup validation
-//* Add i18n translations
