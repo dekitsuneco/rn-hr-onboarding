@@ -1,11 +1,5 @@
 import * as Yup from 'yup';
 import { useTranslation } from 'utils/i18n';
-
-export enum LoginProperties {
-  email = 'email',
-  password = 'password'
-}
-
 export class LoginForm {
   public email: string;
   public password: string;
@@ -26,7 +20,3 @@ export class LoginForm {
     this.password = '';
   }
 }
-
-//* Create login validation class
-//* Add enum for login properties
-//* Add i18n translations

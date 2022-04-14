@@ -6,7 +6,7 @@ import { InputFormGroup } from 'ui-kit/input-form-group';
 import { AppButton } from 'ui-kit/button';
 import { createStyles, variables } from 'ui-kit/styles';
 import { useFormik } from 'formik';
-import { LoginForm, LoginProperties } from './login';
+import { LoginForm } from './login';
 import { useTranslation } from 'utils/i18n';
 
 export function LoginGroup(onSubmit: () => void, onSignIn: () => void, onForgotPassword: () => void): ReactElement {
@@ -29,14 +29,14 @@ export function LoginGroup(onSubmit: () => void, onSignIn: () => void, onForgotP
           type={InputType.TEXT}
           placeholder={translate('PLACEHOLDER_EMAIL')}
           formik={formik}
-          name={LoginProperties.email}
+          name={'email' as keyof LoginForm}
         />
         <InputFormGroup<LoginForm>
           containerStyle={[style.input, style.middleItem]}
           type={InputType.PASSWORD}
           placeholder={translate('PLACEHOLDER_EMAIL')}
           formik={formik}
-          name={LoginProperties.password}
+          name={'email' as keyof LoginForm}
         />
         <AppButton
           style={style.signInButton}
