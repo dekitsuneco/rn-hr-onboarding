@@ -36,6 +36,7 @@
     "@react-navigation/bottom-tabs": "^6.3.1",
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/stack": "^6.2.1",
+    "assets": "*",
     "axios": "^0.24.0",
     "axios-observable": "^1.4.0",
     "class-transformer": "^0.5.1",
@@ -69,13 +70,14 @@
     "react-native-svg": "12.1.1",
     "react-native-svg-transformer": "^0.14.3",
     "react-redux": "^7.2.6",
+    "redux": "^4.1.2",
     "redux-observable": "^2.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.5.5",
     "sentry-expo": "^4.0.0",
-    "yup": "^0.32.11",
+    "typedi": "^0.10.0",
     "ui-kit": "*",
-    "assets": "*"
+    "yup": "^0.32.11"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
