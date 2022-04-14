@@ -1,17 +1,14 @@
 import * as Yup from 'yup';
-import { useTranslation } from 'utils/i18n';
+
 export class LoginForm {
   public email: string;
   public password: string;
 
   public static get validationSchema(): Yup.AnySchema {
-    const translate = useTranslation('PUBLIC.VALIDATION');
-
     return Yup.object().shape({
-      email: Yup.string()
-        .email(translate('TEXT_VALIDATION_EMAIL'))
-        .required(translate('TEXT_VALIDATION_REQUIRED_FIELD')),
-      password: Yup.string().required(translate('TEXT_VALIDATION_REQUIRED_FIELD'))
+      email: Yup.string().email('Please enter a valid email address')
+        .required('Please fill out this field'),
+      password: Yup.string().required('Please fill out this field')
     });
   }
 
