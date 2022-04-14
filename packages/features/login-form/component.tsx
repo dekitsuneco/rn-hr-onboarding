@@ -8,6 +8,7 @@ import { createStyles, variables } from 'ui-kit/styles';
 import { useFormik } from 'formik';
 import { LoginForm } from './forms/login';
 
+//TODO Replace hard-coded 'name' and 'placeholder' properties with translations from i18n
 export interface LoginGroupProps {
   onSubmit: () => void;
   onForgotPassword: () => void;

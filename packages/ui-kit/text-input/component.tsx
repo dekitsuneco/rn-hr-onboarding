@@ -15,6 +15,8 @@ import { Icon } from 'ui-kit/icon';
 import { FormikProps, FormikValues } from 'formik';
 import { get } from 'lodash';
 
+//TODO Add logic to handle different types of inputs - date, text, password, etc
+
 type FormikInputPropertiesOptional = 'handleBlur' | 'handleChange' | 'errors' | 'values' | 'touched';
 type InputProps = TextInputProps & Partial<Pick<FormikProps<FormikValues>, FormikInputPropertiesOptional>>;
 

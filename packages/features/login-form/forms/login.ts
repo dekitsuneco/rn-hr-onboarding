@@ -1,5 +1,7 @@
 import * as Yup from 'yup';
 
+//TODO Replace hard-coded error messages with translations from i18n
+
 export class LoginForm {
   public email: string;
   public password: string;
