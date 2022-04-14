@@ -54,7 +54,7 @@ const style = createStyles({
     position: 'absolute',
     backgroundColor: variables.color.white,
     borderRadius: 16,
-    shadowColor: variables.color.boxShadow,
+    overflow: 'hidden',
     marginHorizontal: 12,
     marginBottom: 26,
     height: 68,
