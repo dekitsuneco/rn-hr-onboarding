@@ -1,23 +1,41 @@
 import { AppText, TextTheme } from '../text';
 import { createStyles, variables } from '../styles';
-import React, { ReactElement, useMemo } from 'react';
+import React, { ReactElement, useMemo, useEffect } from 'react';
 import { View, ViewStyle, StyleProp } from 'react-native';
+import { FormikProps } from 'formik';
+import { AppTextInputProps } from 'ui-kit/text-input';
 
-export interface FormGroupProps {
+export interface FormGroupProps<T extends Record<string, any> = Record<string, any>>
+  extends Partial<Pick<FormikProps<T>, 'errors' | 'touched'>> {
+  containerStyle?: StyleProp<ViewStyle>;
   label?: string;
   message?: string;
-  containerStyle?: StyleProp<ViewStyle>;
+  name: keyof T;
+  isSubmitted?: boolean;
+  onErrorStateChange?: (hasError: boolean) => void;
   children?: ReactElement;
-  hasError?: boolean;
 }
 
-export function FormGroup({
+export function FormGroup<T = AppTextInputProps>({
+  containerStyle,
+  name,
+  touched,
+  errors,
+  onErrorStateChange,
+  isSubmitted,
   label,
   message,
-  containerStyle,
-  hasError = false,
   children
-}: FormGroupProps): ReactElement {
+}: FormGroupProps & T): ReactElement {
+  const isTouched = !!touched?.[name];
+  const hasValidationErrors = !!errors?.[name];
+
+  const hasError = hasValidationErrors && (isSubmitted || isTouched);
+
+  useEffect(() => {
+    onErrorStateChange?.(hasError);
+  }, [hasError]);
+
   const renderedLabel = useMemo(() => {
     return (
       !!label && (
@@ -32,7 +50,7 @@ export function FormGroup({
     return (
       !!message && (
         <AppText theme={TextTheme.SMALLEST} style={[style.formGroupMessage, hasError && style.formGroupErrorMessage]}>
-          {message}
+          {hasError ? (errors[name] as string) : message}
         </AppText>
       )
     );
