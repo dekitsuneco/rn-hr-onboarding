@@ -25,7 +25,7 @@ export function ScriptCard({
   isDraggable
 }: Props): ReactElement {
   return (
-    <TouchableOpacity style={[style.container, elementStyle]}>
+    <TouchableOpacity style={[style.container, elementStyle]} delayPressIn={60}>
       <ExternalImage uri={imageURL} style={[style.image, isBlocked && style.blocked]} />
       <View style={style.tabs}>
         {isDraggable && <Icon name='tasks' style={style.tasksIcon} />}
