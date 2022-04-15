@@ -1,5 +1,4 @@
 import React, { ReactElement, useCallback, useMemo } from 'react';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { AppButton } from 'ui-kit/button';
 import { Icon } from 'ui-kit/icon';
 import { createStyles } from 'ui-kit/styles';
@@ -20,11 +19,7 @@ export function ScriptCardAction({ status }: Props): ReactElement {
       case 'blocked':
         return <Icon name='blocked' />;
       case 'process':
-        return (
-          <TouchableOpacity style={style.iconArrow}>
-            <Icon name='continue' />
-          </TouchableOpacity>
-        );
+        return <Icon style={style.iconArrow} name='continue' />;
       case 'open':
         return <AppButton title={translate('BUTTON_START')} size='small' />;
       default:

@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { ExternalImage } from '../external-image';
 import { createStyles, variables } from '../styles';
-import { StyleProp, View, ViewStyle } from 'react-native';
+import { StyleProp, View, ViewStyle, TouchableOpacity } from 'react-native';
 import { AppText, TextTheme } from '../text';
 import { Icon } from '../icon';
 
@@ -25,7 +25,7 @@ export function ScriptCard({
   isDraggable
 }: Props): ReactElement {
   return (
-    <View style={[style.container, elementStyle]}>
+    <TouchableOpacity style={[style.container, elementStyle]}>
       <ExternalImage uri={imageURL} style={[style.image, isBlocked && style.blocked]} />
       <View style={style.tabs}>
         {isDraggable && <Icon name='tasks' style={style.tasksIcon} />}
@@ -37,7 +37,7 @@ export function ScriptCard({
         </View>
         {contentRight}
       </View>
-    </View>
+    </TouchableOpacity>
   );
 }
 
