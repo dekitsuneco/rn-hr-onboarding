@@ -33,8 +33,9 @@ const style = createStyles({
       width: 0,
       height: 4
     },
-    shadowRadius: 20,
-    elevation: 20
+    shadowOpacity: 0.25,
+    shadowRadius: 8,
+    elevation: 8
   },
   total: {
     backgroundColor: variables.color.textTertiary,

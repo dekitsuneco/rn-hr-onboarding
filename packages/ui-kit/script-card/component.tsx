@@ -25,7 +25,7 @@ export function ScriptCard({
   isDraggable
 }: Props): ReactElement {
   return (
-    <TouchableOpacity style={[style.container, elementStyle]} delayPressIn={60}>
+    <TouchableOpacity style={[style.container, elementStyle]} delayPressIn={40}>
       <ExternalImage uri={imageURL} style={[style.image, isBlocked && style.blocked]} />
       <View style={style.tabs}>
         {isDraggable && <Icon name='tasks' style={style.tasksIcon} />}
@@ -45,16 +45,16 @@ const style = createStyles({
   container: {
     padding: 10,
     backgroundColor: 'white',
-    margin: 8,
     borderRadius: 10,
+    margin: 8,
     shadowColor: variables.color.boxShadow,
     shadowOffset: {
       width: 0,
       height: 4
     },
     shadowOpacity: 0.25,
-    shadowRadius: 20,
-    elevation: 20
+    shadowRadius: 8,
+    elevation: 8
   },
   image: {
     width: '100%',
