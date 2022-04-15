@@ -1,10 +1,10 @@
 import React, { ReactElement } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
-export function EmployeesScreen(): ReactElement {
+export function NewEmployeeScreen(): ReactElement {
   return (
     <View style={style.container}>
-      <Text style={style.text}>Employees</Text>
+      <Text style={style.text}>New Employee</Text>
     </View>
   );
 }

@@ -21,7 +21,9 @@ export const variables = {
     statusSuccess: '#50F826',
     statusDanger: '#E72005',
     statusProgress: '#26A0F8',
-    boxShadow: '#525F77'
+    boxShadow: '#525F77',
+    borderColorPrimary: '#0000001A',
+    borderColorSecondary: '#0000000D'
   },
   fontSize: {
     smallest: '0.85rem',
@@ -38,6 +40,7 @@ export const variables = {
     sfProTextSemiBold: 'SFProTextSemiBold'
   },
   breakpoints: {
-    tablet: 768
+    tablet: 768,
+    desktop: 1280
   }
 };

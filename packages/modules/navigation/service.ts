@@ -19,6 +19,10 @@ class AppNavigationService {
   public popToTop(): void {
     navigationRef.current?.dispatch(StackActions.popToTop());
   }
+
+  public canGoBack(): boolean {
+    return navigationRef.current?.canGoBack();
+  }
 }
 
 export const appNavigationService = new AppNavigationService();

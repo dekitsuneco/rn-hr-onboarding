@@ -1,14 +1,19 @@
 import { AppActivityIndicator } from '../activity-indicator';
 import { AppText, TextTheme } from '../text';
 import { createStyles, variables } from '../styles';
-import React, { ReactElement, useMemo } from 'react';
+import React, { ReactElement, useMemo, ReactNode } from 'react';
 import { TouchableHighlight, TouchableHighlightProps } from 'react-native';
+import { HorizontalGap } from 'ui-kit/horizontal-gap';
+import { useScreenDimensions } from 'modules/use-screen-dimensions';
 
 type ButtonTheme = 'primary' | 'secondary' | 'tertiary';
 type ButtonSize = 'default' | 'small';
 
 interface Props extends TouchableHighlightProps {
   title?: string;
+  leftIcon?: ReactNode;
+  rightIcon?: ReactNode;
+  gap?: number;
   isDisabled?: boolean;
   isLoading?: boolean;
   theme?: ButtonTheme;
@@ -18,6 +23,9 @@ interface Props extends TouchableHighlightProps {
 
 export function AppButton({
   title,
+  leftIcon,
+  rightIcon,
+  gap,
   style: elementStyle = {},
   isDisabled,
   isLoading,
@@ -26,6 +34,8 @@ export function AppButton({
   children,
   ...restProps
 }: Props): ReactElement {
+  const { isTablet } = useScreenDimensions();
+  const defaultGap = 10;
   const renderedContent = useMemo(() => {
     if (isLoading) {
       return <AppActivityIndicator
@@ -34,17 +44,21 @@ export function AppButton({
         style={style.activityIndicator} />;
     }
 
-    return title ? (
+    const text = (leftIcon || rightIcon ? isTablet : true) && (
       <AppText
-        style={[textStyle.button, textStyle[theme], isDisabled && disabledTextStyle[theme]]}
+        style={[textStyle.text, textStyle[theme], isDisabled && disabledTextStyle[theme]]}
         theme={size === 'default' ? TextTheme.MEDIUM : TextTheme.SMALL}>
-        {/* // TODO Leading Icon */}
         {title}
         {children}
-        {/* // TODO Trailing Icon */}
       </AppText>
-    ) : (
-      children
+    );
+
+    return (
+      <HorizontalGap gap={gap || defaultGap} style={textStyle.container}>
+        {leftIcon}
+        {text}
+        {rightIcon}
+      </HorizontalGap>
     );
   }, [isDisabled, isLoading, theme, size, title, children]);
 
@@ -89,14 +103,23 @@ const style = createStyles({
   activityIndicator: {
     width: 30,
     height: 30
+  },
+  [`@media (max-width: ${variables.breakpoints.tablet})`]: {
+    default: {
+      paddingVertical: 12,
+      paddingHorizontal: 12
+    }
   }
 });
 
 const textStyle = createStyles({
-  button: {
+  text: {
     fontFamily: variables.fontFamily.sfProTextSemiBold,
-    fontWeight: '600',
-    textAlign: 'center'
+    fontWeight: '600'
+  },
+  container: {
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   primary: {
     color: variables.color.white

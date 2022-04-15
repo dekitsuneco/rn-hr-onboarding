@@ -30,5 +30,21 @@ export const commonStyle = createStyles({
   flexCenter: {
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  borderSecondaryTop: {
+    borderTopWidth: 1,
+    borderTopColor: variables.color.borderColorSecondary
+  },
+  borderSecondaryBottom: {
+    borderBottomWidth: 1,
+    borderBottomColor: variables.color.borderColorSecondary
+  },
+  borderSecondaryLeft: {
+    borderLeftWidth: 1,
+    borderLeftColor: variables.color.borderColorSecondary
+  },
+  borderSecondaryRight: {
+    borderRightWidth: 1,
+    borderRightColor: variables.color.borderColorSecondary
   }
 });

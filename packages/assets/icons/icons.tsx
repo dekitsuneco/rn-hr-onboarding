@@ -24,5 +24,7 @@ export const Icons = {
   blocked: Svg(require('./blocked.svg')),
   greeting: Svg(require('./greeting.svg')),
   tasks: Svg(require('./tasks.svg')),
-  logoManagement: Svg(require('./logo.svg'))
+  logoManagement: Svg(require('./logo.svg')),
+  menu: Svg(require('./menu.svg')),
+  plus: Svg(require('./plus.svg'))
 };

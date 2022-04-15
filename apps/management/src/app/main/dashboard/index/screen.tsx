@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { Text, View, StyleSheet } from 'react-native';
 
-export function DashBoardScreen(): ReactElement {
+export function IndexScreen(): ReactElement {
   return (
     <View style={style.container}>
       <Text style={style.text}>Dashboard</Text>
