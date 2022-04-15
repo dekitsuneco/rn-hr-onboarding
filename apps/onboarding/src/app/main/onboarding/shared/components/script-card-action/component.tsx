@@ -34,10 +34,6 @@ export function ScriptCardAction({ status }: Props): ReactElement {
 
 const style = createStyles({
   iconArrow: {
-    width: 40,
-    aspectRatio: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 20
+    marginRight: 12
   }
 });
