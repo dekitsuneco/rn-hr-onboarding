@@ -6,37 +6,43 @@ import { AppText, TextTheme } from '../text';
 import { Icon } from '../icon';
 
 interface Props {
-  uri: string;
-  button: React.ReactNode;
+  imageURL: string;
+  contentRight: React.ReactNode;
   title: string;
-  subTitle: string;
-  blocked?: boolean;
+  subtitle: string;
+  isBlocked?: boolean;
   style?: StyleProp<ViewStyle>;
-  web?: boolean;
+  isDraggable?: boolean;
 }
 
-export function ScriptCard({ uri, button, title, subTitle, blocked, style, web }: Props): ReactElement {
+export function ScriptCard({
+  imageURL,
+  contentRight,
+  title,
+  subtitle,
+  isBlocked,
+  style: elementStyle,
+  isDraggable
+}: Props): ReactElement {
   return (
-    <View style={[scriptCardCtyle.container, style]}>
-      <ExternalImage uri={uri} style={[scriptCardCtyle.image, blocked && scriptCardCtyle.blocked]} />
-      <View style={scriptCardCtyle.tabs}>
-        {web && <Icon name='tasks' style={scriptCardCtyle.tasksIcon} />}
-        <View style={[scriptCardCtyle.textContainer, blocked && scriptCardCtyle.blocked]}>
-          <AppText theme={TextTheme.SMALL} style={scriptCardCtyle.title}>
+    <View style={[style.container, elementStyle]}>
+      <ExternalImage uri={imageURL} style={[style.image, isBlocked && style.blocked]} />
+      <View style={style.tabs}>
+        {isDraggable && <Icon name='tasks' style={style.tasksIcon} />}
+        <View style={[style.textContainer, isBlocked && style.blocked]}>
+          <AppText theme={TextTheme.SMALL} style={style.title}>
             {title}
           </AppText>
-          <AppText theme={TextTheme.SMALLEST}>{subTitle}</AppText>
+          <AppText theme={TextTheme.SMALLEST}>{subtitle}</AppText>
         </View>
-        {button}
+        {contentRight}
       </View>
     </View>
   );
 }
 
-const scriptCardCtyle = createStyles({
+const style = createStyles({
   container: {
-    width: '100%',
-    maxWidth: 327,
     padding: 10,
     backgroundColor: 'white',
     margin: 8,
@@ -46,6 +52,7 @@ const scriptCardCtyle = createStyles({
       width: 0,
       height: 4
     },
+    shadowOpacity: 0.25,
     shadowRadius: 20,
     elevation: 20
   },

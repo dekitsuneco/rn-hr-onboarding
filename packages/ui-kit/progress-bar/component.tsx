@@ -5,24 +5,22 @@ import { AppText, TextTheme } from '../text';
 
 interface Props {
   style?: StyleProp<ViewStyle>;
-  progress?: number;
+  value: number;
 }
 
-export function ProgressBar({ style, progress }: Props): ReactElement {
+export function ProgressBar({ style: elementStyle, value }: Props): ReactElement {
   return (
-    <View style={[progressStyle.container, style]}>
-      <View style={progressStyle.total}>
-        <View style={[progressStyle.progress, { width: `${progress}%` }]} />
+    <View style={[style.container, elementStyle]}>
+      <View style={style.total}>
+        <View style={[style.progress, { width: `${value}%` }]} />
       </View>
-      <AppText theme={TextTheme.SMALL}>{progress}%</AppText>
+      <AppText theme={TextTheme.SMALL}>{value}%</AppText>
     </View>
   );
 }
 
-const progressStyle = createStyles({
+const style = createStyles({
   container: {
-    width: '100%',
-    maxWidth: 327,
     backgroundColor: variables.color.white,
     height: 32,
     justifyContent: 'center',

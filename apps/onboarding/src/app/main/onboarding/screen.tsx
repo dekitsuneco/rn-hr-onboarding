@@ -1,54 +1,57 @@
-import React from 'react';
-import { ScrollView, View } from 'react-native';
-import { createStyles } from 'ui-kit/styles';
 import { variables } from '@styles';
-import { ProgressBar } from 'ui-kit/progress-bar';
-import { ScriptCardList } from './shared/components/script-card-list/component';
-import { Icon } from 'ui-kit/icon';
-import { AppText, TextTheme } from 'ui-kit/text';
-import { useTranslation } from 'utils/i18n';
+import React from 'react';
+import { FlatList, View } from 'react-native';
+import { createStyles } from 'ui-kit/styles';
+import { OnboardingHeader, ScriptCardItem } from './shared/components';
+
+const fakeScriptData = [
+  {
+    id: '1',
+    title: 'Office Intro – Omsk',
+    tasksTotal: 10,
+    completed: 10,
+    status: 'done',
+    logo: 'https://i.pinimg.com/originals/b1/97/cb/b197cb2c35746b1a9ccba62d3fd3da53.jpg'
+  },
+  {
+    id: '2',
+    title: 'Work Tools',
+    tasksTotal: 8,
+    completed: 1,
+    status: 'process',
+    logo: 'https://yt3.ggpht.com/ytc/AKedOLTWwBXHqH8wiMcz9dBpLK7X_Vwl2SVFKTtA-sKA=s900-c-k-c0x00ffffff-no-rj'
+  },
+  {
+    id: '3',
+    title: 'Meet Your Colleagues',
+    tasksTotal: 10,
+    completed: 0,
+    status: 'blocked',
+    logo: 'https://learncode.net/wp-content/uploads/2018/07/React-native.jpg'
+  }
+]; //TODO This is temporary fake data
 
 export function OnboardingScreen(): JSX.Element {
-  const translate = useTranslation('MAIN.ONBOARDING');
-  const name = 'Petya'; //TODO this is temporary fake name
-
   return (
-    <ScrollView style={style.screen} showsVerticalScrollIndicator={false}>
-      <View style={style.header}>
-        <View style={style.greeting}>
-          <Icon name='greeting' style={style.greetIcon} />
-          <AppText theme={TextTheme.LARGEST}>{translate('TEXT_GREETING', { name })}</AppText>
-        </View>
-        <View style={style.progressContainer}>
-          <AppText style={style.textProgress}>{translate('TEXT_PROGRESS')}</AppText>
-          <ProgressBar progress={35} />
-        </View>
-      </View>
-      <ScriptCardList />
-    </ScrollView>
+    <View style={style.container}>
+      <FlatList
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={style.flatList}
+        keyExtractor={(item) => item.id}
+        data={fakeScriptData}
+        renderItem={ScriptCardItem}
+        ListHeaderComponent={OnboardingHeader}
+      />
+    </View>
   );
 }
 
 const style = createStyles({
-  screen: {
+  container: {
     flex: 1,
-    backgroundColor: variables.color.backgroundSecondary
+    backgroundColor: variables.color.white
   },
-  header: {
-    alignSelf: 'center'
-  },
-  greeting: {
-    flexDirection: 'row',
-    paddingVertical: 40
-  },
-  progressContainer: {
-    width: '100%',
-    marginBottom: 38
-  },
-  textProgress: {
-    marginBottom: 4
-  },
-  greetIcon: {
-    marginRight: 16
+  flatList: {
+    paddingBottom: 100
   }
 });
