@@ -1,6 +1,5 @@
 import React, { ReactElement } from 'react';
 import { View } from 'react-native';
-import { Icon } from 'ui-kit/icon';
 import { InputType } from 'ui-kit/text-input';
 import { InputFormGroup } from 'ui-kit/input-form-group';
 import { AppButton } from 'ui-kit/button';
@@ -25,9 +24,6 @@ export function LoginGroup({ onSubmit, onForgotPassword }: LoginGroupProps): Rea
 
   return (
     <View style={style.form}>
-      <View style={style.top}>
-        <Icon name='logoManagement' style={style.logo} />
-      </View>
       <View style={style.middle}>
         <InputFormGroup<LoginForm>
           containerStyle={[style.input, style.middleItem]}
@@ -69,9 +65,6 @@ const style = createStyles({
     alignItems: 'center',
     maxWidth: 600
   },
-  top: {
-    marginBottom: 118
-  },
   middle: {
     marginBottom: 70
   },
@@ -79,9 +72,6 @@ const style = createStyles({
     marginBottom: 16
   },
   bottom: {},
-  logo: {
-    padding: 4
-  },
   input: {
     width: 300
   },
