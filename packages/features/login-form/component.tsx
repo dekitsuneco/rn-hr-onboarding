@@ -46,9 +46,8 @@ export function LoginGroup({ onSubmit, onForgotPassword }: LoginGroupProps): Rea
           title={'Sign In'}
           onPress={() => handleSubmit()} />
       </View>
-      <View style={style.bottom}>
+      <View>
         <AppButton
-          style={style.forgotButton}
           title={'Forgot password?'}
           theme='tertiary'
           onPress={onForgotPassword} />
@@ -71,12 +70,10 @@ const style = createStyles({
   middleItem: {
     marginBottom: 16
   },
-  bottom: {},
   input: {
     width: 300
   },
   signInButton: {
     width: 300
-  },
-  forgotButton: {}
+  }
 });
