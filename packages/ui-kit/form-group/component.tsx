@@ -24,7 +24,7 @@ export function FormGroup<T = AppTextInputProps>({
   onErrorStateChange,
   isSubmitted,
   label,
-  message,
+  message = '',
   children
 }: FormGroupProps & T): ReactElement {
   const isTouched = !!touched?.[name];
@@ -50,16 +50,14 @@ export function FormGroup<T = AppTextInputProps>({
 
   const renderedMessage = useMemo(() => {
     return (
-      !!messageOrError && (
-        <AppText theme={TextTheme.SMALLEST} style={[style.formGroupMessage, hasError && style.formGroupErrorMessage]}>
-          {messageOrError}
-        </AppText>
-      )
+      <AppText theme={TextTheme.SMALLEST} style={[style.formGroupMessage, hasError && style.formGroupErrorMessage]}>
+        {messageOrError}
+      </AppText>
     );
   }, [message, messageOrError, hasError]);
 
   return (
-    <View style={[style.formGroup, containerStyle]}>
+    <View style={containerStyle}>
       {renderedLabel}
       {children}
       {renderedMessage}
@@ -68,9 +66,6 @@ export function FormGroup<T = AppTextInputProps>({
 }
 
 const style = createStyles({
-  formGroup: {
-    marginBottom: '1.2rem'
-  },
   formGroupLabel: {
     marginBottom: '0.25rem',
     letterSpacing: -0.02
