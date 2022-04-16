@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React, { Fragment, ReactElement } from 'react';
 import { View } from 'react-native';
 import { Icon } from 'ui-kit/icon';
 import { ProgressBar } from 'ui-kit/progress-bar';
@@ -11,7 +11,7 @@ export function OnboardingHeader(): ReactElement {
   const name = 'Petya'; //TODO this is temporary fake name
 
   return (
-    <>
+    <Fragment>
       <View style={style.greeting}>
         <Icon name='greeting' style={style.greetIcon} />
         <AppText theme={TextTheme.LARGEST}>{translate('TEXT_GREETING', { name })}</AppText>
@@ -20,7 +20,7 @@ export function OnboardingHeader(): ReactElement {
         <AppText style={style.textProgress}>{translate('TEXT_PROGRESS')}</AppText>
         <ProgressBar value={35} />
       </View>
-    </>
+    </Fragment>
   );
 }
 

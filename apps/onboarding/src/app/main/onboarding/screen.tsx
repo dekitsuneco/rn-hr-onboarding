@@ -35,7 +35,7 @@ export function OnboardingScreen(): JSX.Element {
   return (
     <FlatList
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={[commonStyle.container, style.container]}
+      contentContainerStyle={[commonStyle.screen, style.container]}
       keyExtractor={(item) => item.id}
       data={fakeScriptData}
       renderItem={ScriptCardItem}
@@ -47,6 +47,6 @@ export function OnboardingScreen(): JSX.Element {
 const style = createStyles({
   container: {
     paddingBottom: 100,
-    backgroundColor: variables.color.white
+    backgroundColor: variables.color.backgroundSecondary
   }
 });
