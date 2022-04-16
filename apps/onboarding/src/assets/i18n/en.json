@@ -14,6 +14,19 @@
       "ONBOARDING": "Onboarding",
       "ACHIEVEMENTS": "Achievements",
       "PROFILE": "Profile"
+    },
+    "ONBOARDING": {
+      "TEXT_PROGRESS": "Your onboarding progress",
+      "TEXT_GREETING": "Hi {{name}}!",
+      "SHARED": {
+        "SCRIPT_CARD_LIST": {
+          "TEXT_TASKS_COMPLETE": "{{tasksTotal}} of {{completed}} tasks complete",
+          "TEXT_TASKS": "{{tasksTotal}} tasks"
+        },
+        "SCRIPT_CARD_BUTTON": {
+          "BUTTON_START": "Start"
+        }
+      }
     }
   }
 }
