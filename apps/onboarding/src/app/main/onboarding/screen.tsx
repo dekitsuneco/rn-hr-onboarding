@@ -1,8 +1,8 @@
+import { commonStyle, variables } from '@styles';
 import React from 'react';
 import { FlatList } from 'react-native';
-import { createStyles } from 'ui-kit/styles';
+import { createStyles } from '@styles';
 import { OnboardingHeader, ScriptCardItem } from './shared/components';
-import { AppScreen } from 'ui-kit/screen';
 
 const fakeScriptData = [
   {
@@ -33,21 +33,20 @@ const fakeScriptData = [
 
 export function OnboardingScreen(): JSX.Element {
   return (
-    <AppScreen>
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={style.flatList}
-        keyExtractor={(item) => item.id}
-        data={fakeScriptData}
-        renderItem={ScriptCardItem}
-        ListHeaderComponent={OnboardingHeader}
-      />
-    </AppScreen>
+    <FlatList
+      showsVerticalScrollIndicator={false}
+      contentContainerStyle={[commonStyle.container, style.container]}
+      keyExtractor={(item) => item.id}
+      data={fakeScriptData}
+      renderItem={ScriptCardItem}
+      ListHeaderComponent={OnboardingHeader}
+    />
   );
 }
 
 const style = createStyles({
-  flatList: {
-    paddingBottom: 100
+  container: {
+    paddingBottom: 100,
+    backgroundColor: variables.color.white
   }
 });

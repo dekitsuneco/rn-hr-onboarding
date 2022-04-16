@@ -1,7 +1,6 @@
 import { Dimensions } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { createStyles } from './extended-stylesheet';
-import { variables } from './variables';
 
 export const screenWidth = Dimensions.get('window').width;
 export const screenHeight = Dimensions.get('window').height;
@@ -14,9 +13,6 @@ EStyleSheet.build({
 });
 
 export const commonStyle = createStyles({
-  container: {
-    paddingHorizontal: variables.contentOffset
-  },
   row: {
     display: 'flex',
     flexDirection: 'row',

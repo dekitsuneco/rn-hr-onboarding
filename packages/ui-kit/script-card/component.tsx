@@ -46,7 +46,6 @@ const style = createStyles({
     padding: 10,
     backgroundColor: 'white',
     borderRadius: 10,
-    margin: 8,
     shadowColor: variables.color.boxShadow,
     shadowOffset: {
       width: 0,

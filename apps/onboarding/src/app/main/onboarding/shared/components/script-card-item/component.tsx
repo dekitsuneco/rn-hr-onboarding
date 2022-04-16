@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import { ScriptCard } from 'ui-kit/script-card';
+import { createStyles } from '@styles';
 import { useTranslation } from 'utils/i18n';
 import { ScriptCardAction } from '../script-card-action/component';
 
@@ -20,6 +21,7 @@ export function ScriptCardItem({ item }: Props): ReactElement {
   return (
     <ScriptCard
       key={item.id}
+      style={style.container}
       imageURL={item.logo}
       contentRight={<ScriptCardAction status={item.status} taskID={item.id} />}
       title={item.title}
@@ -32,3 +34,9 @@ export function ScriptCardItem({ item }: Props): ReactElement {
     />
   );
 }
+
+const style = createStyles({
+  container: {
+    marginBottom: 16
+  }
+});

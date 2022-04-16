@@ -1,7 +1,7 @@
 import React, { ReactElement, useCallback, useMemo } from 'react';
 import { AppButton } from 'ui-kit/button';
 import { Icon } from 'ui-kit/icon';
-import { createStyles } from 'ui-kit/styles';
+import { createStyles } from '@styles';
 import { useTranslation } from 'utils/i18n';
 
 interface Props {
