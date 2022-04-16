@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { View } from 'react-native';
+import { View, ViewStyle, StyleProp } from 'react-native';
 import { InputType } from 'ui-kit/text-input';
 import { InputFormGroup } from 'ui-kit/input-form-group';
 import { AppButton } from 'ui-kit/button';
@@ -9,11 +9,12 @@ import { LoginForm } from './forms/login';
 
 //TODO Replace hard-coded 'name' and 'placeholder' properties with translations from i18n
 export interface LoginGroupProps {
+  style?: StyleProp<ViewStyle>;
   onSubmit: () => void;
   onForgotPassword: () => void;
 }
 
-export function LoginGroup({ onSubmit, onForgotPassword }: LoginGroupProps): ReactElement {
+export function LoginGroup({ style: formStyle = {}, onSubmit, onForgotPassword }: LoginGroupProps): ReactElement {
   const formik = useFormik({
     initialValues: new LoginForm(),
     validationSchema: LoginForm.validationSchema,
@@ -23,10 +24,10 @@ export function LoginGroup({ onSubmit, onForgotPassword }: LoginGroupProps): Rea
   const { handleSubmit } = formik;
 
   return (
-    <View style={style.form}>
+    <View style={[style.form, formStyle]}>
       <View style={style.middle}>
         <InputFormGroup<LoginForm>
-          containerStyle={[style.input, style.middleItem]}
+          containerStyle={[style.middleItem, style.control]}
           type={InputType.TEXT}
           placeholder={'Email'}
           autoCapitalize='none'
@@ -34,7 +35,7 @@ export function LoginGroup({ onSubmit, onForgotPassword }: LoginGroupProps): Rea
           name={'email' as keyof LoginForm}
         />
         <InputFormGroup<LoginForm>
-          containerStyle={[style.input, style.middleItem]}
+          containerStyle={[style.middleItem, style.control]}
           type={InputType.PASSWORD}
           placeholder={'Password'}
           autoCapitalize='none'
@@ -42,12 +43,13 @@ export function LoginGroup({ onSubmit, onForgotPassword }: LoginGroupProps): Rea
           name={'password' as keyof LoginForm}
         />
         <AppButton
-          style={style.signInButton}
+          style={style.control}
           title={'Sign In'}
           onPress={() => handleSubmit()} />
       </View>
       <View>
         <AppButton
+          style={style.control}
           title={'Forgot password?'}
           theme='tertiary'
           onPress={onForgotPassword} />
@@ -65,15 +67,13 @@ const style = createStyles({
     maxWidth: 600
   },
   middle: {
-    marginBottom: 70
+    marginBottom: 70,
+    alignItems: 'center'
   },
   middleItem: {
     marginBottom: 16
   },
-  input: {
-    width: 300
-  },
-  signInButton: {
-    width: 300
+  control: {
+    minWidth: '100%'
   }
 });
