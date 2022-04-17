@@ -4,12 +4,15 @@ import { createStyles, variables } from '../styles';
 import React, { ReactElement, useMemo } from 'react';
 import { TouchableHighlight, TouchableHighlightProps } from 'react-native';
 
+type ButtonTheme = 'primary' | 'secondary' | 'tertiary';
+type ButtonSize = 'default' | 'small';
+
 interface Props extends TouchableHighlightProps {
   title?: string;
   isDisabled?: boolean;
   isLoading?: boolean;
-  theme?: 'primary' | 'secondary' | 'tertiary';
-  size?: 'default' | 'small';
+  theme?: ButtonTheme;
+  size?: ButtonSize;
   children?: React.ReactNode;
 }
 

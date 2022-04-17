@@ -1,25 +1,33 @@
-import { FormGroup } from '../form-group';
-import { InputType } from '../text-input';
-import { AppTextInput } from '../text-input';
+import { FormGroup, FormGroupProps } from '../form-group';
+import { InputType, AppTextInput, AppTextInputProps } from '../text-input';
 import React, { ReactElement, useState, useCallback } from 'react';
 import { StyleProp, ViewStyle } from 'react-native';
 import { Icons } from 'assets/icons/icons';
 import { Icon } from '../icon';
+import { FormikProps, FormikValues } from 'formik';
+
+type FormGroupWithAppTextInputProps<T> = FormGroupProps<T> & AppTextInputProps;
+
+export interface InputFormGroupProps<T = FormikValues> extends FormGroupWithAppTextInputProps<T> {
+  formik: FormikProps<T>;
+}
 
 export interface InputFormGroupProps {
+  containerStyle?: StyleProp<ViewStyle>;
   label?: string;
   message?: string;
   type?: InputType;
-  containerStyle?: StyleProp<ViewStyle>;
 }
 
-export function InputFormGroup({
+export function InputFormGroup<T = FormikValues>({
+  containerStyle,
   label,
   message,
   type,
-  containerStyle,
+  name,
+  formik,
   ...restProps
-}: InputFormGroupProps): ReactElement {
+}: InputFormGroupProps<T>): ReactElement {
   const [hasError, setError] = useState(false);
 
   const getIconForInputType = useCallback((): keyof typeof Icons => {
@@ -37,18 +45,24 @@ export function InputFormGroup({
 
   const correspondingIconName = getIconForInputType();
 
-  const icon: ReactElement = !!correspondingIconName && <Icon name={correspondingIconName} />;
+  const icon = !!correspondingIconName && <Icon name={correspondingIconName} />;
 
   return (
     <FormGroup
+      containerStyle={containerStyle}
+      name={name}
       label={label}
       message={message}
-      hasError={hasError}
-      containerStyle={containerStyle}>
+      isSubmitted={formik.submitCount > 0}
+      touched={formik.touched}
+      errors={formik.errors}
+      onErrorStateChange={setError}>
       <AppTextInput
-        hasError={hasError}
+        name={name}
         type={type}
         icon={icon}
+        hasError={hasError}
+        {...formik}
         {...restProps} />
     </FormGroup>
   );

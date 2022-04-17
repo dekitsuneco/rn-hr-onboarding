@@ -1,47 +1,73 @@
 import { variables, createStyles } from '../styles';
 import { InputType } from './enums';
 import React, { ReactElement, useMemo, useState } from 'react';
-import { TouchableOpacity, View, TextInput, TextInputProps, StyleProp, ViewStyle } from 'react-native';
+import {
+  NativeSyntheticEvent,
+  TextInputFocusEventData,
+  TouchableOpacity,
+  View,
+  TextInput,
+  TextInputProps,
+  StyleProp,
+  ViewStyle
+} from 'react-native';
 import { Icon } from 'ui-kit/icon';
+import { FormikProps, FormikValues } from 'formik';
+import { get } from 'lodash';
 
-export interface AppTextInputProps extends TextInputProps {
+//TODO Add logic to handle different types of inputs - date, text, password, etc
+
+type FormikInputPropertiesOptional = 'handleBlur' | 'handleChange' | 'errors' | 'values' | 'touched';
+type InputProps = TextInputProps & Partial<Pick<FormikProps<FormikValues>, FormikInputPropertiesOptional>>;
+
+type IconType = 'leading' | 'trailing';
+
+export interface AppTextInputProps extends InputProps {
   controlStyle?: StyleProp<ViewStyle>;
-  disabled?: boolean;
   hasError?: boolean;
+  disabled?: boolean;
   icon?: ReactElement;
-  iconType?: 'leading' | 'trailing';
+  iconType?: IconType;
   iconContainerStyle?: StyleProp<ViewStyle>;
   handleIconPress?: () => void;
+  name?: string;
   type?: InputType;
 }
 
 export function AppTextInput({
   controlStyle = {},
   style: elementStyle = {},
+  name,
+  values,
   hasError,
   disabled: isDisabled,
+  handleChange,
+  handleBlur,
+  iconContainerStyle,
   icon,
   iconType = 'trailing',
-  iconContainerStyle,
   handleIconPress,
   type = InputType.TEXT,
   ...restProps
 }: AppTextInputProps): ReactElement {
-  const [isFocused, setIsFocused] = useState(false);
-  const [value, setValue] = useState('');
+  const isTypeOfPassword = type === InputType.PASSWORD;
 
+  const value = get(values, name);
+
+  const [isFocused, setIsFocused] = useState(false);
   const [isMaskedInput, setMaskedInput] = useState(true);
 
   const commonInputProps: TextInputProps = {
-    value: value,
-    onChangeText: (input: string) => {
-      setValue(input);
-    },
+    value: value ? String(value) : '',
+    onChangeText: handleChange?.(name),
     onFocus: () => {
       setIsFocused(true);
     },
-    onBlur: () => {
+    onBlur: (event: NativeSyntheticEvent<TextInputFocusEventData>) => {
       setIsFocused(false);
+      if (handleBlur) {
+        handleBlur(name)(event);
+      }
     },
     editable: !isDisabled,
     placeholderTextColor:
@@ -50,7 +76,7 @@ export function AppTextInput({
   };
 
   const renderedIcon = useMemo(() => {
-    if (type === InputType.PASSWORD) {
+    if (isTypeOfPassword) {
       return (
         <TouchableOpacity
           disabled={isDisabled}
@@ -69,9 +95,9 @@ export function AppTextInput({
 
     return handleIconPress ? (
       <TouchableOpacity
+        style={[styleIcon.common, styleIcon[iconType], iconContainerStyle]}
         disabled={isDisabled}
-        onPress={handleIconPress}
-        style={[styleIcon.common, styleIcon[iconType], iconContainerStyle]}>
+        onPress={handleIconPress}>
         <View>{icon}</View>
       </TouchableOpacity>
     ) : (
@@ -86,11 +112,11 @@ export function AppTextInput({
         isFocused && styleControl.focus,
         hasError && styleControl.error,
         isDisabled && styleControl.disabled,
-        icon && styleInput[iconType],
+        renderedIcon && styleInput[iconType],
         controlStyle
       ]}>
       <TextInput
-        secureTextEntry={isMaskedInput && type === InputType.PASSWORD}
+        secureTextEntry={isMaskedInput && isTypeOfPassword}
         {...commonInputProps}
         {...restProps} />
       {renderedIcon}
