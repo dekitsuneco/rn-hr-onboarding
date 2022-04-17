@@ -30,5 +30,9 @@ export const commonStyle = createStyles({
   flexCenter: {
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  textBold: {
+    fontWeight: '700',
+    fontFamily: variables.fontFamily.zonaProBold
   }
 });

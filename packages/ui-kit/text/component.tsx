@@ -20,7 +20,7 @@ export const appTextStyle = createStyles({
   text: {
     fontSize: variables.fontSize.small,
     color: variables.color.textPrimary,
-    fontFamily: variables.fontFamily.sfProTextRegular,
+    fontFamily: variables.fontFamily.zonaProRegular,
     lineHeight: '1.84rem'
   },
   textSmallest: {
@@ -37,16 +37,16 @@ export const appTextStyle = createStyles({
   textLarger: {
     fontSize: variables.fontSize.larger,
     lineHeight: '1.54rem',
-    fontFamily: variables.fontFamily.sfProDisplayRegular
+    fontFamily: variables.fontFamily.zonaProRegular
   },
   textLarge: {
     fontSize: variables.fontSize.large,
-    fontFamily: variables.fontFamily.sfProDisplayBold,
+    fontFamily: variables.fontFamily.zonaProBold,
     lineHeight: '2.46rem'
   },
   textLargest: {
     fontSize: variables.fontSize.largest,
-    fontFamily: variables.fontFamily.sfProDisplayBold,
+    fontFamily: variables.fontFamily.zonaProBold,
     lineHeight: '2.46rem'
   }
 });

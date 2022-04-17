@@ -91,7 +91,7 @@ const style = createStyles({
 
 const textStyle = createStyles({
   button: {
-    fontFamily: variables.fontFamily.sfProTextSemiBold,
+    fontFamily: variables.fontFamily.zonaProBold,
     fontWeight: '600',
     textAlign: 'center'
   },
