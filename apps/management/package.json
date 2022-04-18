@@ -79,7 +79,8 @@
     "ui-kit": "*",
     "assets": "*",
     "modules": "*",
-    "utils": "*"
+    "utils": "*",
+    "features": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",

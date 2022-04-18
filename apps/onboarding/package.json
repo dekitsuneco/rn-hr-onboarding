@@ -75,7 +75,10 @@
     "sentry-expo": "^4.0.0",
     "yup": "^0.32.11",
     "ui-kit": "*",
-    "assets": "*"
+    "assets": "*",
+    "modules": "*",
+    "utils": "*",
+    "features": "*"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
