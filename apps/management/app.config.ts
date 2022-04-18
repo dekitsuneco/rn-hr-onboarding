@@ -36,7 +36,7 @@ const defaultExpoConfig: ExpoConfig = {
   ios: {
     buildNumber: '1',
     supportsTablet: false,
-    bundleIdentifier: 'com.ronasit.rnstarter.dev',
+    bundleIdentifier: 'com.ronasit.hr-onboarding.manager.dev',
     backgroundColor: '#000000',
     config: {
       usesNonExemptEncryption: false
@@ -44,7 +44,7 @@ const defaultExpoConfig: ExpoConfig = {
   },
   android: {
     versionCode: 1,
-    package: 'com.ronasit.rnstarter.dev',
+    package: 'com.ronasit.hr-onboarding.manager.dev',
     permissions: []
   },
   web: {
