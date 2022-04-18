@@ -2,13 +2,10 @@ import React, { ReactElement } from 'react';
 import { AccountAccessLayout } from '../shared/account-access-layout';
 import { loginScreenFacade } from './facade';
 import { Icon } from 'ui-kit/icon';
-import { AppButton } from 'ui-kit/button';
 import { createStyles } from 'ui-kit/styles';
-import { useTranslation } from 'utils/i18n';
+import { LoginGroup } from 'features/login-form';
 
 export function LoginScreen(): ReactElement {
-  const translate = useTranslation('ACCOUNT_ACCESS.LOGIN');
-
   const handleSignInPress = (): void => {
     loginScreenFacade.navigateToMain();
   };
@@ -20,14 +17,7 @@ export function LoginScreen(): ReactElement {
   return (
     <AccountAccessLayout>
       <Icon name='logoManagement' style={style.icon} />
-      <AppButton
-        title={translate('BUTTON_SIGN_IN')}
-        style={style.signInButton}
-        onPress={handleSignInPress} />
-      <AppButton
-        title={translate('BUTTON_FORGOT_PASSWORD')}
-        theme='tertiary'
-        onPress={handleForgotPasswordPress} />
+      <LoginGroup onSubmit={handleSignInPress} onForgotPassword={handleForgotPasswordPress} />
     </AccountAccessLayout>
   );
 }

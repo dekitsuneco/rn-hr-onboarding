@@ -60,7 +60,6 @@ export function LoginGroup({ style: formStyle = {}, onSubmit, onForgotPassword }
 
 const style = createStyles({
   form: {
-    height: '100%',
     backgroundColor: variables.color.white,
     justifyContent: 'center',
     alignItems: 'center',
@@ -75,5 +74,10 @@ const style = createStyles({
   },
   control: {
     minWidth: '100%'
+  },
+  '@media (max-width: 768)': {
+    middle: {
+      marginBottom: 34
+    }
   }
 });
