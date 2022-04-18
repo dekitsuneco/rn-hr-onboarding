@@ -21,6 +21,9 @@
       "SCRIPTS": "Scripts",
       "SETTINGS": "Settings",
       "BUTTON_LOGOUT": "Logout"
+    },
+    "EMPLOYEES": {
+      "SEARCH_INPUT": "Search employees"
     }
   }
 }
