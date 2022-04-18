@@ -3,10 +3,31 @@ import React, { ReactElement, useState } from 'react';
 import { View } from 'react-native';
 import { Switcher } from 'ui-kit/switcher';
 
-const switcherItems = ['All', 'Onboarding', 'Pending', 'Completed', 'HR Stuff']; //TODO This is temporary array of items for Switcher component.
+const switcherItems = [
+  {
+    key: '1',
+    title: 'All'
+  },
+  {
+    key: '2',
+    title: 'Onboarding'
+  },
+  {
+    key: '3',
+    title: 'Pending'
+  },
+  {
+    key: '4',
+    title: 'Completed'
+  },
+  {
+    key: '5',
+    title: 'HR Stuff'
+  }
+]; //TODO This is temporary array of items for Switcher component.
 
 export function EmployeesScreen(): ReactElement {
-  const [current, setCurrent] = useState('All');
+  const [current, setCurrent] = useState('1');
   const handlePress = (item: string): void => {
     setCurrent(item);
   }; // TODO this is temporary function to handle and imitate switch in Switcher
@@ -14,9 +35,11 @@ export function EmployeesScreen(): ReactElement {
   return (
     <View style={style.container}>
       <Switcher
+        style={{ marginHorizontal: -16, paddingHorizontal: 16 }}
         items={switcherItems}
         current={current}
-        onItemSelect={handlePress} />
+        onItemSelect={handlePress}
+      />
     </View>
   );
 }
@@ -25,7 +48,7 @@ const style = createStyles({
   container: {
     flex: 1,
     justifyContent: 'center',
-    paddingHorizontal: 16,
-    alignItems: 'center'
+    alignItems: 'center',
+    paddingHorizontal: 16
   }
 });

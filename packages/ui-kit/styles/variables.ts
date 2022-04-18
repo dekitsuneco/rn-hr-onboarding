@@ -32,8 +32,8 @@ export const variables = {
     largest: '1.7rem'
   },
   fontFamily: {
-    zonaProBold: 'ZonaProBold',
-    zonaProRegular: 'ZonaProRegular'
+    bold: 'ZonaProBold',
+    regular: 'ZonaProRegular'
   },
   breakpoints: {
     tablet: 768

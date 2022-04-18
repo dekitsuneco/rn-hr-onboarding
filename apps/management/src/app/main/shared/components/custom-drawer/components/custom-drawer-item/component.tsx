@@ -1,4 +1,4 @@
-import { commonStyle, variables } from '@styles';
+import { variables } from '@styles';
 import React, { ReactElement } from 'react';
 import { View, TouchableOpacity } from 'react-native';
 import { Icon } from 'ui-kit/icon';
@@ -20,7 +20,10 @@ export function CustomDrawerItem({ label, icon, onPress, isActive }: Props): Rea
         <View style={[style.icon, isActive && style.iconActive]}>
           <Icon name={icon} />
         </View>
-        <AppText theme={TextTheme.SMALL} style={[style.text, isActive && commonStyle.textBold]}>
+        <AppText
+          theme={TextTheme.SMALL}
+          isBold={isActive}
+          style={style.text}>
           {label}
         </AppText>
       </View>

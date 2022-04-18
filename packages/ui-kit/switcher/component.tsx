@@ -1,26 +1,28 @@
 import React, { ReactElement, useCallback } from 'react';
-import { Pressable, FlatList, View } from 'react-native';
-import { commonStyle, createStyles, variables } from '../styles';
+import { Pressable, View, ScrollView, StyleProp, ViewStyle } from 'react-native';
+import { createStyles, variables } from '../styles';
 import { AppText, TextTheme } from '../text';
+import { SwitcherItem } from './models';
 
 interface Props {
-  items: Array<string>;
+  items: Array<SwitcherItem>;
   current: string;
   onItemSelect: (item: string) => void;
+  style?: StyleProp<ViewStyle>;
 }
 
-export function Switcher({ items, onItemSelect, current }: Props): ReactElement {
+export function Switcher({ items, onItemSelect, current, style: elementStyle }: Props): ReactElement {
   const renderedItem = useCallback(
-    ({ item }: { item: string }) => {
-      const isCurrent = current === item;
+    ({ item }: { item: SwitcherItem }) => {
+      const isCurrent = current === item.key;
 
       return (
         <Pressable
-          key={item}
+          key={item.key}
           style={[style.item, isCurrent && style.itemActive]}
-          onPress={() => onItemSelect(item)}>
-          <AppText theme={TextTheme.SMALLEST} style={isCurrent && commonStyle.textBold}>
-            {item}
+          onPress={() => onItemSelect(item.key)}>
+          <AppText theme={TextTheme.SMALLEST} isBold={isCurrent}>
+            {item.title}
           </AppText>
         </Pressable>
       );
@@ -29,29 +31,27 @@ export function Switcher({ items, onItemSelect, current }: Props): ReactElement 
   );
 
   return (
-    <View style={style.wrapper}>
-      <FlatList
-        horizontal
-        keyExtractor={(item) => item}
-        data={items}
-        renderItem={renderedItem}
-        contentContainerStyle={style.container}
-        showsHorizontalScrollIndicator={false}
-      />
-    </View>
+    <ScrollView
+      horizontal
+      showsHorizontalScrollIndicator={false}
+      style={[style.container, elementStyle]}>
+      <View style={style.wrapper}>{items.map((item) => renderedItem({ item }))}</View>
+    </ScrollView>
   );
 }
 
 const style = createStyles({
+  container: {
+    maxHeight: 42
+  },
   wrapper: {
     borderRadius: 10,
-    overflow: 'hidden',
-    height: 42,
-    backgroundColor: variables.color.backgroundSecondary
-  },
-  container: {
+    backgroundColor: variables.color.backgroundSecondary,
+    flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 12
+    paddingHorizontal: 12,
+    height: 42,
+    overflow: 'hidden'
   },
   item: {
     marginHorizontal: 18,
