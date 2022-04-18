@@ -8,10 +8,11 @@ interface Props {
   items: Array<SwitcherItem>;
   current: string;
   onItemSelect: (item: string) => void;
-  style?: StyleProp<ViewStyle>;
+  containerStyle?: StyleProp<ViewStyle>;
+  wrapperStyle?: StyleProp<ViewStyle>;
 }
 
-export function Switcher({ items, onItemSelect, current, style: elementStyle }: Props): ReactElement {
+export function Switcher({ items, onItemSelect, current, containerStyle, wrapperStyle }: Props): ReactElement {
   const renderedItem = useCallback(
     ({ item }: { item: SwitcherItem }) => {
       const isCurrent = current === item.key;
@@ -34,8 +35,8 @@ export function Switcher({ items, onItemSelect, current, style: elementStyle }: 
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
-      style={[style.container, elementStyle]}>
-      <View style={style.wrapper}>{items.map((item) => renderedItem({ item }))}</View>
+      style={[style.container, containerStyle]}>
+      <View style={[style.wrapper, wrapperStyle]}>{items.map((item) => renderedItem({ item }))}</View>
     </ScrollView>
   );
 }

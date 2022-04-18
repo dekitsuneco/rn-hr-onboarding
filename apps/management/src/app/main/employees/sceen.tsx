@@ -35,7 +35,8 @@ export function EmployeesScreen(): ReactElement {
   return (
     <View style={style.container}>
       <Switcher
-        style={{ marginHorizontal: -16, paddingHorizontal: 16 }}
+        containerStyle={{ marginHorizontal: -16 }}
+        wrapperStyle={{ marginHorizontal: 16 }}
         items={switcherItems}
         current={current}
         onItemSelect={handlePress}
