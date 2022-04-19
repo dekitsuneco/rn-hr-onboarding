@@ -13,6 +13,7 @@ interface Props {
   isBlocked?: boolean;
   style?: StyleProp<ViewStyle>;
   isDraggable?: boolean;
+  onCardPress?: () => void;
 }
 
 export function ScriptCard({
@@ -22,10 +23,14 @@ export function ScriptCard({
   subtitle,
   isBlocked,
   style: elementStyle,
-  isDraggable
+  isDraggable,
+  onCardPress
 }: Props): ReactElement {
   return (
-    <TouchableOpacity style={[style.container, elementStyle]} delayPressIn={40}>
+    <TouchableOpacity
+      style={[style.container, elementStyle]}
+      disabled={isBlocked}
+      onPress={onCardPress}>
       <ExternalImage uri={imageURL} style={[style.image, isBlocked && style.blocked]} />
       <View style={style.tabs}>
         {isDraggable && <Icon name='tasks' style={style.tasksIcon} />}

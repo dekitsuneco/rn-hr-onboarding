@@ -1,5 +1,4 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { OnboardingScreen } from './onboarding/screen';
 import { AchievementsScreen } from './achievements/screen';
 import { ProfileScreen } from './profile/screen';
 import React, { ReactElement } from 'react';
@@ -7,6 +6,7 @@ import { createStyles } from 'ui-kit/styles';
 import { variables } from '@styles';
 import { Icon } from 'ui-kit/icon';
 import { useTranslation } from 'utils/i18n';
+import { OnboardingNvigation } from './onboarding/navigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -23,7 +23,7 @@ export function MainNavigation(): ReactElement {
       }}>
       <Tab.Screen
         name='Onboarding'
-        component={OnboardingScreen}
+        component={OnboardingNvigation}
         options={{
           tabBarIcon: ({ focused }) => <Icon name={focused ? 'onboardingActive' : 'onboarding'} />,
           title: translate('ONBOARDING')

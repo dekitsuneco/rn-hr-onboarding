@@ -1,23 +1,16 @@
 import React, { ReactElement } from 'react';
 import { ScriptCard } from 'ui-kit/script-card';
 import { createStyles } from '@styles';
-import { useTranslation } from 'utils/i18n';
 import { ScriptCardAction } from '../script-card-action/component';
+import { Script } from '@app/main/onboarding/scripts/models';
+import { onboardingFacade } from '@app/main/onboarding/facade';
 
 interface Props {
-  item: {
-    id: string;
-    title: string;
-    tasksTotal: number;
-    completed: number;
-    status: string;
-    logo: string;
-  };
+  item: Script;
+  onCardPress?: () => void;
 }
 
-export function ScriptCardItem({ item }: Props): ReactElement {
-  const transtlate = useTranslation('MAIN.ONBOARDING.SHARED.SCRIPT_CARD_LIST');
-
+export function ScriptCardItem({ item, onCardPress }: Props): ReactElement {
   return (
     <ScriptCard
       key={item.id}
@@ -25,12 +18,9 @@ export function ScriptCardItem({ item }: Props): ReactElement {
       imageURL={item.logo}
       contentRight={<ScriptCardAction status={item.status} taskID={item.id} />}
       title={item.title}
-      subtitle={
-        item.completed > 0
-          ? transtlate('TEXT_TASKS_COMPLETE', { tasksTotal: item.tasksTotal, completed: item.completed })
-          : transtlate('TEXT_TASKS', { tasksTotal: item.tasksTotal })
-      }
+      subtitle={onboardingFacade.translateScriptProgress(item.tasksTotal, item.completed)}
       isBlocked={item.status === 'blocked'}
+      onCardPress={onCardPress}
     />
   );
 }
