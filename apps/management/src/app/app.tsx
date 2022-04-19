@@ -29,7 +29,7 @@ export function App(): ReactElement {
         backgroundColor='transparent'
         style='light' />
       <NavigationContainer linking={appLinking} ref={navigationRef}>
-        <Stack.Navigator initialRouteName='Main' screenOptions={{ headerShown: false }}>
+        <Stack.Navigator initialRouteName='AccountAccess' screenOptions={{ headerShown: false }}>
           <Stack.Screen name='AccountAccess' component={AccountAccessNavigation} />
           <Stack.Screen name='Main' component={MainNavigation} />
         </Stack.Navigator>
