@@ -20,7 +20,7 @@ const defaultExpoConfig: ExpoConfig = {
   name: 'HR Management Dev',
   slug: 'hr-management-dev',
   scheme: 'hr-management-dev',
-  owner: 'grand_savage',
+  owner: 'ronas_it',
   entryPoint: 'index.js',
   version: '0.0.1',
   orientation: 'default',

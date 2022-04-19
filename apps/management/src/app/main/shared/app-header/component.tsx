@@ -1,43 +1,48 @@
+import { DrawerHeaderProps } from '@react-navigation/drawer';
+import { StackHeaderProps } from '@react-navigation/stack';
+import { commonStyle, createStyles, variables } from '@styles';
 import React from 'react';
-import { ReactElement, ReactNode } from 'react';
 import { View } from 'react-native';
-import { createStyles } from '@styles';
-import { Icon } from 'ui-kit/icon';
-import { AppText } from 'ui-kit/text';
 import { AppButton } from 'ui-kit/button';
-import { appHeaderFacade } from './facade';
-import { commonStyle, variables } from '@styles';
+import { Icon } from 'ui-kit/icon';
+import { AnyStyle } from 'ui-kit/styles';
+import { AppText, TextTheme } from 'ui-kit/text';
 
-interface Props {
-  leftContent?: string | ReactNode;
-  rightContent?: ReactNode;
-  toggleDrawer: () => void;
-}
+export type AppHeaderProps = {
+  titleContent?: string | JSX.Element;
+  rightContent?: JSX.Element;
+  isDrawerToggleHidden?: boolean;
+} & Partial<Pick<StackHeaderProps | DrawerHeaderProps, 'navigation' | 'options'>>;
 
-export function AppHeader({ leftContent, rightContent, toggleDrawer }: Props): ReactElement {
-  const handleGoBack = (): void => {
-    appHeaderFacade.goBack();
-  };
+export function AppHeader({
+  rightContent,
+  options,
+  navigation,
+  isDrawerToggleHidden,
+  ...restProps
+}: AppHeaderProps): JSX.Element {
+  const titleContent = restProps.titleContent || options?.title;
 
-  const navBtn = appHeaderFacade.canGoBack() ? (
+  const navBtn = navigation.canGoBack() ? (
     <AppButton
       leftIcon={<Icon name='arrowLeft' />}
       gap={10}
       theme='tertiary'
       style={[commonStyle.flexCenter]}
-      onPress={handleGoBack}
+      onPress={() => navigation.goBack()}
     />
-  ) : (
+  ) : !isDrawerToggleHidden ? (
     <AppButton
       leftIcon={<Icon name='menu' />}
       gap={10}
       theme='tertiary'
       style={[commonStyle.flexCenter]}
-      onPress={toggleDrawer}
+      onPress={() => 'toggleDrawer' in navigation && navigation.toggleDrawer()}
     />
-  );
+  ) : null;
 
-  const title = typeof leftContent === 'string' ? <AppText theme='textLargest'>{leftContent}</AppText> : leftContent;
+  const title =
+    typeof titleContent === 'string' ? <AppText theme={TextTheme.LARGEST}>{titleContent}</AppText> : titleContent;
 
   return (
     <View style={[commonStyle.borderSecondaryBottom, style.container]}>
@@ -82,5 +87,5 @@ const style = createStyles({
     navbar: {
       marginRight: 10
     }
-  }
+  } as AnyStyle
 });
