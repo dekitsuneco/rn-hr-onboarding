@@ -10,7 +10,7 @@ import { LoginForm } from './forms/login';
 //TODO Replace hard-coded 'name' and 'placeholder' properties with translations from i18n
 export interface LoginGroupProps {
   style?: StyleProp<ViewStyle>;
-  onSubmit: () => void;
+  onSubmit: (values: LoginForm) => void;
   onForgotPassword: () => void;
 }
 
@@ -60,7 +60,6 @@ export function LoginGroup({ style: formStyle = {}, onSubmit, onForgotPassword }
 
 const style = createStyles({
   form: {
-    height: '100%',
     backgroundColor: variables.color.white,
     justifyContent: 'center',
     alignItems: 'center',
@@ -75,5 +74,10 @@ const style = createStyles({
   },
   control: {
     minWidth: '100%'
+  },
+  '@media (max-width: 768)': {
+    middle: {
+      marginBottom: 34
+    }
   }
 });
