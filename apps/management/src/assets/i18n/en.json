@@ -23,7 +23,7 @@
       "BUTTON_LOGOUT": "Logout"
     },
     "EMPLOYEES": {
-      "SEARCH_INPUT": "Search employees"
+      "INPUT_SEARCH_PLACEHOLDER": "Search employees"
     }
   }
 }

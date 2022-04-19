@@ -1,18 +1,18 @@
 import { variables } from '@styles';
 import React from 'react';
 import { Icon } from 'ui-kit/icon';
-import { createStyles } from 'ui-kit/styles';
-import { AppTextInput } from 'ui-kit/text-input';
+import { AnyStyle, createStyles } from 'ui-kit/styles';
+import { AppTextInput, AppTextInputProps } from 'ui-kit/text-input';
 
-interface SearchProps {
+type SearchInputProps = {
   placeholder?: string;
-}
+} & AppTextInputProps;
 
-export function Search({ placeholder, ...restProps }: SearchProps): JSX.Element {
+export function SearchInput({ placeholder, ...restProps }: SearchInputProps): JSX.Element {
   return (
     <AppTextInput
+      style={style.textInput}
       placeholder={placeholder}
-      controlStyle={style.searchInput}
       iconType='leading'
       icon={<Icon name='search' stroke={variables.color.gray} />}
       {...restProps}
@@ -21,12 +21,12 @@ export function Search({ placeholder, ...restProps }: SearchProps): JSX.Element 
 }
 
 const style = createStyles({
-  searchInput: {
-    maxWidth: 320
+  textInput: {
+    fontFamily: variables.fontFamily.regular
   },
   [`@media (max-width: ${variables.breakpoints.tablet})`]: {
     searchInput: {
       maxWidth: '100%'
     }
-  }
+  } as AnyStyle
 });

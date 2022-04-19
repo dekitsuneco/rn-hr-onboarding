@@ -4,7 +4,7 @@ import { ImageBackground, View } from 'react-native';
 import { commonStyle } from 'ui-kit/styles';
 
 interface AccountAccessLayoutProps {
-  children?: React.ReactNode;
+  children?: JSX.Element | Array<JSX.Element>;
 }
 
 export function AccountAccessLayout({ children }: AccountAccessLayoutProps): ReactElement {

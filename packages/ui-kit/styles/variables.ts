@@ -32,10 +32,8 @@ export const variables = {
     largest: '1.7rem'
   },
   fontFamily: {
-    sfProDisplayBold: 'SFProDisplayBold',
-    sfProDisplayRegular: 'SFProDisplayRegular',
-    sfProTextRegular: 'SFProTextRegular',
-    sfProTextSemiBold: 'SFProTextSemiBold'
+    bold: 'ZonaProBold',
+    regular: 'ZonaProRegular'
   },
   breakpoints: {
     tablet: 768
