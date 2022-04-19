@@ -1,4 +1,4 @@
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { ScriptCard } from 'ui-kit/script-card';
 import { createStyles } from '@styles';
 import { useTranslation } from 'utils/i18n';
@@ -15,7 +15,7 @@ interface Props {
   };
 }
 
-export function ScriptCardItem({ item }: Props): ReactElement {
+export function ScriptCardItem({ item }: Props): JSX.Element {
   const transtlate = useTranslation('MAIN.ONBOARDING.SHARED.SCRIPT_CARD_LIST');
 
   return (
