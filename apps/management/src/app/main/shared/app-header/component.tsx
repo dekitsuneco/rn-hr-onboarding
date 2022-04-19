@@ -26,17 +26,12 @@ export function AppHeader({
   const navBtn = navigation.canGoBack() ? (
     <AppButton
       leftIcon={<Icon name='arrowLeft' />}
-      gap={10}
       theme='tertiary'
-      style={[commonStyle.flexCenter]}
-      onPress={() => navigation.goBack()}
-    />
+      onPress={() => navigation.goBack()} />
   ) : !isDrawerToggleHidden ? (
     <AppButton
       leftIcon={<Icon name='menu' />}
-      gap={10}
       theme='tertiary'
-      style={[commonStyle.flexCenter]}
       onPress={() => 'toggleDrawer' in navigation && navigation.toggleDrawer()}
     />
   ) : null;
@@ -45,7 +40,7 @@ export function AppHeader({
     typeof titleContent === 'string' ? <AppText theme={TextTheme.LARGEST}>{titleContent}</AppText> : titleContent;
 
   return (
-    <View style={[commonStyle.borderSecondaryBottom, style.container]}>
+    <View style={style.container}>
       <View style={[commonStyle.flexCenter, style.navbarContainer]}>
         <View style={[style.navbar]}>{navBtn}</View>
         <View style={style.title}>{title}</View>
@@ -63,7 +58,9 @@ const style = createStyles({
     marginHorizontal: 80,
     paddingVertical: 10,
     maxHeight: 130,
-    height: 100
+    height: 100,
+    borderBottomWidth: 1,
+    borderBottomColor: variables.color.borderColorSecondary
   },
   navbarContainer: {
     flexDirection: 'row',

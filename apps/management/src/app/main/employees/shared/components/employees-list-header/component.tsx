@@ -6,9 +6,11 @@ import { View } from 'react-native';
 import { AppButton } from 'ui-kit/button';
 import { Icon } from 'ui-kit/icon';
 import { variables } from 'ui-kit/styles';
+import { useTranslation } from 'utils/i18n';
 
 export function EmployeesListHeader(props: AppHeaderProps): JSX.Element {
   const { isDesktop } = useScreenDimensions();
+  const translate = useTranslation('MAIN.EMPLOYEES.EMPLOYEES_LIST_HEADER');
 
   return (
     <AppHeader
@@ -16,7 +18,7 @@ export function EmployeesListHeader(props: AppHeaderProps): JSX.Element {
         <View>
           <AppButton
             leftIcon={<Icon name='plus' stroke={variables.color.background} />}
-            title='Add Employee'
+            title={translate('ADD_EMPLOYEE_BTN')}
             onPress={() => appNavigationService.navigate('NewEmployee')}
           />
         </View>

@@ -21,6 +21,11 @@
       "SCRIPTS": "Scripts",
       "SETTINGS": "Settings",
       "BUTTON_LOGOUT": "Logout"
+    },
+    "EMPLOYEES": {
+      "EMPLOYEES_LIST_HEADER": {
+        "ADD_EMPLOYEE_BTN": "Add Employee"
+      }
     }
   }
 }

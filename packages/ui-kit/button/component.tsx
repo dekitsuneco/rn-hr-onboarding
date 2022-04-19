@@ -1,9 +1,8 @@
 import { AppActivityIndicator } from '../activity-indicator';
 import { AppText, TextTheme } from '../text';
-import { AnyStyle, createStyles, variables } from '../styles';
+import { AnyStyle, createStyles, variables, commonStyle } from '../styles';
 import React, { ReactElement, useMemo } from 'react';
-import { TouchableHighlight, TouchableHighlightProps } from 'react-native';
-import { HorizontalGap } from 'ui-kit/horizontal-gap';
+import { TouchableHighlight, TouchableHighlightProps, View } from 'react-native';
 import { useScreenDimensions } from 'modules/use-screen-dimensions';
 
 type ButtonTheme = 'primary' | 'secondary' | 'tertiary';
@@ -13,7 +12,6 @@ interface Props extends TouchableHighlightProps {
   title?: string;
   leftIcon?: ReactElement;
   rightIcon?: ReactElement;
-  gap?: number;
   isDisabled?: boolean;
   isLoading?: boolean;
   theme?: ButtonTheme;
@@ -25,7 +23,6 @@ export function AppButton({
   title,
   leftIcon,
   rightIcon,
-  gap,
   style: elementStyle = {},
   isDisabled,
   isLoading,
@@ -35,7 +32,6 @@ export function AppButton({
   ...restProps
 }: Props): ReactElement {
   const { isTablet } = useScreenDimensions();
-  const defaultGap = 10;
   const renderedContent = useMemo(() => {
     if (isLoading) {
       return <AppActivityIndicator
@@ -54,11 +50,11 @@ export function AppButton({
     );
 
     return (
-      <HorizontalGap gap={gap || defaultGap} style={textStyle.container}>
-        {leftIcon}
-        {text}
-        {rightIcon}
-      </HorizontalGap>
+      <View style={[textStyle.container, commonStyle.flexCenter]}>
+        <View style={text && leftIcon && textStyle.leftIcon}>{leftIcon}</View>
+        <View>{text}</View>
+        <View style={text && rightIcon && textStyle.rightIcon}>{rightIcon}</View>
+      </View>
     );
   }, [isDisabled, isLoading, theme, size, title, children]);
 
@@ -118,8 +114,13 @@ const textStyle = createStyles({
     fontWeight: '600'
   },
   container: {
-    alignItems: 'center',
-    justifyContent: 'center'
+    flexDirection: 'row'
+  },
+  leftIcon: {
+    marginRight: 10
+  },
+  rightIcon: {
+    marginLeft: 10
   },
   primary: {
     color: variables.color.white
