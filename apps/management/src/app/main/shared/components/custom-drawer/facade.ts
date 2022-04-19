@@ -6,7 +6,7 @@ class CustomDrawerFacade {
   }
 
   public isActiveScreen(screen: string): boolean {
-    const currentScreen = appNavigationService.currentRoute.name;
+    const currentScreen = appNavigationService?.currentRoute?.name;
 
     return currentScreen === screen;
   }

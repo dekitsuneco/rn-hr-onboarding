@@ -1,7 +1,7 @@
 import { AppActivityIndicator } from '../activity-indicator';
 import { AppText, TextTheme } from '../text';
-import { createStyles, variables } from '../styles';
-import React, { ReactElement, useMemo, ReactNode } from 'react';
+import { AnyStyle, createStyles, variables } from '../styles';
+import React, { ReactElement, useMemo } from 'react';
 import { TouchableHighlight, TouchableHighlightProps } from 'react-native';
 import { HorizontalGap } from 'ui-kit/horizontal-gap';
 import { useScreenDimensions } from 'modules/use-screen-dimensions';
@@ -11,8 +11,8 @@ type ButtonSize = 'default' | 'small';
 
 interface Props extends TouchableHighlightProps {
   title?: string;
-  leftIcon?: ReactNode;
-  rightIcon?: ReactNode;
+  leftIcon?: ReactElement;
+  rightIcon?: ReactElement;
   gap?: number;
   isDisabled?: boolean;
   isLoading?: boolean;
@@ -109,7 +109,7 @@ const style = createStyles({
       paddingVertical: 12,
       paddingHorizontal: 12
     }
-  }
+  } as AnyStyle
 });
 
 const textStyle = createStyles({

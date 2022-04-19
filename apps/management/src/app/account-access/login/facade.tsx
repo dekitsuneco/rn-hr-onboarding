@@ -2,7 +2,7 @@ import { appNavigationService } from 'modules/navigation';
 
 class LoginScreenFacade {
   public navigateToMain(): void {
-    appNavigationService.navigate('Main');
+    appNavigationService.resetToRoute('Main');
   }
 
   public navigateToForgotPassword(): void {

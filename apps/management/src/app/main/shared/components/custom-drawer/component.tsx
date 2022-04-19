@@ -1,5 +1,5 @@
 import { DrawerContentComponentProps, DrawerContentScrollView } from '@react-navigation/drawer';
-import React, { ReactElement } from 'react';
+import React from 'react';
 import { View } from 'react-native';
 import { Icon } from 'ui-kit/icon';
 import { createStyles } from 'ui-kit/styles';
@@ -8,7 +8,7 @@ import { Icons } from 'assets/icons';
 import { customDrawerFacade } from './facade';
 import { CustomDrawerItem, CurrentUserItem } from './components';
 
-export function CustomDrawerPanel(props: DrawerContentComponentProps): ReactElement {
+export function CustomDrawerPanel(props: DrawerContentComponentProps): JSX.Element {
   const translate = useTranslation('MAIN.NAVIGATION');
 
   return (
