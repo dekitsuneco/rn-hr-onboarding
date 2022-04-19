@@ -3,21 +3,21 @@ import React, { ReactElement } from 'react';
 import { Text, TextProps } from 'react-native';
 import { TextTheme } from './enums';
 
-interface Props extends TextProps {
+interface AppTextProps extends TextProps {
   children?: React.ReactNode;
   theme?: TextTheme;
 }
 
-export function AppText({ style: elementStyle = {}, theme, children, ...restProps }: Props): ReactElement {
+export function AppText({ style: elementStyle = {}, theme, children, ...restProps }: AppTextProps): ReactElement {
   return (
-    <Text style={[appTextStyle.text, theme && appTextStyle[theme], elementStyle]} {...restProps}>
+    <Text style={[style.common, theme && style[theme], elementStyle]} {...restProps}>
       {children}
     </Text>
   );
 }
 
-export const appTextStyle = createStyles({
-  text: {
+export const style = createStyles({
+  common: {
     fontSize: variables.fontSize.small,
     color: variables.color.textPrimary,
     fontFamily: variables.fontFamily.sfProTextRegular,

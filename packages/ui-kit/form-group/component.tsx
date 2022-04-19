@@ -1,23 +1,43 @@
 import { AppText, TextTheme } from '../text';
 import { createStyles, variables } from '../styles';
-import React, { ReactElement, useMemo } from 'react';
+import React, { ReactElement, useMemo, useEffect } from 'react';
 import { View, ViewStyle, StyleProp } from 'react-native';
+import { FormikProps } from 'formik';
+import { AppTextInputProps } from 'ui-kit/text-input';
 
-export interface FormGroupProps {
+export interface FormGroupProps<T extends Record<string, any> = Record<string, any>>
+  extends Partial<Pick<FormikProps<T>, 'errors' | 'touched'>> {
+  containerStyle?: StyleProp<ViewStyle>;
   label?: string;
   message?: string;
-  containerStyle?: StyleProp<ViewStyle>;
+  name: keyof T;
+  isSubmitted?: boolean;
+  onErrorStateChange?: (hasError: boolean) => void;
   children?: ReactElement;
-  hasError?: boolean;
 }
 
-export function FormGroup({
-  label,
-  message,
+export function FormGroup<T = AppTextInputProps>({
   containerStyle,
-  hasError = false,
+  name,
+  touched,
+  errors,
+  onErrorStateChange,
+  isSubmitted,
+  label,
+  message = '',
   children
-}: FormGroupProps): ReactElement {
+}: FormGroupProps & T): ReactElement {
+  const isTouched = !!touched?.[name];
+  const hasValidationErrors = !!errors?.[name];
+
+  const hasError = hasValidationErrors && (isSubmitted || isTouched);
+
+  const messageOrError = hasError ? (errors[name] as string) : message;
+
+  useEffect(() => {
+    onErrorStateChange?.(hasError);
+  }, [hasError]);
+
   const renderedLabel = useMemo(() => {
     return (
       !!label && (
@@ -30,16 +50,14 @@ export function FormGroup({
 
   const renderedMessage = useMemo(() => {
     return (
-      !!message && (
-        <AppText theme={TextTheme.SMALLEST} style={[style.formGroupMessage, hasError && style.formGroupErrorMessage]}>
-          {message}
-        </AppText>
-      )
+      <AppText theme={TextTheme.SMALLEST} style={[style.formGroupMessage, hasError && style.formGroupErrorMessage]}>
+        {messageOrError}
+      </AppText>
     );
-  }, [message, hasError]);
+  }, [message, messageOrError, hasError]);
 
   return (
-    <View style={[style.formGroup, containerStyle]}>
+    <View style={containerStyle}>
       {renderedLabel}
       {children}
       {renderedMessage}
@@ -48,9 +66,6 @@ export function FormGroup({
 }
 
 const style = createStyles({
-  formGroup: {
-    marginBottom: '1.2rem'
-  },
   formGroupLabel: {
     marginBottom: '0.25rem',
     letterSpacing: -0.02

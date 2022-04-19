@@ -18,5 +18,11 @@ export const Icons = {
   achievementsActive: Svg(require('./achievements-active.svg')),
   scripts: Svg(require('./scripts.svg')),
   search: Svg(require('./search.svg')),
-  settings: Svg(require('./settings.svg'))
+  settings: Svg(require('./settings.svg')),
+  done: Svg(require('./done.svg')),
+  continue: Svg(require('./continue.svg')),
+  blocked: Svg(require('./blocked.svg')),
+  greeting: Svg(require('./greeting.svg')),
+  tasks: Svg(require('./tasks.svg')),
+  logoManagement: Svg(require('./logo.svg'))
 };
