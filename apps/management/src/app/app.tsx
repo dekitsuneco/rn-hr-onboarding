@@ -8,7 +8,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { AccountAccessNavigation } from './account-access/navigation';
 import { MainNavigation } from './main/navigation';
 import { appLinking } from './linking';
-import { navigationRef } from 'modules/navigation';
+import { navigationRef } from 'features/navigation';
 import { useLanguage } from 'utils/i18n';
 import { appFacade } from './facade';
 import { AppActivityIndicator } from 'ui-kit/activity-indicator';

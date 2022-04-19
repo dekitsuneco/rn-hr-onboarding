@@ -1,4 +1,4 @@
-import { appNavigationService } from '../../modules/navigation';
+import { appNavigationService } from 'features/navigation';
 import I18n from 'i18n-js';
 import { useEffect } from 'react';
 import * as Localization from 'expo-localization';
