@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { NavigationContainer } from '@react-navigation/native';
@@ -10,6 +10,8 @@ import { MainNavigation } from './main/navigation';
 import { appLinking } from './linking';
 import { navigationRef } from 'modules/navigation';
 import { useLanguage } from 'utils/i18n';
+import { appFacade } from './facade';
+import { AppActivityIndicator } from 'ui-kit/activity-indicator';
 
 const Stack = createStackNavigator();
 const setLanguage = useLanguage(
@@ -20,7 +22,13 @@ const setLanguage = useLanguage(
 );
 
 export function App(): ReactElement {
+  const { isTokenLoaded, isAuthenticated } = appFacade;
+  const initialRouteName = isAuthenticated ? 'Main' : 'AccountAccess';
   setLanguage('en');
+
+  useEffect(() => {
+    appFacade.init();
+  }, []);
 
   return (
     <SafeAreaView style={style.container}>
@@ -29,10 +37,14 @@ export function App(): ReactElement {
         backgroundColor='transparent'
         style='light' />
       <NavigationContainer linking={appLinking} ref={navigationRef}>
-        <Stack.Navigator initialRouteName='AccountAccess' screenOptions={{ headerShown: false }}>
-          <Stack.Screen name='AccountAccess' component={AccountAccessNavigation} />
-          <Stack.Screen name='Main' component={MainNavigation} />
-        </Stack.Navigator>
+        {isTokenLoaded ? (
+          <Stack.Navigator initialRouteName={initialRouteName} screenOptions={{ headerShown: false }}>
+            <Stack.Screen name='AccountAccess' component={AccountAccessNavigation} />
+            <Stack.Screen name='Main' component={MainNavigation} />
+          </Stack.Navigator>
+        ) : (
+          <AppActivityIndicator />
+        )}
       </NavigationContainer>
     </SafeAreaView>
   );

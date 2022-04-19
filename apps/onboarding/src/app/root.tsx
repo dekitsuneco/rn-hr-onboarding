@@ -1,24 +1,12 @@
-import { appConfig } from './constants';
 import { registerRootComponent } from 'expo';
 import { useFonts } from 'expo-font';
 import React, { ReactElement } from 'react';
-import * as Sentry from 'sentry-expo';
 import { App } from './app';
 
 export default function Root(): ReactElement {
-  if (appConfig.sentry.enabled) {
-    Sentry.init({
-      dsn: appConfig.sentry.dsn,
-      enableInExpoDevelopment: false,
-      debug: !appConfig.production
-    });
-  }
-
   const [areFontsReady] = useFonts({
-    SFProDisplayBold: require('assets/fonts/SF-Pro-Display-Bold.otf'),
-    SFProDisplayRegular: require('assets/fonts/SF-Pro-Display-Regular.otf'),
-    SFProTextRegular: require('assets/fonts/SF-Pro-Text-Regular.otf'),
-    SFProTextSemiBold: require('assets/fonts/SF-Pro-Text-Semibold.otf')
+    ZonaProBold: require('assets/fonts/ZonaPro-Bold.ttf'),
+    ZonaProRegular: require('assets/fonts/ZonaPro-Regular.ttf')
   });
 
   if (!areFontsReady) {

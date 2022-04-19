@@ -110,7 +110,7 @@ const style = createStyles({
 
 const textStyle = createStyles({
   text: {
-    fontFamily: variables.fontFamily.sfProTextSemiBold,
+    fontFamily: variables.fontFamily.regular,
     fontWeight: '600'
   },
   container: {
@@ -121,6 +121,11 @@ const textStyle = createStyles({
   },
   rightIcon: {
     marginLeft: 10
+  },
+  button: {
+    fontFamily: variables.fontFamily.bold,
+    fontWeight: '600',
+    textAlign: 'center'
   },
   primary: {
     color: variables.color.white

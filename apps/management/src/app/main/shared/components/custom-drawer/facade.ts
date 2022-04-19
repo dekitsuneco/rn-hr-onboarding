@@ -1,3 +1,5 @@
+import { storeRef } from '@store';
+import { AuthActions } from 'features/auth';
 import { appNavigationService } from 'modules/navigation';
 
 class CustomDrawerFacade {
@@ -12,7 +14,7 @@ class CustomDrawerFacade {
   }
 
   public logout(): void {
-    appNavigationService.popToTop();
+    storeRef.dispatch(AuthActions.unauthorize({}));
   }
 }
 
