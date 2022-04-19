@@ -41,12 +41,10 @@ class AppNavigationService {
   }
 
   public toggleDrawer(): void {
-    console.log('toggleDrawer');
     navigationRef.current?.dispatch(DrawerActions.toggleDrawer());
   }
 
   public goBack(): void {
-    console.log('goBack');
     navigationRef.current?.goBack();
   }
 
