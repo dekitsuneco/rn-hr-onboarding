@@ -59,6 +59,7 @@ const style = createStyles({
     height: 68,
     paddingBottom: 7,
     paddingTop: 14,
+    shadowColor: variables.color.boxShadow,
     shadowOffset: {
       width: 0,
       height: 4
