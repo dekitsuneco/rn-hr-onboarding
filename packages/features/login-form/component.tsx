@@ -10,7 +10,7 @@ import { LoginForm } from './forms/login';
 //TODO Replace hard-coded 'name' and 'placeholder' properties with translations from i18n
 export interface LoginGroupProps {
   style?: StyleProp<ViewStyle>;
-  onSubmit: () => void;
+  onSubmit: (values: LoginForm) => void;
   onForgotPassword: () => void;
 }
 

@@ -1,8 +1,10 @@
+import { storeRef } from '@store';
+import { AuthActions, AuthCredentials } from 'features/auth';
 import { appNavigationService } from 'modules/navigation';
 
 class LoginScreenFacade {
-  public navigateToMain(): void {
-    appNavigationService.navigate('Main');
+  public authorize(credentials: AuthCredentials): void {
+    storeRef.dispatch(AuthActions.authorize(credentials));
   }
 
   public navigateToForgotPassword(): void {
