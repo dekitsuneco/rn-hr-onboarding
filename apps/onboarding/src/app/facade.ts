@@ -1,6 +1,5 @@
 import { AppActions, storeRef } from '@store';
 import { AuthSelectors } from 'features/auth';
-import { appNavigationService } from 'features/navigation';
 import { useSelector } from 'react-redux';
 
 class AppFacade {
@@ -14,18 +13,6 @@ class AppFacade {
 
   public init(): void {
     storeRef.dispatch(AppActions.init());
-  }
-
-  public get canGoBack(): boolean {
-    return appNavigationService.canGoBack;
-  }
-
-  public navigate(screen: string): void {
-    appNavigationService.navigate(screen);
-  }
-
-  public goBack(): void {
-    appNavigationService.goBack();
   }
 }
 

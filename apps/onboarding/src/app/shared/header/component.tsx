@@ -2,10 +2,10 @@ import React, { ReactElement } from 'react';
 import { View } from 'react-native';
 import { commonStyle, createStyles, variables } from '@styles';
 import { HeaderButton } from './components/button/component';
-import { appFacade } from '@app/facade';
+import { appNavigationService } from 'features/navigation';
 
 export function AppHeader(): ReactElement {
-  const { canGoBack, goBack } = appFacade;
+  const { canGoBack, goBack } = appNavigationService;
   const handlePress = (): void => {
     goBack();
   };
