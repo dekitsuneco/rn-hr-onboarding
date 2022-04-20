@@ -3,15 +3,17 @@ import { View, StyleSheet, ImageBackground } from 'react-native';
 import { loginFacade } from './facade';
 import { Icon } from 'ui-kit/icon';
 import { variables, commonStyle } from '@styles';
-import { LoginGroup } from 'features/login-form';
+import { LoginForm, LoginGroup } from 'features/login-form';
 
 export function LoginScreen(): JSX.Element {
+  const { isSubmitting } = loginFacade;
+
   useEffect(() => {
     loginFacade.init();
   }, []);
 
-  const handleLoginBtn = (): void => {
-    loginFacade.navigate('Main');
+  const handleLoginBtn = (values: LoginForm): void => {
+    loginFacade.authorize(values);
   };
 
   const handleForgotPasswordBtn = (): void => {
@@ -33,7 +35,11 @@ export function LoginScreen(): JSX.Element {
         <View style={style.column}>
           <View style={style.contentColumn}>
             <View style={style.loginForm}>
-              <LoginGroup onSubmit={handleLoginBtn} onForgotPassword={handleForgotPasswordBtn} />
+              <LoginGroup
+                onSubmit={handleLoginBtn}
+                onForgotPassword={handleForgotPasswordBtn}
+                isSubmitting={isSubmitting}
+              />
             </View>
           </View>
         </View>

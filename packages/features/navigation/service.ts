@@ -19,6 +19,10 @@ class AppNavigationService {
   public popToTop(): void {
     navigationRef.current?.dispatch(StackActions.popToTop());
   }
+
+  public resetToRoute(name: string, params: any = {}, index: number = 0): void {
+    navigationRef.current?.reset({ index, routes: [{ name, params }] });
+  }
 }
 
 export const appNavigationService = new AppNavigationService();

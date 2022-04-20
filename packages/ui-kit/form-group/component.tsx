@@ -50,9 +50,11 @@ export function FormGroup<T = AppTextInputProps>({
 
   const renderedMessage = useMemo(() => {
     return (
-      <AppText theme={TextTheme.SMALLEST} style={[style.formGroupMessage, hasError && style.formGroupErrorMessage]}>
-        {messageOrError}
-      </AppText>
+      !!messageOrError && (
+        <AppText theme={TextTheme.SMALLEST} style={[style.formGroupMessage, hasError && style.formGroupErrorMessage]}>
+          {messageOrError}
+        </AppText>
+      )
     );
   }, [message, messageOrError, hasError]);
 

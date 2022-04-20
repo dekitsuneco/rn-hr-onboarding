@@ -35,13 +35,6 @@ export function MainNavigation(): ReactElement {
                 }}>
                 <Text>Here should be icon to show navigator:)</Text>
               </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate('AccountAccess');
-                }}
-                style={{ backgroundColor: '#26A0F8', padding: 4, borderRadius: 10 }}>
-                <Text style={{ color: 'white' }}>Sign-out</Text>
-              </TouchableOpacity>
             </View>
           );
         }

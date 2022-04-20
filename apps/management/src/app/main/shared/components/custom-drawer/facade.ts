@@ -1,6 +1,6 @@
 import { storeRef } from '@store';
 import { AuthActions } from 'features/auth';
-import { appNavigationService } from 'modules/navigation';
+import { appNavigationService } from 'features/navigation';
 
 class CustomDrawerFacade {
   public navigateToScreen(screen: string): void {
@@ -13,7 +13,7 @@ class CustomDrawerFacade {
     return currentScreen === screen;
   }
 
-  public logout(): void {
+  public unauthorize(): void {
     storeRef.dispatch(AuthActions.unauthorize({}));
   }
 }
