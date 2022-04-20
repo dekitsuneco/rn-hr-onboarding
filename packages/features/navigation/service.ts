@@ -12,6 +12,10 @@ class AppNavigationService {
     return navigationRef.current?.navigate;
   }
 
+  public get canGoBack(): boolean {
+    return navigationRef.current?.canGoBack();
+  }
+
   public goBack(): void {
     navigationRef.current?.goBack();
   }

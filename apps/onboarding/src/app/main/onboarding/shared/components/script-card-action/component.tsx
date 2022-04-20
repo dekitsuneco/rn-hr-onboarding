@@ -1,8 +1,9 @@
 import React, { ReactElement, useCallback, useMemo } from 'react';
 import { AppButton } from 'ui-kit/button';
 import { Icon } from 'ui-kit/icon';
-import { createStyles } from '@styles';
+import { createStyles, variables } from '@styles';
 import { useTranslation } from 'utils/i18n';
+import { View } from 'react-native';
 
 interface Props {
   status: string;
@@ -15,11 +16,15 @@ export function ScriptCardAction({ status }: Props): ReactElement {
   const renderElement = useCallback((status: string) => {
     switch (status) {
       case 'done':
-        return <Icon name='done' />;
+        return (
+          <View style={style.iconDone}>
+            <Icon name='done' />
+          </View>
+        );
       case 'blocked':
         return <Icon name='blocked' />;
       case 'process':
-        return <Icon style={style.iconArrow} name='continue' />;
+        return <Icon style={style.iconContinue} name='continue' />;
       case 'open':
         return <AppButton title={translate('BUTTON_START')} size='small' />;
       default:
@@ -33,7 +38,15 @@ export function ScriptCardAction({ status }: Props): ReactElement {
 }
 
 const style = createStyles({
-  iconArrow: {
+  iconContinue: {
     marginRight: 12
+  },
+  iconDone: {
+    width: 40,
+    height: 40,
+    backgroundColor: variables.color.lightGreen,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20
   }
 });
