@@ -45,6 +45,20 @@ const defaultExpoConfig: ExpoConfig = {
     config: 'metro.config.js',
     sourceExts: ['ts', 'tsx', 'js', 'jsx', 'json', 'wasm', 'svg']
   },
+  hooks: {
+    postPublish: [
+      {
+        file: 'sentry-expo/upload-sourcemaps',
+        config: {
+          url: 'https://sentry.ronasit.com',
+          organization: 'ronasit',
+          project: 'hr-onboarding-management',
+          authToken: '8ff72bb0325844dc90d081f35797ec6543dcaa3792e84a469a03d49f8115f8bf'
+        }
+      }
+    ]
+  },
+  plugins: ['sentry-expo'],
   extra: appEnvConfig
 };
 
