@@ -20,11 +20,19 @@
       "EMPLOYEES": "Employees",
       "SCRIPTS": "Scripts",
       "SETTINGS": "Settings",
-      "BUTTON_LOGOUT": "Logout"
+      "BUTTON_LOGOUT": "Logout",
+      "SCREEN_TITLE_DASHBOARD": "Dashboard",
+      "SCREEN_TITLE_SCRIPTS": "Scripts",
+      "SCREEN_TITLE_SETTINGS": "Settings"
     },
     "EMPLOYEES": {
       "EMPLOYEES_LIST_HEADER": {
-        "ADD_EMPLOYEE_BTN": "Add Employee"
+        "BUTTON_ADD_EMPLOYEE": "Add Employee"
+      },
+      "NAVIGATION": {
+        "SCREEN_TITLE_EMPLOYEES": "Employees",
+        "SCREEN_TITLE_EDIT": "Edit",
+        "SCREEN_TITLE_NEW": "New"
       }
     }
   }

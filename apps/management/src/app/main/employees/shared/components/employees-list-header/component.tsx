@@ -18,7 +18,7 @@ export function EmployeesListHeader(props: AppHeaderProps): JSX.Element {
         <View>
           <AppButton
             leftIcon={<Icon name='plus' stroke={variables.color.background} />}
-            title={translate('ADD_EMPLOYEE_BTN')}
+            title={translate('BUTTON_ADD_EMPLOYEE')}
             onPress={() => appNavigationService.navigate('NewEmployee')}
           />
         </View>

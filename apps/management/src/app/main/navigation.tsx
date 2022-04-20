@@ -1,6 +1,7 @@
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { useScreenDimensions } from 'modules/use-screen-dimensions';
 import React, { ReactElement } from 'react';
+import { useTranslation } from 'utils/i18n';
 import { DashboardScreen } from './dashboard/screen';
 import { EmployeesNavigation } from './employees/navigation';
 import { ScriptsScreen } from './scripts/screen';
@@ -19,6 +20,7 @@ const Drawer = createDrawerNavigator<MainNavigationParams>();
 
 export function MainNavigation(): ReactElement {
   const { isDesktop } = useScreenDimensions();
+  const translate = useTranslation('MAIN.NAVIGATION');
 
   return (
     <Drawer.Navigator
@@ -30,20 +32,22 @@ export function MainNavigation(): ReactElement {
       }}>
       <Drawer.Screen
         name='Dashboard'
-        options={{ title: 'Dashboard' }}
-        component={DashboardScreen} />
+        options={{ title: translate('SCREEN_TITLE_DASHBOARD') }}
+        component={DashboardScreen}
+      />
       <Drawer.Screen
         name='Employees'
         options={{ headerShown: false }}
         component={EmployeesNavigation} />
       <Drawer.Screen
         name='Scripts'
-        options={{ title: 'Scripts' }}
+        options={{ title: translate('SCREEN_TITLE_SCRIPTS') }}
         component={ScriptsScreen} />
       <Drawer.Screen
         name='Settings'
-        options={{ title: 'Settings' }}
-        component={SettingsScreen} />
+        options={{ title: translate('SCREEN_TITLE_SETTINGS') }}
+        component={SettingsScreen}
+      />
     </Drawer.Navigator>
   );
 }
