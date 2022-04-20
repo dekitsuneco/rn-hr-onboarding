@@ -1,60 +1,29 @@
-import { createStyles } from '@styles';
-import React, { ReactElement, useState } from 'react';
-import { View } from 'react-native';
-import { Switcher } from 'ui-kit/switcher';
-import { SearchInput } from '@shared/search';
-import { useTranslation } from 'utils/i18n';
+import React, { ReactElement } from 'react';
+import { Text, View, StyleSheet, Button } from 'react-native';
+import { appNavigationService } from 'features/navigation';
 
-const switcherItems = [
-  {
-    key: '1',
-    title: 'All'
-  },
-  {
-    key: '2',
-    title: 'Onboarding'
-  },
-  {
-    key: '3',
-    title: 'Pending'
-  },
-  {
-    key: '4',
-    title: 'Completed'
-  },
-  {
-    key: '5',
-    title: 'HR Stuff'
-  }
-]; //TODO This is temporary array of items for Switcher component.
-
-export function EmployeesScreen(): ReactElement {
-  const translate = useTranslation('MAIN.EMPLOYEES');
-  const [current, setCurrent] = useState('1');
-
-  const handlePress = (item: string): void => {
-    setCurrent(item);
-  }; // TODO this is temporary function to handle and imitate switch in Switcher
-
+export function EmployeesListScreen(): ReactElement {
   return (
     <View style={style.container}>
-      <SearchInput controlStyle={{ marginBottom: 10 }} placeholder={translate('INPUT_SEARCH_PLACEHOLDER')} />
-      <Switcher
-        containerStyle={{ marginHorizontal: -16 }}
-        wrapperStyle={{ marginHorizontal: 16 }}
-        items={switcherItems}
-        current={current}
-        onItemSelect={handlePress}
+      <Text style={style.text}>Employees</Text>
+      <Button
+        title='Edit'
+        onPress={() => {
+          appNavigationService.navigate('EditEmployee');
+        }}
       />
     </View>
   );
 }
 
-const style = createStyles({
+const style = StyleSheet.create({
   container: {
     flex: 1,
     justifyContent: 'center',
-    alignItems: 'center',
-    paddingHorizontal: 16
+    alignItems: 'center'
+  },
+  text: {
+    fontSize: 25,
+    color: '#26A0F8'
   }
 });
