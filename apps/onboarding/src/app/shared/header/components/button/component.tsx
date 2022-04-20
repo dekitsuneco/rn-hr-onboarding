@@ -18,6 +18,10 @@ export function HeaderButton({ iconName, onPress, style: elementStyle }: Props):
 
 const style = createStyles({
   container: {
-    paddingVertical: 6
+    width: 40,
+    aspectRatio: 1,
+    borderRadius: 20,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });

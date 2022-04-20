@@ -1,17 +1,18 @@
 import React, { ReactElement } from 'react';
 import { View } from 'react-native';
 import { commonStyle, createStyles, variables } from '@styles';
-import { onboardingFacade } from '@app/main/onboarding/facade';
 import { HeaderButton } from './components/button/component';
+import { appFacade } from '@app/facade';
 
 export function AppHeader(): ReactElement {
+  const { canGoBack, goBack } = appFacade;
   const handlePress = (): void => {
-    onboardingFacade.goBack();
+    goBack();
   };
 
   return (
     <View style={[commonStyle.wrapper, style.container]}>
-      <HeaderButton onPress={handlePress} iconName='arrowLeft' />
+      {canGoBack && <HeaderButton onPress={handlePress} iconName='arrowLeft' />}
     </View>
   );
 }

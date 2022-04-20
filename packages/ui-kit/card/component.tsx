@@ -1,5 +1,5 @@
 import React, { ReactElement } from 'react';
-import { commonStyle, createStyles } from '../styles';
+import { commonStyle, createStyles, variables } from '../styles';
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
 interface Props extends TouchableOpacityProps {
@@ -20,6 +20,6 @@ export function Card({ style: elementStyle, children, onPress, disabled }: Props
 const style = createStyles({
   container: {
     borderRadius: 10,
-    backgroundColor: 'white'
+    backgroundColor: variables.color.background
   }
 });

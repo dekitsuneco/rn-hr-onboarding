@@ -7,14 +7,6 @@ class OnboardingFacade {
     // TODO: implement this
   }
 
-  public navigate(screen: string): void {
-    appNavigationService.navigate(screen);
-  }
-
-  public goBack(): void {
-    appNavigationService.goBack();
-  }
-
   public navigateToScript(script: Script): void {
     appNavigationService.navigate('Script', { script });
   }
