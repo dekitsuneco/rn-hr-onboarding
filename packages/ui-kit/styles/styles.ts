@@ -30,5 +30,15 @@ export const commonStyle = createStyles({
   flexCenter: {
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  boxShadow: {
+    shadowColor: variables.color.boxShadow,
+    shadowOffset: {
+      width: 0,
+      height: 4
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 20,
+    elevation: 20
   }
 });

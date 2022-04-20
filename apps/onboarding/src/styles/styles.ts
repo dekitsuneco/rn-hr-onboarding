@@ -2,7 +2,7 @@ import { commonStyle as appsCommonStyle, createStyles } from 'ui-kit/styles';
 
 export const commonStyle = createStyles({
   ...appsCommonStyle,
-  screen: {
+  wrapper: {
     paddingHorizontal: '1.5rem'
   },
   '@media (min-width: 768)': {
