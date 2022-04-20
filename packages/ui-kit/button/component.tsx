@@ -94,7 +94,7 @@ const style = createStyles({
 
 const textStyle = createStyles({
   button: {
-    fontFamily: variables.fontFamily.zonaProBold,
+    fontFamily: variables.fontFamily.bold,
     fontWeight: '600',
     textAlign: 'center'
   },
