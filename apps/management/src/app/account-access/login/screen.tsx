@@ -1,6 +1,7 @@
 import { LoginForm, LoginGroup } from 'features/login-form';
 import React, { ReactElement } from 'react';
 import { Icon } from 'ui-kit/icon';
+import { AppKeyboardAvoidingView } from 'ui-kit/keyboard-avoiding-view';
 import { createStyles } from 'ui-kit/styles';
 import { AccountAccessLayout } from '../shared/account-access-layout';
 import { loginScreenFacade } from './facade';
@@ -19,11 +20,13 @@ export function LoginScreen(): ReactElement {
   return (
     <AccountAccessLayout>
       <Icon name='logoManagement' style={style.icon} />
-      <LoginGroup
-        onSubmit={handleSignInPress}
-        onForgotPassword={handleForgotPasswordPress}
-        isSubmitting={isSubmitting}
-      />
+      <AppKeyboardAvoidingView>
+        <LoginGroup
+          onSubmit={handleSignInPress}
+          onForgotPassword={handleForgotPasswordPress}
+          isSubmitting={isSubmitting}
+        />
+      </AppKeyboardAvoidingView>
     </AccountAccessLayout>
   );
 }
