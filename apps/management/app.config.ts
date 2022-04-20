@@ -14,7 +14,7 @@ const defaultExpoConfig: ExpoConfig = {
   scheme: 'hr-management-dev',
   owner: 'ronas_it',
   entryPoint: 'index.js',
-  version: '0.0.1',
+  version: '0.1.0',
   orientation: 'default',
   backgroundColor: '#FFFFFF',
   userInterfaceStyle: 'light',
