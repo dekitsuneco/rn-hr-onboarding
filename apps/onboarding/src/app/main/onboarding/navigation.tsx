@@ -1,29 +1,29 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import { ReactElement } from 'react';
-import { ScriptsScreen } from './scripts/screen';
+import { ScriptScreen } from './scripts/screen';
 import { OnboardingScreen } from './screen';
-import { Script } from './scripts/models';
-import { ScriptsHeader } from './scripts/components/scripts-header/component';
+import { Script } from 'features/data';
+import { AppHeader } from '@shared/header';
 
 export type OnboardingNavigationParams = {
-  OnboardingScreen: undefined;
-  ScriptsScreen: { script: Script };
+  OnboardingMain: undefined;
+  Script: { script: Script };
 };
 
 const Stack = createStackNavigator<OnboardingNavigationParams>();
 
-export function OnboardingNvigation(): ReactElement {
+export function OnboardingNavigation(): ReactElement {
   return (
     <Stack.Navigator>
       <Stack.Screen
         component={OnboardingScreen}
-        name='OnboardingScreen'
+        name='OnboardingMain'
         options={{ headerShown: false }} />
       <Stack.Screen
-        component={ScriptsScreen}
-        name='ScriptsScreen'
-        options={{ header: () => <ScriptsHeader /> }} />
+        component={ScriptScreen}
+        name='Script'
+        options={{ header: () => <AppHeader /> }} />
     </Stack.Navigator>
   );
 }

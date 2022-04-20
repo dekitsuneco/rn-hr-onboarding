@@ -1,4 +1,4 @@
-import { Task } from './taks';
+import { Task } from './task';
 
 export class Script {
   public id: string;
@@ -8,4 +8,4 @@ export class Script {
   public status: string;
   public logo: string;
   public tasks: Array<Task>;
-}
+} // TODO temporary fake script model

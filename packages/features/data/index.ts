@@ -1,2 +1,2 @@
 export * from './script';
-export * from './taks';
+export * from './task';

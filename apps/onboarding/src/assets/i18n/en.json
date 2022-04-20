@@ -20,7 +20,7 @@
       "TEXT_GREETING": "Hi {{name}}!",
       "TEXT_TASKS_COMPLETE": "{{completed}} of {{tasksTotal}} tasks complete", 
       "TEXT_TASKS": "{{tasksTotal}} tasks",
-      "SCRIPTS": {
+      "SCRIPT": {
         "TEXT_TASKS_SECTION": "Tasks in this section"
       },
       "SHARED": {

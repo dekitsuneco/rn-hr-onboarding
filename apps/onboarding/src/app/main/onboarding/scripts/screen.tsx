@@ -7,14 +7,14 @@ import { AppText, TextTheme } from 'ui-kit/text';
 import { useTranslation } from 'utils/i18n';
 import { onboardingFacade } from '../facade';
 import { OnboardingNavigationParams } from '../navigation';
-import { TaskItem } from './components/task-item/component';
+import { TaskItem } from './components';
 
 interface Props {
-  route?: RouteProp<OnboardingNavigationParams, 'ScriptsScreen'>;
+  route?: RouteProp<OnboardingNavigationParams, 'Script'>;
 }
 
-export function ScriptsScreen({ route }: Props): ReactElement {
-  const transtlate = useTranslation('MAIN.ONBOARDING.SCRIPTS');
+export function ScriptScreen({ route }: Props): ReactElement {
+  const translate = useTranslation('MAIN.ONBOARDING.SCRIPT');
   const { tasksTotal, title, completed, tasks } = route.params.script;
 
   return (
@@ -32,7 +32,7 @@ export function ScriptsScreen({ route }: Props): ReactElement {
             </AppText>
           </View>
           <AppText theme={TextTheme.SMALLEST} style={style.tasksSectionSubtitle}>
-            {transtlate('TEXT_TASKS_SECTION')}
+            {translate('TEXT_TASKS_SECTION')}
           </AppText>
           {tasks.map((task) => (
             <TaskItem
@@ -49,7 +49,7 @@ export function ScriptsScreen({ route }: Props): ReactElement {
 const style = createStyles({
   container: {
     flex: 1,
-    backgroundColor: variables.color.white
+    backgroundColor: variables.color.backgroundSecondary
   },
   scrollContainer: {
     paddingBottom: 100

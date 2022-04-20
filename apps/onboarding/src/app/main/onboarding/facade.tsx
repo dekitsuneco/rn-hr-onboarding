@@ -1,6 +1,6 @@
 import { appNavigationService } from 'modules/navigation';
 import { useTranslation } from 'utils/i18n';
-import { Script } from './scripts/models';
+import { Script } from 'features/data';
 
 class OnboardingFacade {
   public init(): void {
@@ -16,15 +16,15 @@ class OnboardingFacade {
   }
 
   public navigateToScript(script: Script): void {
-    appNavigationService.navigate('ScriptsScreen', { script });
+    appNavigationService.navigate('Script', { script });
   }
 
   public translateScriptProgress(tasksTotal: number, completed: number): string {
-    const transtlate = useTranslation('MAIN.ONBOARDING');
+    const translate = useTranslation('MAIN.ONBOARDING');
 
     return completed > 0
-      ? transtlate('TEXT_TASKS_COMPLETE', { tasksTotal, completed })
-      : transtlate('TEXT_TASKS', { tasksTotal });
+      ? translate('TEXT_TASKS_COMPLETE', { tasksTotal, completed })
+      : translate('TEXT_TASKS', { tasksTotal });
   }
 }
 

@@ -4,7 +4,7 @@ import { FlatList } from 'react-native';
 import { createStyles } from '@styles';
 import { OnboardingHeader, ScriptCardItem } from './shared/components';
 import { onboardingFacade } from './facade';
-import { Script } from './scripts/models';
+import { Script } from 'features/data';
 
 const fakeScriptData: Array<Script> = [
   {
