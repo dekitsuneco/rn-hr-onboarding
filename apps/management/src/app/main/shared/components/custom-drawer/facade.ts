@@ -1,4 +1,6 @@
-import { appNavigationService } from 'modules/navigation';
+import { storeRef } from '@store';
+import { AuthActions } from 'features/auth';
+import { appNavigationService } from 'features/navigation';
 
 class CustomDrawerFacade {
   public navigateToScreen(screen: string): void {
@@ -6,13 +8,13 @@ class CustomDrawerFacade {
   }
 
   public isActiveScreen(screen: string): boolean {
-    const currentScreen = appNavigationService.currentRoute.name;
+    const currentScreen = appNavigationService?.currentRoute?.name;
 
     return currentScreen === screen;
   }
 
-  public logout(): void {
-    appNavigationService.popToTop();
+  public unauthorize(): void {
+    storeRef.dispatch(AuthActions.unauthorize({}));
   }
 }
 

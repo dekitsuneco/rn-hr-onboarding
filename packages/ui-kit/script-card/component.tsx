@@ -30,7 +30,7 @@ export function ScriptCard({
       <View style={style.tabs}>
         {isDraggable && <Icon name='tasks' style={style.tasksIcon} />}
         <View style={[style.textContainer, isBlocked && style.blocked]}>
-          <AppText theme={TextTheme.SMALL} style={style.title}>
+          <AppText theme={TextTheme.SMALL} isBold>
             {title}
           </AppText>
           <AppText theme={TextTheme.SMALLEST}>{subtitle}</AppText>
@@ -68,9 +68,6 @@ const style = createStyles({
   },
   textContainer: {
     flex: 1
-  },
-  title: {
-    fontWeight: '700'
   },
   blocked: {
     opacity: 0.5
