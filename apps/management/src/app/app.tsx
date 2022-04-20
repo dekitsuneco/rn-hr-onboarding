@@ -35,7 +35,7 @@ export function App(): ReactElement {
       <StatusBar
         translucent={true}
         backgroundColor='transparent'
-        style='light' />
+        style='dark' />
       <NavigationContainer linking={appLinking} ref={navigationRef}>
         {isTokenLoaded ? (
           <Stack.Navigator initialRouteName={initialRouteName} screenOptions={{ headerShown: false }}>

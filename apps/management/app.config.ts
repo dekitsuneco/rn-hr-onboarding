@@ -16,27 +16,26 @@ const defaultExpoConfig: ExpoConfig = {
   entryPoint: 'index.js',
   version: '0.0.1',
   orientation: 'default',
-  backgroundColor: '#000000',
+  backgroundColor: '#FFFFFF',
+  userInterfaceStyle: 'light',
   icon: './src/assets/images/icon.png',
   splash: {
     image: './src/assets/images/splash.png',
-    resizeMode: 'contain',
-    backgroundColor: '#000000'
+    resizeMode: 'cover',
+    backgroundColor: '#FFFFFF'
   },
   assetBundlePatterns: ['./src/assets/images/*', './src/assets/fonts/*', './src/assets/i18n/*'],
-  userInterfaceStyle: 'dark',
   ios: {
     buildNumber: '1',
-    supportsTablet: false,
+    supportsTablet: true,
     bundleIdentifier: 'com.ronasit.hr-onboarding.manager.dev',
-    backgroundColor: '#000000',
     config: {
       usesNonExemptEncryption: false
     }
   },
   android: {
     versionCode: 1,
-    package: 'com.ronasit.hr-onboarding.manager.dev',
+    package: 'com.ronasit.hr_onboarding.manager.dev',
     permissions: []
   },
   web: {
