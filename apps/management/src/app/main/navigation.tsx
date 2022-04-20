@@ -1,7 +1,7 @@
 import React, { ReactElement } from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { DashBoardScreen } from './dashboard/screen';
-import { EmployeesScreen } from './employees/sceen';
+import { EmployeesScreen } from './employees/screen';
 import { ScriptsScreen } from './scripts/screen';
 import { SettingsScreen } from './settings/screen';
 import { Text, View } from 'react-native';
@@ -34,13 +34,6 @@ export function MainNavigation(): ReactElement {
                   navigation.openDrawer();
                 }}>
                 <Text>Here should be icon to show navigator:)</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate('AccountAccess');
-                }}
-                style={{ backgroundColor: '#26A0F8', padding: 4, borderRadius: 10 }}>
-                <Text style={{ color: 'white' }}>Sign-out</Text>
               </TouchableOpacity>
             </View>
           );

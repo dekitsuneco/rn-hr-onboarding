@@ -1,6 +1,7 @@
 import { storeRef } from '@store';
-import { AuthActions, AuthCredentials } from 'features/auth';
-import { appNavigationService } from 'modules/navigation';
+import { AuthActions, AuthCredentials, AuthSelectors } from 'features/auth';
+import { appNavigationService } from 'features/navigation';
+import { useSelector } from 'react-redux';
 
 class LoginScreenFacade {
   public authorize(credentials: AuthCredentials): void {
@@ -9,6 +10,10 @@ class LoginScreenFacade {
 
   public navigateToForgotPassword(): void {
     appNavigationService.navigate('ForgotPassword');
+  }
+
+  public get isSubmitting(): boolean {
+    return useSelector(AuthSelectors.isAuthorizing);
   }
 }
 

@@ -1,4 +1,4 @@
-import { appNavigationService } from 'modules/navigation';
+import { appNavigationService } from 'features/navigation';
 import { useTranslation } from 'utils/i18n';
 import { Script } from 'features/data';
 
