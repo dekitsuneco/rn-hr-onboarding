@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { StyleProp, View, ViewStyle } from 'react-native';
-import { createStyles, variables } from '../styles';
+import { commonStyle, createStyles, variables } from '../styles';
 import { AppText, TextTheme } from '../text';
 
 interface Props {
@@ -10,7 +10,7 @@ interface Props {
 
 export function ProgressBar({ style: elementStyle, value }: Props): ReactElement {
   return (
-    <View style={[style.container, elementStyle]}>
+    <View style={[commonStyle.boxShadow, style.container, elementStyle]}>
       <View style={style.total}>
         <View style={[style.progress, { width: `${value}%` }]} />
       </View>
@@ -27,15 +27,7 @@ const style = createStyles({
     alignItems: 'center',
     borderRadius: 10,
     flexDirection: 'row',
-    paddingHorizontal: 16,
-    shadowColor: variables.color.boxShadow,
-    shadowOffset: {
-      width: 0,
-      height: 4
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 8,
-    elevation: 8
+    paddingHorizontal: 16
   },
   total: {
     backgroundColor: variables.color.textTertiary,
