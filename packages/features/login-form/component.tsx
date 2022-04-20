@@ -77,7 +77,7 @@ const style = createStyles({
     alignItems: 'center'
   },
   middleItem: {
-    marginBottom: 10
+    marginBottom: '1rem'
   },
   control: {
     minWidth: '100%'
