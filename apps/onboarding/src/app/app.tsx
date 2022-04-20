@@ -7,8 +7,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { appFacade } from './facade';
 import { AccountAccessNavigation } from '@app/account-access/navigation';
 import { MainNavigation } from '@app/main/navigation';
-import { navigationRef } from 'features/navigation';
+import { navigationRef, navigationTheme } from 'features/navigation';
 import { useLanguage } from 'utils/i18n';
+import { variables } from '@styles';
 
 const Stack = createStackNavigator();
 const setLanguage = useLanguage(
@@ -29,7 +30,7 @@ export function App(): ReactElement {
 
   return (
     <SafeAreaView style={style.screen}>
-      <NavigationContainer ref={navigationRef}>
+      <NavigationContainer ref={navigationRef} theme={navigationTheme(variables.color)}>
         <View>
           <StatusBar
             translucent={true}
