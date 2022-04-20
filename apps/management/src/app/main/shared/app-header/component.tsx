@@ -18,23 +18,23 @@ export function AppHeader({
   rightContent,
   options,
   navigation,
-  isDrawerToggleHidden,
+  isDrawerToggleHidden = true,
   ...restProps
 }: AppHeaderProps): JSX.Element {
   const titleContent = restProps.titleContent || options?.title;
 
-  const navBtn = navigation.canGoBack() ? (
-    <AppButton
-      leftIcon={<Icon name='arrowLeft' />}
-      theme='tertiary'
-      onPress={() => navigation.goBack()} />
-  ) : !isDrawerToggleHidden ? (
-    <AppButton
-      leftIcon={<Icon name='menu' />}
-      theme='tertiary'
-      onPress={() => 'toggleDrawer' in navigation && navigation.toggleDrawer()}
-    />
-  ) : null;
+  const navBtn =
+    !isDrawerToggleHidden && 'toggleDrawer' in navigation ? (
+      <AppButton
+        leftIcon={<Icon name='menu' />}
+        theme='tertiary'
+        onPress={() => navigation.toggleDrawer()} />
+    ) : navigation.canGoBack() ? (
+      <AppButton
+        leftIcon={<Icon name='arrowLeft' />}
+        theme='tertiary'
+        onPress={() => navigation.goBack()} />
+    ) : null;
 
   const title =
     typeof titleContent === 'string' ? <AppText theme={TextTheme.LARGEST}>{titleContent}</AppText> : titleContent;
