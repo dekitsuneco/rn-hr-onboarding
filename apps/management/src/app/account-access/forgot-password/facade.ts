@@ -1,4 +1,4 @@
-import { appNavigationService } from 'modules/navigation';
+import { appNavigationService } from 'features/navigation';
 
 class ForgotPasswordScreenFacade {
   public goBack(): void {

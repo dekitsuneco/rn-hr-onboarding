@@ -1,5 +1,5 @@
 import { AppHeader, AppHeaderProps } from '@app/main/shared/app-header';
-import { appNavigationService } from 'modules/navigation';
+import { appNavigationService } from 'features/navigation';
 import { useScreenDimensions } from 'modules/use-screen-dimensions';
 import React from 'react';
 import { View } from 'react-native';

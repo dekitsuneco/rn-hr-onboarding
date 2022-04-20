@@ -12,9 +12,15 @@ export interface LoginGroupProps {
   style?: StyleProp<ViewStyle>;
   onSubmit: (values: LoginForm) => void;
   onForgotPassword: () => void;
+  isSubmitting?: boolean;
 }
 
-export function LoginGroup({ style: formStyle = {}, onSubmit, onForgotPassword }: LoginGroupProps): ReactElement {
+export function LoginGroup({
+  style: formStyle = {},
+  onSubmit,
+  onForgotPassword,
+  isSubmitting
+}: LoginGroupProps): ReactElement {
   const formik = useFormik({
     initialValues: new LoginForm(),
     validationSchema: LoginForm.validationSchema,
@@ -45,7 +51,8 @@ export function LoginGroup({ style: formStyle = {}, onSubmit, onForgotPassword }
         <AppButton
           style={style.control}
           title={'Sign In'}
-          onPress={() => handleSubmit()} />
+          onPress={() => handleSubmit()}
+          isLoading={isSubmitting} />
       </View>
       <View>
         <AppButton
@@ -70,7 +77,7 @@ const style = createStyles({
     alignItems: 'center'
   },
   middleItem: {
-    marginBottom: 10
+    marginBottom: '1rem'
   },
   control: {
     minWidth: '100%'

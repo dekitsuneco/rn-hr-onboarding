@@ -33,6 +33,9 @@
         "SCREEN_TITLE_EMPLOYEES": "Employees",
         "SCREEN_TITLE_EDIT": "Edit",
         "SCREEN_TITLE_NEW": "New"
+      },
+      "NEW_EMPLOYEE": {
+        "INPUT_SEARCH_PLACEHOLDER": "Search employees"
       }
     }
   }

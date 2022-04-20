@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
-import { appNavigationService } from 'modules/navigation';
+import { appNavigationService } from 'features/navigation';
 
 export function EmployeesListScreen(): ReactElement {
   return (

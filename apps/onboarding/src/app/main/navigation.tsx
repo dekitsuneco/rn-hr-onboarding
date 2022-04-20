@@ -1,12 +1,12 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { OnboardingScreen } from './onboarding/screen';
 import { AchievementsScreen } from './achievements/screen';
 import { ProfileScreen } from './profile/screen';
 import React, { ReactElement } from 'react';
 import { createStyles } from 'ui-kit/styles';
-import { variables } from '@styles';
+import { commonStyle, variables } from '@styles';
 import { Icon } from 'ui-kit/icon';
 import { useTranslation } from 'utils/i18n';
+import { OnboardingNavigation } from './onboarding/navigation';
 
 const Tab = createBottomTabNavigator();
 
@@ -16,14 +16,14 @@ export function MainNavigation(): ReactElement {
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarStyle: style.tabBar,
+        tabBarStyle: [commonStyle.boxShadow, style.tabBar],
         headerShown: false,
         tabBarLabelStyle: [style.label],
         tabBarActiveTintColor: variables.color.primary
       }}>
       <Tab.Screen
         name='Onboarding'
-        component={OnboardingScreen}
+        component={OnboardingNavigation}
         options={{
           tabBarIcon: ({ focused }) => <Icon name={focused ? 'onboardingActive' : 'onboarding'} />,
           title: translate('ONBOARDING')
@@ -58,15 +58,7 @@ const style = createStyles({
     marginBottom: 26,
     height: 68,
     paddingBottom: 7,
-    paddingTop: 14,
-    shadowColor: variables.color.boxShadow,
-    shadowOffset: {
-      width: 0,
-      height: 4
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 15,
-    elevation: 15
+    paddingTop: 14
   },
   label: {
     fontSize: 10
