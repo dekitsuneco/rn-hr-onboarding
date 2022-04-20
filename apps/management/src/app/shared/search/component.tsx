@@ -4,11 +4,7 @@ import { Icon } from 'ui-kit/icon';
 import { AnyStyle, createStyles } from 'ui-kit/styles';
 import { AppTextInput, AppTextInputProps } from 'ui-kit/text-input';
 
-type SearchInputProps = {
-  placeholder?: string;
-} & AppTextInputProps;
-
-export function SearchInput({ placeholder, ...restProps }: SearchInputProps): JSX.Element {
+export function SearchInput({ placeholder, ...restProps }: AppTextInputProps): JSX.Element {
   return (
     <AppTextInput
       style={style.textInput}
