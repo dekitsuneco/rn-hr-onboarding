@@ -33,7 +33,7 @@ export function CustomDrawerPanel(props: DrawerContentComponentProps): JSX.Eleme
           label={translate('BUTTON_LOGOUT')}
           icon='logout'
           onPress={() => {
-            customDrawerFacade.logout();
+            customDrawerFacade.unauthorize();
           }}
         />
       </View>

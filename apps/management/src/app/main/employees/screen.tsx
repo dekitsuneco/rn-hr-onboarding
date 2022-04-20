@@ -1,9 +1,11 @@
-import { createStyles } from '@styles';
+import { createStyles, variables } from '@styles';
 import React, { ReactElement, useState } from 'react';
 import { View } from 'react-native';
 import { Switcher } from 'ui-kit/switcher';
-import { EmployeeListItem } from './shared/components/employee-list-item/component';
 import { Employee } from './shared/models/employee';
+import { SearchInput } from '@shared/search';
+import { useTranslation } from 'utils/i18n';
+import { EmployeeItem } from './shared/components';
 
 const switcherItems = [
   {
@@ -40,21 +42,26 @@ const employee: Employee = {
 };
 
 export function EmployeesScreen(): ReactElement {
+  const translate = useTranslation('MAIN.EMPLOYEES');
   const [current, setCurrent] = useState('1');
+
   const handlePress = (item: string): void => {
     setCurrent(item);
   }; // TODO this is temporary function to handle and imitate switch in Switcher
 
   return (
     <View style={style.container}>
-      <Switcher
-        containerStyle={{ marginHorizontal: -16 }}
-        wrapperStyle={{ marginHorizontal: 16 }}
-        items={switcherItems}
-        current={current}
-        onItemSelect={handlePress}
-      />
-      <EmployeeListItem
+      <View style={style.optionsContainer}>
+        <SearchInput controlStyle={{ marginBottom: 10 }} placeholder={translate('INPUT_SEARCH_PLACEHOLDER')} />
+        <Switcher
+          containerStyle={{ marginHorizontal: -16 }}
+          wrapperStyle={{ marginHorizontal: 16 }}
+          items={switcherItems}
+          current={current}
+          onItemSelect={handlePress}
+        />
+      </View>
+      <EmployeeItem
         avatar={employee.avatar}
         name={employee.name}
         position={employee.position}
@@ -71,8 +78,11 @@ export function EmployeesScreen(): ReactElement {
 const style = createStyles({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: variables.color.white,
     paddingHorizontal: 16
+  },
+  optionsContainer: {
+    marginTop: 16,
+    marginBottom: 40
   }
 });

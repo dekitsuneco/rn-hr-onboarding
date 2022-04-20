@@ -10,29 +10,31 @@ interface Props {
   style?: StyleProp<ViewStyle>;
 }
 
-export function Avatar({ uri, theme, style }: Props): ReactElement {
+export function Avatar({ uri, theme, style: elementStyle }: Props): ReactElement {
   return (
-    <View style={[avatarStyle.container, avatarStyle.common, avatarStyle[theme], style]}>
-      <ExternalImage uri={uri} style={[avatarStyle.common, avatarStyle[theme]]} />
+    <View style={[style.container, style.common, style[theme], elementStyle]}>
+      <ExternalImage uri={uri} style={[style.common, style[theme]]} />
     </View>
   );
 }
 
-const avatarStyle = createStyles({
+const style = createStyles({
   container: {
-    shadowColor: variables.color.black,
+    shadowColor: variables.color.boxShadow,
     shadowOffset: {
       width: 0,
-      height: 12
+      height: 22
     },
-    shadowRadius: 16.0,
-    elevation: 10
+    shadowOpacity: 1,
+    shadowRadius: 40,
+    elevation: 40
   },
   common: {
     aspectRatio: 1
   },
   smallest: {
     height: 32,
+    width: 32,
     borderRadius: 16
   },
   small: {

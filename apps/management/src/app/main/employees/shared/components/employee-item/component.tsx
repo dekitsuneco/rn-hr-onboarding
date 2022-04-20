@@ -2,20 +2,13 @@ import React, { ReactElement } from 'react';
 import { View } from 'react-native';
 import { Avatar } from 'ui-kit/avatar';
 import { AvatarTheme } from 'ui-kit/avatar/enums';
-import { createStyles } from 'ui-kit/styles';
+import { AnyStyle, createStyles } from 'ui-kit/styles';
 import { AppText } from 'ui-kit/text';
 import { Employee } from '../../models/employee';
 import { ProgressBar } from 'ui-kit/progress-bar';
+import { variables } from '@styles';
 
-export function EmployeeListItem({
-  avatar,
-  name,
-  position,
-  phoneNumber,
-  email,
-  labels,
-  progress
-}: Employee): ReactElement {
+export function EmployeeItem({ avatar, name, position, phoneNumber, email, labels, progress }: Employee): ReactElement {
   return (
     <View style={style.container}>
       <View style={style.rightContainer}>
@@ -24,7 +17,7 @@ export function EmployeeListItem({
       <View style={style.middleContainer}>
         <View style={style.nameContainer}>
           <AppText>{name}</AppText>
-          <AppText>{position}</AppText>
+          <AppText style={style.positionText}>{position}</AppText>
         </View>
         <View style={style.contactsContainer}>
           <AppText>{phoneNumber}</AppText>
@@ -43,12 +36,22 @@ const style = createStyles({
   container: {
     flexDirection: 'row'
   },
-  rightContainer: {},
+  rightContainer: {
+    marginRight: 16
+  },
   middleContainer: {},
   leftContainer: {},
   nameContainer: {},
+  positionText: {
+    color: variables.color.textSecondary
+  },
   contactsContainer: {},
   progressContainer: {
-    width: 32
-  }
+    width: 150
+  },
+  [`@media (min-width: ${variables.breakpoints.tablet})`]: {
+    middleContainer: {
+      flexDirection: 'row'
+    }
+  } as AnyStyle
 });

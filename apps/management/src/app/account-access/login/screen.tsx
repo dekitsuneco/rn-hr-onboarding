@@ -6,6 +6,8 @@ import { AccountAccessLayout } from '../shared/account-access-layout';
 import { loginScreenFacade } from './facade';
 
 export function LoginScreen(): ReactElement {
+  const { isSubmitting } = loginScreenFacade;
+
   const handleSignInPress = (values: LoginForm): void => {
     loginScreenFacade.authorize(values);
   };
@@ -17,7 +19,11 @@ export function LoginScreen(): ReactElement {
   return (
     <AccountAccessLayout>
       <Icon name='logoManagement' style={style.icon} />
-      <LoginGroup onSubmit={handleSignInPress} onForgotPassword={handleForgotPasswordPress} />
+      <LoginGroup
+        onSubmit={handleSignInPress}
+        onForgotPassword={handleForgotPasswordPress}
+        isSubmitting={isSubmitting}
+      />
     </AccountAccessLayout>
   );
 }
