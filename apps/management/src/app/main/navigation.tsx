@@ -1,12 +1,12 @@
-import React, { ReactElement } from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { DashBoardScreen } from './dashboard/screen';
-import { EmployeesScreen } from './employees/sceen';
+import { useScreenDimensions } from 'modules/use-screen-dimensions';
+import React, { ReactElement } from 'react';
+import { useTranslation } from 'utils/i18n';
+import { DashboardScreen } from './dashboard/screen';
+import { EmployeesNavigation } from './employees/navigation';
 import { ScriptsScreen } from './scripts/screen';
 import { SettingsScreen } from './settings/screen';
-import { Text, View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useScreenDimensions } from '@shared/use-screen-dimensions';
+import { AppHeader } from './shared/app-header';
 import { CustomDrawerPanel } from './shared/components';
 
 export type MainNavigationParams = {
@@ -19,37 +19,35 @@ export type MainNavigationParams = {
 const Drawer = createDrawerNavigator<MainNavigationParams>();
 
 export function MainNavigation(): ReactElement {
-  const { isTablet } = useScreenDimensions();
+  const { isDesktop } = useScreenDimensions();
+  const translate = useTranslation('MAIN.NAVIGATION');
 
   return (
     <Drawer.Navigator
       drawerContent={CustomDrawerPanel}
-      defaultStatus={isTablet ? 'open' : 'closed'}
+      backBehavior='none'
       screenOptions={{
-        header: ({ navigation }) => {
-          return (
-            <View style={{ margin: 10, flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.openDrawer();
-                }}>
-                <Text>Here should be icon to show navigator:)</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                onPress={() => {
-                  navigation.navigate('AccountAccess');
-                }}
-                style={{ backgroundColor: '#26A0F8', padding: 4, borderRadius: 10 }}>
-                <Text style={{ color: 'white' }}>Sign-out</Text>
-              </TouchableOpacity>
-            </View>
-          );
-        }
+        drawerType: isDesktop ? 'permanent' : 'front',
+        header: (props) => <AppHeader isDrawerToggleHidden={isDesktop} {...props} />
       }}>
-      <Drawer.Screen name='Dashboard' component={DashBoardScreen} />
-      <Drawer.Screen name='Employees' component={EmployeesScreen} />
-      <Drawer.Screen name='Scripts' component={ScriptsScreen} />
-      <Drawer.Screen name='Settings' component={SettingsScreen} />
+      <Drawer.Screen
+        name='Dashboard'
+        options={{ title: translate('SCREEN_TITLE_DASHBOARD') }}
+        component={DashboardScreen}
+      />
+      <Drawer.Screen
+        name='Employees'
+        options={{ headerShown: false }}
+        component={EmployeesNavigation} />
+      <Drawer.Screen
+        name='Scripts'
+        options={{ title: translate('SCREEN_TITLE_SCRIPTS') }}
+        component={ScriptsScreen} />
+      <Drawer.Screen
+        name='Settings'
+        options={{ title: translate('SCREEN_TITLE_SETTINGS') }}
+        component={SettingsScreen}
+      />
     </Drawer.Navigator>
   );
 }

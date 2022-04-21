@@ -7,6 +7,7 @@ export const variables = {
     danger: '#E71D32',
     black: '#000000',
     green: '#5DCE41',
+    lightGreen: '#EEfEE9',
     white: '#FFFFFF',
     gray: '#C4C9CE',
     primary: '#26a0f8',
@@ -21,7 +22,9 @@ export const variables = {
     statusSuccess: '#50F826',
     statusDanger: '#E72005',
     statusProgress: '#26A0F8',
-    boxShadow: '#525F77'
+    boxShadow: '#525F77',
+    borderColorPrimary: '#0000001A',
+    borderColorSecondary: '#0000000D'
   },
   fontSize: {
     smallest: '0.85rem',
@@ -32,12 +35,11 @@ export const variables = {
     largest: '1.7rem'
   },
   fontFamily: {
-    sfProDisplayBold: 'SFProDisplayBold',
-    sfProDisplayRegular: 'SFProDisplayRegular',
-    sfProTextRegular: 'SFProTextRegular',
-    sfProTextSemiBold: 'SFProTextSemiBold'
+    bold: 'ZonaProBold',
+    regular: 'ZonaProRegular'
   },
   breakpoints: {
-    tablet: 768
+    tablet: 768,
+    desktop: 1280
   }
 };

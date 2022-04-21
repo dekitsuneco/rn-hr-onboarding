@@ -18,11 +18,12 @@
     "ONBOARDING": {
       "TEXT_PROGRESS": "Your onboarding progress",
       "TEXT_GREETING": "Hi {{name}}!",
+      "TEXT_TASKS_COMPLETE": "{{completed}} of {{tasksTotal}} tasks complete", 
+      "TEXT_TASKS": "{{tasksTotal}} tasks",
+      "SCRIPT": {
+        "TEXT_TASKS_SECTION": "Tasks in this section"
+      },
       "SHARED": {
-        "SCRIPT_CARD_LIST": {
-          "TEXT_TASKS_COMPLETE": "{{tasksTotal}} of {{completed}} tasks complete",
-          "TEXT_TASKS": "{{tasksTotal}} tasks"
-        },
         "SCRIPT_CARD_BUTTON": {
           "BUTTON_START": "Start"
         }

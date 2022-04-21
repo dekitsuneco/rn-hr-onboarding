@@ -1,25 +1,27 @@
-import { appConfig } from './constants';
 import { registerRootComponent } from 'expo';
 import React, { ReactElement } from 'react';
-import * as Sentry from 'sentry-expo';
 import { App } from './app';
 import { useFonts } from 'expo-font';
 import { MenuProvider } from 'react-native-popup-menu';
+import { initStore } from '@store/store';
+import { Provider } from 'react-redux';
+import { appConfig, appEnv } from './constants';
+import * as Sentry from 'sentry-expo';
+
+const store = initStore();
 
 export default function Root(): ReactElement {
   if (appConfig.sentry.enabled) {
     Sentry.init({
+      environment: appEnv,
       dsn: appConfig.sentry.dsn,
-      enableInExpoDevelopment: false,
-      debug: !appConfig.production
+      enableInExpoDevelopment: false
     });
   }
 
   const [areFontsReady] = useFonts({
-    SFProDisplayBold: require('assets/fonts/SF-Pro-Display-Bold.otf'),
-    SFProDisplayRegular: require('assets/fonts/SF-Pro-Display-Regular.otf'),
-    SFProTextRegular: require('assets/fonts/SF-Pro-Text-Regular.otf'),
-    SFProTextSemiBold: require('assets/fonts/SF-Pro-Text-Semibold.otf')
+    ZonaProBold: require('assets/fonts/ZonaPro-Bold.ttf'),
+    ZonaProRegular: require('assets/fonts/ZonaPro-Regular.ttf')
   });
 
   if (!areFontsReady) {
@@ -28,7 +30,9 @@ export default function Root(): ReactElement {
 
   return (
     <MenuProvider>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </MenuProvider>
   );
 }

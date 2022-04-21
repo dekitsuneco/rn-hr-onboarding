@@ -20,7 +20,10 @@ export function CustomDrawerItem({ label, icon, onPress, isActive }: Props): Rea
         <View style={[style.icon, isActive && style.iconActive]}>
           <Icon name={icon} />
         </View>
-        <AppText theme={TextTheme.SMALL} style={[style.text, isActive && style.textActive]}>
+        <AppText
+          theme={TextTheme.SMALL}
+          isBold={isActive}
+          style={style.text}>
           {label}
         </AppText>
       </View>
@@ -50,8 +53,5 @@ const style = createStyles({
   },
   text: {
     color: variables.color.textSecondary
-  },
-  textActive: {
-    fontWeight: '700'
   }
 });

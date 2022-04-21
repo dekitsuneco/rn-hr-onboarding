@@ -1,17 +1,20 @@
+import { commonStyle, createStyles, variables } from '@styles';
+import { LoginForm, LoginGroup } from 'features/login-form';
 import React, { useEffect } from 'react';
-import { View, StyleSheet, ImageBackground } from 'react-native';
-import { loginFacade } from './facade';
+import { ImageBackground, View } from 'react-native';
 import { Icon } from 'ui-kit/icon';
-import { variables, commonStyle } from '@styles';
-import { LoginGroup } from 'features/login-form';
+import { AppKeyboardAvoidingView } from 'ui-kit/keyboard-avoiding-view';
+import { loginFacade } from './facade';
 
 export function LoginScreen(): JSX.Element {
+  const { isSubmitting } = loginFacade;
+
   useEffect(() => {
     loginFacade.init();
   }, []);
 
-  const handleLoginBtn = (): void => {
-    loginFacade.navigate('Main');
+  const handleLoginBtn = (values: LoginForm): void => {
+    loginFacade.authorize(values);
   };
 
   const handleForgotPasswordBtn = (): void => {
@@ -24,7 +27,7 @@ export function LoginScreen(): JSX.Element {
         style={style.bgImage}
         source={require('@assets/images/background.png')}
         resizeMode='cover' />
-      <View style={style.columnContainer}>
+      <AppKeyboardAvoidingView style={style.columnContainer}>
         <View style={[commonStyle.flexCenter, style.column]}>
           <View style={[commonStyle.flexCenter, style.iconContainer]}>
             <Icon name='logoOnboarding' />
@@ -33,16 +36,20 @@ export function LoginScreen(): JSX.Element {
         <View style={style.column}>
           <View style={style.contentColumn}>
             <View style={style.loginForm}>
-              <LoginGroup onSubmit={handleLoginBtn} onForgotPassword={handleForgotPasswordBtn} />
+              <LoginGroup
+                onSubmit={handleLoginBtn}
+                onForgotPassword={handleForgotPasswordBtn}
+                isSubmitting={isSubmitting}
+              />
             </View>
           </View>
         </View>
-      </View>
+      </AppKeyboardAvoidingView>
     </View>
   );
 }
 
-const style = StyleSheet.create({
+const style = createStyles({
   screen: {
     flex: 1
   },

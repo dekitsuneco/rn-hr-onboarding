@@ -1,10 +1,17 @@
 import React, { ReactElement } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, Button } from 'react-native';
+import { appNavigationService } from 'features/navigation';
 
-export function EmployeesScreen(): ReactElement {
+export function EmployeesListScreen(): ReactElement {
   return (
     <View style={style.container}>
       <Text style={style.text}>Employees</Text>
+      <Button
+        title='Edit'
+        onPress={() => {
+          appNavigationService.navigate('EditEmployee');
+        }}
+      />
     </View>
   );
 }

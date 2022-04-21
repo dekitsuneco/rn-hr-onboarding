@@ -1,9 +1,10 @@
 import React, { ReactElement } from 'react';
 import { ExternalImage } from '../external-image';
-import { createStyles, variables } from '../styles';
-import { StyleProp, View, ViewStyle, TouchableOpacity } from 'react-native';
+import { createStyles } from '../styles';
+import { StyleProp, View, ViewStyle } from 'react-native';
 import { AppText, TextTheme } from '../text';
 import { Icon } from '../icon';
+import { Card } from '../card';
 
 interface Props {
   imageURL: string;
@@ -13,6 +14,7 @@ interface Props {
   isBlocked?: boolean;
   style?: StyleProp<ViewStyle>;
   isDraggable?: boolean;
+  onCardPress?: () => void;
 }
 
 export function ScriptCard({
@@ -22,38 +24,32 @@ export function ScriptCard({
   subtitle,
   isBlocked,
   style: elementStyle,
-  isDraggable
+  isDraggable,
+  onCardPress
 }: Props): ReactElement {
   return (
-    <TouchableOpacity style={[style.container, elementStyle]} delayPressIn={40}>
+    <Card
+      style={[style.container, elementStyle]}
+      disabled={isBlocked}
+      onPress={onCardPress}>
       <ExternalImage uri={imageURL} style={[style.image, isBlocked && style.blocked]} />
       <View style={style.tabs}>
         {isDraggable && <Icon name='tasks' style={style.tasksIcon} />}
         <View style={[style.textContainer, isBlocked && style.blocked]}>
-          <AppText theme={TextTheme.SMALL} style={style.title}>
+          <AppText theme={TextTheme.SMALL} isBold>
             {title}
           </AppText>
           <AppText theme={TextTheme.SMALLEST}>{subtitle}</AppText>
         </View>
         {contentRight}
       </View>
-    </TouchableOpacity>
+    </Card>
   );
 }
 
 const style = createStyles({
   container: {
-    padding: 10,
-    backgroundColor: 'white',
-    borderRadius: 10,
-    shadowColor: variables.color.boxShadow,
-    shadowOffset: {
-      width: 0,
-      height: 4
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 8,
-    elevation: 8
+    padding: 10
   },
   image: {
     width: '100%',
@@ -68,9 +64,6 @@ const style = createStyles({
   },
   textContainer: {
     flex: 1
-  },
-  title: {
-    fontWeight: '700'
   },
   blocked: {
     opacity: 0.5

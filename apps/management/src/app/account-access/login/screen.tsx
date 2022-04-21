@@ -1,13 +1,16 @@
+import { LoginForm, LoginGroup } from 'features/login-form';
 import React, { ReactElement } from 'react';
+import { Icon } from 'ui-kit/icon';
+import { AppKeyboardAvoidingView } from 'ui-kit/keyboard-avoiding-view';
+import { createStyles } from 'ui-kit/styles';
 import { AccountAccessLayout } from '../shared/account-access-layout';
 import { loginScreenFacade } from './facade';
-import { Icon } from 'ui-kit/icon';
-import { createStyles } from 'ui-kit/styles';
-import { LoginGroup } from 'features/login-form';
 
 export function LoginScreen(): ReactElement {
-  const handleSignInPress = (): void => {
-    loginScreenFacade.navigateToMain();
+  const { isSubmitting } = loginScreenFacade;
+
+  const handleSignInPress = (values: LoginForm): void => {
+    loginScreenFacade.authorize(values);
   };
 
   const handleForgotPasswordPress = (): void => {
@@ -17,7 +20,13 @@ export function LoginScreen(): ReactElement {
   return (
     <AccountAccessLayout>
       <Icon name='logoManagement' style={style.icon} />
-      <LoginGroup onSubmit={handleSignInPress} onForgotPassword={handleForgotPasswordPress} />
+      <AppKeyboardAvoidingView>
+        <LoginGroup
+          onSubmit={handleSignInPress}
+          onForgotPassword={handleForgotPasswordPress}
+          isSubmitting={isSubmitting}
+        />
+      </AppKeyboardAvoidingView>
     </AccountAccessLayout>
   );
 }
