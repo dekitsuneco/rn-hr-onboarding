@@ -2,18 +2,17 @@ import { AppActivityIndicator } from '../activity-indicator';
 import { AppText, TextTheme } from '../text';
 import { AnyStyle, createStyles, variables, commonStyle } from '../styles';
 import React, { ReactElement, useMemo } from 'react';
-import { PressableProps, Pressable, ViewStyle } from 'react-native';
-import { View } from 'react-native';
+import { PressableProps, Pressable, ViewStyle, View } from 'react-native';
 import { useScreenDimensions } from 'modules/use-screen-dimensions';
 
 export type ButtonTheme = 'primary' | 'secondary' | 'tertiary';
 export type ButtonSize = 'default' | 'small';
 
-interface Props extends PressableProps {
-  title?: string;
-  style?: ViewStyle;
+export interface Props extends PressableProps {
+  title?: string | ReactElement;
   leftIcon?: ReactElement;
   rightIcon?: ReactElement;
+  style?: ViewStyle;
   isDisabled?: boolean;
   isLoading?: boolean;
   theme?: ButtonTheme;
@@ -34,19 +33,19 @@ export function AppButton({
   ...restProps
 }: Props): ReactElement {
   const { isTablet } = useScreenDimensions();
-  const renderedContent = useMemo(() => {
-    if (isLoading) {
-      return <AppActivityIndicator
-        size={'small'}
-        color={textStyle[theme].color}
-        style={style.activityIndicator} />;
-    }
 
-    return !title && children;
-  }, [isLoading, theme, children]);
+  const shouldHaveContent = leftIcon || rightIcon ? isTablet : true;
+
+  const renderedLoader = useMemo(() => {
+    return <AppActivityIndicator
+      size={'small'}
+      color={textStyle[theme].color}
+      style={style.activityIndicator} />;
+  }, [theme]);
 
   return (
     <Pressable
+      disabled={isDisabled}
       style={({ pressed }) => [
         style.button,
         style[theme],
@@ -55,33 +54,31 @@ export function AppButton({
         isDisabled && disabledStyle[theme],
         pressed && pressedStyle[theme]
       ]}
-      disabled={isDisabled}
       {...restProps}>
-      {({ pressed }) => renderedContent || (
+      {({ pressed }) => isLoading ? (
+        renderedLoader
+      ) : (
         <View style={[textStyle.container, commonStyle.flexCenter]}>
-          <View style={text && leftIcon && textStyle.leftIcon}>
-            {leftIcon}
-          </View>
+          <View style={shouldHaveContent && leftIcon && textStyle.leftIcon}>{leftIcon}</View>
           <View>
-            (leftIcon || rightIcon ? isTablet : true) && (
+            {shouldHaveContent && (
               <AppText
+                theme={size === 'default' ? TextTheme.MEDIUM : TextTheme.SMALL}
                 style={[
                   textStyle.button,
                   textStyle[theme],
                   isDisabled && disabledTextStyle[theme],
                   pressed && pressedTextStyle[theme]
-                ]}      
-                theme={size === 'default' ? TextTheme.MEDIUM : TextTheme.SMALL}
-              >
+                ]}>
                 {title}
                 {children}
               </AppText>
+            )}
           </View>
-          <View style={text && rightIcon && textStyle.rightIcon}>
-            {rightIcon}
-          </View>
+          <View style={shouldHaveContent && rightIcon && textStyle.rightIcon}>{rightIcon}</View>
         </View>
-      )}
+      )
+      }
     </Pressable>
   );
 }
