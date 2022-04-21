@@ -1,14 +1,17 @@
 import { AppActivityIndicator } from '../activity-indicator';
 import { AppText, TextTheme } from '../text';
-import { createStyles, variables } from '../styles';
+import { AnyStyle, createStyles, variables, commonStyle } from '../styles';
 import React, { ReactElement, useMemo } from 'react';
-import { TouchableHighlight, TouchableHighlightProps } from 'react-native';
+import { TouchableHighlight, TouchableHighlightProps, View } from 'react-native';
+import { useScreenDimensions } from 'modules/use-screen-dimensions';
 
 type ButtonTheme = 'primary' | 'secondary' | 'tertiary';
 type ButtonSize = 'default' | 'small';
 
 interface Props extends TouchableHighlightProps {
   title?: string;
+  leftIcon?: ReactElement;
+  rightIcon?: ReactElement;
   isDisabled?: boolean;
   isLoading?: boolean;
   theme?: ButtonTheme;
@@ -18,6 +21,8 @@ interface Props extends TouchableHighlightProps {
 
 export function AppButton({
   title,
+  leftIcon,
+  rightIcon,
   style: elementStyle = {},
   isDisabled,
   isLoading,
@@ -26,6 +31,7 @@ export function AppButton({
   children,
   ...restProps
 }: Props): ReactElement {
+  const { isTablet } = useScreenDimensions();
   const renderedContent = useMemo(() => {
     if (isLoading) {
       return <AppActivityIndicator
@@ -34,17 +40,21 @@ export function AppButton({
         style={style.activityIndicator} />;
     }
 
-    return title ? (
+    const text = (leftIcon || rightIcon ? isTablet : true) && (
       <AppText
-        style={[textStyle.button, textStyle[theme], isDisabled && disabledTextStyle[theme]]}
+        style={[textStyle.text, textStyle[theme], isDisabled && disabledTextStyle[theme]]}
         theme={size === 'default' ? TextTheme.MEDIUM : TextTheme.SMALL}>
-        {/* // TODO Leading Icon */}
         {title}
         {children}
-        {/* // TODO Trailing Icon */}
       </AppText>
-    ) : (
-      children
+    );
+
+    return (
+      <View style={[textStyle.container, commonStyle.flexCenter]}>
+        <View style={text && leftIcon && textStyle.leftIcon}>{leftIcon}</View>
+        <View>{text}</View>
+        <View style={text && rightIcon && textStyle.rightIcon}>{rightIcon}</View>
+      </View>
     );
   }, [isDisabled, isLoading, theme, size, title, children]);
 
@@ -89,13 +99,30 @@ const style = createStyles({
   activityIndicator: {
     width: 30,
     height: 30
-  }
+  },
+  [`@media (max-width: ${variables.breakpoints.tablet})`]: {
+    default: {
+      paddingVertical: 12,
+      paddingHorizontal: 12
+    }
+  } as AnyStyle
 });
 
 const textStyle = createStyles({
+  text: {
+    fontFamily: variables.fontFamily.bold
+  },
+  container: {
+    flexDirection: 'row'
+  },
+  leftIcon: {
+    marginRight: 10
+  },
+  rightIcon: {
+    marginLeft: 10
+  },
   button: {
     fontFamily: variables.fontFamily.bold,
-    fontWeight: '600',
     textAlign: 'center'
   },
   primary: {

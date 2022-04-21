@@ -3,16 +3,17 @@ import { StyleProp, View, ViewStyle } from 'react-native';
 import { createStyles, variables } from '@styles';
 import { AppText } from 'ui-kit/text';
 
-type LabelTheme = 'onboarding' | 'pending' | 'completed' | 'hr';
+export type LabelTheme = 'progress' | 'danger' | 'success' | 'neutral';
 
 interface Props {
   label: string;
   style?: StyleProp<ViewStyle>;
+  status: LabelTheme;
 }
 
-export function Label({ label, style: elementStyle }: Props): ReactElement {
+export function Label({ label, status, style: elementStyle }: Props): ReactElement {
   return (
-    <View style={[style.container, style[label.toLowerCase() as LabelTheme], elementStyle]}>
+    <View style={[style.container, style[status], elementStyle]}>
       <AppText>{label}</AppText>
     </View>
   );
@@ -25,18 +26,19 @@ const style = createStyles({
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 10,
-    alignSelf: 'flex-start'
+    alignSelf: 'flex-start',
+    backgroundColor: variables.color.statusNeutral
   },
-  onboarding: {
+  progress: {
     backgroundColor: variables.color.primary + '1A'
   },
-  pending: {
+  danger: {
     backgroundColor: variables.color.danger + '1A'
   },
-  completed: {
+  success: {
     backgroundColor: variables.color.statusSuccess + '1A'
   },
-  hr: {
-    backgroundColor: variables.color.statusNeutral
+  neutral: {
+    backgroundColor: variables.color.statusNeutral + '1A'
   }
 });

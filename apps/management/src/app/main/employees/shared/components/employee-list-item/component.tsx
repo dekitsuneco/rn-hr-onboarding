@@ -8,6 +8,7 @@ import { Employee } from '../../models/employee';
 import { ProgressBar } from 'ui-kit/progress-bar';
 import { variables } from '@styles';
 import { Label } from '../label/component';
+import { employeeListItemFacade } from './facade';
 
 export function EmployeeItem({ avatar, name, position, phoneNumber, email, labels, progress }: Employee): ReactElement {
   return (
@@ -24,12 +25,13 @@ export function EmployeeItem({ avatar, name, position, phoneNumber, email, label
           <AppText>{phoneNumber}</AppText>
           <AppText>{email}</AppText>
         </View>
-        <View style={style.labelsContainer}>
+        <View style={[style.labelsContainer, style.middleContainerItem]}>
           {labels.map((label) => (
             <Label
               key={label}
               label={label}
-              style={style.label} />
+              style={style.label}
+              status={employeeListItemFacade.labelStatus(label)} />
           ))}
         </View>
         <View style={style.middleContainerItem}>
@@ -45,8 +47,8 @@ const style = createStyles({
   container: {
     flexDirection: 'row',
     borderBottomWidth: 1,
-    paddingBottom: 16,
-    borderColor: variables.color.black + '0D'
+    paddingVertical: 16,
+    borderColor: variables.color.borderColorSecondary
   },
   leftContainer: {
     marginRight: 16
@@ -63,7 +65,7 @@ const style = createStyles({
   },
   label: {
     marginRight: 8,
-    marginBottom: 4
+    marginBottom: 8
   },
   progress: {
     width: 150
@@ -83,9 +85,6 @@ const style = createStyles({
     middleContainerItem: {
       width: '25%',
       marginRight: 8
-    },
-    labelsContainer: {
-      width: '25%'
     }
   } as AnyStyle
 });

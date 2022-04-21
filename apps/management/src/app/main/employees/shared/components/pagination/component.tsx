@@ -3,20 +3,43 @@ import React, { ReactElement } from 'react';
 import { View } from 'react-native';
 import { AppButton } from 'ui-kit/button';
 import { createStyles } from 'ui-kit/styles';
+import { useTranslation } from 'utils/i18n';
 
 interface Props {
   numberOfPages: number;
-  isActive?: boolean;
+  current?: number;
+  onPageSelect: (page: number) => void;
 }
 
-export function Pagination({ numberOfPages, isActive }: Props): ReactElement {
+export function Pagination({ numberOfPages, current, onPageSelect }: Props): ReactElement {
+  const translate = useTranslation('MAIN.EMPLOYEES.EMPLOYEES_LIST');
+
+  const handleNextBtnPress = (): void => {
+    if (current < numberOfPages - 1) {
+      onPageSelect(current + 1);
+    }
+  };
+
   return (
     <View style={style.container}>
       {[...Array(numberOfPages)].map((_, page) => (
         <View key={page}>
-          <AppButton title={(page + 1).toString()} style={style.item} />
+          <AppButton
+            style={style.pageButton}
+            theme={current === page ? 'secondary' : 'tertiary'}
+            onPress={() => {
+              onPageSelect(page);
+            }}>
+            {page + 1}
+          </AppButton>
         </View>
       ))}
+      <View>
+        <AppButton
+          theme='tertiary'
+          onPress={handleNextBtnPress}
+          title={translate('BUTTON_NEXT')} />
+      </View>
     </View>
   );
 }
@@ -25,17 +48,13 @@ const style = createStyles({
   container: {
     flexDirection: 'row'
   },
-  item: {
-    width: 44,
-    aspectRatio: 1,
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  itemActive: {
-    backgroundColor: 'red'
-  },
   itemText: {
     color: variables.color.primary
+  },
+  nextButton: {
+    alignSelf: 'flex-start'
+  },
+  pageButton: {
+    paddingHorizontal: 19
   }
 });

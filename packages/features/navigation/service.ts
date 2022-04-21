@@ -1,4 +1,4 @@
-import { NavigationContainerRef, StackActions, Route } from '@react-navigation/native';
+import { NavigationContainerRef, NavigationState, Route, StackActions } from '@react-navigation/native';
 import * as React from 'react';
 
 export const navigationRef = React.createRef<NavigationContainerRef<object>>();
@@ -8,12 +8,16 @@ class AppNavigationService {
     return navigationRef.current?.getCurrentRoute();
   }
 
-  public get navigate(): NavigationContainerRef<any>['navigate'] {
-    return navigationRef.current?.navigate;
+  public get currentState(): NavigationState | undefined {
+    return navigationRef.current?.getRootState();
   }
 
   public get canGoBack(): boolean {
     return navigationRef.current?.canGoBack();
+  }
+
+  public get navigate(): NavigationContainerRef<any>['navigate'] {
+    return navigationRef.current?.navigate;
   }
 
   public goBack(): void {
