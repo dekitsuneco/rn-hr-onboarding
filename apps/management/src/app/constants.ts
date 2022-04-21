@@ -6,7 +6,12 @@ import { immutableMerge } from 'utils/immutable-merge';
 export const appEnv = (Constants.manifest.extra as typeof appEnvConfig).env;
 
 function createConfig(): typeof defaultAppConfig {
-  const defaultAppConfig = immutableMerge(commonAppsConfig, {});
+  const defaultAppConfig = immutableMerge(commonAppsConfig, {
+    sentry: {
+      enabled: true,
+      dsn: 'https://f6b1ba331a474a11b98c8a1f06ee98bf@sentry.ronasit.com/140'
+    }
+  });
 
   switch (appEnv) {
     case 'production':

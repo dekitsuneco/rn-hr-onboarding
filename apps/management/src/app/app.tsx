@@ -1,4 +1,3 @@
-import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import React, { ReactElement, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
@@ -8,10 +7,11 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { AccountAccessNavigation } from './account-access/navigation';
 import { MainNavigation } from './main/navigation';
 import { appLinking } from './linking';
-import { navigationRef } from 'features/navigation';
+import { navigationRef, navigationTheme } from 'features/navigation';
 import { useLanguage } from 'utils/i18n';
 import { appFacade } from './facade';
 import { AppActivityIndicator } from 'ui-kit/activity-indicator';
+import { variables } from '@styles';
 
 const Stack = createStackNavigator();
 const setLanguage = useLanguage(
@@ -35,8 +35,11 @@ export function App(): ReactElement {
       <StatusBar
         translucent={true}
         backgroundColor='transparent'
-        style='light' />
-      <NavigationContainer linking={appLinking} ref={navigationRef}>
+        style='dark' />
+      <NavigationContainer
+        linking={appLinking}
+        ref={navigationRef}
+        theme={navigationTheme(variables.color)}>
         {isTokenLoaded ? (
           <Stack.Navigator initialRouteName={initialRouteName} screenOptions={{ headerShown: false }}>
             <Stack.Screen name='AccountAccess' component={AccountAccessNavigation} />

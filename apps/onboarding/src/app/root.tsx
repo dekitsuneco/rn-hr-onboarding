@@ -4,10 +4,20 @@ import { useFonts } from 'expo-font';
 import React, { ReactElement } from 'react';
 import { App } from './app';
 import { Provider } from 'react-redux';
+import * as Sentry from 'sentry-expo';
+import { appConfig, appEnv } from './constants';
 
 const store = initStore();
 
 export default function Root(): ReactElement {
+  if (appConfig.sentry.enabled) {
+    Sentry.init({
+      environment: appEnv,
+      dsn: appConfig.sentry.dsn,
+      enableInExpoDevelopment: false
+    });
+  }
+
   const [areFontsReady] = useFonts({
     ZonaProBold: require('assets/fonts/ZonaPro-Bold.ttf'),
     ZonaProRegular: require('assets/fonts/ZonaPro-Regular.ttf')

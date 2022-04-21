@@ -9,7 +9,7 @@ export const appNavigationEpics: Epics = {
   authorizeSuccessNavigation: (action$) => action$.pipe(
     ofType(AuthActions.authorizeSuccess),
     delay(100),
-    tap(() => appNavigationService.navigate('Main')),
+    tap(() => appNavigationService.resetToRoute('Main')),
     map(() => AppActions.noop())
   ),
 
