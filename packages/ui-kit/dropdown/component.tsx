@@ -1,7 +1,7 @@
 import React, { ReactElement, useState, useMemo } from 'react';
 import { Menu, MenuOptions, MenuTrigger, renderers } from 'react-native-popup-menu';
 import { View, ViewStyle, StyleProp, LayoutChangeEvent } from 'react-native';
-import { ButtonTheme } from 'ui-kit/button';
+import { Props } from 'ui-kit/button';
 import { DropdownTrigger } from 'ui-kit/dropdown-trigger';
 import { DropdownOption, DropdownOptionProps } from 'ui-kit/dropdown-option';
 
@@ -9,9 +9,7 @@ type Position = 'top' | 'bottom' | 'left' | 'right' | 'auto';
 type HorizontalAlignment = 'center' | 'left' | 'right';
 type VerticalAlignment = 'center' | 'top' | 'bottom';
 
-interface DropdownProps {
-  title: string;
-  buttonTheme?: ButtonTheme;
+interface DropdownProps extends Props {
   buttonStyle?: ViewStyle;
   dropdownStyle?: ViewStyle;
   position?: Position;
@@ -22,15 +20,16 @@ interface DropdownProps {
 }
 
 export function Dropdown({
-  title,
-  buttonTheme: theme = 'primary',
+  leftIcon,
+  rightIcon,
   buttonStyle = {},
   dropdownStyle = {},
   position = 'auto',
   alignHorizontallyTo = 'center',
   alignVerticallyTo = 'center',
   withAnchor = true,
-  optionsInfo
+  optionsInfo,
+  ...restProps
 }: DropdownProps): ReactElement {
   const [buttonHeight, setButtonHeight] = useState(0);
   const [buttonWidth, setButtonWidth] = useState(0);
@@ -99,8 +98,7 @@ export function Dropdown({
           },
           TriggerTouchableComponent: DropdownTrigger,
           triggerTouchable: {
-            title,
-            theme,
+            ...restProps,
             style: buttonStyle,
             onLayout: handleLayoutChange(setButtonWidth, setButtonHeight)
           }
