@@ -1,6 +1,6 @@
 import React, { ReactElement, useCallback } from 'react';
-import { Pressable, View, ScrollView, StyleProp, ViewStyle } from 'react-native';
-import { createStyles, variables } from '../styles';
+import { Pressable, View, ScrollView } from 'react-native';
+import { AnyStyle, createStyles, variables } from '../styles';
 import { AppText, TextTheme } from '../text';
 import { SwitcherItem } from './models';
 
@@ -8,11 +8,9 @@ interface Props {
   items: Array<SwitcherItem>;
   current: string;
   onItemSelect: (item: string) => void;
-  containerStyle?: StyleProp<ViewStyle>;
-  wrapperStyle?: StyleProp<ViewStyle>;
 }
 
-export function Switcher({ items, onItemSelect, current, containerStyle, wrapperStyle }: Props): ReactElement {
+export function Switcher({ items, onItemSelect, current }: Props): ReactElement {
   const renderedItem = useCallback(
     ({ item }: { item: SwitcherItem }) => {
       const isCurrent = current === item.key;
@@ -35,16 +33,14 @@ export function Switcher({ items, onItemSelect, current, containerStyle, wrapper
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
-      style={[style.container, containerStyle]}>
-      <View style={[style.wrapper, wrapperStyle]}>{items.map((item) => renderedItem({ item }))}</View>
+      contentContainerStyle={style.container}>
+      <View style={style.wrapper}>{items.map((item) => renderedItem({ item }))}</View>
     </ScrollView>
   );
 }
 
 const style = createStyles({
-  container: {
-    maxHeight: 42
-  },
+  container: {},
   wrapper: {
     borderRadius: 10,
     backgroundColor: variables.color.backgroundSecondary,
@@ -52,7 +48,8 @@ const style = createStyles({
     alignItems: 'center',
     paddingHorizontal: 12,
     height: 42,
-    overflow: 'hidden'
+    overflow: 'hidden',
+    width: '100%'
   },
   item: {
     marginHorizontal: 18,
@@ -74,7 +71,7 @@ const style = createStyles({
     shadowRadius: 20,
     elevation: 20
   },
-  '@media (min-width: 768)': {
+  [`@media (min-width: ${variables.breakpoints.tablet})`]: {
     item: {
       marginHorizontal: 21
     },
@@ -82,7 +79,7 @@ const style = createStyles({
       marginHorizontal: 5
     },
     container: {
-      paddingHorizontal: 0
+      width: '100%'
     }
-  }
+  } as AnyStyle
 });

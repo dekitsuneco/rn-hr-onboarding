@@ -6,6 +6,7 @@ import { Employee } from './shared/models/employee';
 import { SearchInput } from '@shared/search';
 import { useTranslation } from 'utils/i18n';
 import { EmployeeItem } from './shared/components';
+import { Pagination } from './shared/components/pagination/component';
 
 const switcherItems = [
   {
@@ -53,13 +54,12 @@ export function EmployeesScreen(): ReactElement {
     <View style={style.container}>
       <View style={style.optionsContainer}>
         <SearchInput controlStyle={{ marginBottom: 10 }} placeholder={translate('INPUT_SEARCH_PLACEHOLDER')} />
-        <Switcher
-          containerStyle={{ marginHorizontal: -16 }}
-          wrapperStyle={{ marginHorizontal: 16 }}
-          items={switcherItems}
-          current={current}
-          onItemSelect={handlePress}
-        />
+        <View style={{ width: '100%' }}>
+          <Switcher
+            items={switcherItems}
+            current={current}
+            onItemSelect={handlePress} />
+        </View>
       </View>
       <EmployeeItem
         avatar={employee.avatar}
@@ -71,6 +71,7 @@ export function EmployeesScreen(): ReactElement {
         progress={employee.progress}
         id={employee.id}
       />
+      <Pagination numberOfPages={4} />
     </View>
   );
 }

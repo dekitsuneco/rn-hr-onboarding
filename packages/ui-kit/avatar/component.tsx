@@ -23,7 +23,7 @@ const style = createStyles({
     shadowColor: variables.color.boxShadow,
     shadowOffset: {
       width: 0,
-      height: 22
+      height: -22
     },
     shadowOpacity: 1,
     shadowRadius: 40,
