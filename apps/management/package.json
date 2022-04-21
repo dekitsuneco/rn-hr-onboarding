@@ -82,7 +82,8 @@
     "assets": "*",
     "modules": "*",
     "utils": "*",
-    "features": "*"
+    "features": "*",
+    "react-native-popup-menu": "^0.15.12"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
