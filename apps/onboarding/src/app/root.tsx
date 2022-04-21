@@ -4,6 +4,7 @@ import { useFonts } from 'expo-font';
 import React, { ReactElement } from 'react';
 import * as Sentry from 'sentry-expo';
 import { App } from './app';
+import { MenuProvider } from 'react-native-popup-menu';
 
 export default function Root(): ReactElement {
   if (appConfig.sentry.enabled) {
@@ -25,7 +26,11 @@ export default function Root(): ReactElement {
     return null;
   }
 
-  return <App />;
+  return (
+    <MenuProvider>
+      <App />
+    </MenuProvider>
+  );
 }
 
 registerRootComponent(Root);
