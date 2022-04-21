@@ -2,13 +2,14 @@ import { AppActivityIndicator } from '../activity-indicator';
 import { AppText, TextTheme } from '../text';
 import { createStyles, variables } from '../styles';
 import React, { ReactElement, useMemo } from 'react';
-import { TouchableHighlight, TouchableHighlightProps } from 'react-native';
+import { PressableProps, Pressable, ViewStyle } from 'react-native';
 
-type ButtonTheme = 'primary' | 'secondary' | 'tertiary';
-type ButtonSize = 'default' | 'small';
+export type ButtonTheme = 'primary' | 'secondary' | 'tertiary';
+export type ButtonSize = 'default' | 'small';
 
-interface Props extends TouchableHighlightProps {
+interface Props extends PressableProps {
   title?: string;
+  style?: ViewStyle;
   isDisabled?: boolean;
   isLoading?: boolean;
   theme?: ButtonTheme;
@@ -34,28 +35,36 @@ export function AppButton({
         style={style.activityIndicator} />;
     }
 
-    return title ? (
-      <AppText
-        style={[textStyle.button, textStyle[theme], isDisabled && disabledTextStyle[theme]]}
-        theme={size === 'default' ? TextTheme.MEDIUM : TextTheme.SMALL}>
-        {/* // TODO Leading Icon */}
-        {title}
-        {children}
-        {/* // TODO Trailing Icon */}
-      </AppText>
-    ) : (
-      children
-    );
-  }, [isDisabled, isLoading, theme, size, title, children]);
+    return !title && children;
+  }, [isLoading, theme, children]);
 
   return (
-    <TouchableHighlight
-      underlayColor={pressedStyle[theme].backgroundColor}
-      style={[style.button, style[theme], style[size], isDisabled && disabledStyle[theme], elementStyle]}
+    <Pressable
+      style={({ pressed }) => [
+        style.button,
+        style[theme],
+        style[size],
+        elementStyle,
+        isDisabled && disabledStyle[theme],
+        pressed && pressedStyle[theme]
+      ]}
       disabled={isDisabled}
       {...restProps}>
-      {renderedContent}
-    </TouchableHighlight>
+      {({ pressed }) => renderedContent || (
+        <AppText
+          style={[
+            textStyle.button,
+            textStyle[theme],
+            isDisabled && disabledTextStyle[theme],
+            pressed && pressedTextStyle[theme]
+          ]}
+          theme={size === 'default' ? TextTheme.MEDIUM : TextTheme.SMALL}>
+          {title}
+          {children}
+        </AppText>
+      )
+      }
+    </Pressable>
   );
 }
 
@@ -148,5 +157,17 @@ const pressedStyle = createStyles({
   tertiary: {
     backgroundColor: 'transparent',
     borderColor: 'transparent'
+  }
+});
+
+const pressedTextStyle = createStyles({
+  primary: {
+    color: variables.color.white
+  },
+  secondary: {
+    color: variables.color.primaryDark
+  },
+  tertiary: {
+    color: variables.color.primaryDarker
   }
 });
