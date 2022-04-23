@@ -1,7 +1,7 @@
 import React, { ReactElement, useState, useMemo } from 'react';
 import { Menu, MenuOptions, MenuTrigger, renderers } from 'react-native-popup-menu';
 import { View, ViewStyle, StyleProp, LayoutChangeEvent } from 'react-native';
-import { Props } from 'ui-kit/button';
+import { AppButtonProps } from 'ui-kit/button';
 import { DropdownTrigger } from 'ui-kit/dropdown-trigger';
 import { DropdownOption, DropdownOptionProps } from 'ui-kit/dropdown-option';
 
@@ -9,7 +9,7 @@ type Position = 'top' | 'bottom' | 'left' | 'right' | 'auto';
 type HorizontalAlignment = 'center' | 'left' | 'right';
 type VerticalAlignment = 'center' | 'top' | 'bottom';
 
-interface DropdownProps extends Props {
+interface DropdownProps extends AppButtonProps {
   buttonStyle?: ViewStyle;
   dropdownStyle?: ViewStyle;
   position?: Position;

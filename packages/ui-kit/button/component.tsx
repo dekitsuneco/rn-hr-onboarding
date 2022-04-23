@@ -8,7 +8,7 @@ import { useScreenDimensions } from 'modules/use-screen-dimensions';
 export type ButtonTheme = 'primary' | 'secondary' | 'tertiary';
 export type ButtonSize = 'default' | 'small';
 
-export interface Props extends PressableProps {
+export interface AppButtonProps extends PressableProps {
   title?: string | ReactElement;
   leftIcon?: ReactElement;
   rightIcon?: ReactElement;
