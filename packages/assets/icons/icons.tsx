@@ -27,5 +27,8 @@ export const Icons = {
   logoManagement: Svg(require('./logo.svg')),
   menu: Svg(require('./menu.svg')),
   plus: Svg(require('./plus.svg')),
-  moreSquare: Svg(require('./more-square.svg'))
+  moreSquare: Svg(require('./more-square.svg')),
+  moreSquarePrimary: Svg(require('./more-square-primary.svg')),
+  edit: Svg(require('./edit.svg')),
+  delete: Svg(require('./delete.svg'))
 };
