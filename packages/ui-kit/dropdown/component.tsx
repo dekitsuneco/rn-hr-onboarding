@@ -2,15 +2,18 @@ import React, { ReactElement, useState, useMemo } from 'react';
 import { Menu, MenuOptions, MenuTrigger, renderers } from 'react-native-popup-menu';
 import { View, ViewStyle, StyleProp, LayoutChangeEvent } from 'react-native';
 import { AppButtonProps } from 'ui-kit/button';
-import { DropdownTrigger } from 'ui-kit/dropdown-trigger';
+import { DropdownTrigger, DropdownTriggerProps } from 'ui-kit/dropdown-trigger';
 import { DropdownOption, DropdownOptionProps } from 'ui-kit/dropdown-option';
+import { MenuTriggerProps } from 'react-native-popup-menu';
 
 type Position = 'top' | 'bottom' | 'left' | 'right' | 'auto';
 type HorizontalAlignment = 'center' | 'left' | 'right';
 type VerticalAlignment = 'center' | 'top' | 'bottom';
 
 interface DropdownProps extends AppButtonProps {
-  buttonStyle?: ViewStyle;
+  triggerProps?: DropdownTriggerProps; //!
+  renderTrigger?: (props: DropdownTriggerProps) => ReactElement; //!
+  triggerContainerStyle?: ViewStyle; //!
   dropdownStyle?: ViewStyle;
   position?: Position;
   alignHorizontallyTo?: HorizontalAlignment;
@@ -20,16 +23,16 @@ interface DropdownProps extends AppButtonProps {
 }
 
 export function Dropdown({
-  leftIcon,
-  rightIcon,
-  buttonStyle = {},
+  //buttonStyle = {},
+  triggerContainerStyle = {},
+  triggerProps = {},
+  renderTrigger = DropdownTrigger,
   dropdownStyle = {},
   position = 'auto',
   alignHorizontallyTo = 'center',
   alignVerticallyTo = 'center',
   withAnchor = true,
-  optionsInfo,
-  ...restProps
+  optionsInfo
 }: DropdownProps): ReactElement {
   const [buttonHeight, setButtonHeight] = useState(0);
   const [buttonWidth, setButtonWidth] = useState(0);
@@ -93,6 +96,16 @@ export function Dropdown({
       }}>
       <MenuTrigger
         customStyles={{
+          triggerOuterWrapper: triggerContainerStyle,
+          TriggerTouchableComponent: (props: MenuTriggerProps) => renderTrigger({ ...props, ...triggerProps }),
+          triggerTouchable: {
+            onLayout: handleLayoutChange(setButtonWidth, setButtonHeight)
+          }
+        }}
+      />
+
+      {/*<MenuTrigger
+        customStyles={{
           triggerOuterWrapper: {
             ...buttonStyle
           },
@@ -103,7 +116,8 @@ export function Dropdown({
             onLayout: handleLayoutChange(setButtonWidth, setButtonHeight)
           }
         }}
-      />
+      />*/}
+
       <MenuOptions customStyles={menuOptionsStyle}>
         <View onLayout={handleLayoutChange(setDropdownWidth, setDropdownHeight)}>{dropdownOptions}</View>
       </MenuOptions>
