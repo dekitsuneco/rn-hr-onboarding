@@ -4,6 +4,6 @@ import { MenuTriggerProps } from 'react-native-popup-menu';
 
 export type DropdownTriggerProps = MenuTriggerProps & AppButtonProps;
 
-export function DropdownTrigger(props: MenuTriggerProps): ReactElement {
+export function DropdownTrigger(props: DropdownTriggerProps): ReactElement {
   return <AppButton {...props} />;
 }
