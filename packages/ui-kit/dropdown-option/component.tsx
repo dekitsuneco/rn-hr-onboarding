@@ -1,32 +1,32 @@
-import { StyleProp, ViewStyle, TextStyle, View } from 'react-native';
+import { ViewStyle, TextStyle, View } from 'react-native';
 import React, { ReactElement, useMemo } from 'react';
-import { MenuOption } from 'react-native-popup-menu';
+import { MenuOption, MenuOptionCustomStyle } from 'react-native-popup-menu';
 import { AppText } from 'ui-kit/text';
 import { createStyles } from 'ui-kit/styles';
 
-export type OptionValue = string | number | boolean;
-
-export interface DropdownOptionProps {
-  value: OptionValue;
-  style?: ViewStyle;
-  titleStyle?: StyleProp<TextStyle>;
-  icon?: ReactElement;
+export interface DropdownOptionProps<TValue = string> {
   title: string;
+  style?: ViewStyle;
+  titleStyle?: TextStyle;
+  iconStyle?: ViewStyle;
   disabled?: boolean;
+  value?: TValue;
+  icon?: ReactElement;
   onSelect?: () => void;
 }
 
-export function DropdownOption({
-  value,
+export function DropdownOption<TValue>({
+  title,
   style: optionStyle = {},
   titleStyle = {},
-  icon,
-  title,
+  iconStyle = {},
   disabled: isDisabled = false,
-  onSelect
-}: DropdownOptionProps): ReactElement {
+  value,
+  icon,
+  onSelect: handleSelect
+}: DropdownOptionProps<TValue>): ReactElement {
   const menuOptionStyle = useMemo(
-    (): { optionWrapper: StyleProp<ViewStyle> } => ({
+    (): MenuOptionCustomStyle => ({
       optionWrapper: {
         ...style.option,
         ...optionStyle
@@ -37,11 +37,11 @@ export function DropdownOption({
 
   return (
     <MenuOption
-      value={value}
+      customStyles={menuOptionStyle}
       disabled={isDisabled}
-      onSelect={onSelect}
-      customStyles={menuOptionStyle}>
-      <View style={style.icon}>{icon}</View>
+      value={value}
+      onSelect={handleSelect}>
+      <View style={[style.icon, iconStyle]}>{icon}</View>
       <AppText style={titleStyle}>{title}</AppText>
     </MenuOption>
   );
@@ -54,6 +54,8 @@ const style = createStyles({
     paddingVertical: 14
   },
   icon: {
+    width: 24,
+    height: 24,
     marginRight: 8
   }
 });
