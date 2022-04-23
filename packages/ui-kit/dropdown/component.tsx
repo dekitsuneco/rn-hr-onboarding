@@ -2,8 +2,8 @@ import React, { ReactElement, useState, useMemo } from 'react';
 import { Menu, MenuOptions, MenuTrigger, renderers } from 'react-native-popup-menu';
 import { View, ViewStyle, StyleProp, LayoutChangeEvent } from 'react-native';
 import { AppButtonProps } from 'ui-kit/button';
-import { DropdownTrigger, DropdownTriggerProps } from 'ui-kit/dropdown-trigger';
-import { DropdownOption, DropdownOptionProps } from 'ui-kit/dropdown-option';
+import { DropdownTrigger, DropdownTriggerProps } from './components/dropdown-trigger';
+import { DropdownOption, DropdownOptionProps } from './components/dropdown-option';
 import { MenuTriggerProps } from 'react-native-popup-menu';
 
 type Orientation = 'top' | 'bottom' | 'right' | 'left';
