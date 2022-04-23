@@ -6,68 +6,61 @@ import { DropdownTrigger, DropdownTriggerProps } from 'ui-kit/dropdown-trigger';
 import { DropdownOption, DropdownOptionProps } from 'ui-kit/dropdown-option';
 import { MenuTriggerProps } from 'react-native-popup-menu';
 
-type Position = 'top' | 'bottom' | 'left' | 'right' | 'auto';
-type HorizontalAlignment = 'center' | 'left' | 'right';
-type VerticalAlignment = 'center' | 'top' | 'bottom';
+type Orientation = 'top' | 'bottom' | 'right' | 'left';
+type Position = Orientation | 'auto';
+type Alignment = Orientation | 'center';
 
-interface DropdownProps extends AppButtonProps {
-  triggerProps?: DropdownTriggerProps; //!
-  renderTrigger?: (props: DropdownTriggerProps) => ReactElement; //!
-  triggerContainerStyle?: ViewStyle; //!
-  dropdownStyle?: ViewStyle;
-  position?: Position;
-  alignHorizontallyTo?: HorizontalAlignment;
-  alignVerticallyTo?: VerticalAlignment;
-  withAnchor?: boolean;
-  optionsInfo: Array<DropdownOptionProps>;
+interface DropdownProps<TValue> extends AppButtonProps {
+  optionsProps: Array<DropdownOptionProps<TValue>>;
+  style?: ViewStyle;
+  renderTo?: Position;
+  alignTo?: Alignment;
+  hasAnchor?: boolean;
+  triggerProps?: DropdownTriggerProps;
+  triggerContainerStyle?: ViewStyle;
+  renderTrigger?: (props: DropdownTriggerProps) => ReactElement;
 }
 
-export function Dropdown({
-  //buttonStyle = {},
-  triggerContainerStyle = {},
+export function Dropdown<TValue>({
+  optionsProps,
+  style: dropdownStyle = {},
+  renderTo: placement = 'auto',
+  alignTo: alignment = 'center',
+  hasAnchor = true,
   triggerProps = {},
-  renderTrigger = DropdownTrigger,
-  dropdownStyle = {},
-  position = 'auto',
-  alignHorizontallyTo = 'center',
-  alignVerticallyTo = 'center',
-  withAnchor = true,
-  optionsInfo
-}: DropdownProps): ReactElement {
+  triggerContainerStyle = {},
+  renderTrigger = DropdownTrigger
+}: DropdownProps<TValue>): ReactElement {
   const [buttonHeight, setButtonHeight] = useState(0);
   const [buttonWidth, setButtonWidth] = useState(0);
 
   const [dropdownHeight, setDropdownHeight] = useState(0);
   const [dropdownWidth, setDropdownWidth] = useState(0);
 
-  const displacementStyle = useMemo((): ViewStyle => {
-    let offsetStyle = {};
+  const anchorStyle = useMemo((): StyleProp<ViewStyle> => (hasAnchor ? {} : { opacity: 0 }), [hasAnchor]);
 
-    const isInVerticalPosition = position === 'top' || position === 'bottom';
-    const isInHorizontalalPosition = position === 'left' || position === 'right';
+  const offsetStyle = useMemo((): ViewStyle => {
+    let offset = 0;
 
-    if (isInVerticalPosition && alignHorizontallyTo !== 'center') {
-      const offset = (dropdownWidth - buttonWidth) / 2;
+    const isHorizontal = (value: Orientation): boolean => ['top', 'bottom'].includes(value);
 
-      offsetStyle = { [alignHorizontallyTo]: offset };
+    const isPlacedVertically = placement !== 'auto' && isHorizontal(placement);
+    const isAlignedVertically = alignment !== 'center' && isHorizontal(alignment);
+
+    if (isPlacedVertically && !isAlignedVertically) {
+      offset = (dropdownWidth - buttonWidth) / 2;
     }
 
-    if (isInHorizontalalPosition && alignVerticallyTo !== 'center') {
-      const offset = (dropdownHeight - buttonHeight) / 2;
-
-      offsetStyle = { [alignVerticallyTo]: offset };
+    if (!isPlacedVertically && isAlignedVertically) {
+      offset = (dropdownHeight - buttonHeight) / 2;
     }
 
-    return offsetStyle;
-  }, [position, alignHorizontallyTo, alignVerticallyTo, buttonWidth, dropdownWidth, buttonHeight, dropdownHeight]);
-
-  const anchorStyle = useMemo((): StyleProp<ViewStyle> => {
-    return withAnchor ? {} : { opacity: 0 };
-  }, [withAnchor]);
+    return offset === 0 ? {} : { [alignment]: offset };
+  }, [placement, alignment, buttonWidth, dropdownWidth, buttonHeight, dropdownHeight]);
 
   const menuOptionsStyle = {
     optionsContainer: {
-      ...displacementStyle,
+      ...offsetStyle,
       ...dropdownStyle
     }
   };
@@ -81,17 +74,18 @@ export function Dropdown({
     };
 
   const dropdownOptions = useMemo(
-    (): Array<JSX.Element> => optionsInfo.map((props, index) => {
-      return <DropdownOption key={index} {...props} />;
-    }),
-    [optionsInfo]
+    (): Array<JSX.Element> => optionsProps.map(({ title, ...restProps }) => <DropdownOption
+      key={title}
+      title={title}
+      {...restProps} />),
+    [optionsProps]
   );
 
   return (
     <Menu
       renderer={renderers.Popover}
       rendererProps={{
-        placement: position,
+        placement,
         anchorStyle
       }}>
       <MenuTrigger
@@ -103,21 +97,6 @@ export function Dropdown({
           }
         }}
       />
-
-      {/*<MenuTrigger
-        customStyles={{
-          triggerOuterWrapper: {
-            ...buttonStyle
-          },
-          TriggerTouchableComponent: DropdownTrigger,
-          triggerTouchable: {
-            ...restProps,
-            style: buttonStyle,
-            onLayout: handleLayoutChange(setButtonWidth, setButtonHeight)
-          }
-        }}
-      />*/}
-
       <MenuOptions customStyles={menuOptionsStyle}>
         <View onLayout={handleLayoutChange(setDropdownWidth, setDropdownHeight)}>{dropdownOptions}</View>
       </MenuOptions>
