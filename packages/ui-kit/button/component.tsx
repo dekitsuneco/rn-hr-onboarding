@@ -31,7 +31,7 @@ export function AppButton({
   size = 'default',
   children,
   ...restProps
-}: Props): ReactElement {
+}: AppButtonProps): ReactElement {
   const { isTablet } = useScreenDimensions();
 
   const shouldHaveContent = leftIcon || rightIcon ? isTablet : true;
