@@ -9,6 +9,9 @@ import { ProgressBar } from 'ui-kit/progress-bar';
 import { variables } from '@styles';
 import { Label } from '../label/component';
 import { employeeListItemFacade } from './facade';
+import { Dropdown } from 'ui-kit/dropdown';
+import { AppButton } from 'ui-kit/button';
+import { Icon } from 'ui-kit/icon';
 
 export function EmployeeItem({ avatar, name, position, phoneNumber, email, labels, progress }: Employee): ReactElement {
   return (
@@ -38,7 +41,23 @@ export function EmployeeItem({ avatar, name, position, phoneNumber, email, label
           <ProgressBar value={progress} style={style.progress} />
         </View>
       </View>
-      <View style={style.rightContainer} />
+      <View style={style.rightContainer}>
+        <Dropdown
+          renderTo='bottom'
+          optionsProps={[
+            { title: 'Edit', icon: <Icon name='edit' /> },
+            { title: 'Delete', icon: <Icon name='delete' /> },
+            { title: 'View answers', icon: <Icon name='eye' /> }
+          ]}
+          renderTrigger={(props) => (
+            <AppButton
+              theme='secondary'
+              {...props}
+              leftIcon={<Icon name='moreSquare' stroke={variables.color.primary} />}
+            />
+          )}
+        />
+      </View>
     </View>
   );
 }
@@ -53,8 +72,12 @@ const style = createStyles({
   leftContainer: {
     marginRight: 16
   },
-  middleContainer: {},
-  rightContainer: {},
+  middleContainer: {
+    flex: 1
+  },
+  rightContainer: {
+    height: 59
+  },
   positionText: {
     color: variables.color.textSecondary
   },
@@ -69,6 +92,10 @@ const style = createStyles({
   },
   progress: {
     width: 150
+  },
+  dropdownTrigger: {
+    paddingHorizontal: 12,
+    paddingVertical: 12
   },
   [`@media (min-width: ${variables.breakpoints.tablet})`]: {
     container: {
