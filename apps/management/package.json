@@ -84,6 +84,7 @@
     "typedi": "^0.10.0",
     "ui-kit": "*",
     "utils": "*",
+    "react-native-popup-menu": "^0.15.12",
     "yup": "^0.32.11"
   },
   "devDependencies": {
