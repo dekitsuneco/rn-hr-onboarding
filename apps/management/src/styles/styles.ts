@@ -8,7 +8,7 @@ export const commonStyle = createStyles({
   },
   [`@media (min-width: ${variables.breakpoints.tablet})`]: {
     wrapper: {
-      paddingHorizontal: '2rem'
+      paddingHorizontal: '2.5rem'
     }
   },
   [`@media (min-width: ${variables.breakpoints.desktop})`]: {
