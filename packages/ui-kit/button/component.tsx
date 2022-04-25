@@ -2,16 +2,17 @@ import { AppActivityIndicator } from '../activity-indicator';
 import { AppText, TextTheme } from '../text';
 import { AnyStyle, createStyles, variables, commonStyle } from '../styles';
 import React, { ReactElement, useMemo } from 'react';
-import { TouchableHighlight, TouchableHighlightProps, View } from 'react-native';
+import { PressableProps, Pressable, ViewStyle, View } from 'react-native';
 import { useScreenDimensions } from 'modules/use-screen-dimensions';
 
-type ButtonTheme = 'primary' | 'secondary' | 'tertiary';
-type ButtonSize = 'default' | 'small';
+export type ButtonTheme = 'primary' | 'secondary' | 'tertiary';
+export type ButtonSize = 'default' | 'small';
 
-interface Props extends TouchableHighlightProps {
-  title?: string;
+export interface AppButtonProps extends PressableProps {
+  title?: string | ReactElement;
   leftIcon?: ReactElement;
   rightIcon?: ReactElement;
+  style?: ViewStyle;
   isDisabled?: boolean;
   isLoading?: boolean;
   theme?: ButtonTheme;
@@ -30,42 +31,55 @@ export function AppButton({
   size = 'default',
   children,
   ...restProps
-}: Props): ReactElement {
+}: AppButtonProps): ReactElement {
   const { isTablet } = useScreenDimensions();
-  const renderedContent = useMemo(() => {
-    if (isLoading) {
-      return <AppActivityIndicator
-        size={'small'}
-        color={textStyle[theme].color}
-        style={style.activityIndicator} />;
-    }
 
-    const text = (leftIcon || rightIcon ? isTablet : true) && (
-      <AppText
-        style={[textStyle.text, textStyle[theme], isDisabled && disabledTextStyle[theme]]}
-        theme={size === 'default' ? TextTheme.MEDIUM : TextTheme.SMALL}>
-        {title}
-        {children}
-      </AppText>
-    );
+  const shouldHaveContent = leftIcon || rightIcon ? isTablet : true;
 
-    return (
-      <View style={[textStyle.container, commonStyle.flexCenter]}>
-        <View style={text && leftIcon && textStyle.leftIcon}>{leftIcon}</View>
-        <View>{text}</View>
-        <View style={text && rightIcon && textStyle.rightIcon}>{rightIcon}</View>
-      </View>
-    );
-  }, [isDisabled, isLoading, theme, size, title, children]);
+  const renderedLoader = useMemo(() => {
+    return <AppActivityIndicator
+      size={'small'}
+      color={textStyle[theme].color}
+      style={style.activityIndicator} />;
+  }, [theme]);
 
   return (
-    <TouchableHighlight
-      underlayColor={pressedStyle[theme].backgroundColor}
-      style={[style.button, style[theme], style[size], isDisabled && disabledStyle[theme], elementStyle]}
+    <Pressable
       disabled={isDisabled}
+      style={({ pressed }) => [
+        style.button,
+        style[theme],
+        style[size],
+        elementStyle,
+        isDisabled && disabledStyle[theme],
+        pressed && pressedStyle[theme]
+      ]}
       {...restProps}>
-      {renderedContent}
-    </TouchableHighlight>
+      {({ pressed }) => isLoading ? (
+        renderedLoader
+      ) : (
+        <View style={[textStyle.container, commonStyle.flexCenter]}>
+          <View style={shouldHaveContent && leftIcon && textStyle.leftIcon}>{leftIcon}</View>
+          <View>
+            {shouldHaveContent && (
+              <AppText
+                theme={size === 'default' ? TextTheme.MEDIUM : TextTheme.SMALL}
+                style={[
+                  textStyle.button,
+                  textStyle[theme],
+                  isDisabled && disabledTextStyle[theme],
+                  pressed && pressedTextStyle[theme]
+                ]}>
+                {title}
+                {children}
+              </AppText>
+            )}
+          </View>
+          <View style={shouldHaveContent && rightIcon && textStyle.rightIcon}>{rightIcon}</View>
+        </View>
+      )
+      }
+    </Pressable>
   );
 }
 
@@ -175,5 +189,17 @@ const pressedStyle = createStyles({
   tertiary: {
     backgroundColor: 'transparent',
     borderColor: 'transparent'
+  }
+});
+
+const pressedTextStyle = createStyles({
+  primary: {
+    color: variables.color.white
+  },
+  secondary: {
+    color: variables.color.primaryDark
+  },
+  tertiary: {
+    color: variables.color.primaryDarker
   }
 });

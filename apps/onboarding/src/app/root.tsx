@@ -3,6 +3,7 @@ import { registerRootComponent } from 'expo';
 import { useFonts } from 'expo-font';
 import React, { ReactElement } from 'react';
 import { App } from './app';
+import { MenuProvider } from 'react-native-popup-menu';
 import { Provider } from 'react-redux';
 import * as Sentry from 'sentry-expo';
 import { appConfig, appEnv } from './constants';
@@ -28,9 +29,11 @@ export default function Root(): ReactElement {
   }
 
   return (
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <MenuProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </MenuProvider>
   );
 }
 
