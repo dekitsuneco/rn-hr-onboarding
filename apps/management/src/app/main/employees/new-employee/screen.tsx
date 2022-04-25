@@ -2,9 +2,13 @@ import { createStyles } from '@styles';
 import { useFormik } from 'formik';
 import React, { ReactElement } from 'react';
 import { View, ScrollView } from 'react-native';
+import { AppText } from 'ui-kit/text';
+import { useTranslation } from 'utils/i18n';
 import { EmployeeForm } from './shared/forms/employee';
+import { UploadImage } from 'ui-kit/image-upload';
 
 export function NewEmployeeScreen(): ReactElement {
+  const translate = useTranslation('MAIN.EMPLOYEES.NEW_EMPLOYEE');
   const handleSubmitFrom = (values: EmployeeForm): void => {
     console.log(values);
   };
@@ -17,7 +21,10 @@ export function NewEmployeeScreen(): ReactElement {
   return (
     <ScrollView style={style.container}>
       <View style={style.dataContainer}>
-        <View style={style.leftContainer} />
+        <View style={style.leftContainer}>
+          <AppText>{translate('SUBTITLE_PROFILE_IMAGE').toLocaleUpperCase()}</AppText>
+          <UploadImage buttonText='Upload profile image' />
+        </View>
         <View style={style.middleContainer} />
         <View style={style.rightContainer} />
       </View>

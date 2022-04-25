@@ -35,7 +35,11 @@
         "SCREEN_TITLE_NEW": "New"
       },
       "NEW_EMPLOYEE": {
-        "INPUT_SEARCH_PLACEHOLDER": "Search employees"
+        "INPUT_SEARCH_PLACEHOLDER": "Search employees",
+        "SUBTITLE_PROFILE_IMAGE": "Profile Image",
+        "SUBTITLE_EMPLOYEE_DETAILS": "Employee Details",
+        "SUBTITLE_ROLE": "Role",
+        "SUBTITLE_ONBOARDING": "Onboarding"
       }
     }
   }

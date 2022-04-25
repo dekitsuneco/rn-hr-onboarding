@@ -5,7 +5,7 @@ import { Icon } from '../icon';
 import { createStyles, variables } from '../styles';
 
 interface Props {
-  imageStyle: StyleProp<ImageStyle>;
+  imageStyle?: StyleProp<ImageStyle>;
   buttonText: string;
 }
 
@@ -15,15 +15,19 @@ export function UploadImage({ imageStyle, buttonText }: Props): ReactElement {
       <View style={[style.imageContainer, imageStyle]}>
         <Icon name='uploadImage' />
       </View>
-      <AppButton theme='secondary' title={buttonText}>
-        <Icon name='uploadImage' stroke={variables.color.primary} />
-      </AppButton>
+      <AppButton
+        theme='secondary'
+        title={buttonText}
+        leftIcon={<Icon name='uploadImage' stroke={variables.color.primary} />}
+      />
     </View>
   );
 }
 
 const style = createStyles({
-  container: {},
+  container: {
+    alignItems: 'center'
+  },
   imageContainer: {
     backgroundColor: variables.color.backgroundSecondary,
     borderRadius: 10,
