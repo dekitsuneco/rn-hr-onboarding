@@ -26,5 +26,6 @@ export const Icons = {
   tasks: Svg(require('./tasks.svg')),
   logoManagement: Svg(require('./logo.svg')),
   menu: Svg(require('./menu.svg')),
-  plus: Svg(require('./plus.svg'))
+  plus: Svg(require('./plus.svg')),
+  uploadImage: Svg(require('./upload-image.svg'))
 };
