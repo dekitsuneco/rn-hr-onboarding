@@ -20,15 +20,15 @@ export function NewEmployeeScreen(): ReactElement {
 
   return (
     <ScrollView style={style.container}>
-      <View style={style.dataContainer}>
-        <View style={style.leftContainer}>
+      <View style={style.form}>
+        <View style={style.profileDetails}>
           <AppText>{translate('SUBTITLE_PROFILE_IMAGE').toLocaleUpperCase()}</AppText>
           <UploadImage buttonText='Upload profile image' />
         </View>
-        <View style={style.middleContainer} />
-        <View style={style.rightContainer} />
+        <View style={style.roleTeamSelect} />
+        <View style={style.onboarding} />
       </View>
-      <View style={style.buttonsContainer} />
+      <View style={style.buttons} />
     </ScrollView>
   );
 }
@@ -38,9 +38,9 @@ const style = createStyles({
     flex: 1,
     paddingHorizontal: 16
   },
-  dataContainer: {},
-  buttonsContainer: {},
-  leftContainer: {},
-  middleContainer: {},
-  rightContainer: {}
+  form: {},
+  buttons: {},
+  profileDetails: {},
+  roleTeamSelect: {},
+  onboarding: {}
 });
