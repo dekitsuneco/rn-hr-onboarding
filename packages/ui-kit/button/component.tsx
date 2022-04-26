@@ -3,7 +3,6 @@ import { AppText, TextTheme } from '../text';
 import { AnyStyle, createStyles, variables, commonStyle } from '../styles';
 import React, { ReactElement, useMemo } from 'react';
 import { PressableProps, Pressable, ViewStyle, View } from 'react-native';
-import { useScreenDimensions } from 'modules/use-screen-dimensions';
 
 export type ButtonTheme = 'primary' | 'secondary' | 'tertiary';
 export type ButtonSize = 'default' | 'small';
@@ -15,6 +14,7 @@ export interface AppButtonProps extends PressableProps {
   style?: ViewStyle;
   isDisabled?: boolean;
   isLoading?: boolean;
+  isTextHidden?: boolean;
   theme?: ButtonTheme;
   size?: ButtonSize;
   children?: React.ReactNode;
@@ -27,15 +27,12 @@ export function AppButton({
   style: elementStyle = {},
   isDisabled,
   isLoading,
+  isTextHidden,
   theme = 'primary',
   size = 'default',
   children,
   ...restProps
 }: AppButtonProps): ReactElement {
-  const { isTablet } = useScreenDimensions();
-
-  const shouldHaveContent = leftIcon || rightIcon ? isTablet : true;
-
   const renderedLoader = useMemo(() => {
     return <AppActivityIndicator
       size={'small'}
@@ -59,9 +56,9 @@ export function AppButton({
         renderedLoader
       ) : (
         <View style={[textStyle.container, commonStyle.flexCenter]}>
-          <View style={shouldHaveContent && leftIcon && textStyle.leftIcon}>{leftIcon}</View>
+          <View style={!isTextHidden && leftIcon && textStyle.leftIcon}>{leftIcon}</View>
           <View>
-            {shouldHaveContent && (
+            {!isTextHidden && (
               <AppText
                 theme={size === 'default' ? TextTheme.MEDIUM : TextTheme.SMALL}
                 style={[
@@ -75,7 +72,7 @@ export function AppButton({
               </AppText>
             )}
           </View>
-          <View style={shouldHaveContent && rightIcon && textStyle.rightIcon}>{rightIcon}</View>
+          <View style={!isTextHidden && rightIcon && textStyle.rightIcon}>{rightIcon}</View>
         </View>
       )
       }

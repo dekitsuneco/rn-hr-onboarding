@@ -40,8 +40,15 @@
       "EMPLOYEES_LIST": {
         "INPUT_SEARCH_PLACEHOLDER": "Search employees",
         "BUTTON_SHOW_MORE": "Show More",
-        "BUTTON_NEXT": "Next"
+        "TEXT_EDIT": "Edit",
+        "TEXT_DELETE": "Delete",
+        "TEXT_VIEW_ANSWERS": "View answers"
       }
+    }
+  },
+  "SHARED": {
+    "PAGINATION": {
+      "BUTTON_NEXT": "Next"
     }
   }
 }

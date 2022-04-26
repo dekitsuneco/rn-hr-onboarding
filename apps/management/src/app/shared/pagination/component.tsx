@@ -12,7 +12,7 @@ interface Props {
 }
 
 export function Pagination({ numberOfPages, current, onPageSelect }: Props): ReactElement {
-  const translate = useTranslation('MAIN.EMPLOYEES.EMPLOYEES_LIST');
+  const translate = useTranslation('SHARED.PAGINATION');
 
   const handleNextBtnPress = (): void => {
     if (current < numberOfPages - 1) {
@@ -42,7 +42,7 @@ export function Pagination({ numberOfPages, current, onPageSelect }: Props): Rea
       </View>
     </View>
   );
-}
+} // TODO add pagination functionality, when number of pages is more than 5.
 
 const style = createStyles({
   container: {

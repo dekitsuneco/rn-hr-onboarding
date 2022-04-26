@@ -8,12 +8,12 @@ export type LabelTheme = 'progress' | 'danger' | 'success' | 'neutral';
 interface Props {
   label: string;
   style?: StyleProp<ViewStyle>;
-  status: LabelTheme;
+  theme: LabelTheme;
 }
 
-export function Label({ label, status, style: elementStyle }: Props): ReactElement {
+export function Label({ label, theme, style: elementStyle }: Props): ReactElement {
   return (
-    <View style={[style.container, style[status], elementStyle]}>
+    <View style={[style.container, style[theme], elementStyle]}>
       <AppText>{label}</AppText>
     </View>
   );

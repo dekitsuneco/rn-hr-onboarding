@@ -4,6 +4,7 @@ export class Employee {
   public position: string;
   public phoneNumber: string;
   public email: string;
+  public role?: string;
   public labels: Array<string>;
   public progress: number;
   public avatar: string;
