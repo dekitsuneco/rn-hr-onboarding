@@ -13,7 +13,7 @@ export function UploadImage({ imageStyle, buttonText }: Props): ReactElement {
   return (
     <View style={style.container}>
       <View style={[style.imageContainer, imageStyle]}>
-        <Icon name='uploadImage' />
+        <Icon name='uploadImage' stroke={variables.color.textTertiary} />
       </View>
       <AppButton
         theme='secondary'

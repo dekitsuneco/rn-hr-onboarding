@@ -8,11 +8,9 @@ export class Employee {
   public position: string;
   public starts_on: string; //TODO replace with the Date type
   public role: string; //TODO replace with the appropriate type
-  public team: {
-    hr: string;
-    manager: string;
-    lead: string;
-  }; //TODO replace with the appropriate type
+  public hr: string; //TODO replace with the appropriate type
+  public manager: string; //TODO replace with the appropriate type
+  public lead: string; //TODO replace with the appropriate type
 
   public onboarding_isRequired: boolean;
   public onboardingScripts: Array<string>; //TODO replace with the appropriate type

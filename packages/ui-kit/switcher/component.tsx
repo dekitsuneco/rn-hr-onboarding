@@ -35,36 +35,29 @@ export function Switcher({ items, onItemSelect, current, containerStyle, wrapper
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
-      style={[style.container, containerStyle]}>
+      style={containerStyle}>
       <View style={[style.wrapper, wrapperStyle]}>{items.map((item) => renderedItem({ item }))}</View>
     </ScrollView>
   );
 }
 
 const style = createStyles({
-  container: {
-    maxHeight: 42
-  },
   wrapper: {
     borderRadius: 10,
     backgroundColor: variables.color.backgroundSecondary,
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 12,
+    paddingHorizontal: 4,
     height: 42,
     overflow: 'hidden'
   },
   item: {
-    marginHorizontal: 18,
-    paddingVertical: 5
+    paddingHorizontal: 16,
+    paddingVertical: 6,
+    borderRadius: 6
   },
   itemActive: {
-    justifyContent: 'center',
     backgroundColor: variables.color.white,
-    height: 34,
-    paddingHorizontal: 23,
-    borderRadius: 6,
-    marginHorizontal: -8,
     shadowColor: variables.color.boxShadow,
     shadowOffset: {
       width: 0,
@@ -73,16 +66,5 @@ const style = createStyles({
     shadowOpacity: 0.25,
     shadowRadius: 20,
     elevation: 20
-  },
-  '@media (min-width: 768)': {
-    item: {
-      marginHorizontal: 21
-    },
-    itemActive: {
-      marginHorizontal: 5
-    },
-    container: {
-      paddingHorizontal: 0
-    }
   }
 });

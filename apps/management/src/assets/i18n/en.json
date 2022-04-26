@@ -39,8 +39,24 @@
         "SUBTITLE_PROFILE_IMAGE": "Profile Image",
         "SUBTITLE_EMPLOYEE_DETAILS": "Employee Details",
         "SUBTITLE_ROLE": "Role",
-        "SUBTITLE_ONBOARDING": "Onboarding"
+        "SUBTITLE_TEAM": "Team",
+        "SUBTITLE_ONBOARDING": "Onboarding",
+        "SUBTITLE_ONBOARDING_SCRIPTS": "Onboarding scripts",
+        "TEXT_ONBOARDING_REQUIRED": "Onboarding required",
+        "BUTTON_ADD_EMPLOYEE": "Add Employee"
+      },
+      "EMPLOYEES_LIST": {
+        "INPUT_SEARCH_PLACEHOLDER": "Search employees",
+        "BUTTON_SHOW_MORE": "Show More",
+        "TEXT_EDIT": "Edit",
+        "TEXT_DELETE": "Delete",
+        "TEXT_VIEW_ANSWERS": "View answers"
       }
+    }
+  },
+  "SHARED": {
+    "PAGINATION": {
+      "BUTTON_NEXT": "Next"
     }
   }
 }

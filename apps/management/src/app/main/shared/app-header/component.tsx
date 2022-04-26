@@ -40,7 +40,7 @@ export function AppHeader({
     typeof titleContent === 'string' ? <AppText theme={TextTheme.LARGEST}>{titleContent}</AppText> : titleContent;
 
   return (
-    <View style={style.container}>
+    <View style={[commonStyle.wrapper, style.container]}>
       <View style={[commonStyle.flexCenter, style.navbarContainer]}>
         <View style={[style.navbar]}>{navBtn}</View>
         <View style={style.title}>{title}</View>
@@ -55,10 +55,7 @@ const style = createStyles({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginHorizontal: 80,
     paddingVertical: 10,
-    maxHeight: 130,
-    height: 100,
     borderBottomWidth: 1,
     borderBottomColor: variables.color.borderColorSecondary
   },
@@ -77,7 +74,6 @@ const style = createStyles({
   [`@media (max-width: ${variables.breakpoints.tablet})`]: {
     container: {
       maxHeight: 60,
-      paddingHorizontal: 16,
       paddingVertical: 8,
       marginHorizontal: 0
     },

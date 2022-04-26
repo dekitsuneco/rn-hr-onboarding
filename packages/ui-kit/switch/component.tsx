@@ -4,12 +4,13 @@ import { variables } from '../styles';
 
 interface Props {
   value: boolean;
-  onValueChange: () => void;
+  onValueChange?: () => void; //TODO temporary optional to disable errors
 }
 
 export function AppSwitch({ value, onValueChange }: Props): ReactElement {
   return (
     <Switch
+      style={{ marginRight: 16 }}
       value={value}
       onValueChange={onValueChange}
       trackColor={{

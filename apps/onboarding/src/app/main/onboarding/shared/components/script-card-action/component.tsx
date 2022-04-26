@@ -44,7 +44,7 @@ const style = createStyles({
   iconDone: {
     width: 40,
     height: 40,
-    backgroundColor: variables.color.lightGreen,
+    backgroundColor: variables.color.statusSuccess + '1A',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 20

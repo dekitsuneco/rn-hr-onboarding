@@ -2,6 +2,7 @@ import { registerRootComponent } from 'expo';
 import React, { ReactElement } from 'react';
 import { App } from './app';
 import { useFonts } from 'expo-font';
+import { MenuProvider } from 'react-native-popup-menu';
 import { initStore } from '@store/store';
 import { Provider } from 'react-redux';
 import { appConfig, appEnv } from './constants';
@@ -28,9 +29,11 @@ export default function Root(): ReactElement {
   }
 
   return (
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <MenuProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </MenuProvider>
   );
 }
 
