@@ -36,6 +36,7 @@
       },
       "NEW_EMPLOYEE": {
         "INPUT_SEARCH_PLACEHOLDER": "Search employees",
+        "BUTTON_UPLOAD_IMAGE": "Upload profile image",
         "SUBTITLE_PROFILE_IMAGE": "Profile Image",
         "SUBTITLE_EMPLOYEE_DETAILS": "Employee Details",
         "SUBTITLE_ROLE": "Role",

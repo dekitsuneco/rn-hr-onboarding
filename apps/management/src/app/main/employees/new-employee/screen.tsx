@@ -14,21 +14,24 @@ import { InputType } from 'ui-kit/text-input';
 
 export function NewEmployeeScreen(): ReactElement {
   const translate = useTranslation('MAIN.EMPLOYEES.NEW_EMPLOYEE');
+
   const handleSubmitFrom = (values: EmployeeForm): void => {
     console.log(values);
-  };
+  }; //TODO temporary function to log the form
 
   const formik = useFormik({
     initialValues: new EmployeeForm(),
     onSubmit: handleSubmitFrom
   });
 
+  const { handleSubmit } = formik;
+
   return (
     <ScrollView style={[commonStyle.wrapper, style.container]} showsVerticalScrollIndicator={false}>
       <View style={style.form}>
         <View style={style.column}>
           <AppText style={style.fromSubtitle}>{translate('SUBTITLE_PROFILE_IMAGE').toLocaleUpperCase()}</AppText>
-          <UploadImage buttonText='Upload profile image' />
+          <UploadImage buttonText={translate('BUTTON_UPLOAD_IMAGE')} />
           <AppText style={style.fromSubtitle}>{translate('SUBTITLE_EMPLOYEE_DETAILS').toLocaleUpperCase()}</AppText>
           {employeeDetailsInputs.map(({ name, placeholder }) => (
             <InputFormGroup
@@ -79,7 +82,9 @@ export function NewEmployeeScreen(): ReactElement {
         </View>
       </View>
       <View style={style.buttons}>
-        <AppButton style={style.button}>{translate('BUTTON_ADD_EMPLOYEE')}</AppButton>
+        <AppButton style={style.button} onPress={() => handleSubmit()}>
+          {translate('BUTTON_ADD_EMPLOYEE')}
+        </AppButton>
       </View>
     </ScrollView>
   );
