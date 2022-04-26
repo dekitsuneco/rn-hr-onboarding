@@ -9,7 +9,7 @@ import { variables } from 'ui-kit/styles';
 import { useTranslation } from 'utils/i18n';
 
 export function ScriptsListHeader(props: AppHeaderProps): JSX.Element {
-  const { isDesktop } = useScreenDimensions();
+  const { isDesktop, isTablet } = useScreenDimensions();
   const translate = useTranslation('MAIN.SCRIPTS.HEADER');
 
   return (
@@ -17,6 +17,7 @@ export function ScriptsListHeader(props: AppHeaderProps): JSX.Element {
       rightContent={
         <View>
           <AppButton
+            isTextHidden={!isTablet}
             leftIcon={<Icon name='plus' stroke={variables.color.background} />}
             title={translate('BUTTON_ADD_SCRIPT')}
             onPress={() => appNavigationService.navigate('NewScript')}

@@ -1,18 +1,17 @@
-import React, { ReactElement } from 'react';
-import { FlatList, View } from 'react-native';
+import React, { ReactElement, useMemo } from 'react';
+import { View } from 'react-native';
 import { Script } from 'features/data';
 import { ScriptCard } from 'ui-kit/script-card';
 import { useTranslation } from 'utils/i18n';
 import { variables, commonStyle } from '@styles';
 import { AnyStyle, createStyles } from 'ui-kit/styles';
-import { useScreenDimensions } from 'modules/use-screen-dimensions';
-import { AppButton } from 'ui-kit/button';
 import { Icon } from 'ui-kit/icon';
 import { Card } from 'ui-kit/card';
 import { AppText, TextTheme } from 'ui-kit/text';
 import { appNavigationService } from 'features/navigation';
-import { Dropdown } from 'ui-kit/dropdown';
 import { scriptsFacade } from './facade';
+import { ScrollView } from 'react-native-gesture-handler';
+import { ScriptsActionsMenu } from '../shared/components/scripts-actions-menu';
 
 const fakeScriptData: Array<Script> = [
   {
@@ -89,28 +88,29 @@ const fakeScriptData: Array<Script> = [
 
 export function ScriptsListScreen(): ReactElement {
   const translate = useTranslation('MAIN.SCRIPTS.SCRIPTS_LIST');
-  const { isTablet, isDesktop } = useScreenDimensions();
 
-  const addScript = (
-    <Card
-      style={[commonStyle.flexCenter, style.addScript, style.card]}
-      onPress={() => appNavigationService.navigate('NewScript')}>
-      <View style={style.addScriptContainer}>
-        <Icon name='plus' stroke={variables.color.primary} />
-        <AppText
-          style={style.addScriptText}
-          isBold
-          theme={TextTheme.MEDIUM}>
-          {translate('CARD_TITLE_ADD_SCRIPT')}
-        </AppText>
-      </View>
-    </Card>
+  const renderedAddScriptCard = useMemo(
+    () => (
+      <Card
+        style={[commonStyle.flexCenter, style.addScript, style.card]}
+        onPress={() => appNavigationService.navigate('NewScript')}>
+        <View style={style.addScriptContainer}>
+          <Icon name='plus' stroke={variables.color.primary} />
+          <AppText
+            style={style.addScriptText}
+            isBold
+            theme={TextTheme.MEDIUM}>
+            {translate('CARD_TITLE_ADD_SCRIPT')}
+          </AppText>
+        </View>
+      </Card>
+    ),
+    []
   );
 
   const contentRight = (
-    <Dropdown
-      alignTo='right'
-      optionsProps={[
+    <ScriptsActionsMenu
+      optionProps={[
         {
           title: translate('BUTTON_DROPDOWN_EDIT'),
           icon: <Icon name='edit' />,
@@ -122,68 +122,48 @@ export function ScriptsListScreen(): ReactElement {
           onSelect: scriptsFacade.deleteScript
         }
       ]}
-      renderTrigger={(props) => (
-        <View>
-          <AppButton
-            style={{ paddingVertical: 12, paddingHorizontal: 12 }}
-            theme='secondary'
-            leftIcon={<Icon name='moreSquare' stroke={variables.color.primary} />}
-            {...props}
-          />
-        </View>
-      )}
     />
   );
 
   return (
-    <View
-      style={[
-        style.wrapper,
-        fakeScriptData.length === 0 && commonStyle.mb0,
-        (fakeScriptData.length === 0 || !isTablet) && commonStyle.mr0
-      ]}>
-      <FlatList
-        contentContainerStyle={[commonStyle.wrapper, style.listContainer]}
-        horizontal={false}
-        numColumns={isDesktop ? 3 : isTablet ? 2 : 1}
-        data={[{} as Script, ...fakeScriptData]}
-        keyExtractor={(item) => item?.id || '-1'}
-        renderItem={({ item, item: { tasksTotal }, index }) => (
-          <View style={style.cardContainer}>
-            {index === 0 ? (
-              addScript
-            ) : (
-              <ScriptCard
-                style={style.card}
-                imageURL={item.logo}
-                contentRight={contentRight}
-                title={item.title}
-                subtitle={translate('TEXT_SUBTITLE', { tasksTotal })}
-                isDraggable={true}
-              />
-            )}
+    <View style={[style.wrapper, fakeScriptData.length !== 0 && style.clearMargin]}>
+      <ScrollView contentContainerStyle={[commonStyle.wrapper, style.listContainer]}>
+        <View style={style.cardContainer}>{renderedAddScriptCard}</View>
+        {fakeScriptData.map((item) => (
+          <View style={style.cardContainer} key={item.id}>
+            <ScriptCard
+              style={style.card}
+              imageURL={item.logo}
+              contentRight={contentRight}
+              title={item.title}
+              subtitle={translate('TEXT_SUBTITLE', { tasksTotal: item.tasksTotal })}
+              isDraggable={true}
+            />
           </View>
-        )}
-      />
+        ))}
+      </ScrollView>
     </View>
   );
 }
 
 const style = createStyles({
   wrapper: {
-    alignItems: 'center',
-    marginBottom: -16,
-    marginRight: -16
+    alignItems: 'center'
   },
   listContainer: {
-    paddingVertical: 40
+    paddingVertical: 16,
+    flexDirection: 'row',
+    flexWrap: 'wrap'
+  },
+  clearMargin: {
+    margin: -8
   },
   cardContainer: {
-    width: 325,
-    marginRight: 16,
-    marginBottom: 16
+    flexBasis: '100%',
+    maxWidth: '100%'
   },
   card: {
+    margin: 8,
     height: 295
   },
   addScript: {
@@ -203,15 +183,22 @@ const style = createStyles({
     color: variables.color.primary,
     marginLeft: 12
   },
-  [`@media (max-width: ${variables.breakpoints.tablet})`]: {
+  [`@media (min-width: ${variables.breakpoints.tablet})`]: {
     wrapper: {
       alignItems: 'stretch'
     },
     listContainer: {
-      paddingVertical: 16
+      paddingVertical: 40
     },
     cardContainer: {
-      width: '100%'
+      flexBasis: '50%',
+      maxWidth: '50%'
+    }
+  } as AnyStyle,
+  [`@media (min-width: ${variables.breakpoints.desktop})`]: {
+    cardContainer: {
+      flexBasis: '33%',
+      maxWidth: '33%'
     }
   } as AnyStyle
 });
