@@ -7,7 +7,6 @@ export const variables = {
     danger: '#E71D32',
     black: '#000000',
     green: '#5DCE41',
-    lightGreen: '#EEfEE9',
     white: '#FFFFFF',
     gray: '#C4C9CE',
     primary: '#26a0f8',

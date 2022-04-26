@@ -6,12 +6,12 @@ export const commonStyle = createStyles({
     paddingHorizontal: '1.5rem'
   },
   '@media (min-width: 768)': {
-    screen: {
+    wrapper: {
       paddingHorizontal: '2.5rem'
     }
   },
   '@media (min-width: 1280)': {
-    screen: {
+    wrapper: {
       paddingHorizontal: '5rem'
     }
   }

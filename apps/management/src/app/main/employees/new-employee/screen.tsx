@@ -40,12 +40,9 @@ export function NewEmployeeScreen(): ReactElement {
     <View style={style.container}>
       <SearchInput controlStyle={{ marginBottom: 10 }} placeholder={translate('INPUT_SEARCH_PLACEHOLDER')} />
       <Switcher
-        containerStyle={{ marginHorizontal: -16 }}
-        wrapperStyle={{ marginHorizontal: 16 }}
         items={switcherItems}
         current={current}
-        onItemSelect={handlePress}
-      />
+        onItemSelect={handlePress} />
     </View>
   );
 }
