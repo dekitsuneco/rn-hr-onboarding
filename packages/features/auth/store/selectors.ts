@@ -24,4 +24,9 @@ export class AuthSelectors {
     selectFeature,
     (state) => state.isAuthorizing
   );
+
+  public static errorMessage = createSelector(
+    selectFeature,
+    (state) => state.errorMessage
+  );
 }
