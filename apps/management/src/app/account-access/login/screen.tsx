@@ -7,7 +7,7 @@ import { AccountAccessLayout } from '../shared/account-access-layout';
 import { loginScreenFacade } from './facade';
 
 export function LoginScreen(): ReactElement {
-  const { isSubmitting } = loginScreenFacade;
+  const { isSubmitting, errorMessage } = loginScreenFacade;
 
   const handleSignInPress = (values: LoginForm): void => {
     loginScreenFacade.authorize(values);
@@ -25,6 +25,7 @@ export function LoginScreen(): ReactElement {
           onSubmit={handleSignInPress}
           onForgotPassword={handleForgotPasswordPress}
           isSubmitting={isSubmitting}
+          errorMessage={errorMessage}
         />
       </AppKeyboardAvoidingView>
     </AccountAccessLayout>
