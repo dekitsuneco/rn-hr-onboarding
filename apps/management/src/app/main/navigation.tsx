@@ -4,7 +4,7 @@ import React, { ReactElement } from 'react';
 import { useTranslation } from 'utils/i18n';
 import { DashboardScreen } from './dashboard/screen';
 import { EmployeesNavigation } from './employees/navigation';
-import { ScriptsScreen } from './scripts/screen';
+import { ScriptsNavigation } from './scripts/navigation';
 import { SettingsScreen } from './settings/screen';
 import { AppHeader } from './shared/app-header';
 import { CustomDrawerPanel } from './shared/components';
@@ -41,8 +41,8 @@ export function MainNavigation(): ReactElement {
         component={EmployeesNavigation} />
       <Drawer.Screen
         name='Scripts'
-        options={{ title: translate('SCREEN_TITLE_SCRIPTS') }}
-        component={ScriptsScreen} />
+        options={{ headerShown: false }}
+        component={ScriptsNavigation} />
       <Drawer.Screen
         name='Settings'
         options={{ title: translate('SCREEN_TITLE_SETTINGS') }}
