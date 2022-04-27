@@ -33,8 +33,9 @@ const style = createStyles({
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
-    width: 300,
+    aspectRatio: 1,
     height: 300,
-    marginBottom: 16
+    marginBottom: 16,
+    maxWidth: '100%'
   }
 });

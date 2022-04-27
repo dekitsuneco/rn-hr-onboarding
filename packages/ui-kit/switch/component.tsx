@@ -1,16 +1,11 @@
 import React, { ReactElement } from 'react';
-import { Switch } from 'react-native';
+import { Switch, SwitchProps } from 'react-native';
 import { variables } from '../styles';
 
-interface Props {
-  value: boolean;
-  onValueChange?: () => void; //TODO temporary optional to disable errors
-}
-
-export function AppSwitch({ value, onValueChange }: Props): ReactElement {
+export function AppSwitch({ value, onValueChange, style }: SwitchProps): ReactElement {
   return (
     <Switch
-      style={{ marginRight: 16 }}
+      style={style}
       value={value}
       onValueChange={onValueChange}
       trackColor={{

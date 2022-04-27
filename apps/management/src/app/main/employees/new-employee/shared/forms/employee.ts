@@ -1,8 +1,20 @@
-import { Employee } from 'features/data';
+export class EmployeeForm {
+  public profile_image: string;
+  public first_name: string;
+  public last_name: string;
+  public date_of_birth: string;
+  public email: string;
+  public phone_number: string;
+  public position: string;
+  public starts_on: string;
+  public role: string;
+  public hr: string;
+  public manager: string;
+  public lead: string;
+  public onboarding_isRequired: boolean;
+  public onboarding_scripts: Array<string>;
 
-export class EmployeeForm extends Employee {
   constructor() {
-    super();
     this.profile_image = '';
     this.first_name = '';
     this.last_name = '';
@@ -16,9 +28,9 @@ export class EmployeeForm extends Employee {
     this.manager = '';
     this.lead = '';
     this.onboarding_isRequired = false;
-    this.onboardingScripts = [];
+    this.onboarding_scripts = [];
   }
-}
+} // TODO temporary form, change it later
 
 type FormInputs = Array<{ placeholder: string; name: keyof EmployeeForm }>;
 
