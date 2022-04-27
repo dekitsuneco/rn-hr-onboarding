@@ -19,6 +19,10 @@ class LoginFacade {
   public get isSubmitting(): boolean {
     return useSelector(AuthSelectors.isAuthorizing);
   }
+
+  public get errorMessage(): string {
+    return useSelector(AuthSelectors.errorMessage);
+  }
 }
 
 export const loginFacade = new LoginFacade();
