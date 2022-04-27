@@ -6,20 +6,23 @@ import { AppButton } from 'ui-kit/button';
 import { createStyles, variables } from 'ui-kit/styles';
 import { useFormik } from 'formik';
 import { LoginForm } from './forms/login';
+import { AppText, TextTheme } from 'ui-kit/text';
 
 //TODO Replace hard-coded 'name' and 'placeholder' properties with translations from i18n
 export interface LoginGroupProps {
-  style?: StyleProp<ViewStyle>;
   onSubmit: (values: LoginForm) => void;
   onForgotPassword: () => void;
+  style?: StyleProp<ViewStyle>;
   isSubmitting?: boolean;
+  errorMessage?: string;
 }
 
 export function LoginGroup({
-  style: formStyle = {},
   onSubmit,
   onForgotPassword,
-  isSubmitting
+  style: formStyle = {},
+  isSubmitting,
+  errorMessage
 }: LoginGroupProps): ReactElement {
   const formik = useFormik({
     initialValues: new LoginForm(),
@@ -48,6 +51,13 @@ export function LoginGroup({
           formik={formik}
           name={'password' as keyof LoginForm}
         />
+        {!!errorMessage && (
+          <View>
+            <AppText theme={TextTheme.SMALLEST} style={style.errorMessage}>
+              {errorMessage}
+            </AppText>
+          </View>
+        )}
         <AppButton
           style={style.control}
           title={'Sign In'}
@@ -81,6 +91,12 @@ const style = createStyles({
   },
   control: {
     minWidth: '100%'
+  },
+  errorMessage: {
+    marginBottom: '0.25rem',
+    textAlign: 'center',
+    letterSpacing: -0.62,
+    color: variables.color.statusDanger
   },
   '@media (max-width: 768)': {
     middle: {
