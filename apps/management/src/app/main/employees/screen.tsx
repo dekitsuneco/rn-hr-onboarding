@@ -1,9 +1,10 @@
 import { commonStyle, createStyles, variables } from '@styles';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { FlatList } from 'react-native';
 import { Employee } from './shared/models/employee';
 import { EmployeeItem, EmployeeListFlatListFooter, EmployeeListFlatListHeader } from './shared/components';
 import { AnyStyle } from 'ui-kit/styles';
+import { employeesScreenFacade } from './facade';
 
 const employees: Array<Employee> = [
   {
@@ -81,6 +82,12 @@ const employees: Array<Employee> = [
 ];
 
 export function EmployeesListScreen(): ReactElement {
+  const { items } = employeesScreenFacade;
+
+  useEffect(() => {
+    employeesScreenFacade.loadItems();
+  }, []);
+
   return (
     <FlatList
       showsVerticalScrollIndicator={false}
