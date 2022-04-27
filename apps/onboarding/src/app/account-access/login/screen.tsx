@@ -7,7 +7,7 @@ import { AppKeyboardAvoidingView } from 'ui-kit/keyboard-avoiding-view';
 import { loginFacade } from './facade';
 
 export function LoginScreen(): JSX.Element {
-  const { isSubmitting } = loginFacade;
+  const { isSubmitting, errorMessage } = loginFacade;
 
   useEffect(() => {
     loginFacade.init();
@@ -40,6 +40,7 @@ export function LoginScreen(): JSX.Element {
                 onSubmit={handleLoginBtn}
                 onForgotPassword={handleForgotPasswordBtn}
                 isSubmitting={isSubmitting}
+                errorMessage={errorMessage}
               />
             </View>
           </View>

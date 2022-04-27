@@ -53,6 +53,21 @@
         "TEXT_DELETE": "Delete",
         "TEXT_VIEW_ANSWERS": "View answers"
       }
+    },
+    "SCRIPTS": {
+      "HEADER": {
+        "BUTTON_ADD_SCRIPT": "Add Script"
+      },
+      "SCRIPTS_LIST": {
+        "CARD_TITLE_ADD_SCRIPT": "Add Script",
+        "TEXT_SUBTITLE": "{{tasksTotal}} tasks",
+        "BUTTON_DROPDOWN_EDIT": "Edit",
+        "BUTTON_DROPDOWN_DELETE": "Delete"
+      },
+      "NAVIGATION": {
+        "SCREEN_TITLE_SCRIPTS": "Scripts",
+        "SCREEN_TITLE_NEW": "New Script"
+      }
     }
   },
   "SHARED": {
