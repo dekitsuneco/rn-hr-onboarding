@@ -35,7 +35,16 @@
         "SCREEN_TITLE_NEW": "New"
       },
       "NEW_EMPLOYEE": {
-        "INPUT_SEARCH_PLACEHOLDER": "Search employees"
+        "INPUT_SEARCH_PLACEHOLDER": "Search employees",
+        "BUTTON_UPLOAD_IMAGE": "Upload profile image",
+        "TEXT_SUBTITLE_PROFILE_IMAGE": "Profile Image",
+        "TEXT_SUBTITLE_EMPLOYEE_DETAILS": "Employee Details",
+        "TEXT_SUBTITLE_ROLE": "Role",
+        "TEXT_SUBTITLE_TEAM": "Team",
+        "TEXT_SUBTITLE_ONBOARDING": "Onboarding",
+        "TEXT_SUBTITLE_ONBOARDING_SCRIPTS": "Onboarding scripts",
+        "TEXT_ONBOARDING_REQUIRED": "Onboarding required",
+        "BUTTON_ADD_EMPLOYEE": "Add Employee"
       },
       "EMPLOYEES_LIST": {
         "INPUT_SEARCH_PLACEHOLDER": "Search employees",

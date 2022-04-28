@@ -10,7 +10,7 @@ import { variables } from '@styles';
 import { Dropdown } from 'ui-kit/dropdown';
 import { AppButton } from 'ui-kit/button';
 import { Icon } from 'ui-kit/icon';
-import { UserStatusLabel } from '../index';
+import { UserStatusLabel } from '../user-status-label';
 import { Label } from '@shared/label';
 import { useTranslation } from 'utils/i18n';
 
