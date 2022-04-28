@@ -14,7 +14,7 @@ const defaultExpoConfig: ExpoConfig = {
   scheme: 'hr-management-dev',
   owner: 'ronas_it',
   entryPoint: 'index.js',
-  version: '0.1.0',
+  version: '0.3.0',
   orientation: 'default',
   backgroundColor: '#FFFFFF',
   userInterfaceStyle: 'light',
@@ -26,7 +26,7 @@ const defaultExpoConfig: ExpoConfig = {
   },
   assetBundlePatterns: ['./src/assets/images/*', './src/assets/fonts/*', './src/assets/i18n/*'],
   ios: {
-    buildNumber: '1',
+    buildNumber: '3',
     supportsTablet: true,
     bundleIdentifier: 'com.ronasit.hr-onboarding.manager.dev',
     config: {
@@ -34,7 +34,7 @@ const defaultExpoConfig: ExpoConfig = {
     }
   },
   android: {
-    versionCode: 1,
+    versionCode: 3,
     package: 'com.ronasit.hr_onboarding.manager.dev',
     permissions: []
   },
