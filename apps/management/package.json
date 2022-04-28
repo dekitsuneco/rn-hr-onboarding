@@ -17,7 +17,7 @@
     "start:prod": "cross-env APP_ENV=production expo start",
     "prebuild": "npm run compile",
     "build:android:dev": "npm run prebuild && eas build -p android --profile=development --no-wait",
-    "build:ios:dev": "npm run prebuild && eas build -p ios --profile=development --no-wait --skip-credentials-check",
+    "build:ios:dev": "npm run prebuild && eas build -p ios --profile=development --no-wait --non-interactive",
     "build:dev": "npm run build:ios:dev && npm run build:android:dev",
     "build:android:prod": "npm run prebuild && eas build -p android --profile=production --no-wait",
     "build:ios:prod": "npm run prebuild && eas build -p ios --profile=production --no-wait",
