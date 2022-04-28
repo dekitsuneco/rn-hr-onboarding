@@ -26,14 +26,18 @@ export function AppHeader({
   const navBtn =
     !isDrawerToggleHidden && 'toggleDrawer' in navigation ? (
       <AppButton
+        isTextHidden={true}
         leftIcon={<Icon name='menu' />}
         theme='tertiary'
-        onPress={() => navigation.toggleDrawer()} />
+        onPress={() => navigation.toggleDrawer()}
+      />
     ) : navigation.canGoBack() ? (
       <AppButton
+        isTextHidden={true}
         leftIcon={<Icon name='arrowLeft' />}
         theme='tertiary'
-        onPress={() => navigation.goBack()} />
+        onPress={() => navigation.goBack()}
+      />
     ) : null;
 
   const title =
@@ -56,7 +60,9 @@ const style = createStyles({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 10,
+    maxHeight: 100,
     borderBottomWidth: 1,
+    backgroundColor: variables.color.background,
     borderBottomColor: variables.color.borderColorSecondary
   },
   navbarContainer: {
@@ -66,10 +72,6 @@ const style = createStyles({
   },
   actionsContainer: {
     flexDirection: 'row'
-  },
-  subtitle: {
-    color: variables.color.textTertiary,
-    margin: 22
   },
   [`@media (max-width: ${variables.breakpoints.tablet})`]: {
     container: {
