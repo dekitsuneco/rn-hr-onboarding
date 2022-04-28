@@ -118,8 +118,7 @@ const style = createStyles({
       maxWidth: '33%'
     },
     form: {
-      flexDirection: 'row',
-      justifyContent: 'space-between'
+      flexDirection: 'row'
     },
     buttonContainer: {
       maxWidth: '33%',
