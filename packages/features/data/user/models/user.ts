@@ -14,6 +14,8 @@ export class User extends BaseEntity<number> {
   @Expose({ name: 'role_id' })
   public roleID: UserRoleID;
 
+  public email: string;
+
   @Expose({ name: 'email_verified_at' })
   @Type(() => DateTime)
   @TransformDate()

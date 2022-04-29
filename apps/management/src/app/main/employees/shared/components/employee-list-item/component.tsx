@@ -4,7 +4,6 @@ import { Avatar } from 'ui-kit/avatar';
 import { AvatarTheme } from 'ui-kit/avatar/enums';
 import { AnyStyle, createStyles } from 'ui-kit/styles';
 import { AppText } from 'ui-kit/text';
-import { Employee } from '../../models/employee';
 import { ProgressBar } from 'ui-kit/progress-bar';
 import { variables } from '@styles';
 import { Dropdown } from 'ui-kit/dropdown';
@@ -13,27 +12,34 @@ import { Icon } from 'ui-kit/icon';
 import { UserStatusLabel } from '../index';
 import { Label } from '@shared/label';
 import { useTranslation } from 'utils/i18n';
+import { User } from 'features/data';
 
 interface Props {
-  item: Employee;
+  item: User;
 }
+
+//Temporary avatar uri and labels
+const avatarUri = 'https://cs.kiozk.ru/assets/c15/5wn/kfh/di1pw2qbavxrxzvviera8ug/art/64354/logo-800-520.jpg?v=1';
+const labels = ['Onboarding'];
 
 export function EmployeeItem({ item }: Props): ReactElement {
   const translate = useTranslation('MAIN.EMPLOYEES.EMPLOYEES_LIST');
-  const { avatar, name, phoneNumber, position, progress, email, labels, role } = item;
+  const { firstName, lastName, email, roleID } = item;
 
   return (
     <View style={style.container}>
       <View style={style.avatar}>
-        <Avatar theme={AvatarTheme.SMALL} uri={avatar} />
+        <Avatar theme={AvatarTheme.SMALL} uri={avatarUri} />
       </View>
       <View style={style.info}>
         <View style={style.infoItem}>
-          <AppText>{name}</AppText>
-          <AppText style={style.positionText}>{position}</AppText>
+          <AppText>
+            {firstName} {lastName}
+          </AppText>
+          <AppText style={style.positionText}>iOS Developer</AppText>
         </View>
         <View style={style.infoItem}>
-          <AppText>{phoneNumber}</AppText>
+          <AppText>+1 294 3947294</AppText>
           <AppText>{email}</AppText>
         </View>
         <View style={[style.labelsContainer, style.infoItem]}>
@@ -43,13 +49,13 @@ export function EmployeeItem({ item }: Props): ReactElement {
               label={label}
               style={style.label} />
           ))}
-          {role && <Label
+          {roleID && <Label
             theme='neutral'
-            label={role}
+            label='Admin'
             style={style.label} />}
         </View>
         <View style={style.infoItem}>
-          <ProgressBar value={progress} style={style.progress} />
+          <ProgressBar value={35} style={style.progress} />
         </View>
       </View>
       <Dropdown
