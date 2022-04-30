@@ -6,7 +6,7 @@ type AppEnv = 'development' | 'production';
 
 export const appEnvConfig = {
   env: 'development' as AppEnv,
-  appName: 'hr_onboarding'
+  appName: 'hr_management'
 };
 
 const defaultExpoConfig: ExpoConfig = {
