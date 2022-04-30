@@ -5,7 +5,8 @@ import { PartialDeep } from 'type-fest';
 type AppEnv = 'development' | 'production';
 
 export const appEnvConfig = {
-  env: 'development' as AppEnv
+  env: 'development' as AppEnv,
+  appName: 'hr_onboarding'
 };
 
 const defaultExpoConfig: ExpoConfig = {
