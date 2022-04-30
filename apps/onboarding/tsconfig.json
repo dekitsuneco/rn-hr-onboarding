@@ -2,6 +2,9 @@
   "compilerOptions": {
     "baseUrl": "./",
     "paths": {
+      "react": [
+        "./node_modules/@types/react"
+      ],
       "@store": [
         "src/app/shared/store"
       ],

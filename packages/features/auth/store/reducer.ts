@@ -19,7 +19,8 @@ export const authReducer = createReducer(initialState, (handleAction) => [
   })),
   handleAction(AuthActions.authorize, (state) => ({
     ...state,
-    isAuthorizing: true
+    isAuthorizing: true,
+    errorMessage: null
   })),
   handleAction(AuthActions.authorizeSuccess, (state) => ({
     ...state,

@@ -5,7 +5,7 @@ const defaultAppsConfig = {
   production: false,
   api: {
     root: 'https://dev.api.hr-onboarding.ronasit.com/api',
-    publicEndpoints: ['/login'],
+    publicEndpoints: ['login'],
     refreshTokenEndpoint: '/auth/refresh'
   }
 };
