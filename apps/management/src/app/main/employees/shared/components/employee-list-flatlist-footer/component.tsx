@@ -68,8 +68,7 @@ const style = createStyles({
       alignItems: 'flex-start'
     },
     showMoreButtonContainer: {
-      alignSelf: 'flex-start',
-      marginLeft: 8
+      alignSelf: 'flex-start'
     },
     showMoreButton: {
       paddingHorizontal: 8
