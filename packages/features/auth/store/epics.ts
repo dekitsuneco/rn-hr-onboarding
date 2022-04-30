@@ -1,5 +1,5 @@
 import { ofType } from 'deox';
-import { tokenInterceptor, unauthorizedInterceptor } from 'modules/api/interceptors';
+import { appNameInterceptor, tokenInterceptor, unauthorizedInterceptor } from 'modules/api/interceptors';
 import { AppActions } from 'modules/store';
 import { Epics } from 'modules/store/types';
 import { of, tap } from 'rxjs';
@@ -20,7 +20,10 @@ export const authEpics: Epics = {
       const getToken = (): string => AuthSelectors.token(getState());
 
       apiService.useInterceptors({
-        request: [[tokenInterceptor({ getToken, ignoredEndpoints: commonAppsConfig.api.publicEndpoints })]],
+        request: [
+          [tokenInterceptor({ getToken, ignoredEndpoints: commonAppsConfig.api.publicEndpoints })],
+          [appNameInterceptor()]
+        ],
         response: [
           [
             undefined,
