@@ -1,5 +1,5 @@
 import { commonStyle, variables } from '@styles';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { FlatList } from 'react-native';
 import { createStyles } from '@styles';
 import { OnboardingHeader, ScriptCardItem } from './shared/components';
@@ -80,6 +80,12 @@ const fakeScriptData: Array<Script> = [
 ]; //TODO This is temporary fake data
 
 export function OnboardingScreen(): JSX.Element {
+  const { profile } = onboardingFacade;
+
+  useEffect(() => {
+    console.log(profile);
+  }, [profile]);
+
   return (
     <FlatList
       showsVerticalScrollIndicator={false}
