@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { AppButton } from 'ui-kit/button';
 import { Icon } from 'ui-kit/icon';
 import { createStyles } from 'ui-kit/styles';
-import { PaginationArrow } from './components/pagination-';
+import { PaginationArrow } from './components/pagination-arrow';
 
 interface Props {
   numberOfPages: number;
