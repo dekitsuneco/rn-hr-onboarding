@@ -1,6 +1,9 @@
 import { storeRef } from '@store';
 import { AuthActions } from 'features/auth';
+import { User } from 'features/data';
 import { appNavigationService } from 'features/navigation';
+import { ProfileSelectors } from 'features/profile';
+import { useSelector } from 'react-redux';
 
 class CustomDrawerFacade {
   public navigateToScreen(screen: string): void {
@@ -15,6 +18,10 @@ class CustomDrawerFacade {
 
   public unauthorize(): void {
     storeRef.dispatch(AuthActions.unauthorize({}));
+  }
+
+  public get profile(): User {
+    return useSelector(ProfileSelectors.profile);
   }
 }
 

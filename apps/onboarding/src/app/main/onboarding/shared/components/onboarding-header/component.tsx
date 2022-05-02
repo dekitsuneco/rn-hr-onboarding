@@ -6,9 +6,12 @@ import { createStyles } from '@styles';
 import { AppText, TextTheme } from 'ui-kit/text';
 import { useTranslation } from 'utils/i18n';
 
-export function OnboardingHeader(): ReactElement {
+interface Props {
+  name: string;
+}
+
+export function OnboardingHeader({ name }: Props): ReactElement {
   const translate = useTranslation('MAIN.ONBOARDING');
-  const name = 'Petya'; //TODO this is temporary fake name
 
   return (
     <Fragment>
