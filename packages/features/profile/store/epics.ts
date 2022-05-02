@@ -18,5 +18,10 @@ export const profileEpics: Epics = {
       map((response) => ProfileActions.fetchProfileSuccess(response)),
       catchError((error) => of(ProfileActions.fetchProfileFailure(error)))
     ))
+  ),
+
+  unauthorize: (action$) => action$.pipe(
+    ofType(AuthActions.unauthorize),
+    map(() => ProfileActions.clearProfile())
   )
 };
