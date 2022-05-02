@@ -7,6 +7,7 @@ import { MenuProvider } from 'react-native-popup-menu';
 import { Provider } from 'react-redux';
 import * as Sentry from 'sentry-expo';
 import { appConfig, appEnv } from './constants';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 const store = initStore();
 
@@ -29,11 +30,13 @@ export default function Root(): ReactElement {
   }
 
   return (
-    <MenuProvider>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </MenuProvider>
+    <SafeAreaProvider>
+      <MenuProvider>
+        <Provider store={store}>
+          <App />
+        </Provider>
+      </MenuProvider>
+    </SafeAreaProvider>
   );
 }
 
