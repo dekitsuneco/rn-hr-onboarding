@@ -11,6 +11,12 @@ import { AppButton } from 'ui-kit/button';
 import { AnyStyle } from 'ui-kit/styles';
 import { InputType } from 'ui-kit/text-input';
 import { SwitchFormGroup } from './shared/components';
+import { Select } from '@app/main/shared/components/select/select';
+
+const options = [
+  { id: '1', title: 'Hr' },
+  { id: '2', title: 'Admin' }
+];
 
 export function NewEmployeeScreen(): ReactElement {
   const translate = useTranslation('MAIN.EMPLOYEES.NEW_EMPLOYEE');
@@ -45,13 +51,12 @@ export function NewEmployeeScreen(): ReactElement {
         </View>
         <View style={style.column}>
           <AppText style={style.fromSubtitle}>{translate('TEXT_SUBTITLE_ROLE')}</AppText>
-          <InputFormGroup
+          <Select
             type={InputType.SELECT}
-            containerStyle={style.inputForm}
-            formik={formik}
             placeholder='Role'
+            formik={formik}
             name='role'
-          />
+            options={options} />
           <AppText style={style.fromSubtitle}>{translate('TEXT_SUBTITLE_TEAM')}</AppText>
           {teamInputs.map(({ name, placeholder }) => (
             <InputFormGroup

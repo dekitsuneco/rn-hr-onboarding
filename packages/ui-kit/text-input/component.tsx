@@ -17,7 +17,7 @@ import { get } from 'lodash';
 
 //TODO Add logic to handle different types of inputs - date, text, password, etc
 
-type FormikInputPropertiesOptional = 'handleBlur' | 'handleChange' | 'errors' | 'values' | 'touched';
+type FormikInputPropertiesOptional = 'handleBlur' | 'handleChange' | 'errors' | 'values' | 'touched' | 'setFieldValue';
 type InputProps = TextInputProps & Partial<Pick<FormikProps<FormikValues>, FormikInputPropertiesOptional>>;
 
 type IconType = 'leading' | 'trailing';
@@ -69,7 +69,7 @@ export function AppTextInput({
         handleBlur(name)(event);
       }
     },
-    editable: !isDisabled,
+    editable: !isDisabled && type !== InputType.SELECT,
     placeholderTextColor:
       isDisabled || isFocused ? stylePlaceholder.focusedOrDisabled.color : stylePlaceholder.default.color,
     style: [styleInput.textInput, elementStyle]
