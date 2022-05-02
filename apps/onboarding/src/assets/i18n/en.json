@@ -18,7 +18,7 @@
     "ONBOARDING": {
       "TEXT_PROGRESS": "Your onboarding progress",
       "TEXT_GREETING": "Hi {{name}}!",
-      "TEXT_TASKS_COMPLETE": "{{completed}} of {{tasksTotal}} tasks complete", 
+      "TEXT_TASKS_COMPLETE": "{{completed}} of {{tasksTotal}} tasks complete",
       "TEXT_TASKS": "{{tasksTotal}} tasks",
       "SCRIPT": {
         "TEXT_TASKS_SECTION": "Tasks in this section"
@@ -27,6 +27,13 @@
         "SCRIPT_CARD_BUTTON": {
           "BUTTON_START": "Start"
         }
+      },
+      "TASK": {
+        "LABEL_ANSWERS": "Your answer",
+        "BUTTON_SUBMIT_ANSWER": "Submit"
+      },
+      "NAVIGATION": {
+        "TITLE_TASK_LIST": "Task {{taskCurrent}} of {{taskTotal}}"
       }
     }
   }

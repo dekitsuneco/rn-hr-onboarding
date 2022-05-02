@@ -3,19 +3,20 @@ import { createStyles } from '@styles';
 import { AppText } from 'ui-kit/text';
 import { Icon } from 'ui-kit/icon';
 import { Card } from 'ui-kit/card';
+import { TouchableOpacityProps } from 'react-native';
 
-interface Props {
+interface Props extends TouchableOpacityProps {
   title: string;
   isCompleted: boolean;
 }
 
-export function TaskItem({ title, isCompleted }: Props): ReactElement {
+export function TaskItem({ title, isCompleted, onPress }: Props): ReactElement {
   const renderedIcon = useMemo(() => {
     return isCompleted ? <Icon name='done' /> : <Icon name='chevronRight' style={style.iconContinue} />;
   }, [isCompleted]);
 
   return (
-    <Card style={style.container}>
+    <Card style={style.container} onPress={onPress}>
       <AppText>{title}</AppText>
       {renderedIcon}
     </Card>

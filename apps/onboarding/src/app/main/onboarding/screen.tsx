@@ -18,17 +18,39 @@ const fakeScriptData: Array<Script> = [
       {
         id: '1',
         title: 'Essentials',
-        isCompleted: true
+        isCompleted: true,
+        answerType: 'radio',
+        answers: []
       },
       {
         id: '12',
         title: 'Video Intro',
-        isCompleted: true
+        isCompleted: true,
+        answerType: 'radio',
+        answers: [
+          {
+            title: 'Slack',
+            isCorrect: false,
+            id: '112'
+          },
+          {
+            title: 'Telegram',
+            isCorrect: true,
+            id: '231'
+          },
+          {
+            title: 'Whatsapp',
+            isCorrect: false,
+            id: '351'
+          }
+        ]
       },
       {
         id: '122',
         title: 'Coding Environment and Software',
-        isCompleted: true
+        isCompleted: true,
+        answerType: 'radio',
+        answers: []
       }
     ]
   },
@@ -43,12 +65,16 @@ const fakeScriptData: Array<Script> = [
       {
         id: '123',
         title: 'IDEs',
-        isCompleted: true
+        isCompleted: true,
+        answerType: 'radio',
+        answers: []
       },
       {
         id: '1234',
         title: 'Video Intro',
-        isCompleted: false
+        isCompleted: false,
+        answerType: 'radio',
+        answers: []
       }
     ]
   },
@@ -63,17 +89,23 @@ const fakeScriptData: Array<Script> = [
       {
         id: '12345',
         title: 'Linters',
-        isCompleted: false
+        isCompleted: false,
+        answerType: 'radio',
+        answers: []
       },
       {
         id: '12356',
         title: 'Debugging Tools',
-        isCompleted: false
+        isCompleted: false,
+        answerType: 'radio',
+        answers: []
       },
       {
         id: '123567',
         title: 'Internal Solutions',
-        isCompleted: false
+        isCompleted: false,
+        answerType: 'radio',
+        answers: []
       }
     ]
   }

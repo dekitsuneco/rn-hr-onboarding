@@ -1,13 +1,15 @@
 import { RouteProp } from '@react-navigation/native';
 import { commonStyle, createStyles, variables } from '@styles';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { View, ScrollView } from 'react-native';
 import { ExternalImage } from 'ui-kit/external-image';
 import { AppText, TextTheme } from 'ui-kit/text';
 import { useTranslation } from 'utils/i18n';
 import { onboardingFacade } from '../facade';
 import { OnboardingNavigationParams } from '../navigation';
+import { onboardingStyle } from '../shared/styles';
 import { TaskItem } from './components';
+import { scriptFacade } from './facade';
 
 interface Props {
   route?: RouteProp<OnboardingNavigationParams, 'Script'>;
@@ -17,12 +19,16 @@ export function ScriptScreen({ route }: Props): ReactElement {
   const translate = useTranslation('MAIN.ONBOARDING.SCRIPT');
   const { tasksTotal, title, completed, tasks } = route.params.script;
 
+  useEffect(() => {
+    scriptFacade.init();
+  }, []);
+
   return (
     <View style={style.container}>
       <ScrollView contentContainerStyle={style.scrollContainer}>
         <ExternalImage style={style.image} uri={route.params.script.logo} />
         <View style={commonStyle.wrapper}>
-          <View style={style.infoContainer}>
+          <View style={onboardingStyle.infoContainer}>
             <AppText theme={TextTheme.LARGEST}>{title}</AppText>
             <AppText theme={TextTheme.SMALLEST}>
               {onboardingFacade.translateScriptProgress(tasksTotal, completed)}
@@ -38,7 +44,9 @@ export function ScriptScreen({ route }: Props): ReactElement {
             <TaskItem
               key={task.id}
               title={task.title}
-              isCompleted={task.isCompleted} />
+              isCompleted={task.isCompleted}
+              onPress={() => scriptFacade.navigateToTask(task)}
+            />
           ))}
         </View>
       </ScrollView>
@@ -57,9 +65,6 @@ const style = createStyles({
   image: {
     height: 200,
     width: '100%'
-  },
-  infoContainer: {
-    marginVertical: 40
   },
   infoTitle: {
     marginBottom: 8
