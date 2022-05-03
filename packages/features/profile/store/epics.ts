@@ -7,11 +7,6 @@ import { ProfileActions } from './actions';
 import { of } from 'rxjs';
 
 export const profileEpics: Epics = {
-  saveToken: (action$) => action$.pipe(
-    ofType(AuthActions.saveToken),
-    map(() => ProfileActions.fetchProfile())
-  ),
-
   fetchProfile: (action$) => action$.pipe(
     ofType(ProfileActions.fetchProfile),
     exhaustMap(() => profileService.getProfile().pipe(

@@ -32,6 +32,10 @@ export const profileReducer = createReducer(initialState, (handleAction) => [
     ...state,
     isUpdating: false
   })),
+  handleAction(AuthActions.authorizeSuccess, (state, { payload }) => ({
+    ...state,
+    profile: payload.user
+  })),
   handleAction(AuthActions.unauthorize, (state) => ({
     ...state,
     profile: null
