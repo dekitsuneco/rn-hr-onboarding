@@ -31,5 +31,7 @@ export const Icons = {
   moreSquare: Svg(require('./more-square.svg')),
   moreSquarePrimary: Svg(require('./more-square-primary.svg')),
   edit: Svg(require('./edit.svg')),
-  delete: Svg(require('./delete.svg'))
+  delete: Svg(require('./delete.svg')),
+  image: Svg(require('./image.svg')),
+  password: Svg(require('./password.svg'))
 };
