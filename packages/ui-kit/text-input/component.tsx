@@ -17,7 +17,7 @@ import { get } from 'lodash';
 
 //TODO Add logic to handle different types of inputs - date, text, password, etc
 
-type FormikInputPropertiesOptional = 'handleBlur' | 'handleChange' | 'errors' | 'values' | 'touched' | 'setFieldValue';
+type FormikInputPropertiesOptional = 'handleBlur' | 'handleChange' | 'errors' | 'values' | 'touched';
 type InputProps = TextInputProps & Partial<Pick<FormikProps<FormikValues>, FormikInputPropertiesOptional>>;
 
 type IconType = 'leading' | 'trailing';
