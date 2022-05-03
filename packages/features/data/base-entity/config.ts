@@ -3,16 +3,19 @@ import { ClassConstructor, plainToInstance } from 'class-transformer';
 import { isFunction, keys } from 'lodash';
 import { BaseEntityPlain } from './models';
 import { EntityMap } from './types';
+import { Task } from 'features/data';
 
 export type Entities = {
   user: User;
+  task: Task;
 };
 export type EntityName = keyof Entities;
 export type Entity = Entities[EntityName];
 export type EntitiesState = { [key in EntityName]: EntityMap<BaseEntityPlain & Partial<Entities[key]>> };
 
 export const ENTITIES_CONFIG: { [key in EntityName]: ClassConstructor<Entities[key]> } = {
-  user: User
+  user: User,
+  task: Task
 };
 
 export const createEntityInstance = <TEntity extends Entity = Entity, TPlain extends object = object>(

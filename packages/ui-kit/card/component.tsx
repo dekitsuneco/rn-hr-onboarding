@@ -6,12 +6,13 @@ interface Props extends TouchableOpacityProps {
   children: React.ReactNode;
 }
 
-export function Card({ style: elementStyle, children, onPress, disabled }: Props): ReactElement {
+export function Card({ style: elementStyle, children, onPress, disabled, ...restProps }: Props): ReactElement {
   return (
     <TouchableOpacity
       style={[commonStyle.boxShadow, style.container, elementStyle]}
       onPress={onPress}
-      disabled={disabled}>
+      disabled={disabled}
+      {...restProps}>
       {children}
     </TouchableOpacity>
   );

@@ -1,21 +1,22 @@
-import React, { ReactElement, useMemo } from 'react';
 import { createStyles } from '@styles';
-import { AppText } from 'ui-kit/text';
-import { Icon } from 'ui-kit/icon';
+import React, { ReactElement, useMemo } from 'react';
 import { Card } from 'ui-kit/card';
+import { Icon } from 'ui-kit/icon';
+import { AppText } from 'ui-kit/text';
 
 interface Props {
   title: string;
   isCompleted: boolean;
+  onPress?: () => void;
 }
 
-export function TaskItem({ title, isCompleted }: Props): ReactElement {
+export function TaskItem({ title, isCompleted, onPress }: Props): ReactElement {
   const renderedIcon = useMemo(() => {
     return isCompleted ? <Icon name='done' /> : <Icon name='chevronRight' style={style.iconContinue} />;
   }, [isCompleted]);
 
   return (
-    <Card style={style.container}>
+    <Card style={style.container} onPress={onPress}>
       <AppText>{title}</AppText>
       {renderedIcon}
     </Card>
