@@ -1,22 +1,12 @@
+import { commonStyle } from '@styles';
 import React, { ReactElement } from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { View } from 'react-native';
+import { NewScriptForm } from '../shared/components/new-script-form';
 
 export function NewScriptScreen(): ReactElement {
   return (
-    <View style={style.container}>
-      <Text style={style.text}>New Script</Text>
+    <View style={commonStyle.wrapper}>
+      <NewScriptForm />
     </View>
   );
 }
-
-const style = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  text: {
-    fontSize: 25,
-    color: '#26A0F8'
-  }
-});
