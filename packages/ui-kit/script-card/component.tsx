@@ -30,7 +30,7 @@ export function ScriptCard({
   return (
     <Card
       style={[style.container, elementStyle]}
-      disabled={isBlocked}
+      disabled={isBlocked || !onCardPress}
       onPress={onCardPress}>
       <ExternalImage uri={imageURL} style={[style.image, isBlocked && style.blocked]} />
       <View style={style.tabs}>
