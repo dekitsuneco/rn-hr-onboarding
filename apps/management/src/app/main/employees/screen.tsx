@@ -4,6 +4,7 @@ import { FlatList } from 'react-native';
 import { EmployeeItem, EmployeeListFlatListFooter, EmployeeListFlatListHeader } from './shared/components';
 import { AnyStyle } from 'ui-kit/styles';
 import { employeesScreenFacade } from './facade';
+import { EmptyState } from '@shared/empty-state';
 
 const perPage = 2;
 
@@ -44,6 +45,7 @@ export function EmployeesListScreen(): ReactElement {
 
   return (
     <FlatList
+      ListEmptyComponent={EmptyState}
       showsVerticalScrollIndicator={false}
       data={items}
       keyExtractor={(item) => item.id.toString()}
