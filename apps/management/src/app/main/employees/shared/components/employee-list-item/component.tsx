@@ -13,6 +13,7 @@ import { UserStatusLabel } from '../user-status-label';
 import { Label } from '@shared/label';
 import { useTranslation } from 'utils/i18n';
 import { User } from 'features/data';
+import { TranslateRole } from '../../role/utils/translae-role';
 
 interface Props {
   item: User;
@@ -49,10 +50,10 @@ export function EmployeeItem({ item }: Props): ReactElement {
               label={label}
               style={style.label} />
           ))}
-          {roleID && <Label
+          <Label
             theme='neutral'
-            label='Admin'
-            style={style.label} />}
+            label={TranslateRole(roleID)}
+            style={style.label} />
         </View>
         <View style={style.infoItem}>
           <ProgressBar value={35} style={style.progress} />

@@ -11,7 +11,7 @@ interface Props {
   currentPage: number;
   numberOfPages: number;
   onPageSelect: (page: number) => void;
-  handleShowMorePress: () => void;
+  onShowMorePress: () => void;
   isLoading?: boolean;
 }
 
@@ -19,7 +19,7 @@ export function EmployeeListFlatListFooter({
   currentPage,
   numberOfPages,
   onPageSelect,
-  handleShowMorePress,
+  onShowMorePress,
   isLoading
 }: Props): ReactElement {
   const translate = useTranslation('MAIN.EMPLOYEES.EMPLOYEES_LIST');
@@ -28,7 +28,8 @@ export function EmployeeListFlatListFooter({
     <View style={style.container}>
       <View style={style.showMoreButtonContainer}>
         <AppButton
-          onPress={handleShowMorePress}
+          disabled={currentPage === numberOfPages}
+          onPress={onShowMorePress}
           theme='tertiary'
           style={style.showMoreButton}
           title={translate('BUTTON_SHOW_MORE')}

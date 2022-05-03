@@ -1,5 +1,5 @@
 import { commonStyle, createStyles, variables } from '@styles';
-import React, { ReactElement, useEffect, useCallback, useState, useMemo, Fragment } from 'react';
+import React, { ReactElement, useEffect, useMemo, Fragment } from 'react';
 import { FlatList } from 'react-native';
 import { EmployeeItem, EmployeeListFlatListFooter, EmployeeListFlatListHeader } from './shared/components';
 import { AnyStyle } from 'ui-kit/styles';
@@ -9,45 +9,35 @@ import { AppActivityIndicator } from 'ui-kit/activity-indicator';
 const perPage = 2;
 
 export function EmployeesListScreen(): ReactElement {
-  const { items, isLoading, pagination, itemsToShow } = employeesScreenFacade;
-  const [page, setPage] = useState(1);
-  const [showMoreNumber, setShowMoreNumber] = useState(0);
+  const { items, isLoading, pagination } = employeesScreenFacade;
 
   const handlePageSelect = (page: number): void => {
-    setShowMoreNumber(0);
-    setPage(page);
+    employeesScreenFacade.loadItems(page, true);
   };
 
   const handleShowMorePress = (): void => {
-    if (page < pagination.lastPage) {
-      setPage(page + 1);
-      setShowMoreNumber(showMoreNumber + perPage);
-    }
+    employeesScreenFacade.loadItems(pagination.currentPage + 1);
   };
 
-  const memoizedFooter = useCallback(() => {
+  const memoizedFooter = useMemo(() => {
     return (
       <Fragment>
         {pagination.lastPage > 1 && (
           <EmployeeListFlatListFooter
-            currentPage={page}
+            currentPage={pagination.currentPage}
             numberOfPages={pagination.lastPage}
             isLoading={isLoading}
             onPageSelect={handlePageSelect}
-            handleShowMorePress={handleShowMorePress}
+            onShowMorePress={handleShowMorePress}
           />
         )}
       </Fragment>
     );
-  }, [page, pagination.lastPage, isLoading]);
-
-  const memoizedItemsToShow = useMemo(() => {
-    return -itemsToShow(pagination, showMoreNumber, perPage);
-  }, [items]);
+  }, [pagination.lastPage, isLoading, pagination.currentPage]);
 
   useEffect(() => {
-    employeesScreenFacade.loadItems(page);
-  }, [page]);
+    handlePageSelect(1);
+  }, []);
 
   useEffect(() => {
     employeesScreenFacade.changeFilter({ perPage });
@@ -55,9 +45,11 @@ export function EmployeesListScreen(): ReactElement {
 
   return (
     <FlatList
-      ListEmptyComponent={() => <AppActivityIndicator color={variables.color.primary} />}
+      ListEmptyComponent={() => (
+        <Fragment>{isLoading && <AppActivityIndicator color={variables.color.primary} />}</Fragment>
+      )}
       showsVerticalScrollIndicator={false}
-      data={items.slice(memoizedItemsToShow)}
+      data={items}
       keyExtractor={(item) => item.id.toString()}
       contentContainerStyle={[commonStyle.wrapper, style.container]}
       renderItem={({ item }) => <EmployeeItem item={item} />}
@@ -69,11 +61,6 @@ export function EmployeesListScreen(): ReactElement {
 }
 
 const style = createStyles({
-  indicatorContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 1
-  },
   container: {
     backgroundColor: variables.color.background,
     paddingTop: 16,

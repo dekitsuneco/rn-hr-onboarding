@@ -4,6 +4,7 @@ import { AppButton } from 'ui-kit/button';
 import { Icon } from 'ui-kit/icon';
 import { createStyles } from 'ui-kit/styles';
 import { PaginationArrow } from './components/pagination-arrow';
+import { range } from 'lodash';
 
 interface Props {
   numberOfPages: number;
@@ -12,7 +13,26 @@ interface Props {
 }
 
 export function Pagination({ numberOfPages, current, onPageSelect }: Props): ReactElement {
-  const arrayOfPages = Array.from({ length: numberOfPages }, (_, i) => i + 1);
+  const arrayOfPages = useMemo(() => {
+    return range(1, numberOfPages + 1);
+  }, [numberOfPages]);
+
+  const arrayOfShownPages = useMemo(() => {
+    let tempArrayOfShownPages: Array<string | number> = arrayOfPages;
+
+    if (numberOfPages > 5) {
+      if (current >= 1 && current <= 3) {
+        tempArrayOfShownPages = [1, 2, 3, '...', numberOfPages];
+      } else if (current > 2 && current < numberOfPages - 2) {
+        tempArrayOfShownPages = [1, '...', current, '...', numberOfPages];
+      } else if (current >= numberOfPages - 3) {
+        const sliced = arrayOfPages.slice(numberOfPages - 3, numberOfPages);
+        tempArrayOfShownPages = [1, '...', ...sliced];
+      }
+    }
+
+    return tempArrayOfShownPages;
+  }, [current, numberOfPages]);
 
   const handleNextPress = (): void => {
     if (current < numberOfPages) {
@@ -26,28 +46,11 @@ export function Pagination({ numberOfPages, current, onPageSelect }: Props): Rea
     }
   };
 
-  const arrayOfShownPages = useMemo(() => {
-    let tempArrayOfShownPages: Array<string | number> = arrayOfPages;
-
-    if (numberOfPages > 5) {
-      if (current >= 1 && current <= 2) {
-        tempArrayOfShownPages = [1, 2, 3, '...', numberOfPages];
-      } else if (current > 2 && current < numberOfPages - 2) {
-        tempArrayOfShownPages = [1, '...', current, '...', numberOfPages];
-      } else if (current >= numberOfPages - 3) {
-        const sliced = arrayOfPages.slice(numberOfPages - 3, numberOfPages);
-        tempArrayOfShownPages = [1, '...', ...sliced];
-      }
-    }
-
-    return tempArrayOfShownPages;
-  }, []);
-
   return (
     <View style={style.container}>
       <PaginationArrow
         onPress={handlePrevPress}
-        iconName='back'
+        iconName='chevronLeft'
         isHidden={current === 1} />
       {arrayOfShownPages.map((page, index) => {
         if (typeof page !== 'number') {
@@ -73,7 +76,7 @@ export function Pagination({ numberOfPages, current, onPageSelect }: Props): Rea
       })}
       <PaginationArrow
         onPress={handleNextPress}
-        iconName='continue'
+        iconName='chevronRight'
         isHidden={current === numberOfPages} />
     </View>
   );
