@@ -19,7 +19,7 @@ export function MenuItem({ onPress: handlePress, icon, title, style: customStyle
         <View style={style.itemIcon}>
           <Icon name={icon} />
         </View>
-        <AppText theme={TextTheme.SMEDIUM} style={style.itemText}>
+        <AppText theme={TextTheme.SMALL} style={style.itemText}>
           {title}
         </AppText>
       </View>

@@ -40,5 +40,11 @@ export const commonStyle = createStyles({
     shadowOpacity: 0.25,
     shadowRadius: 20,
     elevation: 20
+  },
+  header: {
+    fontSize: variables.fontSize.largest,
+    fontWeight: 'bold',
+    letterSpacing: 1.21,
+    lineHeight: 37.6
   }
 });
