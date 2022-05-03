@@ -122,11 +122,12 @@ const style = createStyles({
     borderColor: variables.color.borderColorSecondary,
     paddingVertical: Platform.OS === 'ios' ? 10 : 0
   },
-  [`@media (min-width: ${variables.breakpoints.desktop})`]: {
+  [`@media (min-width: ${variables.breakpoints.tablet})`]: {
     column: {
       flexBasis: '33%',
       paddingHorizontal: '2rem',
-      maxWidth: '33%'
+      maxWidth: '33%',
+      position: 'relative'
     },
     form: {
       flexDirection: 'row'
