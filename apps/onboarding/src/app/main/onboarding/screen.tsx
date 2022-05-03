@@ -25,7 +25,7 @@ const fakeScriptData: Array<Script> = [
       {
         id: '12',
         title: 'Video Intro',
-        isCompleted: true,
+        isCompleted: false,
         answerType: 'radio',
         answers: [
           {
@@ -48,7 +48,7 @@ const fakeScriptData: Array<Script> = [
       {
         id: '122',
         title: 'Coding Environment and Software',
-        isCompleted: true,
+        isCompleted: false,
         answerType: 'radio',
         answers: []
       }

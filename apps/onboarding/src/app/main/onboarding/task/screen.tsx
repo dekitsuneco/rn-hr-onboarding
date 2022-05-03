@@ -48,8 +48,8 @@ export function TaskScreen({ route }: Props): JSX.Element {
 
   return (
     <View style={style.wrapper}>
-      <ScrollView contentContainerStyle={[style.scrollContainer, !isCompleted && style.pb0]}>
-        <View style={[commonStyle.wrapper, style.infoContainer]}>
+      <ScrollView contentContainerStyle={[commonStyle.wrapper, style.scrollContainer]}>
+        <View style={[style.infoContainer]}>
           <AppText style={style.offset} theme={TextTheme.LARGEST}>
             {title}
           </AppText>
@@ -86,9 +86,6 @@ const style = createStyles({
   scrollContainer: {
     paddingBottom: 95
   },
-  pb0: {
-    paddingBottom: 0
-  },
   infoContainer: {
     paddingVertical: 40
   },
@@ -110,7 +107,9 @@ const style = createStyles({
     borderTopWidth: 1,
     borderColor: variables.color.backgroundTertiary,
     backgroundColor: variables.color.background,
-    minHeight: 94,
+    position: 'absolute',
+    bottom: 0,
+    width: '100%',
     paddingVertical: '1rem'
   },
   radioCard: {
