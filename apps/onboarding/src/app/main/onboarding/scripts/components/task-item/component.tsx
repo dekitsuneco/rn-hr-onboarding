@@ -11,7 +11,7 @@ interface Props {
 
 export function TaskItem({ title, isCompleted }: Props): ReactElement {
   const renderedIcon = useMemo(() => {
-    return isCompleted ? <Icon name='done' /> : <Icon name='continue' style={style.iconContinue} />;
+    return isCompleted ? <Icon name='done' /> : <Icon name='chevronRight' style={style.iconContinue} />;
   }, [isCompleted]);
 
   return (

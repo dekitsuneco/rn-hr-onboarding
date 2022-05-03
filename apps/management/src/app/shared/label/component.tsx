@@ -12,6 +12,10 @@ interface Props {
 }
 
 export function Label({ label, theme, style: elementStyle }: Props): ReactElement {
+  if (!label) {
+    return null;
+  }
+
   return (
     <View style={[style.container, style[theme], elementStyle]}>
       <AppText>{label}</AppText>

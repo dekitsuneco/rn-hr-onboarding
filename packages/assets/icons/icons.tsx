@@ -20,7 +20,7 @@ export const Icons = {
   search: Svg(require('./search.svg')),
   settings: Svg(require('./settings.svg')),
   done: Svg(require('./done.svg')),
-  continue: Svg(require('./continue.svg')),
+  chevronRight: Svg(require('./chevron-right.svg')),
   blocked: Svg(require('./blocked.svg')),
   greeting: Svg(require('./greeting.svg')),
   tasks: Svg(require('./tasks.svg')),
@@ -29,9 +29,10 @@ export const Icons = {
   plus: Svg(require('./plus.svg')),
   uploadImage: Svg(require('./upload-image.svg')),
   moreSquare: Svg(require('./more-square.svg')),
-  moreSquarePrimary: Svg(require('./more-square-primary.svg')),
   edit: Svg(require('./edit.svg')),
   delete: Svg(require('./delete.svg')),
   image: Svg(require('./image.svg')),
-  password: Svg(require('./password.svg'))
+  password: Svg(require('./password.svg')),
+  trailing: Svg(require('./trailing.svg')),
+  chevronLeft: Svg(require('./chevron-left.svg'))
 };
