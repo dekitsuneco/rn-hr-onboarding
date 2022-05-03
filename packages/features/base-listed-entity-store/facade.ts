@@ -59,8 +59,8 @@ export abstract class BaseListedEntityFacade<
     this.storeRef.dispatch(this.actions.resetFilter());
   }
 
-  public loadItems(page?: number): void {
-    this.storeRef.dispatch(this.actions.loadItems({ page }));
+  public loadItems(page?: number, shouldReplaceItems?: boolean): void {
+    this.storeRef.dispatch(this.actions.loadItems({ page, shouldReplaceItems }));
   }
 
   public deleteItem(item: TEntity): void {

@@ -1,95 +1,59 @@
 import { commonStyle, createStyles, variables } from '@styles';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect, useMemo, Fragment } from 'react';
 import { FlatList } from 'react-native';
-import { Employee } from './shared/models/employee';
 import { EmployeeItem, EmployeeListFlatListFooter, EmployeeListFlatListHeader } from './shared/components';
 import { AnyStyle } from 'ui-kit/styles';
+import { employeesScreenFacade } from './facade';
+import { EmptyState } from '@shared/empty-state';
 
-const employees: Array<Employee> = [
-  {
-    id: '1',
-    name: 'Russel Sims',
-    position: 'IOS Developer',
-    phoneNumber: '+1 294 3947294',
-    email: 'russel@mycompany.com',
-    labels: ['Onboarding'],
-    progress: 35,
-    avatar: 'https://cs.kiozk.ru/assets/c15/5wn/kfh/di1pw2qbavxrxzvviera8ug/art/64354/logo-800-520.jpg?v=1'
-  },
-  {
-    id: '2',
-    name: 'Russel Sims',
-    position: 'IOS Developer',
-    phoneNumber: '+1 294 3947294',
-    email: 'russel@mycompany.com',
-    labels: ['Onboarding'],
-    role: 'HR',
-    progress: 35,
-    avatar: 'https://cs.kiozk.ru/assets/c15/5wn/kfh/di1pw2qbavxrxzvviera8ug/art/64354/logo-800-520.jpg?v=1'
-  },
-  {
-    id: '3',
-    name: 'Russel Sims',
-    position: 'IOS Developer',
-    phoneNumber: '+1 294 3947294',
-    email: 'russel@mycompany.com',
-    labels: ['Onboarding', 'Completed'],
-    progress: 35,
-    avatar: 'https://cs.kiozk.ru/assets/c15/5wn/kfh/di1pw2qbavxrxzvviera8ug/art/64354/logo-800-520.jpg?v=1'
-  },
-  {
-    id: '4',
-    name: 'Russel Sims',
-    position: 'IOS Developer',
-    phoneNumber: '+1 294 3947294',
-    email: 'russel@mycompany.com',
-    labels: ['Pending'],
-    progress: 35,
-    avatar: 'https://cs.kiozk.ru/assets/c15/5wn/kfh/di1pw2qbavxrxzvviera8ug/art/64354/logo-800-520.jpg?v=1'
-  },
-  {
-    id: '5',
-    name: 'Russel Sims',
-    position: 'IOS Developer',
-    phoneNumber: '+1 294 3947294',
-    email: 'russel@mycompany.com',
-    labels: ['Onboarding'],
-    role: 'Admin',
-    progress: 35,
-    avatar: 'https://cs.kiozk.ru/assets/c15/5wn/kfh/di1pw2qbavxrxzvviera8ug/art/64354/logo-800-520.jpg?v=1'
-  },
-  {
-    id: '6',
-    name: 'Russel Sims',
-    position: 'IOS Developer',
-    phoneNumber: '+1 294 3947294',
-    email: 'russel@mycompany.com',
-    labels: ['Completed'],
-    progress: 35,
-    avatar: 'https://cs.kiozk.ru/assets/c15/5wn/kfh/di1pw2qbavxrxzvviera8ug/art/64354/logo-800-520.jpg?v=1'
-  },
-  {
-    id: '7',
-    name: 'Russel Sims',
-    position: 'IOS Developer',
-    phoneNumber: '+1 294 3947294',
-    email: 'russel@mycompany.com',
-    labels: ['Pending', 'Onboarding'],
-    progress: 35,
-    avatar: 'https://cs.kiozk.ru/assets/c15/5wn/kfh/di1pw2qbavxrxzvviera8ug/art/64354/logo-800-520.jpg?v=1'
-  }
-];
+const perPage = 2;
 
 export function EmployeesListScreen(): ReactElement {
+  const { items, isLoading, pagination } = employeesScreenFacade;
+
+  const handlePageSelect = (page: number): void => {
+    employeesScreenFacade.loadItems(page, true);
+  };
+
+  const handleShowMorePress = (): void => {
+    employeesScreenFacade.loadItems(pagination.currentPage + 1);
+  };
+
+  const memoizedFooter = useMemo(() => {
+    return (
+      <Fragment>
+        {pagination.lastPage > 1 && (
+          <EmployeeListFlatListFooter
+            currentPage={pagination.currentPage}
+            numberOfPages={pagination.lastPage}
+            isLoading={isLoading}
+            onPageSelect={handlePageSelect}
+            onShowMorePress={handleShowMorePress}
+          />
+        )}
+      </Fragment>
+    );
+  }, [pagination.lastPage, isLoading, pagination.currentPage]);
+
+  useEffect(() => {
+    handlePageSelect(1);
+  }, []);
+
+  useEffect(() => {
+    employeesScreenFacade.changeFilter({ perPage });
+  }, []);
+
   return (
     <FlatList
+      ListEmptyComponent={EmptyState}
       showsVerticalScrollIndicator={false}
-      data={employees}
-      keyExtractor={(item) => item.id}
+      data={items}
+      keyExtractor={(item) => item.id.toString()}
       contentContainerStyle={[commonStyle.wrapper, style.container]}
       renderItem={({ item }) => <EmployeeItem item={item} />}
       ListHeaderComponent={EmployeeListFlatListHeader}
-      ListFooterComponent={EmployeeListFlatListFooter}
+      ListFooterComponent={memoizedFooter}
+      ListFooterComponentStyle={style.footer}
     />
   );
 }
@@ -97,31 +61,16 @@ export function EmployeesListScreen(): ReactElement {
 const style = createStyles({
   container: {
     backgroundColor: variables.color.background,
-    paddingTop: 16
+    paddingTop: 16,
+    flexGrow: 1
   },
   footer: {
-    paddingTop: 40,
-    paddingBottom: 53,
-    alignItems: 'center'
+    flex: 1,
+    justifyContent: 'flex-end'
   },
-  showMoreButtonContainer: {
-    marginBottom: 40
-  },
-  [`@media (min-width: ${variables.breakpoints.tablet})`]: {
+  [`@media (min-width: ${variables.breakpoints.desktop})`]: {
     container: {
       paddingTop: 40
-    }
-  } as AnyStyle,
-  [`@media (min-width: ${variables.breakpoints.desktop})`]: {
-    footer: {
-      paddingBottom: 42,
-      alignItems: 'flex-start'
-    },
-    showMoreButtonContainer: {
-      alignSelf: 'flex-start'
-    },
-    showMoreButton: {
-      paddingHorizontal: 8
     }
   } as AnyStyle
 });
