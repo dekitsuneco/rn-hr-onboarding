@@ -28,6 +28,13 @@
           "BUTTON_START": "Start"
         }
       }
+    },
+    "PROFILE": {
+      "TEXT_HEADER": "Profile",
+      "TEXT_MENU_CHANGE_AVATAR": "Change profile image",
+      "TEXT_MENU_EDIT": "Edit details",
+      "TEXT_MENU_CHANGE_PASSWORD": "Change password",
+      "TEXT_MENU_LOGOUT": "Logout"
     }
   }
 }
