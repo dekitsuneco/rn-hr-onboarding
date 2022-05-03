@@ -10,7 +10,6 @@ import { createStyles, variables } from 'ui-kit/styles';
 import { AppText, TextTheme } from 'ui-kit/text';
 import { useTranslation } from 'utils/i18n';
 import { OnboardingNavigationParams } from '../navigation';
-import { onboardingStyle } from '../shared/styles';
 
 interface Props {
   route?: RouteProp<OnboardingNavigationParams, 'Task'>;
@@ -47,43 +46,51 @@ export function TaskScreen({ route }: Props): JSX.Element {
     </View>
   );
 
-  const submitBtn = !isCompleted && (
-    <View style={[commonStyle.wrapper, style.btnContainer]}>
-      <AppButton title={translate('BUTTON_SUBMIT_ANSWER')} />
-    </View>
-  );
-
   return (
-    <ScrollView contentContainerStyle={style.scrollContainer}>
-      <View style={[commonStyle.wrapper, onboardingStyle.infoContainer]}>
-        <AppText style={style.offset} theme={TextTheme.LARGEST}>
-          {title}
-        </AppText>
-        <View style={style.wysiwygContainer}>{mockWysiwyg}</View>
-        <View>
-          <AppText style={style.answerGroupLabel} theme={TextTheme.SMALLEST}>
-            {translate('LABEL_ANSWERS')}
+    <View style={style.wrapper}>
+      <ScrollView contentContainerStyle={[style.scrollContainer, !isCompleted && style.pb0]}>
+        <View style={[commonStyle.wrapper, style.infoContainer]}>
+          <AppText style={style.offset} theme={TextTheme.LARGEST}>
+            {title}
           </AppText>
-          {radioArray.map(({ id, title, selected }, index) => (
-            <RadioCard
-              key={id}
-              title={title}
-              style={[index < radioArray.length - 1 && style.radioCard]}
-              isSelected={selected}
-              onSelectStyle={style.radioCardSelected}
-              onPress={() => handleCardPress(id)}
-            />
-          ))}
+          <View style={style.wysiwygContainer}>{mockWysiwyg}</View>
+          <View>
+            <AppText style={style.answerGroupLabel} theme={TextTheme.SMALLEST}>
+              {translate('LABEL_ANSWERS')}
+            </AppText>
+            {radioArray.map(({ id, title, selected }, index) => (
+              <RadioCard
+                key={id}
+                title={title}
+                style={[index < radioArray.length - 1 && style.radioCard]}
+                isSelected={selected}
+                onPress={() => handleCardPress(id)}
+              />
+            ))}
+          </View>
         </View>
-      </View>
-      {submitBtn}
-    </ScrollView>
+      </ScrollView>
+      {!isCompleted && (
+        <View style={[commonStyle.wrapper, style.btnContainer]}>
+          <AppButton title={translate('BUTTON_SUBMIT_ANSWER')} />
+        </View>
+      )}
+    </View>
   );
 }
 
 const style = createStyles({
+  wrapper: {
+    flex: 1
+  },
   scrollContainer: {
-    paddingBottom: 131
+    paddingBottom: 95
+  },
+  pb0: {
+    paddingBottom: 0
+  },
+  infoContainer: {
+    paddingVertical: 40
   },
   videoPlayer: {
     height: 183,
@@ -102,17 +109,11 @@ const style = createStyles({
   btnContainer: {
     borderTopWidth: 1,
     borderColor: variables.color.backgroundTertiary,
-    height: 94,
-    paddingVertical: '1rem',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0
+    backgroundColor: variables.color.background,
+    minHeight: 94,
+    paddingVertical: '1rem'
   },
   radioCard: {
     marginBottom: '1rem'
-  },
-  radioCardSelected: {
-    borderColor: variables.color.primary
   }
 });

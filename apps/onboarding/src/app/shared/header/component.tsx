@@ -17,9 +17,7 @@ export function AppHeader({ contentCenter, contentRight }: AppHeaderParams): Rea
 
   return (
     <View style={[style.container]}>
-      <View style={[style.column, style.contentLeft]}>
-        {canGoBack && <HeaderButton onPress={handlePress} iconName='arrowLeft' />}
-      </View>
+      <View style={style.column}>{canGoBack && <HeaderButton onPress={handlePress} iconName='arrowLeft' />}</View>
       <View style={[style.column, style.contentCenter]}>{contentCenter}</View>
       <View style={[style.column, style.contentRight]}>{contentRight}</View>
     </View>
@@ -42,7 +40,6 @@ const style = createStyles({
     flexShrink: 1,
     flexBasis: 0
   },
-  contentLeft: {},
   contentCenter: {
     paddingHorizontal: 10,
     alignItems: 'center'

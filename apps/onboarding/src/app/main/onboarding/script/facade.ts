@@ -1,7 +1,7 @@
 import { Task } from 'features/data';
 import { appNavigationService } from 'features/navigation';
 
-export class ScriptFacade {
+export class ScriptScreenFacade {
   public init(): void {
     //TODO: init
   }
@@ -11,4 +11,4 @@ export class ScriptFacade {
   }
 }
 
-export const scriptFacade = new ScriptFacade();
+export const scriptScreenFacade = new ScriptScreenFacade();

@@ -1,6 +1,6 @@
 import { variables } from '@styles';
 import React, { ReactElement } from 'react';
-import { TouchableOpacityProps, ViewStyle } from 'react-native';
+import { ViewStyle, StyleProp } from 'react-native';
 import { Card } from 'ui-kit/card';
 import { RadioButton, RadioButtonProps } from 'ui-kit/radio-button';
 import { createStyles } from 'ui-kit/styles';
@@ -8,27 +8,25 @@ import { AppText, TextTheme } from 'ui-kit/text';
 
 export type RadioCardProps = {
   title: string;
-  onSelectStyle?: ViewStyle;
-  style?: ViewStyle;
-} & RadioButtonProps &
-  TouchableOpacityProps;
+  onPress: () => void;
+  style?: StyleProp<ViewStyle>;
+} & RadioButtonProps;
 
 export function RadioCard({
   title,
   isSelected = false,
-  onSelectStyle = {},
-  style: elementStyle = {},
-  onPress
+  onPress,
+  style: elementStyle = {}
 }: RadioCardProps): ReactElement {
   return (
-    <Card style={[embeddedStyle.card, elementStyle, isSelected && onSelectStyle]} onPress={onPress}>
-      <RadioButton style={embeddedStyle.radioBtn} isSelected={isSelected} />
+    <Card style={[style.card, elementStyle, isSelected && style.radioCardSelected]} onPress={onPress}>
+      <RadioButton style={style.radioBtn} isSelected={isSelected} />
       <AppText theme={TextTheme.MEDIUM}>{title}</AppText>
     </Card>
   );
 }
 
-const embeddedStyle = createStyles({
+const style = createStyles({
   card: {
     paddingVertical: 16,
     paddingLeft: 16,
@@ -37,6 +35,9 @@ const embeddedStyle = createStyles({
     alignItems: 'center',
     borderWidth: 2,
     borderColor: variables.color.background
+  },
+  radioCardSelected: {
+    borderColor: variables.color.primary
   },
   radioBtn: {
     marginRight: '1rem'

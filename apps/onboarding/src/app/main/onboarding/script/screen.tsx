@@ -7,9 +7,8 @@ import { AppText, TextTheme } from 'ui-kit/text';
 import { useTranslation } from 'utils/i18n';
 import { onboardingFacade } from '../facade';
 import { OnboardingNavigationParams } from '../navigation';
-import { onboardingStyle } from '../shared/styles';
 import { TaskItem } from './components';
-import { scriptFacade } from './facade';
+import { scriptScreenFacade } from './facade';
 
 interface Props {
   route?: RouteProp<OnboardingNavigationParams, 'Script'>;
@@ -20,7 +19,7 @@ export function ScriptScreen({ route }: Props): ReactElement {
   const { tasksTotal, title, completed, tasks } = route.params.script;
 
   useEffect(() => {
-    scriptFacade.init();
+    scriptScreenFacade.init();
   }, []);
 
   return (
@@ -28,7 +27,7 @@ export function ScriptScreen({ route }: Props): ReactElement {
       <ScrollView contentContainerStyle={style.scrollContainer}>
         <ExternalImage style={style.image} uri={route.params.script.logo} />
         <View style={commonStyle.wrapper}>
-          <View style={onboardingStyle.infoContainer}>
+          <View style={style.infoContainer}>
             <AppText theme={TextTheme.LARGEST}>{title}</AppText>
             <AppText theme={TextTheme.SMALLEST}>
               {onboardingFacade.translateScriptProgress(tasksTotal, completed)}
@@ -45,7 +44,7 @@ export function ScriptScreen({ route }: Props): ReactElement {
               key={task.id}
               title={task.title}
               isCompleted={task.isCompleted}
-              onPress={() => scriptFacade.navigateToTask(task)}
+              onPress={() => scriptScreenFacade.navigateToTask(task)}
             />
           ))}
         </View>
@@ -65,6 +64,9 @@ const style = createStyles({
   image: {
     height: 200,
     width: '100%'
+  },
+  infoContainer: {
+    paddingVertical: 40
   },
   infoTitle: {
     marginBottom: 8

@@ -30,10 +30,10 @@
       },
       "TASK": {
         "LABEL_ANSWERS": "Your answer",
-        "BUTTON_SUBMIT_ANSWER": "Submit"
-      },
-      "NAVIGATION": {
-        "TITLE_TASK_LIST": "Task {{taskCurrent}} of {{taskTotal}}"
+        "BUTTON_SUBMIT_ANSWER": "Submit",
+        "SHARED": {
+          "TITLE_TASK_LIST": "Task {{taskCurrent}} of {{taskTotal}}"
+        }
       }
     }
   }
