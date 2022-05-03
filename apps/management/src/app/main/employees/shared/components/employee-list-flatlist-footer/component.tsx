@@ -1,30 +1,48 @@
 import { Pagination } from '@shared/pagination';
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import { View } from 'react-native';
 import { AppButton } from 'ui-kit/button';
 import { createStyles, variables } from '@styles';
 import { AnyStyle } from 'ui-kit/styles';
 import { useTranslation } from 'utils/i18n';
+import { AppActivityIndicator } from 'ui-kit/activity-indicator';
 
-export function EmployeeListFlatListFooter(): ReactElement {
+interface Props {
+  currentPage: number;
+  numberOfPages: number;
+  onPageSelect: (page: number) => void;
+  onShowMorePress: () => void;
+  isLoading?: boolean;
+}
+
+export function EmployeeListFlatListFooter({
+  currentPage,
+  numberOfPages,
+  onPageSelect,
+  onShowMorePress,
+  isLoading
+}: Props): ReactElement {
   const translate = useTranslation('MAIN.EMPLOYEES.EMPLOYEES_LIST');
-  const [currentPage, setCurrentPage] = useState(0); //TODO temporary state for page pick
-
-  const handlePagePress = (page: number): void => {
-    setCurrentPage(page);
-  }; // TODO this is temporary function to handle and imitate page pick
 
   return (
     <View style={style.container}>
       <View style={style.showMoreButtonContainer}>
         <AppButton
+          disabled={currentPage === numberOfPages}
+          onPress={onShowMorePress}
           theme='tertiary'
           style={style.showMoreButton}
-          title={translate('BUTTON_SHOW_MORE')} />
+          title={translate('BUTTON_SHOW_MORE')}
+        />
       </View>
+      {isLoading && (
+        <View style={style.indicatorContainer}>
+          <AppActivityIndicator color={variables.color.primary} />
+        </View>
+      )}
       <Pagination
-        numberOfPages={5}
-        onPageSelect={handlePagePress}
+        numberOfPages={numberOfPages}
+        onPageSelect={onPageSelect}
         current={currentPage} />
     </View>
   );
@@ -38,6 +56,12 @@ const style = createStyles({
   },
   showMoreButtonContainer: {
     marginBottom: 40
+  },
+  indicatorContainer: {
+    position: 'absolute',
+    right: 0,
+    left: 0,
+    top: 10
   },
   [`@media (min-width: ${variables.breakpoints.desktop})`]: {
     container: {

@@ -24,7 +24,7 @@ export const baseListedEntityEpics: <
         ...('payload' in action ? action.payload : {})
       })
       .pipe(
-        map((response) => actions.loadItemsSuccess(response)),
+        map((response) => actions.loadItemsSuccess({ ...response, shouldReplaceItems: action.payload.shouldReplaceItems })),
         catchError((error) => of(actions.loadItemsFailure(error)))
       ))
   ),

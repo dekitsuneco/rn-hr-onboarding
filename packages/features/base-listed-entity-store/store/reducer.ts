@@ -21,12 +21,12 @@ export const baseListedEntityStoreReducer = <
       ...state,
       isLoading: true
     })),
-    handleAction(actions.loadItemsSuccess, (state, { payload: { data, ...pagination } }) => ({
+    handleAction(actions.loadItemsSuccess, (state, { payload: { data, shouldReplaceItems, ...pagination } }) => ({
       ...state,
       isLoading: false,
       isRefreshing: false,
       itemIDs:
-      state.pagination.currentPage < pagination.currentPage
+      !shouldReplaceItems && state.pagination.currentPage < pagination.currentPage
         ? state.itemIDs.concat(data.map((item) => item.id))
         : data.map((item) => item.id),
       pagination

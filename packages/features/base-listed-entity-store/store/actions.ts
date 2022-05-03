@@ -18,11 +18,11 @@ export abstract class BaseListedEntityActions<
     `[${this.storeTag}] Refresh items`
   );
 
-  public loadItems = actionWithPayload<{ page?: number } & TState['filters']>(
+  public loadItems = actionWithPayload<{ page?: number; shouldReplaceItems?: boolean } & TState['filters']>(
     `[${this.storeTag}] Load items`
   );
 
-  public loadItemsSuccess = actionWithPayload<PaginationResponse<TEntity>>(
+  public loadItemsSuccess = actionWithPayload<PaginationResponse<TEntity> & { shouldReplaceItems?: boolean }>(
     `[${this.storeTag}] Load items success`
   );
 
