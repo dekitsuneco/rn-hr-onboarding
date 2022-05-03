@@ -31,17 +31,17 @@ const style = createStyles({
   actionsMenuItem: {
     width: '100%',
     justifyContent: 'center',
-    paddingVertical: 18,
-    paddingHorizontal: 24
+    paddingVertical: '1.125rem',
+    paddingHorizontal: '1.5rem'
   },
   itemContainer: {
     flexDirection: 'row',
     alignItems: 'center'
   },
   itemIcon: {
-    marginRight: 16,
-    width: 18,
-    height: 18,
+    marginRight: '1rem',
+    width: '1.125rem',
+    height: '1.125rem',
     justifyContent: 'center',
     alignItems: 'center'
   },
