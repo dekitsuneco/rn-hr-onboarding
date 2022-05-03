@@ -1,13 +1,13 @@
-import React, { ReactElement, useMemo } from 'react';
 import { createStyles } from '@styles';
-import { AppText } from 'ui-kit/text';
-import { Icon } from 'ui-kit/icon';
+import React, { ReactElement, useMemo } from 'react';
 import { Card } from 'ui-kit/card';
-import { TouchableOpacityProps } from 'react-native';
+import { Icon } from 'ui-kit/icon';
+import { AppText } from 'ui-kit/text';
 
-interface Props extends TouchableOpacityProps {
+interface Props {
   title: string;
   isCompleted: boolean;
+  onPress?: () => void;
 }
 
 export function TaskItem({ title, isCompleted, onPress }: Props): ReactElement {
