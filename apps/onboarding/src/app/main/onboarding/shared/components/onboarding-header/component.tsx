@@ -17,7 +17,7 @@ export function OnboardingHeader({ name }: Props): ReactElement {
     <Fragment>
       <View style={style.greeting}>
         <Icon name='greeting' style={style.greetIcon} />
-        <AppText theme={TextTheme.LARGEST}>{translate('TEXT_GREETING', { name })}</AppText>
+        <AppText theme={TextTheme.LARGEST}>{translate('TEXT_GREETING', { name: name || '' })}</AppText>
       </View>
       <View style={style.progressContainer}>
         <AppText style={style.textProgress}>{translate('TEXT_PROGRESS')}</AppText>

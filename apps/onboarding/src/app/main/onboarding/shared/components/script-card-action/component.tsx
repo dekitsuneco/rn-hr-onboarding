@@ -24,7 +24,7 @@ export function ScriptCardAction({ status }: Props): ReactElement {
       case 'blocked':
         return <Icon name='blocked' />;
       case 'process':
-        return <Icon style={style.iconContinue} name='continue' />;
+        return <Icon style={style.iconContinue} name='chevronRight' />;
       case 'open':
         return <AppButton title={translate('BUTTON_START')} size='small' />;
       default:

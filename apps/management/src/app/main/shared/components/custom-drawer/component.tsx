@@ -29,7 +29,7 @@ export function CustomDrawerPanel(props: DrawerContentComponentProps): JSX.Eleme
             />
           ))}
         </DrawerContentScrollView>
-        <CurrentUserItem firstName={profile?.firstName} lastName={profile?.lastName} />
+        <CurrentUserItem profile={profile} />
         <CustomDrawerItem
           label={translate('BUTTON_LOGOUT')}
           icon='logout'

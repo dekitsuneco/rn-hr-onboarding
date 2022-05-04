@@ -4,13 +4,13 @@ import { createStyles } from 'ui-kit/styles';
 import { AppText, TextTheme } from 'ui-kit/text';
 import { Avatar } from 'ui-kit/avatar';
 import { AvatarTheme } from 'ui-kit/avatar/enums';
+import { User } from 'features/data';
 
 interface Props {
-  firstName: string;
-  lastName: string;
+  profile: User;
 }
 
-export function CurrentUserItem({ firstName, lastName }: Props): ReactElement {
+export function CurrentUserItem({ profile }: Props): ReactElement {
   return (
     <View style={style.container}>
       <View style={style.imageContainer}>
@@ -20,7 +20,7 @@ export function CurrentUserItem({ firstName, lastName }: Props): ReactElement {
         />
       </View>
       <AppText theme={TextTheme.SMALL}>
-        {firstName} {lastName}
+        {profile?.firstName} {profile?.lastName}
       </AppText>
     </View>
   );

@@ -1,4 +1,4 @@
-import { Expose } from 'class-transformer';
+import { Expose, Type } from 'class-transformer';
 import { User } from '../../data';
 
 export class AuthResponse {
@@ -6,5 +6,6 @@ export class AuthResponse {
   public token: string;
 
   @Expose()
+  @Type(() => User)
   public user: User;
 }
