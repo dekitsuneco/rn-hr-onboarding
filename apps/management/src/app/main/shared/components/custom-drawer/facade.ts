@@ -6,6 +6,10 @@ import { ProfileSelectors } from 'features/profile';
 import { useSelector } from 'react-redux';
 
 class CustomDrawerFacade {
+  public get profile(): User {
+    return useSelector(ProfileSelectors.profile);
+  }
+
   public navigateToScreen(screen: string): void {
     appNavigationService.navigate(screen);
   }
@@ -18,10 +22,6 @@ class CustomDrawerFacade {
 
   public unauthorize(): void {
     storeRef.dispatch(AuthActions.unauthorize({}));
-  }
-
-  public get profile(): User {
-    return useSelector(ProfileSelectors.profile);
   }
 }
 

@@ -8,7 +8,7 @@ export class ProfileActions {
   );
 
   public static fetchProfileSuccess = actionWithPayload<User>(
-    '[Profile Fetch Profile Success'
+    '[Profile] Fetch Profile Success'
   );
 
   public static fetchProfileFailure = actionWithPayload<AxiosError>(
