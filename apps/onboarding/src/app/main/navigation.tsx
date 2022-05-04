@@ -53,10 +53,6 @@ export function MainNavigation(): ReactElement {
 }
 
 const style = createStyles({
-  indicatorContainer: {
-    flex: 1,
-    justifyContent: 'center'
-  },
   tabBar: {
     position: 'absolute',
     backgroundColor: variables.color.white,
