@@ -112,6 +112,8 @@ const fakeScriptData: Array<Script> = [
 ]; //TODO This is temporary fake data
 
 export function OnboardingScreen(): JSX.Element {
+  const { profile } = onboardingFacade;
+
   return (
     <FlatList
       showsVerticalScrollIndicator={false}
@@ -126,7 +128,7 @@ export function OnboardingScreen(): JSX.Element {
           }}
         />
       )}
-      ListHeaderComponent={OnboardingHeader}
+      ListHeaderComponent={() => <OnboardingHeader name={profile?.firstName} />}
     />
   );
 }
