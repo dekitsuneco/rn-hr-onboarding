@@ -3,7 +3,7 @@ import React, { ReactElement } from 'react';
 import { useTranslation } from 'utils/i18n';
 import { AppHeader } from '../shared/app-header';
 import { EditEmployeeScreen } from './edit-employee/screen';
-import { NewEmployeeScreen } from './new-employee/screen';
+import { NewEmployeeScreen } from './upsert-employee/screen';
 import { EmployeesListScreen } from './screen';
 import { EmployeesListHeader } from './shared/components';
 

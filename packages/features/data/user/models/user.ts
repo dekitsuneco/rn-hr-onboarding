@@ -17,6 +17,30 @@ export class User extends BaseEntity<number> {
   @Expose()
   public email: string;
 
+  @Expose({ name: 'date_of_birth' })
+  public dateOfBirth: string;
+
+  @Expose()
+  public phone: string;
+
+  @Expose()
+  public position: string;
+
+  @Expose({ name: 'starts_on' })
+  public startsOn: string;
+
+  @Expose({ name: 'is_onboarding_required' })
+  public sisOnboardingRequired: boolean;
+
+  @Expose({ name: 'hr_id' })
+  public hrID: number | null;
+
+  @Expose({ name: 'manager_id' })
+  public managerID: number | null;
+
+  @Expose({ name: 'lead_id' })
+  public leadID: number | null;
+
   @Expose({ name: 'email_verified_at' })
   @Type(() => DateTime)
   @TransformDate()

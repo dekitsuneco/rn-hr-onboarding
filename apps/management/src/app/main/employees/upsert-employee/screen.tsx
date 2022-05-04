@@ -11,16 +11,18 @@ import { AppButton } from 'ui-kit/button';
 import { AnyStyle } from 'ui-kit/styles';
 import { InputType } from 'ui-kit/text-input';
 import { SwitchFormGroup } from './shared/components';
+import { upsertEmployeeFacade } from './facade';
 
-export function NewEmployeeScreen(): ReactElement {
+export function UpsertEmployeeScreen(): ReactElement {
   const translate = useTranslation('MAIN.EMPLOYEES.NEW_EMPLOYEE');
 
   const handleSubmitFrom = (values: EmployeeForm): void => {
-    console.log(values);
+    upsertEmployeeFacade.createUser(values);
   }; //TODO temporary function to log the form
 
   const formik = useFormik({
     initialValues: new EmployeeForm(),
+    validationSchema: EmployeeForm.validationSchema,
     onSubmit: handleSubmitFrom
   });
 
@@ -50,7 +52,7 @@ export function NewEmployeeScreen(): ReactElement {
             containerStyle={style.inputForm}
             formik={formik}
             placeholder='Role'
-            name='role'
+            name='roleID'
           />
           <AppText style={style.fromSubtitle}>{translate('TEXT_SUBTITLE_TEAM')}</AppText>
           {teamInputs.map(({ name, placeholder }) => (
