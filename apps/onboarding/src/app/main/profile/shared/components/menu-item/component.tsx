@@ -31,8 +31,7 @@ const style = createStyles({
   actionsMenuItem: {
     width: '100%',
     justifyContent: 'center',
-    paddingVertical: '1.125rem',
-    paddingHorizontal: '1.5rem'
+    paddingVertical: '1.125rem'
   },
   itemContainer: {
     flexDirection: 'row',
@@ -42,8 +41,7 @@ const style = createStyles({
     marginRight: '1rem',
     width: '1.125rem',
     height: '1.125rem',
-    justifyContent: 'center',
-    alignItems: 'center'
+    justifyContent: 'center'
   },
   itemText: {
     color: variables.color.textPrimary
