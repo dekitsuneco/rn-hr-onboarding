@@ -4,7 +4,7 @@ import { View, ScrollView } from 'react-native';
 import { Avatar } from 'ui-kit/avatar';
 import { AvatarTheme } from 'ui-kit/avatar/enums';
 import { createStyles } from 'ui-kit/styles';
-import { AppText } from 'ui-kit/text';
+import { AppText, TextTheme } from 'ui-kit/text';
 import { useTranslation } from 'utils/i18n';
 import { MenuItemProps, MenuItem } from './shared/components';
 import { profileFacade } from './facade';
@@ -55,16 +55,16 @@ export function ProfileScreen(): JSX.Element {
   ));
 
   return (
-    <ScrollView style={[commonStyle.wrapper, style.screen]}>
+    <ScrollView contentContainerStyle={[commonStyle.wrapper, style.screen]}>
       <View>
-        <AppText style={[commonStyle.header, style.header]}>{translate('TEXT_HEADER')}</AppText>
+        <AppText theme={TextTheme.LARGEST}>{translate('TEXT_HEADER')}</AppText>
         <View style={style.avatarContainer}>
           <Avatar
             theme={AvatarTheme.LARGE}
             uri='https://cs.kiozk.ru/assets/c15/5wn/kfh/di1pw2qbavxrxzvviera8ug/art/64354/logo-800-520.jpg?v=1'
           />
         </View>
-        <View style={style.actionsMenu}>{renderedMenu}</View>
+        <View>{renderedMenu}</View>
       </View>
     </ScrollView>
   );
@@ -73,17 +73,11 @@ export function ProfileScreen(): JSX.Element {
 const style = createStyles({
   screen: {
     flex: 1,
-    paddingTop: '3.75rem'
-  },
-  header: {
-    marginBottom: '3.75rem'
+    paddingTop: '1rem'
   },
   avatarContainer: {
     flexDirection: 'row',
     justifyContent: 'center',
-    marginBottom: '3.75rem'
-  },
-  actionsMenu: {
-    marginBottom: '2.1875rem'
+    marginVertical: '3.75rem'
   }
 });
