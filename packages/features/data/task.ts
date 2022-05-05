@@ -5,6 +5,6 @@ export class Task {
   public title: string;
   public isCompleted: boolean;
   public description?: unknown;
-  public answerType: 'radio';
-  public answers: Array<RadioAnswer>;
+  public answerType?: 'radio';
+  public answers?: Array<RadioAnswer>;
 } // TODO temporary fake task model
