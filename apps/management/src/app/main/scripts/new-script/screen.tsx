@@ -1,12 +1,6 @@
-import { commonStyle } from '@styles';
 import React, { ReactElement } from 'react';
-import { View } from 'react-native';
-import { NewScriptForm } from '../shared/components/new-script-form';
+import { UpsertScriptForm } from '../shared/components/upsert-script-form';
 
 export function NewScriptScreen(): ReactElement {
-  return (
-    <View style={commonStyle.wrapper}>
-      <NewScriptForm />
-    </View>
-  );
+  return <UpsertScriptForm />;
 }
