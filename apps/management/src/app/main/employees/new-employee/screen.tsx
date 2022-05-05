@@ -10,7 +10,7 @@ import { InputFormGroup } from 'ui-kit/input-form-group';
 import { AppButton } from 'ui-kit/button';
 import { AnyStyle } from 'ui-kit/styles';
 import { SwitchFormGroup } from './shared/components';
-import { Select } from '@app/main/shared/components/select/select';
+import { Select } from '@shared/select';
 
 const roleOptions = [
   { id: 1, title: 'Hr' },
