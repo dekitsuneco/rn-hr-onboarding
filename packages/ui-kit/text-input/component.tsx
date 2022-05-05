@@ -69,7 +69,7 @@ export function AppTextInput({
         handleBlur(name)(event);
       }
     },
-    editable: !isDisabled,
+    editable: !isDisabled && type !== InputType.SELECT,
     placeholderTextColor:
       isDisabled || isFocused ? stylePlaceholder.focusedOrDisabled.color : stylePlaceholder.default.color,
     style: [styleInput.textInput, elementStyle]

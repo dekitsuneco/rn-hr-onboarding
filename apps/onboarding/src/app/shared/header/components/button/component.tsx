@@ -4,7 +4,7 @@ import { Icon } from 'ui-kit/icon';
 import { createStyles } from '@styles';
 import { Icons } from 'assets/icons';
 
-interface Props extends TouchableOpacityProps {
+interface Props extends Pick<TouchableOpacityProps, 'style' | 'onPress'> {
   iconName: keyof typeof Icons;
 }
 

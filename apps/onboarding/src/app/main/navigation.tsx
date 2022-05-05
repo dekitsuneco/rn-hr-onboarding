@@ -7,16 +7,19 @@ import { commonStyle, variables } from '@styles';
 import { Icon } from 'ui-kit/icon';
 import { useTranslation } from 'utils/i18n';
 import { OnboardingNavigation } from './onboarding/navigation';
+import { appNavigationService } from 'features/navigation';
 
 const Tab = createBottomTabNavigator();
 
 export function MainNavigation(): ReactElement {
   const translate = useTranslation('MAIN.NAVIGATION');
 
+  const isTabBarHidden = ['Task'].includes(appNavigationService.currentRoute?.name);
+
   return (
     <Tab.Navigator
       screenOptions={{
-        tabBarStyle: [commonStyle.boxShadow, style.tabBar],
+        tabBarStyle: [commonStyle.boxShadow, style.tabBar, isTabBarHidden && style.tabBarHidden],
         headerShown: false,
         tabBarLabelStyle: [style.label],
         tabBarActiveTintColor: variables.color.primary
@@ -59,6 +62,10 @@ const style = createStyles({
     height: 68,
     paddingBottom: 7,
     paddingTop: 14
+  },
+  tabBarHidden: {
+    position: 'relative',
+    display: 'none'
   },
   label: {
     fontSize: 10
