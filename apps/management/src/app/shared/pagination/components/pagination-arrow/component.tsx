@@ -1,12 +1,13 @@
-import React, { ReactElement } from 'react';
-import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
-import { Icons } from 'assets/icons';
-import { Icon } from 'ui-kit/icon';
 import { createStyles } from '@styles';
+import { Icons } from 'assets/icons';
+import React, { ReactElement } from 'react';
+import { TouchableOpacity } from 'react-native';
+import { Icon } from 'ui-kit/icon';
 
-interface Props extends TouchableOpacityProps {
+interface Props {
   iconName: keyof typeof Icons;
   isHidden?: boolean;
+  onPress?: () => void;
 }
 
 export function PaginationArrow({ iconName, onPress, isHidden }: Props): ReactElement {

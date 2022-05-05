@@ -1,6 +1,6 @@
 import { RouteProp } from '@react-navigation/native';
 import { commonStyle, createStyles, variables } from '@styles';
-import React, { ReactElement } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { View, ScrollView } from 'react-native';
 import { ExternalImage } from 'ui-kit/external-image';
 import { AppText, TextTheme } from 'ui-kit/text';
@@ -8,6 +8,7 @@ import { useTranslation } from 'utils/i18n';
 import { onboardingFacade } from '../facade';
 import { OnboardingNavigationParams } from '../navigation';
 import { TaskItem } from './components';
+import { scriptScreenFacade } from './facade';
 
 interface Props {
   route?: RouteProp<OnboardingNavigationParams, 'Script'>;
@@ -16,6 +17,10 @@ interface Props {
 export function ScriptScreen({ route }: Props): ReactElement {
   const translate = useTranslation('MAIN.ONBOARDING.SCRIPT');
   const { tasksTotal, title, completed, tasks } = route.params.script;
+
+  useEffect(() => {
+    scriptScreenFacade.init();
+  }, []);
 
   return (
     <View style={style.container}>
@@ -38,7 +43,9 @@ export function ScriptScreen({ route }: Props): ReactElement {
             <TaskItem
               key={task.id}
               title={task.title}
-              isCompleted={task.isCompleted} />
+              isCompleted={task.isCompleted}
+              onPress={() => scriptScreenFacade.navigateToTask(task)}
+            />
           ))}
         </View>
       </ScrollView>
@@ -59,7 +66,7 @@ const style = createStyles({
     width: '100%'
   },
   infoContainer: {
-    marginVertical: 40
+    paddingVertical: 40
   },
   infoTitle: {
     marginBottom: 8

@@ -10,6 +10,7 @@ import { CustomDrawerItem, CurrentUserItem } from './components';
 
 export function CustomDrawerPanel(props: DrawerContentComponentProps): JSX.Element {
   const translate = useTranslation('MAIN.NAVIGATION');
+  const { profile } = customDrawerFacade;
 
   return (
     <View style={style.container}>
@@ -28,7 +29,7 @@ export function CustomDrawerPanel(props: DrawerContentComponentProps): JSX.Eleme
             />
           ))}
         </DrawerContentScrollView>
-        <CurrentUserItem />
+        <CurrentUserItem profile={profile} />
         <CustomDrawerItem
           label={translate('BUTTON_LOGOUT')}
           icon='logout'
