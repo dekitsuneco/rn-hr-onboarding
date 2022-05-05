@@ -15,8 +15,9 @@ export const profileEpics: Epics = {
     map(() => ProfileActions.fetchProfile())
   ),
 
-  fetchProfile: (action$) => action$.pipe(
+  fetchProfile: (action$, state$) => action$.pipe(
     ofType(ProfileActions.fetchProfile),
+    filter(() => AuthSelectors.isAuthenticated(state$.value)),
     exhaustMap(() => profileService.getProfile().pipe(
       map((response) => ProfileActions.fetchProfileSuccess(response)),
       catchError((error) => of(ProfileActions.fetchProfileFailure(error)))
