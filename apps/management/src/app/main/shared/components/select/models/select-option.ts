@@ -1,4 +1,4 @@
-export class SelectOption {
-  public id: string;
+export class SelectOption<TValue = number> {
+  public id: TValue;
   public title: string;
 }

@@ -1,6 +1,6 @@
 import { FormikValues } from 'formik';
-import React, { ReactElement, useState } from 'react';
-import { LayoutChangeEvent, Pressable, ViewStyle } from 'react-native';
+import React, { ReactElement, useMemo, useState } from 'react';
+import { LayoutChangeEvent, ViewStyle, TouchableOpacity } from 'react-native';
 import { Dropdown } from 'ui-kit/dropdown';
 import { InputFormGroup, InputFormGroupProps } from 'ui-kit/input-form-group';
 import { InputType } from 'ui-kit/text-input';
@@ -19,8 +19,19 @@ export function Select<T = FormikValues>({
   onPress,
   containerStyle
 }: Props<T>): ReactElement {
-  const [value, setValue] = useState<string>();
+  const [title, setTitle] = useState<string>();
   const [optionsWidth, setOptionsWidth] = useState<number>();
+
+  const renderedOptions = useMemo(() => {
+    return options.map(({ title, id }) => ({
+      title,
+      onSelect: () => {
+        formik.setFieldValue(name, id);
+        setTitle(title);
+      },
+      style: { width: optionsWidth }
+    }));
+  }, [options, optionsWidth]);
 
   const onLayout = (event: LayoutChangeEvent): void => {
     const { width } = event.nativeEvent.layout;
@@ -29,12 +40,11 @@ export function Select<T = FormikValues>({
 
   return (
     <Dropdown
-      style={{ flexDirection: 'row' }}
       triggerContainerStyle={containerStyle as ViewStyle}
       hasAnchor={false}
       renderTo='bottom'
       renderTrigger={(props) => (
-        <Pressable
+        <TouchableOpacity
           onLayout={onLayout}
           onPress={() => {
             onPress?.();
@@ -45,17 +55,10 @@ export function Select<T = FormikValues>({
             type={InputType.SELECT}
             formik={formik}
             name={name}
-            value={value} />
-        </Pressable>
+            value={title} />
+        </TouchableOpacity>
       )}
-      optionsProps={options.map(({ title, id }) => ({
-        title,
-        onSelect: () => {
-          formik.setFieldValue(name, id);
-          setValue(title);
-        },
-        style: { width: optionsWidth }
-      }))}
+      optionsProps={renderedOptions}
     />
   );
 }

@@ -3,7 +3,7 @@ import { appStorageEpics } from 'features/storage/store/epics';
 import { appNavigationEpics } from 'features/navigation/store';
 import { values } from 'lodash';
 import { combineEpics, Epic } from 'redux-observable';
-import { employeesScreenEpics } from '@app/main/employees/shared/store/epics';
+import { employeesScreenEpics } from '@app/main/employees/shared/store';
 
 export const rootEpic = combineEpics(
   ...values<Epic>(appStorageEpics),
