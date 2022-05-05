@@ -6,7 +6,7 @@ import { UserRoleID } from '../enums';
 
 export class User extends BaseEntity<number> {
   @Expose({ name: 'avatar_id' })
-  public avatarID: number;
+  public avatarID: number | null;
 
   @Expose({ name: 'first_name' })
   public firstName: string;

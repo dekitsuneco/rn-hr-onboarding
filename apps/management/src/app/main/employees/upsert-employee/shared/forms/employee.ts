@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 
 export class EmployeeForm {
-  public avatarID: number;
+  public avatarID: number | null;
   public firstName: string;
   public lastName: string;
   public dateOfBirth: string;
@@ -26,9 +26,12 @@ export class EmployeeForm {
         .required(),
       position: Yup.string().required('Please fill out this field'),
       roleID: Yup.number().required('Please fill out this field'),
-      hrID: Yup.number().notRequired(),
-      managerID: Yup.number().notRequired(),
-      leadID: Yup.number().notRequired(),
+      hrID: Yup.number().nullable()
+        .notRequired(),
+      managerID: Yup.number().nullable()
+        .notRequired(),
+      leadID: Yup.number().nullable()
+        .notRequired(),
       isOnboardingRequired: Yup.boolean().required()
     });
   }
