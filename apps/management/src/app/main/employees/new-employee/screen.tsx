@@ -13,14 +13,14 @@ import { SwitchFormGroup } from './shared/components';
 import { Select } from '@app/main/shared/components/select/select';
 
 const roleOptions = [
-  { id: '1', title: 'Hr' },
-  { id: '2', title: 'Admin' }
+  { id: 1, title: 'Hr' },
+  { id: 2, title: 'Admin' }
 ]; // TODO temporary fake options
 
 const teamOptions = [
-  { id: '1', title: 'Sergey Simonov' },
-  { id: '2', title: 'Anatoly Markin' },
-  { id: '3', title: 'Vlad Saveliev' } // TODO temporary fake options
+  { id: 1, title: 'Sergey Simonov' },
+  { id: 2, title: 'Anatoly Markin' },
+  { id: 3, title: 'Vlad Saveliev' } // TODO temporary fake options
 ];
 
 export function NewEmployeeScreen(): ReactElement {

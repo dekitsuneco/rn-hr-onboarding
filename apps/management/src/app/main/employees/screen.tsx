@@ -45,7 +45,7 @@ export function EmployeesListScreen(): ReactElement {
 
   return (
     <FlatList
-      ListEmptyComponent={EmptyState}
+      ListEmptyComponent={!isLoading && <EmptyState />}
       showsVerticalScrollIndicator={false}
       data={items}
       keyExtractor={(item) => item.id.toString()}

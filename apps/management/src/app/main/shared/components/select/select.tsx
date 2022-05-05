@@ -53,9 +53,11 @@ export function Select<T = FormikValues>({
           <InputFormGroup
             placeholder={placeholder}
             type={InputType.SELECT}
+            pointerEvents='none'
             formik={formik}
             name={name}
-            value={title} />
+            value={title}
+          />
         </TouchableOpacity>
       )}
       optionsProps={renderedOptions}
