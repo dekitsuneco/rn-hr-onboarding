@@ -1,4 +1,4 @@
-import { ViewStyle, TextStyle, View } from 'react-native';
+import { ViewStyle, TextStyle, View, TouchableOpacity } from 'react-native';
 import React, { ReactElement, useMemo } from 'react';
 import { MenuOption, MenuOptionCustomStyle } from 'react-native-popup-menu';
 import { AppText } from 'ui-kit/text';
@@ -30,7 +30,8 @@ export function DropdownOption<TValue>({
       optionWrapper: {
         ...style.option,
         ...optionStyle
-      }
+      },
+      OptionTouchableComponent: TouchableOpacity
     }),
     [optionStyle]
   );
@@ -41,7 +42,7 @@ export function DropdownOption<TValue>({
       disabled={isDisabled}
       value={value}
       onSelect={handleSelect}>
-      <View style={[style.icon, iconStyle]}>{icon}</View>
+      {icon && <View style={[style.icon, iconStyle]}>{icon}</View>}
       <AppText style={titleStyle}>{title}</AppText>
     </MenuOption>
   );

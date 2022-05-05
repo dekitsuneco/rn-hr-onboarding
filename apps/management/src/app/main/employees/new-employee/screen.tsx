@@ -9,8 +9,19 @@ import { UploadImage } from 'ui-kit/image-upload';
 import { InputFormGroup } from 'ui-kit/input-form-group';
 import { AppButton } from 'ui-kit/button';
 import { AnyStyle } from 'ui-kit/styles';
-import { InputType } from 'ui-kit/text-input';
 import { SwitchFormGroup } from './shared/components';
+import { Select } from '@app/main/shared/components/select/select';
+
+const roleOptions = [
+  { id: '1', title: 'Hr' },
+  { id: '2', title: 'Admin' }
+]; // TODO temporary fake options
+
+const teamOptions = [
+  { id: '1', title: 'Sergey Simonov' },
+  { id: '2', title: 'Anatoly Markin' },
+  { id: '3', title: 'Vlad Saveliev' } // TODO temporary fake options
+];
 
 export function NewEmployeeScreen(): ReactElement {
   const translate = useTranslation('MAIN.EMPLOYEES.NEW_EMPLOYEE');
@@ -45,22 +56,22 @@ export function NewEmployeeScreen(): ReactElement {
         </View>
         <View style={style.column}>
           <AppText style={style.fromSubtitle}>{translate('TEXT_SUBTITLE_ROLE')}</AppText>
-          <InputFormGroup
-            type={InputType.SELECT}
+          <Select
             containerStyle={style.inputForm}
-            formik={formik}
             placeholder='Role'
+            formik={formik}
             name='role'
+            options={roleOptions}
           />
           <AppText style={style.fromSubtitle}>{translate('TEXT_SUBTITLE_TEAM')}</AppText>
           {teamInputs.map(({ name, placeholder }) => (
-            <InputFormGroup
+            <Select
               key={name}
-              type={InputType.SELECT}
               containerStyle={style.inputForm}
               formik={formik}
               placeholder={placeholder}
               name={name}
+              options={teamOptions}
             />
           ))}
         </View>
