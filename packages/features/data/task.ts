@@ -13,8 +13,8 @@ export class Task extends BaseEntity<number> {
   public description?: unknown;
 
   @Expose()
-  public answerType: 'radio';
+  public answerType?: 'radio';
 
   @Expose()
-  public answers: Array<RadioAnswer>;
+  public answers?: Array<RadioAnswer>;
 } // TODO temporary fake task model

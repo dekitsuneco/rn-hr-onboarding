@@ -15,8 +15,8 @@ import { Select } from '@app/main/shared/components/select/select';
 
 const roleOptions = [
   { id: 1, title: 'Hr' },
-  { id: 2, title: 'Admin' },
-  { id: 3, title: 'Employee' }
+  { id: 3, title: 'Employee' },
+  { id: 2, title: 'Admin' }
 ]; // TODO temporary fake options
 
 const teamOptions = [
