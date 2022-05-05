@@ -9,15 +9,28 @@ import { UploadImage } from 'ui-kit/image-upload';
 import { InputFormGroup } from 'ui-kit/input-form-group';
 import { AppButton } from 'ui-kit/button';
 import { AnyStyle } from 'ui-kit/styles';
-import { InputType } from 'ui-kit/text-input';
 import { SwitchFormGroup } from './shared/components';
 import { upsertEmployeeFacade } from './facade';
+import { Select } from '@app/main/shared/components/select/select';
+
+const roleOptions = [
+  { id: 1, title: 'Hr' },
+  { id: 2, title: 'Admin' },
+  { id: 3, title: 'Employee' }
+]; // TODO temporary fake options
+
+const teamOptions = [
+  { id: 1, title: 'Sergey Simonov' },
+  { id: 2, title: 'Anatoly Markin' },
+  { id: 3, title: 'Vlad Saveliev' } // TODO temporary fake options
+];
 
 export function UpsertEmployeeScreen(): ReactElement {
   const translate = useTranslation('MAIN.EMPLOYEES.NEW_EMPLOYEE');
+  const { isCreating, createUser } = upsertEmployeeFacade;
 
   const handleSubmitFrom = (values: EmployeeForm): void => {
-    upsertEmployeeFacade.createUser(values);
+    createUser(values);
   };
 
   const formik = useFormik({
@@ -47,34 +60,38 @@ export function UpsertEmployeeScreen(): ReactElement {
         </View>
         <View style={style.column}>
           <AppText style={style.fromSubtitle}>{translate('TEXT_SUBTITLE_ROLE')}</AppText>
-          <InputFormGroup
-            type={InputType.SELECT}
+          <Select
             containerStyle={style.inputForm}
-            formik={formik}
             placeholder='Role'
+            formik={formik}
+            options={roleOptions}
             name='roleID'
           />
           <AppText style={style.fromSubtitle}>{translate('TEXT_SUBTITLE_TEAM')}</AppText>
           {teamInputs.map(({ name, placeholder }) => (
-            <InputFormGroup
+            <Select
               key={name}
-              type={InputType.SELECT}
               containerStyle={style.inputForm}
               formik={formik}
               placeholder={placeholder}
               name={name}
+              options={teamOptions}
             />
           ))}
         </View>
         <View style={style.column}>
           <AppText style={style.fromSubtitle}>{translate('TEXT_SUBTITLE_ONBOARDING')}</AppText>
-          <SwitchFormGroup value={true} label={translate('TEXT_ONBOARDING_REQUIRED')} />
+          <SwitchFormGroup<EmployeeForm>
+            name='isOnboardingRequired'
+            formik={formik}
+            label={translate('TEXT_ONBOARDING_REQUIRED')}
+          />
           <AppText theme={TextTheme.SMALLEST} style={[style.fromSubtitle, style.nonTransformedSubtitle]}>
             {translate('TEXT_SUBTITLE_ONBOARDING_SCRIPTS')}
           </AppText>
           {scripts.map((script) => (
             <SwitchFormGroup
-              value={false}
+              formik={formik}
               key={script}
               label={script}
               style={style.switchScript} />
@@ -83,7 +100,9 @@ export function UpsertEmployeeScreen(): ReactElement {
       </View>
       <View style={style.buttons}>
         <View style={style.buttonContainer}>
-          <AppButton onPress={() => handleSubmit()}>{translate('BUTTON_ADD_EMPLOYEE')}</AppButton>
+          <AppButton isLoading={isCreating} onPress={() => handleSubmit()}>
+            {translate('BUTTON_ADD_EMPLOYEE')}
+          </AppButton>
         </View>
       </View>
     </ScrollView>

@@ -1,10 +1,16 @@
 import { storeRef } from '@store';
-import { employeesScreenActions } from '../shared/store/actions';
+import { useSelector } from 'react-redux';
 import { EmployeeForm } from './shared/forms/employee';
+import { UpsertEmployeeScreenActions } from './shared/store';
+import { UpsertEmployeeScreenSelectors } from './shared/store/selectors';
 
 class UpsertEmployeeFacade {
+  public get isCreating(): boolean {
+    return useSelector(UpsertEmployeeScreenSelectors.isCreating);
+  }
+
   public createUser(user: EmployeeForm): void {
-    storeRef.dispatch(employeesScreenActions.createUser(user));
+    storeRef.dispatch(UpsertEmployeeScreenActions.createUser(user));
   }
 }
 

@@ -38,7 +38,7 @@ export function App(): ReactElement {
             style='dark' />
         </View>
         {isTokenLoaded ? (
-          <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={'Main'}>
+          <Stack.Navigator screenOptions={{ headerShown: false }} initialRouteName={initialRouteName}>
             <Stack.Screen name='AccountAccess' component={AccountAccessNavigation} />
             <Stack.Screen name='Main' component={MainNavigation} />
           </Stack.Navigator>

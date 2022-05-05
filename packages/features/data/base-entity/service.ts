@@ -49,7 +49,6 @@ export abstract class EntityService<
 
   public create(params: TEntity): Observable<TEntity> {
     const request = createEntityInstance(this.entityName, params, { fromInstancePartial: true });
-    console.log(instanceToPlain(request));
 
     return this.apiService.post<BaseEntityPlain>(this.endpoint, instanceToPlain(request)).pipe(
       tap((response) => this.storeRef.dispatch(this.actions.created({ item: response }))),

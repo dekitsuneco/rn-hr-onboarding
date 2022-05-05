@@ -21,9 +21,10 @@ export class EmployeeForm {
       lastName: Yup.string().required('Please fill out this field'),
       email: Yup.string().email('Please enter a valid email address')
         .required('Please fill out this field'),
-      phone: Yup.string().max(15, 'No more than 15 characters')
+      phone: Yup.string()
+        .max(15, 'No more than 15 characters')
         .min(10, 'At least 10 characters')
-        .required(),
+        .required('Please fill out this field'),
       position: Yup.string().required('Please fill out this field'),
       roleID: Yup.number().required('Please fill out this field'),
       hrID: Yup.number().nullable()
@@ -46,10 +47,10 @@ export class EmployeeForm {
     this.position = '';
     this.startsOn = '2022-04-26';
     this.roleID = 3;
-    this.hrID = 1;
-    this.managerID = 1;
-    this.leadID = 1;
-    this.isOnboardingRequired = false;
+    this.hrID = null;
+    this.managerID = null;
+    this.leadID = null;
+    this.isOnboardingRequired = true;
   }
 } // TODO temporary form, change it later
 
