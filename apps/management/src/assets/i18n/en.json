@@ -67,6 +67,14 @@
       "NAVIGATION": {
         "SCREEN_TITLE_SCRIPTS": "Scripts",
         "SCREEN_TITLE_NEW": "New Script"
+      },
+      "SHARED": {
+        "UPSERT_SCRIPT_FORM": {
+          "TEXT_SUBTITLE_COVER_IMAGE": "Cover image",
+          "BUTTON_UPLOAD_COVER_IMAGE": "Upload cover image",
+          "TEXT_SUBTITLE_SCRIPT_DETAILS": "Script details",
+          "BUTTON_ADD_SCRIPT": "Add script"
+        }
       }
     }
   }
