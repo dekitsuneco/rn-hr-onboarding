@@ -12,13 +12,14 @@ import { AnyStyle } from 'ui-kit/styles';
 import { InputType } from 'ui-kit/text-input';
 import { SwitchFormGroup } from './shared/components';
 import { upsertEmployeeFacade } from './facade';
+import { User } from 'features/data';
 
 export function UpsertEmployeeScreen(): ReactElement {
   const translate = useTranslation('MAIN.EMPLOYEES.NEW_EMPLOYEE');
 
   const handleSubmitFrom = (values: EmployeeForm): void => {
-    upsertEmployeeFacade.createUser(values);
-  }; //TODO temporary function to log the form
+    upsertEmployeeFacade.createUser(new User(values));
+  };
 
   const formik = useFormik({
     initialValues: new EmployeeForm(),

@@ -1,6 +1,7 @@
 import * as Yup from 'yup';
 
 export class EmployeeForm {
+  public avatarID: number;
   public firstName: string;
   public lastName: string;
   public dateOfBirth: string;
@@ -16,36 +17,35 @@ export class EmployeeForm {
 
   public static get validationSchema(): Yup.AnySchema {
     return Yup.object().shape({
-      first_name: Yup.string().required('Please fill out this field'),
-      last_name: Yup.string().required('Please fill out this field'),
-      date_of_birth: Yup.string().required('Please fill out this field'),
+      firstName: Yup.string().required('Please fill out this field'),
+      lastName: Yup.string().required('Please fill out this field'),
       email: Yup.string().email('Please enter a valid email address')
         .required('Please fill out this field'),
       phone: Yup.string().max(15, 'No more than 15 characters')
         .min(10, 'At least 10 characters')
         .required(),
       position: Yup.string().required('Please fill out this field'),
-      starts_on: Yup.string().required('Please fill out this field'),
-      role_id: Yup.number().required('Please fill out this field'),
-      hr_id: Yup.number(),
-      manager_id: Yup.number(),
-      lead_id: Yup.number(),
-      is_onboarding_required: Yup.boolean().required()
+      roleID: Yup.number().required('Please fill out this field'),
+      hrID: Yup.number().notRequired(),
+      managerID: Yup.number().notRequired(),
+      leadID: Yup.number().notRequired(),
+      isOnboardingRequired: Yup.boolean().required()
     });
   }
 
   constructor() {
+    this.avatarID = 1;
     this.firstName = '';
     this.lastName = '';
-    this.dateOfBirth = '';
+    this.dateOfBirth = '1861-02-19';
     this.email = '';
     this.phone = '';
     this.position = '';
-    this.startsOn = '';
+    this.startsOn = '2022-04-26';
     this.roleID = 3;
-    this.hrID = null;
-    this.managerID = null;
-    this.leadID = null;
+    this.hrID = 1;
+    this.managerID = 1;
+    this.leadID = 1;
     this.isOnboardingRequired = false;
   }
 } // TODO temporary form, change it later

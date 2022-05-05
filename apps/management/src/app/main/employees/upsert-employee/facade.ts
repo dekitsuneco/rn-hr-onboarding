@@ -1,9 +1,9 @@
 import { storeRef } from '@store';
 import { employeesScreenActions } from '../shared/store/actions';
-import { User } from 'features/data';
+import { EmployeeForm } from './shared/forms/employee';
 
 class UpsertEmployeeFacade {
-  public createUser(user: User): void {
+  public createUser(user: EmployeeForm): void {
     storeRef.dispatch(employeesScreenActions.createUser(user));
   }
 }

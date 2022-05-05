@@ -20,7 +20,7 @@ export function EmployeesListHeader(props: AppHeaderProps): JSX.Element {
             isTextHidden={!isTablet}
             leftIcon={<Icon name='plus' stroke={variables.color.background} />}
             title={translate('BUTTON_ADD_EMPLOYEE')}
-            onPress={() => appNavigationService.navigate('NewEmployee')}
+            onPress={() => appNavigationService.navigate('UpsertEmployee')}
           />
         </View>
       }

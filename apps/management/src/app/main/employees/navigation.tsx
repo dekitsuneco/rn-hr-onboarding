@@ -3,14 +3,14 @@ import React, { ReactElement } from 'react';
 import { useTranslation } from 'utils/i18n';
 import { AppHeader } from '../shared/app-header';
 import { EditEmployeeScreen } from './edit-employee/screen';
-import { NewEmployeeScreen } from './upsert-employee/screen';
+import { UpsertEmployeeScreen } from './upsert-employee/screen';
 import { EmployeesListScreen } from './screen';
 import { EmployeesListHeader } from './shared/components';
 
 export type EmployeesNavigationParams = {
   EmployeesList: undefined;
   EditEmployee: undefined;
-  NewEmployee: undefined;
+  UpsertEmployee: undefined;
 };
 
 const Stack = createStackNavigator<EmployeesNavigationParams>();
@@ -31,9 +31,9 @@ export function EmployeesNavigation(): ReactElement {
         component={EditEmployeeScreen}
       />
       <Stack.Screen
-        name='NewEmployee'
+        name='UpsertEmployee'
         options={{ title: translate('SCREEN_TITLE_NEW') }}
-        component={NewEmployeeScreen}
+        component={UpsertEmployeeScreen}
       />
     </Stack.Navigator>
   );

@@ -5,6 +5,9 @@ import { BaseEntity } from '../../base-entity/models';
 import { UserRoleID } from '../enums';
 
 export class User extends BaseEntity<number> {
+  @Expose({ name: 'avatar_id' })
+  public avatarID: number;
+
   @Expose({ name: 'first_name' })
   public firstName: string;
 
@@ -30,7 +33,7 @@ export class User extends BaseEntity<number> {
   public startsOn: string;
 
   @Expose({ name: 'is_onboarding_required' })
-  public sisOnboardingRequired: boolean;
+  public isOnboardingRequired: boolean;
 
   @Expose({ name: 'hr_id' })
   public hrID: number | null;
