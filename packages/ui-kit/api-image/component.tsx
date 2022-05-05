@@ -10,7 +10,7 @@ interface ApiImageProps {
   style?: StyleProp<ImageStyle>;
 }
 
-export default function ApiImage({ id, style }: ApiImageProps): ReactElement {
+export function ApiImage({ id, style }: ApiImageProps): ReactElement {
   const token = useSelector(AuthSelectors.token);
   const URI = `${commonAppsConfig.api.root}/media/${id}/content`;
   const headers = { Authorization: 'Bearer ' + token };
