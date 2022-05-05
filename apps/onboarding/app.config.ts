@@ -17,7 +17,7 @@ const defaultExpoConfig: ExpoConfig = {
   entryPoint: 'index.js',
   version: '0.3.0',
   orientation: 'portrait',
-  backgroundColor: '#FFFFFF',
+  backgroundColor: '#F9FAFB',
   userInterfaceStyle: 'light',
   icon: './src/assets/images/icon.png',
   splash: {
