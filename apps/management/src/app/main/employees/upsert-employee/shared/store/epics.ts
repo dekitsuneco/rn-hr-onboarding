@@ -11,14 +11,15 @@ export const upsertEmployeesScreenEpics: Epics = {
   createUser: (action$) => action$.pipe(
     ofType(UpsertEmployeeScreenActions.createUser),
     exhaustMap((action) => userService.create(new User(action.payload)).pipe(
-      map(() => UpsertEmployeeScreenActions.createSuccess()),
-      catchError((error) => of(UpsertEmployeeScreenActions.createFailure(error)))
+      map(() => UpsertEmployeeScreenActions.createUserSuccess()),
+      catchError((error) => of(UpsertEmployeeScreenActions.createUserFailure(error)))
     ))
   ),
 
-  createSuccess: (action$) => action$.pipe(
-    ofType(UpsertEmployeeScreenActions.createSuccess),
+  createUserSuccess: (action$) => action$.pipe(
+    ofType(UpsertEmployeeScreenActions.createUserSuccess),
     tap(() => appNavigationService.goBack()),
     map(() => employeesScreenActions.loadItems({ page: 1 }))
   )
 };
+  
