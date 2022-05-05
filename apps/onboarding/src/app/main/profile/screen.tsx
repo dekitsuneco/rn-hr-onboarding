@@ -59,10 +59,7 @@ export function ProfileScreen(): JSX.Element {
       <View>
         <AppText theme={TextTheme.LARGEST}>{translate('TEXT_HEADER')}</AppText>
         <View style={style.avatarContainer}>
-          <Avatar
-            theme={AvatarTheme.LARGE}
-            uri='https://cs.kiozk.ru/assets/c15/5wn/kfh/di1pw2qbavxrxzvviera8ug/art/64354/logo-800-520.jpg?v=1'
-          />
+          <Avatar theme={AvatarTheme.LARGE} id={10} />
         </View>
         <View>{renderedMenu}</View>
       </View>
