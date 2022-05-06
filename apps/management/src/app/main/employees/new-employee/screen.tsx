@@ -11,6 +11,10 @@ import { AppButton } from 'ui-kit/button';
 import { AnyStyle } from 'ui-kit/styles';
 import { SwitchFormGroup } from './shared/components';
 import { Select } from '@shared/select';
+import { EntitySelect } from '@shared/entity-select/component';
+import { User, UserService, userService } from 'features/data';
+import { PaginationRequest } from 'features/data/pagination';
+import { MapUserToOption } from './shared/utils/map-entity-to-option/map-user-to-option';
 
 const roleOptions = [
   { id: 1, title: 'Hr' },
@@ -65,13 +69,13 @@ export function NewEmployeeScreen(): ReactElement {
           />
           <AppText style={style.fromSubtitle}>{translate('TEXT_SUBTITLE_TEAM')}</AppText>
           {teamInputs.map(({ name, placeholder }) => (
-            <Select
+            <EntitySelect<User, UserService, PaginationRequest, EmployeeForm>
               key={name}
-              containerStyle={style.inputForm}
+              fieldName={name}
+              entityService={userService}
               formik={formik}
+              mapToOption={MapUserToOption}
               placeholder={placeholder}
-              name={name}
-              options={teamOptions}
             />
           ))}
         </View>
