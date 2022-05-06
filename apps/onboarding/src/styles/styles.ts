@@ -1,4 +1,5 @@
 import { commonStyle as appsCommonStyle, createStyles } from 'ui-kit/styles';
+import { variables } from './variables';
 
 export const commonStyle = createStyles({
   ...appsCommonStyle,
@@ -14,5 +15,9 @@ export const commonStyle = createStyles({
     wrapper: {
       paddingHorizontal: '5rem'
     }
+  },
+  mainScreensWrapper: {
+    paddingBottom: 120,
+    backgroundColor: variables.color.backgroundSecondary
   }
 });
