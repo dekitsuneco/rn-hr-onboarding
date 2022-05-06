@@ -9,7 +9,7 @@ import { UploadImage } from 'ui-kit/image-upload';
 import { InputFormGroup } from 'ui-kit/input-form-group';
 import { AppButton } from 'ui-kit/button';
 import { AnyStyle } from 'ui-kit/styles';
-import { SwitchFormGroup } from './shared/components';
+import { SwitchFormGroup } from '@shared/switch-form-group';
 import { upsertEmployeeFacade } from './facade';
 import { Select } from '@app/main/shared/components/select/select';
 
@@ -26,7 +26,7 @@ const teamOptions = [
 ];
 
 export function UpsertEmployeeScreen(): ReactElement {
-  const translate = useTranslation('MAIN.EMPLOYEES.NEW_EMPLOYEE');
+  const translate = useTranslation('MAIN.EMPLOYEES.UPSERT_EMPLOYEE');
   const { isCreating, createUser } = upsertEmployeeFacade;
 
   const handleSubmitFrom = (values: EmployeeForm): void => {

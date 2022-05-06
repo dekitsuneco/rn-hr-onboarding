@@ -4,14 +4,14 @@ import { EmployeeForm } from '../forms/employee';
 
 export class UpsertEmployeeScreenActions {
   public static createUser = actionWithPayload<EmployeeForm>(
-    '[UpsertEmployee Screen] Create User'
+    '[Upsert  Employee Screen] Create User'
   );
 
   public static createUserFailure = actionWithPayload<AxiosError>(
-    '[UpsertEmployee Screen] Create User Failure'
+    '[Upsert Employee Screen] Create User Failure'
   );
 
   public static createUserSuccess = action(
-    '[UpsertEmployee Screen] Create User Success'
+    '[Upsert Employee Screen] Create User Success'
   );
 }

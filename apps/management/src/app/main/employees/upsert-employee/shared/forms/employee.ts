@@ -1,4 +1,8 @@
+import { useTranslation } from 'utils/i18n';
 import * as Yup from 'yup';
+
+const translate = useTranslation('MAIN.EMPLOYEES.UPSERT_EMPLOYEE');
+const translateValidation = useTranslation('MAIN.EMPLOYEES.UPSERT_EMPLOYEE.VALIDATION');
 
 export class EmployeeForm {
   public avatarID: number | null;
@@ -17,22 +21,19 @@ export class EmployeeForm {
 
   public static get validationSchema(): Yup.AnySchema {
     return Yup.object().shape({
-      firstName: Yup.string().required('Please fill out this field'),
-      lastName: Yup.string().required('Please fill out this field'),
-      email: Yup.string().email('Please enter a valid email address')
-        .required('Please fill out this field'),
+      firstName: Yup.string().required(translateValidation('TEXT_REQUIRED')),
+      lastName: Yup.string().required(translateValidation('TEXT_REQUIRED')),
+      email: Yup.string().email(translateValidation('TEXT_EMAIL'))
+        .required(translateValidation('TEXT_REQUIRED')),
       phone: Yup.string()
-        .max(15, 'No more than 15 characters')
-        .min(10, 'At least 10 characters')
-        .required('Please fill out this field'),
-      position: Yup.string().required('Please fill out this field'),
-      roleID: Yup.number().required('Please fill out this field'),
-      hrID: Yup.number().nullable()
-        .notRequired(),
-      managerID: Yup.number().nullable()
-        .notRequired(),
-      leadID: Yup.number().nullable()
-        .notRequired(),
+        .max(15, translateValidation('TEXT_MAX_CHAR', { max: 15 }))
+        .min(10, translateValidation('TEXT_MIN_CHAR', { min: 10 }))
+        .required(translateValidation('TEXT_REQUIRED')),
+      position: Yup.string().required(translateValidation('TEXT_REQUIRED')),
+      roleID: Yup.number().required(translateValidation('TEXT_REQUIRED')),
+      hrID: Yup.number().nullable(),
+      managerID: Yup.number().nullable(),
+      leadID: Yup.number().nullable(),
       isOnboardingRequired: Yup.boolean().required()
     });
   }
@@ -57,19 +58,19 @@ export class EmployeeForm {
 type FormInputs = Array<{ placeholder: string; name: keyof EmployeeForm }>;
 
 export const employeeDetailsInputs: FormInputs = [
-  { placeholder: 'First Name', name: 'firstName' },
-  { placeholder: 'Last Name', name: 'lastName' },
-  { placeholder: 'Date of Birth', name: 'dateOfBirth' },
-  { placeholder: 'Email Address', name: 'email' },
-  { placeholder: 'Phone number', name: 'phone' },
-  { placeholder: 'Position', name: 'position' },
-  { placeholder: 'Starts on', name: 'startsOn' }
+  { placeholder: translate('TEXT_FIRST_NAME'), name: 'firstName' },
+  { placeholder: translate('TEXT_LAST_NAME'), name: 'lastName' },
+  { placeholder: translate('TEXT_DATE_OF_BIRTH'), name: 'dateOfBirth' },
+  { placeholder: translate('TEXT_EMAIL_ADDRESS'), name: 'email' },
+  { placeholder: translate('TEXT_PHONE_NUMBER'), name: 'phone' },
+  { placeholder: translate('TEXT_POSITION'), name: 'position' },
+  { placeholder: translate('TEXT_STARTS_ON'), name: 'startsOn' }
 ];
 
 export const teamInputs: FormInputs = [
-  { placeholder: 'HR', name: 'hrID' },
-  { placeholder: 'Manager', name: 'managerID' },
-  { placeholder: 'Lead', name: 'leadID' }
+  { placeholder: translate('TEXT_HR'), name: 'hrID' },
+  { placeholder: translate('TEXT_MANAGER'), name: 'managerID' },
+  { placeholder: translate('TEXT_LEAD'), name: 'leadID' }
 ];
 
 export const scripts = ['Office Tour - Omsk', 'Office Tour - Krasnodar', 'Work Tools', 'Meet Your Colleagues'];

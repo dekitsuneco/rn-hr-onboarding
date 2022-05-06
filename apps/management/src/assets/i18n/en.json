@@ -34,7 +34,7 @@
         "SCREEN_TITLE_EDIT": "Edit",
         "SCREEN_TITLE_NEW": "New"
       },
-      "NEW_EMPLOYEE": {
+      "UPSERT_EMPLOYEE": {
         "INPUT_SEARCH_PLACEHOLDER": "Search employees",
         "BUTTON_UPLOAD_IMAGE": "Upload profile image",
         "TEXT_SUBTITLE_PROFILE_IMAGE": "Profile Image",
@@ -44,7 +44,25 @@
         "TEXT_SUBTITLE_ONBOARDING": "Onboarding",
         "TEXT_SUBTITLE_ONBOARDING_SCRIPTS": "Onboarding scripts",
         "TEXT_ONBOARDING_REQUIRED": "Onboarding required",
-        "BUTTON_ADD_EMPLOYEE": "Add Employee"
+        "BUTTON_ADD_EMPLOYEE": "Add Employee",
+        "EMPLOYEE_FORM": {
+          "TEXT_FIRST_NAME": "First Name",
+          "TEXT_LAST_NAME": "Last Name",
+          "TEXT_DATE_OF_BIRTH": "Date Of Birth",
+          "TEXT_EMAIL_ADDRESS": "Email Address",
+          "TEXT_PHONE_NUMBER": "Phone number",
+          "TEXT_POSITION": "Position",
+          "TEXT_STARTS_ON": "Starts on",
+          "TEXT_HR": "HR",
+          "TEXT_MANAGER": "MANAGER",
+          "TEXT_LEAD": "Lead",
+          "VALIDATION": {
+            "TEXT_REQUIRED": "Please fill out this field",
+            "TEXT_EMAIL": "Please enter a valid email address",
+            "TEXT_MIN_CHAR": "At least {{min}} characters",
+            "TEXT_MAX_CHAR": "No more than {{max}} characters"
+          }
+        }
       },
       "EMPLOYEES_LIST": {
         "INPUT_SEARCH_PLACEHOLDER": "Search employees",

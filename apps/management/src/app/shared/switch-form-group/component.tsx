@@ -10,7 +10,7 @@ interface Props<T = FormikValues> {
   label: string;
   style?: StyleProp<ViewStyle>;
   formik: FormikProps<T>;
-  name?: keyof T; //TODO temporary option, because some SwitchFormGroups are in form, but not handle anything.
+  name?: keyof T;
 }
 
 export function SwitchFormGroup<T = FormikValues>({
@@ -19,11 +19,10 @@ export function SwitchFormGroup<T = FormikValues>({
   formik,
   name
 }: Props<T>): ReactElement {
-  const value = name ? get(formik.values, name) : false; //TODO temporary condition, because some SwitchFormGroups are in form, but not handle anything.
+  const value = name ? get(formik.values, name) : false;
 
   const handleValueChange = (): void => {
     if (name) {
-      //TODO temporary condition, because some SwitchFormGroups are in form, but not handle anything.
       formik.setFieldValue(name.toString(), !value);
     }
   };
