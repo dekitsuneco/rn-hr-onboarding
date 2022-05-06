@@ -9,6 +9,9 @@ import { SelectOption } from './models';
 interface Props<T> extends InputFormGroupProps<T> {
   options?: Array<SelectOption>;
   onPress?: () => void;
+  isLoading?: boolean;
+  triggerContainerStyle?: ViewStyle;
+  optionsContainerStyle?: ViewStyle;
 }
 
 export function Select<T = FormikValues>({
@@ -17,7 +20,10 @@ export function Select<T = FormikValues>({
   options,
   placeholder,
   onPress,
-  containerStyle
+  triggerContainerStyle,
+  optionsContainerStyle,
+  isLoading,
+  message
 }: Props<T>): ReactElement {
   const [title, setTitle] = useState<string>();
   const [optionsWidth, setOptionsWidth] = useState<number>();
@@ -28,8 +34,7 @@ export function Select<T = FormikValues>({
       onSelect: () => {
         formik.setFieldValue(name, id);
         setTitle(title);
-      },
-      style: { width: optionsWidth }
+      }
     }));
   }, [options, optionsWidth]);
 
@@ -40,8 +45,11 @@ export function Select<T = FormikValues>({
 
   return (
     <Dropdown
-      triggerContainerStyle={containerStyle as ViewStyle}
+      isLoading={isLoading}
+      style={{ width: optionsWidth, ...optionsContainerStyle }}
+      triggerContainerStyle={triggerContainerStyle}
       hasAnchor={false}
+      alignTo='center'
       renderTo='bottom'
       renderTrigger={(props) => (
         <TouchableOpacity
@@ -57,6 +65,7 @@ export function Select<T = FormikValues>({
             formik={formik}
             name={name}
             value={title}
+            message={message}
           />
         </TouchableOpacity>
       )}

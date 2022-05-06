@@ -21,12 +21,6 @@ const roleOptions = [
   { id: 2, title: 'Admin' }
 ]; // TODO temporary fake options
 
-const teamOptions = [
-  { id: 1, title: 'Sergey Simonov' },
-  { id: 2, title: 'Anatoly Markin' },
-  { id: 3, title: 'Vlad Saveliev' } // TODO temporary fake options
-];
-
 export function NewEmployeeScreen(): ReactElement {
   const translate = useTranslation('MAIN.EMPLOYEES.NEW_EMPLOYEE');
 
@@ -76,6 +70,8 @@ export function NewEmployeeScreen(): ReactElement {
               formik={formik}
               mapToOption={MapUserToOption}
               placeholder={placeholder}
+              triggerContainerStyle={style.inputForm}
+              optionsContainerStyle={style.selectOptionsContainer}
             />
           ))}
         </View>
@@ -117,6 +113,9 @@ const style = createStyles({
   },
   inputForm: {
     marginBottom: 16
+  },
+  selectOptionsContainer: {
+    maxHeight: 250
   },
   buttons: {
     marginBottom: 50
