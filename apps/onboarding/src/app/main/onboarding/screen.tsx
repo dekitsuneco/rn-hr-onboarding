@@ -3,9 +3,9 @@ import React from 'react';
 import { FlatList } from 'react-native';
 import { OnboardingHeader, ScriptCardItem } from './shared/components';
 import { onboardingFacade } from './facade';
-import { Script } from 'features/data';
+import { TempScript } from 'features/data';
 
-const fakeScriptData: Array<Script> = [
+const fakeScriptData: Array<TempScript> = [
   {
     id: '1',
     title: 'Office Intro – Omsk',

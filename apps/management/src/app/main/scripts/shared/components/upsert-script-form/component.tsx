@@ -8,17 +8,19 @@ import { UploadImage } from 'ui-kit/image-upload';
 import { InputFormGroup } from 'ui-kit/input-form-group';
 import { AnyStyle, createStyles, variables } from 'ui-kit/styles';
 import { useTranslation } from 'utils/i18n';
-import { scriptDetailsInputs, ScriptForm } from '../../forms/script';
+import { upsertScriptFormFacade } from './facade';
+import { ScriptForm } from './forms';
 
 export function UpsertScriptForm(): JSX.Element {
   const translate = useTranslation('MAIN.SCRIPTS.SHARED.UPSERT_SCRIPT_FORM');
 
-  const handleSubmitFrom = (values: ScriptForm): void => {
-    console.log(values);
+  const handleSubmitFrom = (data: ScriptForm): void => {
+    upsertScriptFormFacade.createScript(data);
   }; //TODO temporary function to log the form
 
   const formik = useFormik({
     initialValues: new ScriptForm(),
+    validationSchema: ScriptForm.validationSchema,
     onSubmit: handleSubmitFrom
   });
 
@@ -31,15 +33,20 @@ export function UpsertScriptForm(): JSX.Element {
           <UploadImage buttonText={translate('BUTTON_UPLOAD_COVER_IMAGE')} />
         </FormSection>
         <FormSection title={translate('TEXT_SUBTITLE_SCRIPT_DETAILS')}>
-          {scriptDetailsInputs.map(({ name, placeholder }) => (
-            <InputFormGroup
-              key={name}
-              containerStyle={style.inputForm}
-              formik={formik}
-              placeholder={placeholder}
-              name={name}
-            />
-          ))}
+          <InputFormGroup
+            key={'title' as keyof ScriptForm}
+            containerStyle={style.inputForm}
+            formik={formik}
+            placeholder={translate('PLACEHOLDER_INPUT_TITLE')}
+            name={'title' as keyof ScriptForm}
+          />
+          <InputFormGroup
+            key={'description' as keyof ScriptForm}
+            containerStyle={style.inputForm}
+            formik={formik}
+            placeholder={translate('PLACEHOLDER_INPUT_DESCRIPTION')}
+            name={'description' as keyof ScriptForm}
+          />
         </FormSection>
       </View>
       <View style={style.buttons}>

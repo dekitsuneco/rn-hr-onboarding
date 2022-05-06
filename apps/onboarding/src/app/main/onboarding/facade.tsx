@@ -1,6 +1,6 @@
 import { appNavigationService } from 'features/navigation';
 import { useTranslation } from 'utils/i18n';
-import { Script, User } from 'features/data';
+import { TempScript, User } from 'features/data';
 import { ProfileSelectors } from 'features/profile';
 import { useSelector } from 'react-redux';
 
@@ -13,7 +13,7 @@ class OnboardingFacade {
     return useSelector(ProfileSelectors.profile);
   }
 
-  public navigateToScript(script: Script): void {
+  public navigateToScript(script: TempScript): void {
     appNavigationService.navigate('Script', { script });
   }
 

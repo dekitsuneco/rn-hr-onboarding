@@ -1,6 +1,6 @@
 import { Task } from './task';
 
-export class Script {
+export class TempScript {
   public id: string;
   public title: string;
   public tasksTotal: number;
