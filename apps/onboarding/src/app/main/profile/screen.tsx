@@ -55,7 +55,7 @@ export function ProfileScreen(): JSX.Element {
   ));
 
   return (
-    <ScrollView style={style.screen} contentContainerStyle={[commonStyle.wrapper]}>
+    <ScrollView style={style.screen} contentContainerStyle={[commonStyle.wrapper, { paddingBottom: 120 }]}>
       <View>
         <AppText theme={TextTheme.LARGEST}>{translate('TEXT_HEADER')}</AppText>
         <View style={style.avatarContainer}>
@@ -74,7 +74,8 @@ const style = createStyles({
   screen: {
     flex: 1,
     backgroundColor: variables.color.backgroundSecondary,
-    paddingTop: '1rem'
+    paddingTop: '1rem',
+    paddingBottom: 100
   },
   avatarContainer: {
     flexDirection: 'row',
