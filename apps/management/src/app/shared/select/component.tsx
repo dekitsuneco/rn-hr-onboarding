@@ -6,7 +6,7 @@ import { InputFormGroup, InputFormGroupProps } from 'ui-kit/input-form-group';
 import { InputType } from 'ui-kit/text-input';
 import { SelectOption } from './models';
 
-interface Props<T> extends InputFormGroupProps<T> {
+export interface SelectProps<T> extends InputFormGroupProps<T> {
   options?: Array<SelectOption>;
   onPress?: () => void;
   isLoading?: boolean;
@@ -24,7 +24,7 @@ export function Select<T = FormikValues>({
   optionsContainerStyle,
   isLoading,
   message
-}: Props<T>): ReactElement {
+}: SelectProps<T>): ReactElement {
   const [title, setTitle] = useState<string>();
   const [optionsWidth, setOptionsWidth] = useState<number>();
 

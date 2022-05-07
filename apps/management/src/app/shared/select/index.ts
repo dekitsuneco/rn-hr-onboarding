@@ -1,2 +1,2 @@
-export * from './select';
+export * from './component';
 export * from './models';
