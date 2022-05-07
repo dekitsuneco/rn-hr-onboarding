@@ -10,7 +10,7 @@ interface Props<T = FormikValues> {
   label: string;
   style?: StyleProp<ViewStyle>;
   formik: FormikProps<T>;
-  name?: keyof T;
+  name?: keyof T & string;
 }
 
 export function SwitchFormGroup<T = FormikValues>({
@@ -23,7 +23,7 @@ export function SwitchFormGroup<T = FormikValues>({
 
   const handleValueChange = (): void => {
     if (name) {
-      formik.setFieldValue(name.toString(), !value);
+      formik.setFieldValue(name, !value);
     }
   };
 

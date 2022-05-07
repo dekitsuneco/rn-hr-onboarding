@@ -1,8 +1,8 @@
 import { useTranslation } from 'utils/i18n';
 import * as Yup from 'yup';
 
-const translate = useTranslation('MAIN.EMPLOYEES.UPSERT_EMPLOYEE');
-const translateValidation = useTranslation('MAIN.EMPLOYEES.UPSERT_EMPLOYEE.VALIDATION');
+const translate = useTranslation('MAIN.EMPLOYEES.UPSERT_EMPLOYEE.EMPLOYEE_FORM');
+const translateValidation = useTranslation('MAIN.EMPLOYEES.UPSERT_EMPLOYEE.EMPLOYEE_FORM.VALIDATION');
 
 export class EmployeeForm {
   public avatarID: number | null;

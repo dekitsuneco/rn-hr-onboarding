@@ -23,7 +23,7 @@ export class User extends BaseEntity<number> {
   @Expose({ name: 'date_of_birth' })
   @Type(() => DateTime)
   @TransformDate('SQL')
-  public dateOfBirth: DateTime;
+  public dateOfBirth: string;
 
   @Expose()
   public phone: string;
@@ -34,7 +34,7 @@ export class User extends BaseEntity<number> {
   @Expose({ name: 'starts_on' })
   @Type(() => DateTime)
   @TransformDate('SQL')
-  public startsOn: DateTime;
+  public startsOn: string;
 
   @Expose({ name: 'is_onboarding_required' })
   public isOnboardingRequired: boolean;

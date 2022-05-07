@@ -10,12 +10,12 @@ export const upsertEmployeeScreenReducer = createReducer(initialState, (handleAc
     isCreating: true
   })),
 
-  handleAction(UpsertEmployeeScreenActions.createSuccess, (state) => ({
+  handleAction(UpsertEmployeeScreenActions.createUserSuccess, (state) => ({
     ...state,
     isCreating: false
   })),
 
-  handleAction(UpsertEmployeeScreenActions.createFailure, (state, { payload }) => ({
+  handleAction(UpsertEmployeeScreenActions.createUserFailure, (state, { payload }) => ({
     ...state,
     isCreating: false,
     errorMessage: payload.message
