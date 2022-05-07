@@ -55,7 +55,7 @@ export function ProfileScreen(): JSX.Element {
   ));
 
   return (
-    <ScrollView style={style.screen} contentContainerStyle={[commonStyle.wrapper, commonStyle.mainScreensWrapper]}>
+    <ScrollView style={[commonStyle.mainScreensWrapper, style.screen]} contentContainerStyle={commonStyle.wrapper}>
       <View>
         <AppText theme={TextTheme.LARGEST}>{translate('TEXT_HEADER')}</AppText>
         <View style={style.avatarContainer}>
