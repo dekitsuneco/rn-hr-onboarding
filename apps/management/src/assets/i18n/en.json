@@ -64,6 +64,9 @@
         "BUTTON_DROPDOWN_EDIT": "Edit",
         "BUTTON_DROPDOWN_DELETE": "Delete"
       },
+      "NEW_SCRIPT": {
+        "BUTTON_ADD_SCRIPT": "Add script"
+      },
       "NAVIGATION": {
         "SCREEN_TITLE_SCRIPTS": "Scripts",
         "SCREEN_TITLE_NEW": "New Script"
@@ -73,9 +76,10 @@
           "TEXT_SUBTITLE_COVER_IMAGE": "Cover image",
           "BUTTON_UPLOAD_COVER_IMAGE": "Upload cover image",
           "TEXT_SUBTITLE_SCRIPT_DETAILS": "Script details",
-          "BUTTON_ADD_SCRIPT": "Add script",
           "PLACEHOLDER_INPUT_TITLE": "Title",
-          "PLACEHOLDER_INPUT_DESCRIPTION": "Description"
+          "PLACEHOLDER_INPUT_DESCRIPTION": "Description",
+          "PLACEHOLDER_INPUT_TITLE_ERROR": "Please enter a title",
+          "PLACEHOLDER_INPUT_DESCRIPTION_ERROR": "Please enter some description"
         }
       }
     }

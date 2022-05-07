@@ -1,4 +1,7 @@
+import { useTranslation } from 'utils/i18n';
 import * as Yup from 'yup';
+
+const translate = useTranslation('MAIN.SCRIPTS.SHARED.UPSERT_SCRIPT_FORM');
 
 export class ScriptForm {
   public coverID: number;
@@ -7,8 +10,8 @@ export class ScriptForm {
 
   public static get validationSchema(): Yup.SchemaOf<Omit<ScriptForm, 'coverID'>> {
     return Yup.object().shape({
-      title: Yup.string().required('Please enter a title'),
-      description: Yup.string().required('Please enter some description')
+      title: Yup.string().required(translate('PLACEHOLDER_INPUT_TITLE_ERROR')),
+      description: Yup.string().required(translate('PLACEHOLDER_INPUT_DESCRIPTION_ERROR'))
     });
   }
 

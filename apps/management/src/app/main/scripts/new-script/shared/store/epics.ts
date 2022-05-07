@@ -4,19 +4,19 @@ import { appNavigationService } from 'features/navigation';
 import { AppActions, Epics } from 'modules/store';
 import { of } from 'rxjs';
 import { exhaustMap, map, catchError, tap } from 'rxjs/operators';
-import { UpsertScriptFormActions } from './actions';
+import { NewScriptScreenActions } from './actions';
 
-export const upsertScriptFormEpics: Epics = {
+export const newScriptScreenEpics: Epics = {
   create: (action$) => action$.pipe(
-    ofType(UpsertScriptFormActions.createScript),
+    ofType(NewScriptScreenActions.createScript),
     exhaustMap((action) => scriptService.create(new Script(action.payload)).pipe(
-      map(() => UpsertScriptFormActions.createSuccess()),
-      catchError((error) => of(UpsertScriptFormActions.createFailure(error)))
+      map(() => NewScriptScreenActions.createSuccess()),
+      catchError((error) => of(NewScriptScreenActions.createFailure(error)))
     ))
   ),
 
   createSuccess: (action$) => action$.pipe(
-    ofType(UpsertScriptFormActions.createSuccess),
+    ofType(NewScriptScreenActions.createSuccess),
     tap(() => appNavigationService.goBack()),
     map(() => AppActions.noop())
   )
