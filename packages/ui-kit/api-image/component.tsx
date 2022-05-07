@@ -6,17 +6,17 @@ import { ExternalImage } from '../external-image';
 import { useSelector } from 'react-redux';
 
 interface ApiImageProps {
-  id: number;
+  mediaID: number;
   style?: StyleProp<ImageStyle>;
 }
 
-export function ApiImage({ id, style }: ApiImageProps): ReactElement {
+export function ApiImage({ mediaID, style }: ApiImageProps): ReactElement {
   const token = useSelector(AuthSelectors.token);
-  const URI = `${commonAppsConfig.api.root}/media/${id}/content`;
+  const uri = `${commonAppsConfig.api.root}/media/${mediaID}/content`;
   const headers = { Authorization: 'Bearer ' + token };
 
   return <ExternalImage
-    uri={URI}
+    uri={uri}
     headers={headers}
     style={style} />;
 }

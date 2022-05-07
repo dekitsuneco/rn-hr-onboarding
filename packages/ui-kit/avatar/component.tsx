@@ -13,7 +13,7 @@ interface Props {
 export function Avatar({ id, theme, style: elementStyle }: Props): ReactElement {
   return (
     <View style={[style.container, style.common, style[theme], elementStyle]}>
-      <ApiImage id={id} style={[style.common, style[theme]]} />
+      <ApiImage mediaID={id} style={[style.common, style[theme]]} />
     </View>
   );
 }
