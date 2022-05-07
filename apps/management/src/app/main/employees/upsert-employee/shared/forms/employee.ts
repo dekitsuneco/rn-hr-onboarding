@@ -1,11 +1,10 @@
 import { useTranslation } from 'utils/i18n';
 import * as Yup from 'yup';
 
-const translate = useTranslation('MAIN.EMPLOYEES.UPSERT_EMPLOYEE.EMPLOYEE_FORM');
 const translateValidation = useTranslation('MAIN.EMPLOYEES.UPSERT_EMPLOYEE.EMPLOYEE_FORM.VALIDATION');
 
 export class EmployeeForm {
-  public avatarID: number | null;
+  public avatarID: number;
   public firstName: string;
   public lastName: string;
   public dateOfBirth: string;
@@ -58,19 +57,19 @@ export class EmployeeForm {
 type FormInputs = Array<{ placeholder: string; name: keyof EmployeeForm }>;
 
 export const employeeDetailsInputs: FormInputs = [
-  { placeholder: translate('TEXT_FIRST_NAME'), name: 'firstName' },
-  { placeholder: translate('TEXT_LAST_NAME'), name: 'lastName' },
-  { placeholder: translate('TEXT_DATE_OF_BIRTH'), name: 'dateOfBirth' },
-  { placeholder: translate('TEXT_EMAIL_ADDRESS'), name: 'email' },
-  { placeholder: translate('TEXT_PHONE_NUMBER'), name: 'phone' },
-  { placeholder: translate('TEXT_POSITION'), name: 'position' },
-  { placeholder: translate('TEXT_STARTS_ON'), name: 'startsOn' }
+  { placeholder: 'TEXT_FIRST_NAME', name: 'firstName' },
+  { placeholder: 'TEXT_LAST_NAME', name: 'lastName' },
+  { placeholder: 'TEXT_DATE_OF_BIRTH', name: 'dateOfBirth' },
+  { placeholder: 'TEXT_EMAIL_ADDRESS', name: 'email' },
+  { placeholder: 'TEXT_PHONE_NUMBER', name: 'phone' },
+  { placeholder: 'TEXT_POSITION', name: 'position' },
+  { placeholder: 'TEXT_STARTS_ON', name: 'startsOn' }
 ];
 
 export const teamInputs: FormInputs = [
-  { placeholder: translate('TEXT_HR'), name: 'hrID' },
-  { placeholder: translate('TEXT_MANAGER'), name: 'managerID' },
-  { placeholder: translate('TEXT_LEAD'), name: 'leadID' }
+  { placeholder: 'TEXT_HR', name: 'hrID' },
+  { placeholder: 'TEXT_MANAGER', name: 'managerID' },
+  { placeholder: 'TEXT_LEAD', name: 'leadID' }
 ];
 
 export const scripts = ['Office Tour - Omsk', 'Office Tour - Krasnodar', 'Work Tools', 'Meet Your Colleagues'];

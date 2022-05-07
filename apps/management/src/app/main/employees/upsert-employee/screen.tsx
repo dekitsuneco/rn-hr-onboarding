@@ -53,7 +53,7 @@ export function UpsertEmployeeScreen(): ReactElement {
               key={name}
               containerStyle={style.inputForm}
               formik={formik}
-              placeholder={placeholder}
+              placeholder={translate('EMPLOYEE_FORM.' + placeholder)}
               name={name}
             />
           ))}
@@ -73,7 +73,7 @@ export function UpsertEmployeeScreen(): ReactElement {
               key={name}
               containerStyle={style.inputForm}
               formik={formik}
-              placeholder={placeholder}
+              placeholder={translate('EMPLOYEE_FORM.' + placeholder)}
               name={name}
               options={teamOptions}
             />

@@ -7,7 +7,7 @@ export function TransformDate(format?: 'SQL' | 'ISO', withTime: boolean = true):
       if (DateTime.isDateTime(value)) {
         const utcValue = value.toUTC();
 
-        return format ? utcValue.toFormat(format) : withTime ? utcValue.toISO() : utcValue.toISODate();
+        return format ? utcValue.toSQL() : withTime ? utcValue.toISO() : utcValue.toISODate();
       }
 
       return value;
