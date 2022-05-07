@@ -35,7 +35,8 @@ export function OnboardingHeader({ name }: Props): ReactElement {
 const style = createStyles({
   greeting: {
     flexDirection: 'row',
-    paddingVertical: 40
+    alignItems: 'center',
+    height: 118
   },
   progressContainer: {
     width: '100%',
