@@ -14,10 +14,7 @@ export function CurrentUserItem({ profile }: Props): ReactElement {
   return (
     <View style={style.container}>
       <View style={style.imageContainer}>
-        <Avatar
-          theme={AvatarTheme.SMALLEST}
-          uri='https://cs.kiozk.ru/assets/c15/5wn/kfh/di1pw2qbavxrxzvviera8ug/art/64354/logo-800-520.jpg?v=1'
-        />
+        <Avatar theme={AvatarTheme.SMALLEST} id={10} />
       </View>
       <AppText theme={TextTheme.SMALL}>
         {profile?.firstName} {profile?.lastName}
