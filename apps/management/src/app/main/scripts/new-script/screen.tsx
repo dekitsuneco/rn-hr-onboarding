@@ -7,6 +7,10 @@ export function NewScriptScreen(): ReactElement {
   const translate = useTranslation('MAIN.SCRIPTS.NEW_SCRIPT');
 
   return (
-    <UpsertScriptForm submitBtnTitle={translate('BUTTON_ADD_SCRIPT')} onSubmit={newScriptScreenFacade.createScript} />
+    <UpsertScriptForm
+      isSubmitting={newScriptScreenFacade.isSubmitting}
+      submitBtnTitle={translate('BUTTON_ADD_SCRIPT')}
+      onSubmit={newScriptScreenFacade.createScript}
+    />
   );
 }

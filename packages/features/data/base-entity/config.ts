@@ -3,7 +3,7 @@ import { ClassConstructor, plainToInstance } from 'class-transformer';
 import { isFunction, keys } from 'lodash';
 import { BaseEntityPlain } from './models';
 import { EntityMap } from './types';
-import { Script } from 'features/data/script/index';
+import { Script } from '../script/models/script';
 
 export type Entities = {
   user: User;

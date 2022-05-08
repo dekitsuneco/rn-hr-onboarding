@@ -76,10 +76,10 @@
           "TEXT_SUBTITLE_COVER_IMAGE": "Cover image",
           "BUTTON_UPLOAD_COVER_IMAGE": "Upload cover image",
           "TEXT_SUBTITLE_SCRIPT_DETAILS": "Script details",
-          "PLACEHOLDER_INPUT_TITLE": "Title",
-          "PLACEHOLDER_INPUT_DESCRIPTION": "Description",
-          "PLACEHOLDER_INPUT_TITLE_ERROR": "Please enter a title",
-          "PLACEHOLDER_INPUT_DESCRIPTION_ERROR": "Please enter some description"
+          "INPUT_TITLE_PLACEHOLDER": "Title",
+          "INPUT_DESCRIPTION_PLACEHOLDER": "Description",
+          "INPUT_TITLE_ERROR": "Please enter a title",
+          "INPUT_DESCRIPTION_ERROR": "Please enter some description"
         }
       }
     }

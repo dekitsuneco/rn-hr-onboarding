@@ -10,8 +10,8 @@ export class ScriptForm {
 
   public static get validationSchema(): Yup.SchemaOf<Omit<ScriptForm, 'coverID'>> {
     return Yup.object().shape({
-      title: Yup.string().required(translate('PLACEHOLDER_INPUT_TITLE_ERROR')),
-      description: Yup.string().required(translate('PLACEHOLDER_INPUT_DESCRIPTION_ERROR'))
+      title: Yup.string().required(translate('INPUT_TITLE_ERROR')),
+      description: Yup.string().required(translate('INPUT_DESCRIPTION_ERROR'))
     });
   }
 

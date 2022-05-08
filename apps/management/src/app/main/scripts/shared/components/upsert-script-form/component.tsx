@@ -13,9 +13,14 @@ import { ScriptForm } from './forms';
 export type UpsertScriptFormProps = {
   submitBtnTitle: string;
   onSubmit: (data: ScriptForm) => void;
+  isSubmitting?: boolean;
 };
 
-export function UpsertScriptForm({ submitBtnTitle, onSubmit }: UpsertScriptFormProps): JSX.Element {
+export function UpsertScriptForm({
+  submitBtnTitle,
+  onSubmit,
+  isSubmitting = false
+}: UpsertScriptFormProps): JSX.Element {
   const translate = useTranslation('MAIN.SCRIPTS.SHARED.UPSERT_SCRIPT_FORM');
 
   const formik = useFormik({
@@ -36,20 +41,25 @@ export function UpsertScriptForm({ submitBtnTitle, onSubmit }: UpsertScriptFormP
           <InputFormGroup<ScriptForm>
             containerStyle={style.inputForm}
             formik={formik}
-            placeholder={translate('PLACEHOLDER_INPUT_TITLE')}
+            placeholder={translate('INPUT_TITLE_PLACEHOLDER')}
             name={'title'}
           />
           <InputFormGroup<ScriptForm>
             containerStyle={style.inputForm}
+            style={style.textarea}
             formik={formik}
-            placeholder={translate('PLACEHOLDER_INPUT_DESCRIPTION')}
+            placeholder={translate('INPUT_DESCRIPTION_PLACEHOLDER')}
             name={'description'}
+            multiline={true}
+            numberOfLines={4}
           />
         </FormSection>
       </View>
       <View style={style.buttons}>
         <View style={style.buttonContainer}>
-          <AppButton onPress={() => handleSubmit()}>{submitBtnTitle}</AppButton>
+          <AppButton isLoading={isSubmitting} onPress={() => handleSubmit()}>
+            {submitBtnTitle}
+          </AppButton>
         </View>
       </View>
     </ScrollView>
@@ -62,6 +72,12 @@ const style = createStyles({
   },
   inputForm: {
     marginBottom: 16
+  },
+  textarea: {
+    textAlignVertical: 'top',
+    minHeight: 130,
+    lineHeight: 24,
+    marginVertical: 8
   },
   buttons: {
     marginBottom: 50
