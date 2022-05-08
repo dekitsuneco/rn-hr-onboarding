@@ -1,10 +1,12 @@
 import React, { ReactElement, useState, useMemo } from 'react';
 import { Menu, MenuOptions, MenuTrigger, renderers } from 'react-native-popup-menu';
-import { View, ViewStyle, StyleProp, LayoutChangeEvent } from 'react-native';
+import { ViewStyle, StyleProp, LayoutChangeEvent, ScrollView } from 'react-native';
 import { AppButtonProps } from 'ui-kit/button';
 import { DropdownTrigger, DropdownTriggerProps } from './components/dropdown-trigger';
 import { DropdownOption, DropdownOptionProps } from './components/dropdown-option';
 import { MenuTriggerProps } from 'react-native-popup-menu';
+import { AppActivityIndicator } from '../activity-indicator';
+import { createStyles, variables } from '../styles';
 
 type Orientation = 'top' | 'bottom' | 'right' | 'left';
 type Position = Orientation | 'auto';
@@ -29,7 +31,8 @@ export function Dropdown<TValue>({
   hasAnchor = true,
   triggerProps = {},
   triggerContainerStyle = {},
-  renderTrigger = DropdownTrigger
+  renderTrigger = DropdownTrigger,
+  isLoading
 }: DropdownProps<TValue>): ReactElement {
   const [buttonHeight, setButtonHeight] = useState(0);
   const [buttonWidth, setButtonWidth] = useState(0);
@@ -98,8 +101,18 @@ export function Dropdown<TValue>({
         }}
       />
       <MenuOptions customStyles={menuOptionsStyle}>
-        <View onLayout={handleLayoutChange(setDropdownWidth, setDropdownHeight)}>{dropdownOptions}</View>
+        {isLoading ? (
+          <AppActivityIndicator style={style.activityIndicator} color={variables.color.primary} />
+        ) : (
+          <ScrollView onLayout={handleLayoutChange(setDropdownWidth, setDropdownHeight)}>{dropdownOptions}</ScrollView>
+        )}
       </MenuOptions>
     </Menu>
   );
 }
+
+const style = createStyles({
+  activityIndicator: {
+    paddingVertical: 5
+  }
+});

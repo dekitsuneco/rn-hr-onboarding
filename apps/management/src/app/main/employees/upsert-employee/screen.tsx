@@ -10,20 +10,15 @@ import { InputFormGroup } from 'ui-kit/input-form-group';
 import { AppButton } from 'ui-kit/button';
 import { AnyStyle } from 'ui-kit/styles';
 import { SwitchFormGroup } from '@shared/switch-form-group';
+import { Select } from '@shared/select';
+import { UserSelect } from '@shared/user-select';
 import { upsertEmployeeFacade } from './facade';
-import { Select } from '@app/main/shared/components/select/select';
 
 const roleOptions = [
   { id: 1, title: 'Hr' },
   { id: 3, title: 'Employee' },
   { id: 2, title: 'Admin' }
 ]; // TODO temporary fake options
-
-const teamOptions = [
-  { id: 1, title: 'Sergey Simonov' },
-  { id: 2, title: 'Anatoly Markin' },
-  { id: 3, title: 'Vlad Saveliev' } // TODO temporary fake options
-];
 
 export function UpsertEmployeeScreen(): ReactElement {
   const translate = useTranslation('MAIN.EMPLOYEES.UPSERT_EMPLOYEE');
@@ -69,13 +64,13 @@ export function UpsertEmployeeScreen(): ReactElement {
           />
           <AppText style={style.fromSubtitle}>{translate('TEXT_SUBTITLE_TEAM')}</AppText>
           {teamInputs.map(({ name, placeholder }) => (
-            <Select
+            <UserSelect
               key={name}
-              containerStyle={style.inputForm}
+              name={name}
               formik={formik}
               placeholder={translate('EMPLOYEE_FORM.' + placeholder)}
-              name={name}
-              options={teamOptions}
+              triggerContainerStyle={style.inputForm}
+              optionsContainerStyle={style.selectOptionsContainer}
             />
           ))}
         </View>
@@ -123,6 +118,9 @@ const style = createStyles({
   },
   inputForm: {
     marginBottom: 16
+  },
+  selectOptionsContainer: {
+    maxHeight: 250
   },
   buttons: {
     marginBottom: 50

@@ -1,4 +1,4 @@
-import { commonStyle, variables } from '@styles';
+import { commonStyle } from '@styles';
 import React, { useEffect } from 'react';
 import { View, ScrollView } from 'react-native';
 import { Avatar } from 'ui-kit/avatar';
@@ -55,14 +55,11 @@ export function ProfileScreen(): JSX.Element {
   ));
 
   return (
-    <ScrollView style={style.screen} contentContainerStyle={[commonStyle.wrapper]}>
+    <ScrollView style={[commonStyle.mainScreensWrapper, style.screen]} contentContainerStyle={commonStyle.wrapper}>
       <View>
         <AppText theme={TextTheme.LARGEST}>{translate('TEXT_HEADER')}</AppText>
         <View style={style.avatarContainer}>
-          <Avatar
-            theme={AvatarTheme.LARGE}
-            uri='https://cs.kiozk.ru/assets/c15/5wn/kfh/di1pw2qbavxrxzvviera8ug/art/64354/logo-800-520.jpg?v=1'
-          />
+          <Avatar theme={AvatarTheme.LARGE} id={10} />
         </View>
         <View>{renderedMenu}</View>
       </View>
@@ -73,7 +70,6 @@ export function ProfileScreen(): JSX.Element {
 const style = createStyles({
   screen: {
     flex: 1,
-    backgroundColor: variables.color.backgroundSecondary,
     paddingTop: '1rem'
   },
   avatarContainer: {

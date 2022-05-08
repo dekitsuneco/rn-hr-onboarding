@@ -20,7 +20,8 @@ interface Props {
 }
 
 //Temporary avatar uri and labels
-const avatarUri = 'https://cs.kiozk.ru/assets/c15/5wn/kfh/di1pw2qbavxrxzvviera8ug/art/64354/logo-800-520.jpg?v=1';
+//const avatarUri = 'https://cs.kiozk.ru/assets/c15/5wn/kfh/di1pw2qbavxrxzvviera8ug/art/64354/logo-800-520.jpg?v=1';
+const avatarID = 10;
 const labels = ['Onboarding'];
 
 export function EmployeeItem({ item }: Props): ReactElement {
@@ -30,7 +31,7 @@ export function EmployeeItem({ item }: Props): ReactElement {
   return (
     <View style={style.container}>
       <View style={style.avatar}>
-        <Avatar theme={AvatarTheme.SMALL} uri={avatarUri} />
+        <Avatar theme={AvatarTheme.SMALL} id={avatarID} />
       </View>
       <View style={style.info}>
         <View style={style.infoItem}>

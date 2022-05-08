@@ -1,7 +1,6 @@
-import { commonStyle, variables } from '@styles';
+import { commonStyle } from '@styles';
 import React from 'react';
 import { FlatList } from 'react-native';
-import { createStyles } from '@styles';
 import { OnboardingHeader, ScriptCardItem } from './shared/components';
 import { onboardingFacade } from './facade';
 import { Script } from 'features/data';
@@ -116,9 +115,8 @@ export function OnboardingScreen(): JSX.Element {
 
   return (
     <FlatList
-      style={style.screen}
       showsVerticalScrollIndicator={false}
-      contentContainerStyle={[commonStyle.wrapper, style.container]}
+      contentContainerStyle={[commonStyle.wrapper, commonStyle.mainScreensWrapper]}
       keyExtractor={(item) => item.id}
       data={fakeScriptData}
       renderItem={({ item }) => (
@@ -133,13 +131,3 @@ export function OnboardingScreen(): JSX.Element {
     />
   );
 }
-
-const style = createStyles({
-  screen: {
-    backgroundColor: variables.color.backgroundSecondary
-  },
-  container: {
-    paddingBottom: 100,
-    backgroundColor: variables.color.backgroundSecondary
-  }
-});
