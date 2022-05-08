@@ -10,15 +10,15 @@ type Props<T> = InputFormGroupProps<T>;
 export function DatePicker<T>({ formik, name, placeholder, containerStyle }: Props<T>): ReactElement {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
-  const showDatePicker = () => {
+  const showDatePicker = (): void => {
     setDatePickerVisibility(true);
   };
 
-  const hideDatePicker = () => {
+  const hideDatePicker = (): void => {
     setDatePickerVisibility(false);
   };
 
-  const handleConfirm = (date: Date) => {
+  const handleConfirm = (date: Date): void => {
     formik.setFieldValue(name, DateTime.fromJSDate(date).toFormat('yyyy-MM-dd'));
     hideDatePicker();
   };
