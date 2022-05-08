@@ -1,19 +1,19 @@
 import React, { ReactElement } from 'react';
-import { ExternalImage } from '../external-image';
 import { createStyles, variables } from '../styles';
 import { AvatarTheme } from './enums';
 import { StyleProp, View, ViewStyle } from 'react-native';
+import { ApiImage } from '../api-image';
 
 interface Props {
-  uri: string;
+  id: number;
   theme: AvatarTheme;
   style?: StyleProp<ViewStyle>;
 }
 
-export function Avatar({ uri, theme, style: elementStyle }: Props): ReactElement {
+export function Avatar({ id, theme, style: elementStyle }: Props): ReactElement {
   return (
     <View style={[style.container, style.common, style[theme], elementStyle]}>
-      <ExternalImage uri={uri} style={[style.common, style[theme]]} />
+      <ApiImage mediaID={id} style={[style.common, style[theme]]} />
     </View>
   );
 }
