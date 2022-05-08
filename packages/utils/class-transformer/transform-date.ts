@@ -6,8 +6,13 @@ export function TransformDate(format?: 'SQL' | 'ISO', withTime: boolean = true):
     ({ value }) => {
       if (DateTime.isDateTime(value)) {
         const utcValue = value.toUTC();
-
-        return format ? utcValue.toSQL() : withTime ? utcValue.toISO() : utcValue.toISODate();
+        switch (format) {
+          case 'SQL':
+            return withTime ? utcValue.toSQL() : utcValue.toSQLDate();
+          case 'ISO':
+          default:
+            return withTime ? utcValue.toISO() : utcValue.toISODate();
+        }
       }
 
       return value;
@@ -16,7 +21,19 @@ export function TransformDate(format?: 'SQL' | 'ISO', withTime: boolean = true):
   );
 
   const toClass = Transform(
-    ({ value }) => value ? (format ? DateTime.fromFormat(value, format).toLocal() : DateTime.fromISO(value).toLocal()) : value,
+    ({ value }) => {
+      if (value) {
+        switch (format) {
+          case 'SQL':
+            return DateTime.fromSQL(value);
+          case 'ISO':
+          default:
+            return DateTime.fromISO(value);
+        }
+      }
+
+      return value;
+    },
     {
       toClassOnly: true
     }
