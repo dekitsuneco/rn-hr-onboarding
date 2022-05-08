@@ -32,16 +32,16 @@ export class EmployeeForm {
   }
 } // TODO temporary form, change it later
 
-type FormInputs = Array<{ placeholder: string; name: keyof EmployeeForm }>;
+type FormInputs = Array<{ placeholder: string; name: keyof EmployeeForm; type?: string }>;
 
 export const employeeDetailsInputs: FormInputs = [
   { placeholder: 'First Name', name: 'first_name' },
   { placeholder: 'Last Name', name: 'last_name' },
-  { placeholder: 'Date of Birth', name: 'date_of_birth' },
+  { placeholder: 'Date of Birth', name: 'date_of_birth', type: 'date' },
   { placeholder: 'Email Address', name: 'email' },
   { placeholder: 'Phone number', name: 'phone_number' },
   { placeholder: 'Position', name: 'position' },
-  { placeholder: 'Starts on', name: 'starts_on' }
+  { placeholder: 'Starts on', name: 'starts_on', type: 'date' }
 ];
 
 export const teamInputs: FormInputs = [

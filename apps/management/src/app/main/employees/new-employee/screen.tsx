@@ -11,6 +11,7 @@ import { AppButton } from 'ui-kit/button';
 import { AnyStyle } from 'ui-kit/styles';
 import { SwitchFormGroup } from './shared/components';
 import { Select } from '@app/main/shared/components/select/select';
+import { DatePicker } from '@shared/date-picker';
 
 const roleOptions = [
   { id: 1, title: 'Hr' },
@@ -44,15 +45,25 @@ export function NewEmployeeScreen(): ReactElement {
           <AppText style={style.fromSubtitle}>{translate('TEXT_SUBTITLE_PROFILE_IMAGE')}</AppText>
           <UploadImage buttonText={translate('BUTTON_UPLOAD_IMAGE')} />
           <AppText style={style.fromSubtitle}>{translate('TEXT_SUBTITLE_EMPLOYEE_DETAILS')}</AppText>
-          {employeeDetailsInputs.map(({ name, placeholder }) => (
-            <InputFormGroup
-              key={name}
-              containerStyle={style.inputForm}
-              formik={formik}
-              placeholder={placeholder}
-              name={name}
-            />
-          ))}
+          {employeeDetailsInputs.map(({ name, placeholder, type }) => {
+            if (type === 'date') {
+              return <DatePicker
+                key={name}
+                containerStyle={style.inputForm}
+                formik={formik}
+                name={name} />;
+            } else {
+              return (
+                <InputFormGroup
+                  key={name}
+                  containerStyle={style.inputForm}
+                  formik={formik}
+                  placeholder={placeholder}
+                  name={name}
+                />
+              );
+            }
+          })}
         </View>
         <View style={style.column}>
           <AppText style={style.fromSubtitle}>{translate('TEXT_SUBTITLE_ROLE')}</AppText>
