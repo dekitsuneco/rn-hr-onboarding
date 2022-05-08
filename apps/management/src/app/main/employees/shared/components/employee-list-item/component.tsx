@@ -112,7 +112,7 @@ const style = createStyles({
   dropdownTrigger: {
     paddingHorizontal: 12
   },
-  [`@media (min-width: ${variables.breakpoints.tablet})`]: {
+  [`@media (min-width: ${variables.breakpoints.desktop})`]: {
     container: {
       flexDirection: 'row',
       alignItems: 'center'
