@@ -40,8 +40,8 @@ export function NewEmployeeScreen(): ReactElement {
           <AppText style={style.fromSubtitle}>{translate('TEXT_SUBTITLE_PROFILE_IMAGE')}</AppText>
           <UploadImage buttonText={translate('BUTTON_UPLOAD_IMAGE')} />
           <AppText style={style.fromSubtitle}>{translate('TEXT_SUBTITLE_EMPLOYEE_DETAILS')}</AppText>
-          {employeeDetailsInputs.map(({ name, placeholder, type }) => {
-            if (type === 'date') {
+          {employeeDetailsInputs.map(({ name, placeholder, isDate }) => {
+            if (isDate) {
               return (
                 <DatePicker
                   key={name}

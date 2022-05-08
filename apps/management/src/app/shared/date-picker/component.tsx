@@ -30,6 +30,7 @@ export function DatePicker<T>({ formik, name, placeholder, containerStyle }: Pro
           formik={formik}
           containerStyle={containerStyle}
           name={name}
+          pointerEvents='none'
           type={InputType.DATE}
           placeholder={placeholder}
         />
