@@ -11,7 +11,7 @@ import { appNavigationService } from 'features/navigation';
 import { scriptsListFacade } from './facade';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ScriptsActionsMenu } from '../shared/components/scripts-actions-menu';
-import { EmployeeListFlatListFooter } from '../employees/shared/components';
+import { PaginationListFooter } from '../shared/components/pagination-list-footer';
 
 export function ScriptsListScreen(): ReactElement {
   const translate = useTranslation('MAIN.SCRIPTS.SCRIPTS_LIST');
@@ -27,14 +27,13 @@ export function ScriptsListScreen(): ReactElement {
 
   useEffect(() => {
     handlePageSelect(1);
-    scriptsListFacade.changeFilter({ perPage: 2 });
   }, []);
 
   const memoizedFooter = useMemo(() => {
     return (
       <View style={style.footer}>
         {pagination.lastPage > 1 && (
-          <EmployeeListFlatListFooter
+          <PaginationListFooter
             currentPage={pagination.currentPage}
             numberOfPages={pagination.lastPage}
             isLoading={isLoading}
@@ -92,7 +91,7 @@ export function ScriptsListScreen(): ReactElement {
           <View style={style.cardContainer} key={item.id}>
             <ScriptCard
               style={style.card}
-              imageURL={''}
+              mediaID={item.coverID}
               contentRight={contentRight}
               title={item.title}
               subtitle={translate('TEXT_SUBTITLE', { tasksTotal: 3 })}
@@ -124,7 +123,8 @@ const style = createStyles({
   },
   card: {
     margin: 8,
-    height: 300
+    height: 300,
+    flex: 1
   },
   addScript: {
     padding: 10,

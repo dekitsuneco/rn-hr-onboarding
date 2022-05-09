@@ -5,7 +5,7 @@ import { StyleProp, ImageStyle } from 'react-native';
 import { ExternalImage } from '../external-image';
 import { useSelector } from 'react-redux';
 
-interface ApiImageProps {
+export interface ApiImageProps {
   mediaID: number;
   style?: StyleProp<ImageStyle>;
 }
