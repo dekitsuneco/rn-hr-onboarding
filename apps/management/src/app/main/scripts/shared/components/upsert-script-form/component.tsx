@@ -8,18 +8,25 @@ import { UploadImage } from 'ui-kit/image-upload';
 import { InputFormGroup } from 'ui-kit/input-form-group';
 import { AnyStyle, createStyles, variables } from 'ui-kit/styles';
 import { useTranslation } from 'utils/i18n';
-import { scriptDetailsInputs, ScriptForm } from '../../forms/script';
+import { ScriptForm } from './forms';
 
-export function UpsertScriptForm(): JSX.Element {
+export type UpsertScriptFormProps = {
+  submitBtnTitle: string;
+  onSubmit: (data: ScriptForm) => void;
+  isSubmitting?: boolean;
+};
+
+export function UpsertScriptForm({
+  submitBtnTitle,
+  onSubmit,
+  isSubmitting = false
+}: UpsertScriptFormProps): JSX.Element {
   const translate = useTranslation('MAIN.SCRIPTS.SHARED.UPSERT_SCRIPT_FORM');
-
-  const handleSubmitFrom = (values: ScriptForm): void => {
-    console.log(values);
-  }; //TODO temporary function to log the form
 
   const formik = useFormik({
     initialValues: new ScriptForm(),
-    onSubmit: handleSubmitFrom
+    validationSchema: ScriptForm.validationSchema,
+    onSubmit
   });
 
   const { handleSubmit } = formik;
@@ -31,20 +38,28 @@ export function UpsertScriptForm(): JSX.Element {
           <UploadImage buttonText={translate('BUTTON_UPLOAD_COVER_IMAGE')} />
         </FormSection>
         <FormSection title={translate('TEXT_SUBTITLE_SCRIPT_DETAILS')}>
-          {scriptDetailsInputs.map(({ name, placeholder }) => (
-            <InputFormGroup
-              key={name}
-              containerStyle={style.inputForm}
-              formik={formik}
-              placeholder={placeholder}
-              name={name}
-            />
-          ))}
+          <InputFormGroup<ScriptForm>
+            containerStyle={style.inputForm}
+            formik={formik}
+            placeholder={translate('INPUT_TITLE_PLACEHOLDER')}
+            name={'title'}
+          />
+          <InputFormGroup<ScriptForm>
+            containerStyle={style.inputForm}
+            style={style.textarea}
+            formik={formik}
+            placeholder={translate('INPUT_DESCRIPTION_PLACEHOLDER')}
+            name={'description'}
+            multiline={true}
+            numberOfLines={4}
+          />
         </FormSection>
       </View>
       <View style={style.buttons}>
         <View style={style.buttonContainer}>
-          <AppButton onPress={() => handleSubmit()}>{translate('BUTTON_ADD_SCRIPT')}</AppButton>
+          <AppButton isLoading={isSubmitting} onPress={() => handleSubmit()}>
+            {submitBtnTitle}
+          </AppButton>
         </View>
       </View>
     </ScrollView>
@@ -57,6 +72,12 @@ const style = createStyles({
   },
   inputForm: {
     marginBottom: 16
+  },
+  textarea: {
+    textAlignVertical: 'top',
+    minHeight: 130,
+    lineHeight: 24,
+    marginVertical: 8
   },
   buttons: {
     marginBottom: 50

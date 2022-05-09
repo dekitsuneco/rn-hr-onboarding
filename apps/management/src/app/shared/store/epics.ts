@@ -6,6 +6,7 @@ import { combineEpics, Epic } from 'redux-observable';
 import { profileEpics } from 'features/profile';
 import { employeesScreenEpics } from '@app/main/employees/shared/store';
 import { upsertEmployeesScreenEpics } from '@app/main/employees/upsert-employee/shared/store/epics';
+import { newScriptScreenEpics } from '@app/main/scripts/new-script/shared/store';
 
 export const rootEpic = combineEpics(
   ...values<Epic>(appStorageEpics),
@@ -13,5 +14,6 @@ export const rootEpic = combineEpics(
   ...values<Epic>(appNavigationEpics),
   ...values<Epic>(profileEpics),
   ...values<Epic>(employeesScreenEpics),
-  ...values<Epic>(upsertEmployeesScreenEpics)
+  ...values<Epic>(upsertEmployeesScreenEpics),
+  ...values<Epic>(newScriptScreenEpics)
 );
