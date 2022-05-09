@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useMemo } from 'react';
+import React, { ReactElement, useCallback, useEffect, useMemo } from 'react';
 import { View } from 'react-native';
 import { ScriptCard } from 'ui-kit/script-card';
 import { useTranslation } from 'utils/i18n';
@@ -12,6 +12,8 @@ import { scriptsListFacade } from './facade';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ScriptsActionsMenu } from '../shared/components/scripts-actions-menu';
 import { PaginationListFooter } from '../shared/components/pagination-list-footer';
+import { alertService } from 'features/alert';
+import { Script } from 'features/data';
 
 export function ScriptsListScreen(): ReactElement {
   const translate = useTranslation('MAIN.SCRIPTS.SCRIPTS_LIST');
@@ -64,21 +66,34 @@ export function ScriptsListScreen(): ReactElement {
     []
   );
 
-  const contentRight = (
-    <ScriptsActionsMenu
-      optionProps={[
-        {
-          title: translate('BUTTON_DROPDOWN_EDIT'),
-          icon: <Icon name='edit' />,
-          onSelect: scriptsListFacade.editScript
-        },
-        {
-          title: translate('BUTTON_DROPDOWN_DELETE'),
-          icon: <Icon name='delete' />,
-          onSelect: scriptsListFacade.deleteScript
-        }
-      ]}
-    />
+  const contentRight = useCallback(
+    (item: Script) => (
+      <ScriptsActionsMenu
+        optionProps={[
+          {
+            title: translate('BUTTON_DROPDOWN_EDIT'),
+            icon: <Icon name='edit' />,
+            onSelect: scriptsListFacade.editScript
+          },
+          {
+            title: translate('BUTTON_DROPDOWN_DELETE'),
+            icon: <Icon name='delete' />,
+            onSelect: () => alertService.confirm({
+              title: translate('TITLE_ALERT_DELETE', { scriptTitle: item.title }),
+              message: translate('MESSAGE_ALERT_DELETE', { scriptTitle: item.title }),
+              onConfirm: () => scriptsListFacade.deleteItem(item),
+              confirmButtonText: translate('TEXT_BUTTON_CONFIRM'),
+              cancelButtonText: translate('TEXT_BUTTON_CANCEL'),
+              confirmButtonStyle: 'destructive',
+              options: {
+                cancelable: true
+              }
+            })
+          }
+        ]}
+      />
+    ),
+    []
   );
 
   return (
@@ -92,7 +107,7 @@ export function ScriptsListScreen(): ReactElement {
             <ScriptCard
               style={style.card}
               mediaID={item.coverID}
-              contentRight={contentRight}
+              contentRight={contentRight(item)}
               title={item.title}
               subtitle={translate('TEXT_SUBTITLE', { tasksTotal: 3 })}
               isDraggable={true}
