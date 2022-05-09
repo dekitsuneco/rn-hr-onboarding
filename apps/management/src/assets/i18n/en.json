@@ -79,7 +79,11 @@
         "CARD_TITLE_ADD_SCRIPT": "Add Script",
         "TEXT_SUBTITLE": "{{tasksTotal}} tasks",
         "BUTTON_DROPDOWN_EDIT": "Edit",
-        "BUTTON_DROPDOWN_DELETE": "Delete"
+        "BUTTON_DROPDOWN_DELETE": "Delete",
+        "TITLE_ALERT_DELETE": "Delete Script \"{{scriptTitle}}\"",
+        "MESSAGE_ALERT_DELETE": "Are you sure want to delete this script with title \"{{scriptTitle}}\"?",
+        "TEXT_BUTTON_CONFIRM": "Delete",
+        "TEXT_BUTTON_CANCEL": "Cancel"
       },
       "NEW_SCRIPT": {
         "BUTTON_ADD_SCRIPT": "Add script"

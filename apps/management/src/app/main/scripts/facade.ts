@@ -15,10 +15,6 @@ export class ScriptsListFacade extends BaseListedEntityFacade<
   public editScript(): void {
     //TODO implement
   }
-
-  public deleteScript(): void {
-    //TODO implement
-  }
 }
 
 export const scriptsListFacade = new ScriptsListFacade();
