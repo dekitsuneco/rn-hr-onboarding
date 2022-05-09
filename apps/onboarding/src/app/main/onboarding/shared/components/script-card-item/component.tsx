@@ -2,11 +2,11 @@ import React, { ReactElement } from 'react';
 import { ScriptCard } from 'ui-kit/script-card';
 import { createStyles } from '@styles';
 import { ScriptCardAction } from '../script-card-action/component';
-import { Script } from 'features/data';
+import { TempScript } from 'features/data';
 import { onboardingFacade } from '@app/main/onboarding/facade';
 
 interface Props {
-  item: Script;
+  item: TempScript;
   onCardPress?: () => void;
 }
 
