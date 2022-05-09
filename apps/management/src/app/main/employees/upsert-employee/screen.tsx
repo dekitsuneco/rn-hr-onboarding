@@ -9,25 +9,29 @@ import { UploadImage } from 'ui-kit/image-upload';
 import { InputFormGroup } from 'ui-kit/input-form-group';
 import { AppButton } from 'ui-kit/button';
 import { AnyStyle } from 'ui-kit/styles';
-import { SwitchFormGroup } from './shared/components';
+import { SwitchFormGroup } from '@shared/switch-form-group';
 import { DatePicker } from '@shared/date-picker';
 import { Select } from '@shared/select';
 import { UserSelect } from '@shared/user-select';
+import { upsertEmployeeFacade } from './facade';
 
 const roleOptions = [
   { id: 1, title: 'Hr' },
+  { id: 3, title: 'Employee' },
   { id: 2, title: 'Admin' }
 ]; // TODO temporary fake options
 
-export function NewEmployeeScreen(): ReactElement {
-  const translate = useTranslation('MAIN.EMPLOYEES.NEW_EMPLOYEE');
+export function UpsertEmployeeScreen(): ReactElement {
+  const translate = useTranslation('MAIN.EMPLOYEES.UPSERT_EMPLOYEE');
+  const { isCreating, createUser } = upsertEmployeeFacade;
 
   const handleSubmitFrom = (values: EmployeeForm): void => {
-    console.log(values);
-  }; //TODO temporary function to log the form
+    createUser(values);
+  };
 
   const formik = useFormik({
     initialValues: new EmployeeForm(),
+    validationSchema: EmployeeForm.validationSchema,
     onSubmit: handleSubmitFrom
   });
 
@@ -46,7 +50,7 @@ export function NewEmployeeScreen(): ReactElement {
                 <DatePicker
                   key={name}
                   containerStyle={style.inputForm}
-                  placeholder={placeholder}
+                  placeholder={translate('EMPLOYEE_FORM.' + placeholder)}
                   formik={formik}
                   name={name}
                 />
@@ -57,7 +61,7 @@ export function NewEmployeeScreen(): ReactElement {
                   key={name}
                   containerStyle={style.inputForm}
                   formik={formik}
-                  placeholder={placeholder}
+                  placeholder={translate('EMPLOYEE_FORM.' + placeholder)}
                   name={name}
                 />
               );
@@ -70,8 +74,8 @@ export function NewEmployeeScreen(): ReactElement {
             containerStyle={style.inputForm}
             placeholder='Role'
             formik={formik}
-            name='role'
             options={roleOptions}
+            name='roleID'
           />
           <AppText style={style.fromSubtitle}>{translate('TEXT_SUBTITLE_TEAM')}</AppText>
           {teamInputs.map(({ name, placeholder }) => (
@@ -79,7 +83,7 @@ export function NewEmployeeScreen(): ReactElement {
               key={name}
               name={name}
               formik={formik}
-              placeholder={placeholder}
+              placeholder={translate('EMPLOYEE_FORM.' + placeholder)}
               triggerContainerStyle={style.inputForm}
               optionsContainerStyle={style.selectOptionsContainer}
             />
@@ -87,13 +91,17 @@ export function NewEmployeeScreen(): ReactElement {
         </View>
         <View style={style.column}>
           <AppText style={style.fromSubtitle}>{translate('TEXT_SUBTITLE_ONBOARDING')}</AppText>
-          <SwitchFormGroup value={true} label={translate('TEXT_ONBOARDING_REQUIRED')} />
+          <SwitchFormGroup<EmployeeForm>
+            name='isOnboardingRequired'
+            formik={formik}
+            label={translate('TEXT_ONBOARDING_REQUIRED')}
+          />
           <AppText theme={TextTheme.SMALLEST} style={[style.fromSubtitle, style.nonTransformedSubtitle]}>
             {translate('TEXT_SUBTITLE_ONBOARDING_SCRIPTS')}
           </AppText>
           {scripts.map((script) => (
             <SwitchFormGroup
-              value={false}
+              formik={formik}
               key={script}
               label={script}
               style={style.switchScript} />
@@ -102,7 +110,9 @@ export function NewEmployeeScreen(): ReactElement {
       </View>
       <View style={style.buttons}>
         <View style={style.buttonContainer}>
-          <AppButton onPress={() => handleSubmit()}>{translate('BUTTON_ADD_EMPLOYEE')}</AppButton>
+          <AppButton isLoading={isCreating} onPress={() => handleSubmit()}>
+            {translate('BUTTON_ADD_EMPLOYEE')}
+          </AppButton>
         </View>
       </View>
     </ScrollView>

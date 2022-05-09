@@ -6,7 +6,7 @@ import { AnyStyle } from 'ui-kit/styles';
 import { employeesScreenFacade } from './facade';
 import { EmptyState } from '@shared/empty-state';
 
-const perPage = 2;
+const perPage = 4;
 
 export function EmployeesListScreen(): ReactElement {
   const { items, isLoading, pagination } = employeesScreenFacade;
