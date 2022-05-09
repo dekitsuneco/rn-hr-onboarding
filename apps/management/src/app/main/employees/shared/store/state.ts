@@ -6,7 +6,8 @@ export class EmployeesScreenState extends BaseListedEntityState<User, Pagination
   constructor() {
     super({
       orderBy: 'created_at',
-      desc: true
+      desc: true,
+      perPage: 4
     });
   }
 }

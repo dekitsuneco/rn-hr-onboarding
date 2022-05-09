@@ -38,10 +38,10 @@ export function EmployeeItem({ item }: Props): ReactElement {
           <AppText>
             {firstName} {lastName}
           </AppText>
-          {position && <AppText style={style.positionText}>{position}</AppText>}
+          {!!position && <AppText style={style.positionText}>{position}</AppText>}
         </View>
         <View style={style.infoItem}>
-          {phone && <AppText>{phone}</AppText>}
+          {!!phone && <AppText>{phone}</AppText>}
           <AppText>{email}</AppText>
         </View>
         <View style={[style.labelsContainer, style.infoItem]}>

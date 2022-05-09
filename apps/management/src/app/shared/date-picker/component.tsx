@@ -4,12 +4,13 @@ import { InputType } from 'ui-kit/text-input';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { TouchableOpacity, View } from 'react-native';
 import { DateTime } from 'luxon';
+import { get } from 'lodash';
 
 type Props<T> = InputFormGroupProps<T>;
 
 export function DatePicker<T>({ formik, name, placeholder, containerStyle }: Props<T>): ReactElement {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const [value, setValue] = useState('');
+  const selectedDate = get(formik.values, name)?.toSQLDate?.();
 
   const showDatePicker = (): void => {
     setDatePickerVisibility(true);
@@ -20,17 +21,15 @@ export function DatePicker<T>({ formik, name, placeholder, containerStyle }: Pro
   };
 
   const handleConfirm = (date: Date): void => {
-    const transformedDate = DateTime.fromJSDate(date);
-    formik.setFieldValue(name, transformedDate);
-    setValue(transformedDate.toSQLDate());
     hideDatePicker();
+    formik.setFieldValue(name, DateTime.fromJSDate(date));
   };
 
   return (
     <View>
       <TouchableOpacity onPress={showDatePicker}>
         <InputFormGroup
-          value={value}
+          value={selectedDate}
           formik={formik}
           containerStyle={containerStyle}
           name={name}
@@ -44,6 +43,7 @@ export function DatePicker<T>({ formik, name, placeholder, containerStyle }: Pro
         mode='date'
         onConfirm={handleConfirm}
         onCancel={hideDatePicker}
+        date={selectedDate && new Date(selectedDate)}
       />
     </View>
   );

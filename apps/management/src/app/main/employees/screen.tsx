@@ -6,8 +6,6 @@ import { AnyStyle } from 'ui-kit/styles';
 import { employeesScreenFacade } from './facade';
 import { EmptyState } from '@shared/empty-state';
 
-const perPage = 4;
-
 export function EmployeesListScreen(): ReactElement {
   const { items, isLoading, pagination } = employeesScreenFacade;
 
@@ -37,10 +35,6 @@ export function EmployeesListScreen(): ReactElement {
 
   useEffect(() => {
     handlePageSelect(1);
-  }, []);
-
-  useEffect(() => {
-    employeesScreenFacade.changeFilter({ perPage });
   }, []);
 
   return (
