@@ -1,10 +1,11 @@
 import { commonStyle, createStyles, variables } from '@styles';
 import React, { ReactElement, useEffect, useMemo, Fragment } from 'react';
 import { FlatList } from 'react-native';
-import { EmployeeItem, EmployeeListFlatListFooter, EmployeeListFlatListHeader } from './shared/components';
+import { EmployeeItem, EmployeeListFlatListHeader } from './shared/components';
 import { AnyStyle } from 'ui-kit/styles';
 import { employeesScreenFacade } from './facade';
 import { EmptyState } from '@shared/empty-state';
+import { PaginationListFooter } from '../shared/components/pagination-list-footer';
 
 const perPage = 2;
 
@@ -23,7 +24,7 @@ export function EmployeesListScreen(): ReactElement {
     return (
       <Fragment>
         {pagination.lastPage > 1 && (
-          <EmployeeListFlatListFooter
+          <PaginationListFooter
             currentPage={pagination.currentPage}
             numberOfPages={pagination.lastPage}
             isLoading={isLoading}

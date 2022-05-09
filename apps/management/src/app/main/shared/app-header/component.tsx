@@ -60,7 +60,7 @@ const style = createStyles({
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingVertical: 10,
-    maxHeight: 100,
+    height: 100,
     borderBottomWidth: 1,
     backgroundColor: variables.color.background,
     borderBottomColor: variables.color.borderColorSecondary
@@ -75,7 +75,7 @@ const style = createStyles({
   },
   [`@media (max-width: ${variables.breakpoints.tablet})`]: {
     container: {
-      maxHeight: 60,
+      height: 60,
       paddingVertical: 8,
       marginHorizontal: 0
     },
