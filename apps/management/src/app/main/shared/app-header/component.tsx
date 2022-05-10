@@ -12,7 +12,7 @@ export type AppHeaderProps = {
   titleContent?: string | JSX.Element;
   rightContent?: JSX.Element;
   isDrawerToggleHidden?: boolean;
-} & Partial<Pick<StackHeaderProps | DrawerHeaderProps, 'navigation' | 'options'>>;
+} & Partial<Pick<StackHeaderProps | DrawerHeaderProps, 'navigation' | 'options' | 'route'>>;
 
 export function AppHeader({
   rightContent,

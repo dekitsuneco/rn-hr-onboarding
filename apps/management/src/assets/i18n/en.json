@@ -47,6 +47,10 @@
         "BUTTON_ADD_EMPLOYEE": "Add Employee",
         "BUTTON_SAVE_CHANGES": "Save Changes",
         "BUTTON_CANCEL": "Cancel",
+        "UPSERT_EMPLOYEE_HEADER": {
+          "BUTTON_DELETE": "Delete",
+          "TEXT_ADDED_ON": "Added on {{date}}"
+      },
         "EMPLOYEE_FORM": {
           "TEXT_FIRST_NAME": "First Name",
           "TEXT_LAST_NAME": "Last Name",

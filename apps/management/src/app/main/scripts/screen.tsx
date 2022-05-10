@@ -77,7 +77,7 @@ export function ScriptsListScreen(): ReactElement {
           },
           {
             title: translate('BUTTON_DROPDOWN_DELETE'),
-            icon: <Icon name='delete' />,
+            icon: <Icon name='delete' stroke={variables.color.black} />,
             onSelect: () => alertService.confirm({
               title: translate('TITLE_ALERT_DELETE', { scriptTitle: item.title }),
               message: translate('MESSAGE_ALERT_DELETE', { scriptTitle: item.title }),

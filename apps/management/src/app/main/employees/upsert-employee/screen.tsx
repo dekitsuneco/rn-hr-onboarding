@@ -16,6 +16,8 @@ import { UserSelect } from '@shared/user-select';
 import { upsertEmployeeFacade } from './facade';
 import { RouteProp } from '@react-navigation/native';
 import { EmployeesNavigationParams } from '../navigation';
+import { User } from 'features/data';
+import { plainToInstance } from 'class-transformer';
 
 const roleOptions = [
   { id: 1, title: 'Hr' },
@@ -30,7 +32,7 @@ interface Props {
 export function UpsertEmployeeScreen({ route }: Props): ReactElement {
   const translate = useTranslation('MAIN.EMPLOYEES.UPSERT_EMPLOYEE');
   const { isCreating, isUpdating, createUser, updateUser } = upsertEmployeeFacade;
-  const editableEmployee = route.params?.employee;
+  const editableEmployee = plainToInstance(User, route.params?.employee);
 
   const handleSubmitFrom = (values: EmployeeForm): void => {
     editableEmployee ? updateUser(values) : createUser(values);
@@ -127,7 +129,7 @@ export function UpsertEmployeeScreen({ route }: Props): ReactElement {
           </AppButton>
         </View>
         {!!editableEmployee && (
-          <View style={style.buttonContainer}>
+          <View style={[style.buttonContainer, style.buttonCancel]}>
             <AppButton onPress={handleCancel} theme='secondary'>
               {translate('BUTTON_CANCEL')}
             </AppButton>
@@ -182,6 +184,9 @@ const style = createStyles({
     buttonContainer: {
       width: '33%',
       paddingHorizontal: '2rem'
+    },
+    buttonCancel: {
+      marginLeft: -32
     }
   } as AnyStyle
 });

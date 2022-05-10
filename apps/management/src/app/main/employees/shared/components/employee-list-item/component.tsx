@@ -15,6 +15,7 @@ import { useTranslation } from 'utils/i18n';
 import { User } from 'features/data';
 import { TranslateRole } from '../../role/utils/translate-role';
 import { appNavigationService } from 'features/navigation';
+import { instanceToPlain } from 'class-transformer';
 
 interface Props {
   item: User;
@@ -30,7 +31,7 @@ export function EmployeeItem({ item }: Props): ReactElement {
   const { firstName, lastName, email, roleID, position, phone } = item;
 
   const handleEditPress = (): void => {
-    appNavigationService.navigate('UpsertEmployee', { employee: item });
+    appNavigationService.navigate('UpsertEmployee', { employee: instanceToPlain(item) });
   };
 
   return (
@@ -69,7 +70,7 @@ export function EmployeeItem({ item }: Props): ReactElement {
         renderTo='bottom'
         optionsProps={[
           { title: translate('TEXT_EDIT'), icon: <Icon name='edit' />, onSelect: handleEditPress },
-          { title: translate('TEXT_DELETE'), icon: <Icon name='delete' /> },
+          { title: translate('TEXT_DELETE'), icon: <Icon name='delete' stroke={variables.color.black} /> },
           { title: translate('TEXT_VIEW_ANSWERS'), icon: <Icon name='eye' /> }
         ]}
         renderTrigger={(props) => (

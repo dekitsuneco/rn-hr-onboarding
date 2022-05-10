@@ -7,6 +7,7 @@ import { UpsertEmployeeScreen } from './upsert-employee/screen';
 import { EmployeesListScreen } from './screen';
 import { EmployeesListHeader } from './shared/components';
 import { User } from 'features/data';
+import { UpsertEmployeHeader } from './upsert-employee/shared/components/header';
 
 export type EmployeesNavigationParams = {
   EmployeesList: undefined;
@@ -34,7 +35,8 @@ export function EmployeesNavigation(): ReactElement {
       <Stack.Screen
         name='UpsertEmployee'
         options={{
-          title: translate('SCREEN_TITLE_NEW')
+          title: translate('SCREEN_TITLE_NEW'),
+          header: UpsertEmployeHeader
         }}
         component={UpsertEmployeeScreen}
       />
