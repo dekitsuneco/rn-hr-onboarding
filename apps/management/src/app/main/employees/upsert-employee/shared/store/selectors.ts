@@ -9,4 +9,9 @@ export class UpsertEmployeeScreenSelectors {
     selectFeature,
     (state) => state.isCreating
   );
+
+  public static isUpdating = createSelector(
+    selectFeature,
+    (state) => state.isUpdating
+  );
 }

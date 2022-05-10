@@ -6,11 +6,12 @@ import { EditEmployeeScreen } from './edit-employee/screen';
 import { UpsertEmployeeScreen } from './upsert-employee/screen';
 import { EmployeesListScreen } from './screen';
 import { EmployeesListHeader } from './shared/components';
+import { User } from 'features/data';
 
 export type EmployeesNavigationParams = {
   EmployeesList: undefined;
   EditEmployee: undefined;
-  UpsertEmployee: undefined;
+  UpsertEmployee: { employee?: User };
 };
 
 const Stack = createStackNavigator<EmployeesNavigationParams>();
@@ -32,7 +33,9 @@ export function EmployeesNavigation(): ReactElement {
       />
       <Stack.Screen
         name='UpsertEmployee'
-        options={{ title: translate('SCREEN_TITLE_NEW') }}
+        options={{
+          title: translate('SCREEN_TITLE_NEW')
+        }}
         component={UpsertEmployeeScreen}
       />
     </Stack.Navigator>

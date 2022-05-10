@@ -1,5 +1,6 @@
 import { FormikValues } from 'formik';
-import React, { ReactElement, useMemo, useState } from 'react';
+import { get } from 'lodash';
+import React, { ReactElement, useEffect, useMemo, useState } from 'react';
 import { LayoutChangeEvent, ViewStyle, TouchableOpacity } from 'react-native';
 import { Dropdown } from 'ui-kit/dropdown';
 import { InputFormGroup, InputFormGroupProps } from 'ui-kit/input-form-group';
@@ -25,6 +26,7 @@ export function Select<T = FormikValues>({
   isLoading,
   message
 }: SelectProps<T>): ReactElement {
+  const value = get(formik.values, name);
   const [title, setTitle] = useState<string>();
   const [optionsWidth, setOptionsWidth] = useState<number>();
 
@@ -42,6 +44,10 @@ export function Select<T = FormikValues>({
     const { width } = event.nativeEvent.layout;
     setOptionsWidth(width);
   };
+
+  useEffect(() => {
+    setTitle(options?.find((option) => option.id === value)?.title);
+  }, [options]);
 
   return (
     <Dropdown

@@ -40,7 +40,7 @@ export class EmployeeForm {
     });
   }
 
-  constructor() {
+  constructor(employee?: Partial<EmployeeForm>) {
     this.avatarID = 1;
     this.firstName = '';
     this.lastName = '';
@@ -54,6 +54,7 @@ export class EmployeeForm {
     this.managerID = null;
     this.leadID = null;
     this.isOnboardingRequired = true;
+    employee && Object.assign(this, employee);
   }
 } // TODO temporary form, change it later
 

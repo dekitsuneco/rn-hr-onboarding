@@ -45,6 +45,8 @@
         "TEXT_SUBTITLE_ONBOARDING_SCRIPTS": "Onboarding scripts",
         "TEXT_ONBOARDING_REQUIRED": "Onboarding required",
         "BUTTON_ADD_EMPLOYEE": "Add Employee",
+        "BUTTON_SAVE_CHANGES": "Save Changes",
+        "BUTTON_CANCEL": "Cancel",
         "EMPLOYEE_FORM": {
           "TEXT_FIRST_NAME": "First Name",
           "TEXT_LAST_NAME": "Last Name",

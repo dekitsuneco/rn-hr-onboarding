@@ -9,8 +9,16 @@ class UpsertEmployeeFacade {
     return useSelector(UpsertEmployeeScreenSelectors.isCreating);
   }
 
+  public get isUpdating(): boolean {
+    return useSelector(UpsertEmployeeScreenSelectors.isUpdating);
+  }
+
   public createUser(user: EmployeeForm): void {
     storeRef.dispatch(UpsertEmployeeScreenActions.createUser(user));
+  }
+
+  public updateUser(user: EmployeeForm): void {
+    storeRef.dispatch(UpsertEmployeeScreenActions.updateUser(user));
   }
 }
 

@@ -14,6 +14,8 @@ import { DatePicker } from '@shared/date-picker';
 import { Select } from '@shared/select';
 import { UserSelect } from '@shared/user-select';
 import { upsertEmployeeFacade } from './facade';
+import { RouteProp } from '@react-navigation/native';
+import { EmployeesNavigationParams } from '../navigation';
 
 const roleOptions = [
   { id: 1, title: 'Hr' },
@@ -21,16 +23,25 @@ const roleOptions = [
   { id: 2, title: 'Admin' }
 ]; // TODO temporary fake options
 
-export function UpsertEmployeeScreen(): ReactElement {
+interface Props {
+  route?: RouteProp<EmployeesNavigationParams, 'UpsertEmployee'>;
+}
+
+export function UpsertEmployeeScreen({ route }: Props): ReactElement {
   const translate = useTranslation('MAIN.EMPLOYEES.UPSERT_EMPLOYEE');
-  const { isCreating, createUser } = upsertEmployeeFacade;
+  const { isCreating, isUpdating, createUser, updateUser } = upsertEmployeeFacade;
+  const editableEmployee = route.params?.employee;
 
   const handleSubmitFrom = (values: EmployeeForm): void => {
-    createUser(values);
+    editableEmployee ? updateUser(values) : createUser(values);
+  };
+
+  const handleCancel = (): void => {
+    formik.setValues(formik.initialValues);
   };
 
   const formik = useFormik({
-    initialValues: new EmployeeForm(),
+    initialValues: editableEmployee ? new EmployeeForm(editableEmployee) : new EmployeeForm(),
     validationSchema: EmployeeForm.validationSchema,
     onSubmit: handleSubmitFrom,
     validateOnChange: false //TODO temporary off to avoid lags
@@ -111,10 +122,17 @@ export function UpsertEmployeeScreen(): ReactElement {
       </View>
       <View style={style.buttons}>
         <View style={style.buttonContainer}>
-          <AppButton isLoading={isCreating} onPress={() => handleSubmit()}>
-            {translate('BUTTON_ADD_EMPLOYEE')}
+          <AppButton isLoading={editableEmployee ? isUpdating : isCreating} onPress={() => handleSubmit()}>
+            {editableEmployee ? translate('BUTTON_SAVE_CHANGES') : translate('BUTTON_ADD_EMPLOYEE')}
           </AppButton>
         </View>
+        {!!editableEmployee && (
+          <View style={style.buttonContainer}>
+            <AppButton onPress={handleCancel} theme='secondary'>
+              {translate('BUTTON_CANCEL')}
+            </AppButton>
+          </View>
+        )}
       </View>
     </ScrollView>
   );
@@ -141,12 +159,15 @@ const style = createStyles({
   buttons: {
     marginBottom: 50
   },
+  buttonContainer: {
+    marginBottom: 10
+  },
   switchScript: {
     borderBottomWidth: 1,
     borderColor: variables.color.borderColorSecondary,
     paddingVertical: Platform.OS === 'ios' ? 10 : 0
   },
-  [`@media (min-width: ${variables.breakpoints.desktop})`]: {
+  [`@media (min-width: ${variables.breakpoints.tablet})`]: {
     column: {
       flexBasis: '33%',
       paddingHorizontal: '2rem',
@@ -155,8 +176,11 @@ const style = createStyles({
     form: {
       flexDirection: 'row'
     },
+    buttons: {
+      flexDirection: 'row'
+    },
     buttonContainer: {
-      maxWidth: '33%',
+      width: '33%',
       paddingHorizontal: '2rem'
     }
   } as AnyStyle

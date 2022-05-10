@@ -13,7 +13,8 @@ import { UserStatusLabel } from '../user-status-label';
 import { Label } from '@shared/label';
 import { useTranslation } from 'utils/i18n';
 import { User } from 'features/data';
-import { TranslateRole } from '../../role/utils/translae-role';
+import { TranslateRole } from '../../role/utils/translate-role';
+import { appNavigationService } from 'features/navigation';
 
 interface Props {
   item: User;
@@ -27,6 +28,10 @@ const labels = ['Onboarding'];
 export function EmployeeItem({ item }: Props): ReactElement {
   const translate = useTranslation('MAIN.EMPLOYEES.EMPLOYEES_LIST');
   const { firstName, lastName, email, roleID, position, phone } = item;
+
+  const handleEditPress = (): void => {
+    appNavigationService.navigate('UpsertEmployee', { employee: item });
+  };
 
   return (
     <View style={style.container}>
@@ -63,7 +68,7 @@ export function EmployeeItem({ item }: Props): ReactElement {
       <Dropdown
         renderTo='bottom'
         optionsProps={[
-          { title: translate('TEXT_EDIT'), icon: <Icon name='edit' /> },
+          { title: translate('TEXT_EDIT'), icon: <Icon name='edit' />, onSelect: handleEditPress },
           { title: translate('TEXT_DELETE'), icon: <Icon name='delete' /> },
           { title: translate('TEXT_VIEW_ANSWERS'), icon: <Icon name='eye' /> }
         ]}
