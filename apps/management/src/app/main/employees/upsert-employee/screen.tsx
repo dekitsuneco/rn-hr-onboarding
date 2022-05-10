@@ -32,7 +32,8 @@ export function UpsertEmployeeScreen(): ReactElement {
   const formik = useFormik({
     initialValues: new EmployeeForm(),
     validationSchema: EmployeeForm.validationSchema,
-    onSubmit: handleSubmitFrom
+    onSubmit: handleSubmitFrom,
+    validateOnChange: false //TDOD temporary off to avoid lags
   });
 
   const { handleSubmit } = formik;

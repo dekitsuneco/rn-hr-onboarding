@@ -10,7 +10,7 @@ type Props<T> = InputFormGroupProps<T>;
 
 export function DatePicker<T>({ formik, name, placeholder, containerStyle }: Props<T>): ReactElement {
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
-  const selectedDate = get(formik.values, name)?.toSQLDate?.();
+  const selectedDate = get(formik.values, name);
 
   const showDatePicker = (): void => {
     setDatePickerVisibility(true);
@@ -29,7 +29,7 @@ export function DatePicker<T>({ formik, name, placeholder, containerStyle }: Pro
     <View>
       <TouchableOpacity onPress={showDatePicker}>
         <InputFormGroup
-          value={selectedDate}
+          value={selectedDate?.toSQLDate?.()}
           formik={formik}
           containerStyle={containerStyle}
           name={name}
@@ -43,7 +43,7 @@ export function DatePicker<T>({ formik, name, placeholder, containerStyle }: Pro
         mode='date'
         onConfirm={handleConfirm}
         onCancel={hideDatePicker}
-        date={selectedDate && new Date(selectedDate)}
+        date={selectedDate?.toJSDate?.()}
       />
     </View>
   );
