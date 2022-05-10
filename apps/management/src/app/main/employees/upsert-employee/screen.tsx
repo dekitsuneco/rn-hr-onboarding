@@ -169,7 +169,7 @@ const style = createStyles({
     borderColor: variables.color.borderColorSecondary,
     paddingVertical: Platform.OS === 'ios' ? 10 : 0
   },
-  [`@media (min-width: ${variables.breakpoints.tablet})`]: {
+  [`@media (min-width: ${variables.breakpoints.desktop})`]: {
     column: {
       flexBasis: '33%',
       paddingHorizontal: '2rem',
