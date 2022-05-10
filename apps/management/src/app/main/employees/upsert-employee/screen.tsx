@@ -33,7 +33,7 @@ export function UpsertEmployeeScreen(): ReactElement {
     initialValues: new EmployeeForm(),
     validationSchema: EmployeeForm.validationSchema,
     onSubmit: handleSubmitFrom,
-    validateOnChange: false //TDOD temporary off to avoid lags
+    validateOnChange: false //TODO temporary off to avoid lags
   });
 
   const { handleSubmit } = formik;
