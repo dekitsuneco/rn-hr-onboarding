@@ -6,23 +6,14 @@ import { exhaustMap, map, tap, catchError } from 'rxjs/operators';
 import { UpsertEmployeeScreenActions } from './actions';
 import { of } from 'rxjs';
 import { employeesScreenActions } from '@app/main/employees/shared/store';
-import { DateTime } from 'luxon';
 
 export const upsertEmployeesScreenEpics: Epics = {
   createUser: (action$) => action$.pipe(
     ofType(UpsertEmployeeScreenActions.createUser),
-    exhaustMap((action) => userService
-      .create(
-        new User({
-          ...action.payload,
-          startsOn: DateTime.fromISO(action.payload.startsOn),
-          dateOfBirth: DateTime.fromISO(action.payload.dateOfBirth)
-        })
-      )
-      .pipe(
-        map(() => UpsertEmployeeScreenActions.createUserSuccess()),
-        catchError((error) => of(UpsertEmployeeScreenActions.createUserFailure(error)))
-      ))
+    exhaustMap((action) => userService.create(new User(action.payload)).pipe(
+      map(() => UpsertEmployeeScreenActions.createUserSuccess()),
+      catchError((error) => of(UpsertEmployeeScreenActions.createUserFailure(error)))
+    ))
   ),
 
   createUserSuccess: (action$) => action$.pipe(

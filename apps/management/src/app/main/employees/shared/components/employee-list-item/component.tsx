@@ -26,7 +26,7 @@ const labels = ['Onboarding'];
 
 export function EmployeeItem({ item }: Props): ReactElement {
   const translate = useTranslation('MAIN.EMPLOYEES.EMPLOYEES_LIST');
-  const { firstName, lastName, email, roleID } = item;
+  const { firstName, lastName, email, roleID, position, phone } = item;
 
   return (
     <View style={style.container}>
@@ -38,10 +38,10 @@ export function EmployeeItem({ item }: Props): ReactElement {
           <AppText>
             {firstName} {lastName}
           </AppText>
-          <AppText style={style.positionText}>iOS Developer</AppText>
+          {!!position && <AppText style={style.positionText}>{position}</AppText>}
         </View>
         <View style={style.infoItem}>
-          <AppText>+1 294 3947294</AppText>
+          {!!phone && <AppText>{phone}</AppText>}
           <AppText>{email}</AppText>
         </View>
         <View style={[style.labelsContainer, style.infoItem]}>
@@ -112,7 +112,7 @@ const style = createStyles({
   dropdownTrigger: {
     paddingHorizontal: 12
   },
-  [`@media (min-width: ${variables.breakpoints.tablet})`]: {
+  [`@media (min-width: ${variables.breakpoints.desktop})`]: {
     container: {
       flexDirection: 'row',
       alignItems: 'center'

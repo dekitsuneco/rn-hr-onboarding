@@ -24,6 +24,7 @@ export function MainNavigation(): ReactElement {
 
   return (
     <Drawer.Navigator
+      initialRouteName='Employees'
       drawerContent={CustomDrawerPanel}
       backBehavior='none'
       screenOptions={{

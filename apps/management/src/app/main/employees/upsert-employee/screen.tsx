@@ -10,6 +10,7 @@ import { InputFormGroup } from 'ui-kit/input-form-group';
 import { AppButton } from 'ui-kit/button';
 import { AnyStyle } from 'ui-kit/styles';
 import { SwitchFormGroup } from '@shared/switch-form-group';
+import { DatePicker } from '@shared/date-picker';
 import { Select } from '@shared/select';
 import { UserSelect } from '@shared/user-select';
 import { upsertEmployeeFacade } from './facade';
@@ -31,7 +32,8 @@ export function UpsertEmployeeScreen(): ReactElement {
   const formik = useFormik({
     initialValues: new EmployeeForm(),
     validationSchema: EmployeeForm.validationSchema,
-    onSubmit: handleSubmitFrom
+    onSubmit: handleSubmitFrom,
+    validateOnChange: false //TODO temporary off to avoid lags
   });
 
   const { handleSubmit } = formik;
@@ -43,15 +45,29 @@ export function UpsertEmployeeScreen(): ReactElement {
           <AppText style={style.fromSubtitle}>{translate('TEXT_SUBTITLE_PROFILE_IMAGE')}</AppText>
           <UploadImage buttonText={translate('BUTTON_UPLOAD_IMAGE')} />
           <AppText style={style.fromSubtitle}>{translate('TEXT_SUBTITLE_EMPLOYEE_DETAILS')}</AppText>
-          {employeeDetailsInputs.map(({ name, placeholder }) => (
-            <InputFormGroup
-              key={name}
-              containerStyle={style.inputForm}
-              formik={formik}
-              placeholder={translate('EMPLOYEE_FORM.' + placeholder)}
-              name={name}
-            />
-          ))}
+          {employeeDetailsInputs.map(({ name, placeholder, isDate }) => {
+            if (isDate) {
+              return (
+                <DatePicker
+                  key={name}
+                  containerStyle={style.inputForm}
+                  placeholder={translate('EMPLOYEE_FORM.' + placeholder)}
+                  formik={formik}
+                  name={name}
+                />
+              );
+            } else {
+              return (
+                <InputFormGroup
+                  key={name}
+                  containerStyle={style.inputForm}
+                  formik={formik}
+                  placeholder={translate('EMPLOYEE_FORM.' + placeholder)}
+                  name={name}
+                />
+              );
+            }
+          })}
         </View>
         <View style={style.column}>
           <AppText style={style.fromSubtitle}>{translate('TEXT_SUBTITLE_ROLE')}</AppText>

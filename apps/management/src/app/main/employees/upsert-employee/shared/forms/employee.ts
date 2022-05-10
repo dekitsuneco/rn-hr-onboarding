@@ -1,3 +1,4 @@
+import { DateTime } from 'luxon';
 import { useTranslation } from 'utils/i18n';
 import * as Yup from 'yup';
 
@@ -7,11 +8,11 @@ export class EmployeeForm {
   public avatarID: number;
   public firstName: string;
   public lastName: string;
-  public dateOfBirth: string;
+  public dateOfBirth: DateTime | null;
   public email: string;
   public phone: string;
   public position: string;
-  public startsOn: string;
+  public startsOn: DateTime | null;
   public roleID: number;
   public hrID: number | null;
   public managerID: number | null;
@@ -22,6 +23,7 @@ export class EmployeeForm {
     return Yup.object().shape({
       firstName: Yup.string().required(translateValidation('TEXT_REQUIRED')),
       lastName: Yup.string().required(translateValidation('TEXT_REQUIRED')),
+      dateOfBirth: Yup.date().nullable(),
       email: Yup.string().email(translateValidation('TEXT_EMAIL'))
         .required(translateValidation('TEXT_REQUIRED')),
       phone: Yup.string()
@@ -29,6 +31,7 @@ export class EmployeeForm {
         .min(10, translateValidation('TEXT_MIN_CHAR', { min: 10 }))
         .required(translateValidation('TEXT_REQUIRED')),
       position: Yup.string().required(translateValidation('TEXT_REQUIRED')),
+      startsOn: Yup.date().nullable(),
       roleID: Yup.number().required(translateValidation('TEXT_REQUIRED')),
       hrID: Yup.number().nullable(),
       managerID: Yup.number().nullable(),
@@ -41,11 +44,11 @@ export class EmployeeForm {
     this.avatarID = 1;
     this.firstName = '';
     this.lastName = '';
-    this.dateOfBirth = '1861-02-19';
+    this.dateOfBirth = null;
     this.email = '';
     this.phone = '';
     this.position = '';
-    this.startsOn = '2022-04-26';
+    this.startsOn = null;
     this.roleID = 3;
     this.hrID = null;
     this.managerID = null;
@@ -54,16 +57,16 @@ export class EmployeeForm {
   }
 } // TODO temporary form, change it later
 
-type FormInputs = Array<{ placeholder: string; name: keyof EmployeeForm }>;
+type FormInputs = Array<{ placeholder: string; name: keyof EmployeeForm; isDate?: boolean }>;
 
 export const employeeDetailsInputs: FormInputs = [
   { placeholder: 'TEXT_FIRST_NAME', name: 'firstName' },
   { placeholder: 'TEXT_LAST_NAME', name: 'lastName' },
-  { placeholder: 'TEXT_DATE_OF_BIRTH', name: 'dateOfBirth' },
+  { placeholder: 'TEXT_DATE_OF_BIRTH', name: 'dateOfBirth', isDate: true },
   { placeholder: 'TEXT_EMAIL_ADDRESS', name: 'email' },
   { placeholder: 'TEXT_PHONE_NUMBER', name: 'phone' },
   { placeholder: 'TEXT_POSITION', name: 'position' },
-  { placeholder: 'TEXT_STARTS_ON', name: 'startsOn' }
+  { placeholder: 'TEXT_STARTS_ON', name: 'startsOn', isDate: true }
 ];
 
 export const teamInputs: FormInputs = [
