@@ -1,13 +1,12 @@
 import React, { ReactElement } from 'react';
-import { ExternalImage } from '../external-image';
 import { createStyles } from '../styles';
 import { StyleProp, View, ViewStyle } from 'react-native';
 import { AppText, TextTheme } from '../text';
 import { Icon } from '../icon';
 import { Card } from '../card';
+import { ApiImage, ApiImageProps } from '../api-image';
 
-interface Props {
-  imageURL: string;
+export type ScriptCardProps = {
   contentRight: React.ReactNode;
   title: string;
   subtitle: string;
@@ -15,10 +14,10 @@ interface Props {
   style?: StyleProp<ViewStyle>;
   isDraggable?: boolean;
   onCardPress?: () => void;
-}
+} & Pick<ApiImageProps, 'mediaID'>;
 
 export function ScriptCard({
-  imageURL,
+  mediaID,
   contentRight,
   title,
   subtitle,
@@ -26,13 +25,13 @@ export function ScriptCard({
   style: elementStyle,
   isDraggable,
   onCardPress
-}: Props): ReactElement {
+}: ScriptCardProps): ReactElement {
   return (
     <Card
       style={[style.container, elementStyle]}
       disabled={isBlocked || !onCardPress}
       onPress={onCardPress}>
-      <ExternalImage uri={imageURL} style={[style.image, isBlocked && style.blocked]} />
+      <ApiImage mediaID={mediaID} style={[style.image, isBlocked && style.blocked]} />
       <View style={style.tabs}>
         {isDraggable && <Icon name='tasks' style={style.tasksIcon} />}
         <View style={[style.textContainer, isBlocked && style.blocked]}>

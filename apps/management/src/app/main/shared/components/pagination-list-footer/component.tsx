@@ -15,14 +15,14 @@ interface Props {
   isLoading?: boolean;
 }
 
-export function EmployeeListFlatListFooter({
+export function PaginationListFooter({
   currentPage,
   numberOfPages,
   onPageSelect,
   onShowMorePress,
   isLoading
 }: Props): ReactElement {
-  const translate = useTranslation('MAIN.EMPLOYEES.EMPLOYEES_LIST');
+  const translate = useTranslation('MAIN.SHARED.PAGINATION_LIST_FOOTER');
 
   return (
     <View style={style.container}>

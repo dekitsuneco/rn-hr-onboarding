@@ -1,11 +1,20 @@
-export class ScriptsFacade {
-  public editScript(): void {
-    /* TODO */
+import { BaseListedEntityFacade } from 'features/base-listed-entity-store';
+import { Script } from 'features/data';
+import { ScriptsListScreenState, scriptsListScreenActions, scriptsListScreenSelectors } from './shared/store';
+
+export class ScriptsListFacade extends BaseListedEntityFacade<
+  ScriptsListScreenState,
+  Script,
+  typeof scriptsListScreenActions,
+  typeof scriptsListScreenSelectors
+> {
+  constructor() {
+    super(scriptsListScreenActions, scriptsListScreenSelectors);
   }
 
-  public deleteScript(): void {
-    /* TODO */
+  public editScript(): void {
+    //TODO implement
   }
 }
 
-export const scriptsFacade = new ScriptsFacade();
+export const scriptsListFacade = new ScriptsListFacade();

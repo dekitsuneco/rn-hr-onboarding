@@ -7,6 +7,7 @@ import { profileEpics } from 'features/profile';
 import { employeesScreenEpics } from '@app/main/employees/shared/store';
 import { upsertEmployeesScreenEpics } from '@app/main/employees/upsert-employee/shared/store/epics';
 import { newScriptScreenEpics } from '@app/main/scripts/new-script/shared/store';
+import { scriptsListScreenEpics } from '@app/main/scripts/shared/store';
 
 export const rootEpic = combineEpics(
   ...values<Epic>(appStorageEpics),
@@ -15,5 +16,6 @@ export const rootEpic = combineEpics(
   ...values<Epic>(profileEpics),
   ...values<Epic>(employeesScreenEpics),
   ...values<Epic>(upsertEmployeesScreenEpics),
-  ...values<Epic>(newScriptScreenEpics)
+  ...values<Epic>(newScriptScreenEpics),
+  ...values<Epic>(scriptsListScreenEpics)
 );

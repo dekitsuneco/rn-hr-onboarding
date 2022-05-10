@@ -3,7 +3,7 @@ import { EntityService } from 'features/data/base-entity/service';
 import { Epics } from 'modules/store/types';
 import { ofType } from 'deox';
 import { of } from 'rxjs';
-import { catchError, debounceTime, map, switchMap } from 'rxjs/operators';
+import { catchError, debounceTime, map, switchMap, exhaustMap } from 'rxjs/operators';
 import { BaseListedEntityActions } from './actions';
 import { BaseListedEntitySelectors } from './selectors';
 import { BaseListedEntityState } from './state';
@@ -38,5 +38,13 @@ export const baseListedEntityEpics: <
     ofType(actions.changeSearchQuery),
     debounceTime(400),
     map(({ payload }) => actions.changeFilter(payload))
+  ),
+
+  deleteItem: (action$) => action$.pipe(
+    ofType(actions.deleteItem),
+    exhaustMap((action) => entityService.delete(action.payload.item.id).pipe(
+      map(() => actions.deleteItemSuccess({ item: { id: action.payload.item.id } })),
+      catchError((error) => of(actions.deleteItemFailure(error)))
+    ))
   )
 });
