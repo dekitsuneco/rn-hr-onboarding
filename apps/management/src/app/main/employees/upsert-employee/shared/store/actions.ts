@@ -15,7 +15,7 @@ export class UpsertEmployeeScreenActions {
     '[Upsert Employee Screen] Create User Success'
   );
 
-  public static updateUser = actionWithPayload<EmployeeForm>(
+  public static updateUser = actionWithPayload<EmployeeForm & { id: number }>(
     '[Upsert Employee Screen] Update User'
   );
 

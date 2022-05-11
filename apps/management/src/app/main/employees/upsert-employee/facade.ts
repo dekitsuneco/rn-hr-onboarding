@@ -17,7 +17,7 @@ class UpsertEmployeeFacade {
     storeRef.dispatch(UpsertEmployeeScreenActions.createUser(user));
   }
 
-  public updateUser(user: EmployeeForm): void {
+  public updateUser(user: EmployeeForm & { id: number }): void {
     storeRef.dispatch(UpsertEmployeeScreenActions.updateUser(user));
   }
 }

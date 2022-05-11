@@ -43,8 +43,7 @@ export class EmployeeForm {
   }
 
   constructor(employee?: Partial<EmployeeForm>) {
-    this.id = employee?.id;
-    this.avatarID = employee?.avatarID || 1;
+    this.avatarID = employee?.avatarID || 1; //TODO fix so that avatarID can accept null
     this.firstName = employee?.firstName;
     this.lastName = employee?.lastName;
     this.dateOfBirth = employee?.dateOfBirth;

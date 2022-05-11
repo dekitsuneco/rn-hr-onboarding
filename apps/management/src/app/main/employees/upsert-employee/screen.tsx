@@ -35,7 +35,7 @@ export function UpsertEmployeeScreen({ route }: Props): ReactElement {
   const editableEmployee = plainToInstance(User, route.params?.employee);
 
   const handleSubmitFrom = (values: EmployeeForm): void => {
-    editableEmployee ? updateUser(values) : createUser(values);
+    editableEmployee ? updateUser({ id: editableEmployee.id, ...values }) : createUser(values);
   };
 
   const handleCancel = (): void => {
