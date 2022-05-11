@@ -2,7 +2,7 @@ import { AppActivityIndicator } from '../activity-indicator';
 import { AppText, TextTheme } from '../text';
 import { AnyStyle, createStyles, variables, commonStyle } from '../styles';
 import React, { ReactElement, useMemo } from 'react';
-import { PressableProps, Pressable, ViewStyle, View } from 'react-native';
+import { PressableProps, Pressable, ViewStyle, View, TextStyle } from 'react-native';
 
 export type ButtonTheme = 'primary' | 'secondary' | 'tertiary';
 export type ButtonSize = 'default' | 'small';
@@ -12,6 +12,7 @@ export interface AppButtonProps extends PressableProps {
   leftIcon?: ReactElement;
   rightIcon?: ReactElement;
   style?: ViewStyle;
+  textStyle?: TextStyle;
   isDisabled?: boolean;
   isLoading?: boolean;
   isTextHidden?: boolean;
@@ -25,6 +26,7 @@ export function AppButton({
   leftIcon,
   rightIcon,
   style: elementStyle = {},
+  textStyle: elementTextStyle = {},
   isDisabled,
   isLoading,
   isTextHidden,
@@ -65,7 +67,8 @@ export function AppButton({
                   textStyle.button,
                   textStyle[theme],
                   isDisabled && disabledTextStyle[theme],
-                  pressed && pressedTextStyle[theme]
+                  pressed && pressedTextStyle[theme],
+                  elementTextStyle
                 ]}>
                 {title}
                 {children}
@@ -109,7 +112,7 @@ const style = createStyles({
   },
   activityIndicator: {
     width: 30,
-    height: 30
+    height: '1.54rem'
   },
   [`@media (max-width: ${variables.breakpoints.tablet})`]: {
     default: {

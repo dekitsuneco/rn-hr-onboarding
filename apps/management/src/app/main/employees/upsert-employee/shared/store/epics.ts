@@ -20,5 +20,13 @@ export const upsertEmployeesScreenEpics: Epics = {
     ofType(UpsertEmployeeScreenActions.createUserSuccess),
     tap(() => appNavigationService.goBack()),
     map(() => employeesScreenActions.loadItems({ page: 1 }))
+  ),
+
+  updateUser: (action$) => action$.pipe(
+    ofType(UpsertEmployeeScreenActions.updateUser),
+    exhaustMap((action) => userService.update(new User(action.payload)).pipe(
+      map(() => UpsertEmployeeScreenActions.updateUserSuccess()),
+      catchError((error) => of(UpsertEmployeeScreenActions.updateUserFailure(error)))
+    ))
   )
 };

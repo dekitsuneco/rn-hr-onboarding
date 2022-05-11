@@ -13,7 +13,9 @@ import { UserStatusLabel } from '../user-status-label';
 import { Label } from '@shared/label';
 import { useTranslation } from 'utils/i18n';
 import { User } from 'features/data';
-import { TranslateRole } from '../../role/utils/translae-role';
+import { TranslateRole } from '../../role/utils/translate-role';
+import { appNavigationService } from 'features/navigation';
+import { instanceToPlain } from 'class-transformer';
 
 interface Props {
   item: User;
@@ -26,7 +28,11 @@ const labels = ['Onboarding'];
 
 export function EmployeeItem({ item }: Props): ReactElement {
   const translate = useTranslation('MAIN.EMPLOYEES.EMPLOYEES_LIST');
-  const { firstName, lastName, email, roleID, position, phone } = item;
+  const { fullName, email, roleID, position, phone } = item;
+
+  const handleEditPress = (): void => {
+    appNavigationService.navigate('UpsertEmployee', { employee: instanceToPlain(item) });
+  };
 
   return (
     <View style={style.container}>
@@ -35,9 +41,7 @@ export function EmployeeItem({ item }: Props): ReactElement {
       </View>
       <View style={style.info}>
         <View style={style.infoItem}>
-          <AppText>
-            {firstName} {lastName}
-          </AppText>
+          <AppText>{fullName}</AppText>
           {!!position && <AppText style={style.positionText}>{position}</AppText>}
         </View>
         <View style={style.infoItem}>
@@ -63,8 +67,8 @@ export function EmployeeItem({ item }: Props): ReactElement {
       <Dropdown
         renderTo='bottom'
         optionsProps={[
-          { title: translate('TEXT_EDIT'), icon: <Icon name='edit' /> },
-          { title: translate('TEXT_DELETE'), icon: <Icon name='delete' /> },
+          { title: translate('TEXT_EDIT'), icon: <Icon name='edit' />, onSelect: handleEditPress },
+          { title: translate('TEXT_DELETE'), icon: <Icon name='delete' stroke={variables.color.black} /> },
           { title: translate('TEXT_VIEW_ANSWERS'), icon: <Icon name='eye' /> }
         ]}
         renderTrigger={(props) => (

@@ -1,4 +1,4 @@
-import { Expose, Type } from 'class-transformer';
+import { Expose, Type, Exclude } from 'class-transformer';
 import { DateTime } from 'luxon';
 import { TransformDate } from 'utils/class-transformer';
 import { BaseEntity } from '../../base-entity/models';
@@ -52,6 +52,11 @@ export class User extends BaseEntity<number> {
   @Type(() => DateTime)
   @TransformDate()
   public emailVerifiedAt: DateTime | null;
+
+  @Exclude()
+  public get fullName(): string {
+    return `${this.firstName} ${this.lastName}`.trim();
+  }
 
   constructor(user: Partial<User>) {
     super(user);

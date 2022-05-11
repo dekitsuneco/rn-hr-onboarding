@@ -10,6 +10,11 @@ export const upsertEmployeeScreenReducer = createReducer(initialState, (handleAc
     isCreating: true
   })),
 
+  handleAction(UpsertEmployeeScreenActions.updateUser, (state) => ({
+    ...state,
+    isUpdating: true
+  })),
+
   handleAction(UpsertEmployeeScreenActions.createUserSuccess, (state) => ({
     ...state,
     isCreating: false
@@ -18,6 +23,17 @@ export const upsertEmployeeScreenReducer = createReducer(initialState, (handleAc
   handleAction(UpsertEmployeeScreenActions.createUserFailure, (state, { payload }) => ({
     ...state,
     isCreating: false,
-    errorMessage: payload.message
+    createErrorMessage: payload.message
+  })),
+
+  handleAction(UpsertEmployeeScreenActions.updateUserSuccess, (state) => ({
+    ...state,
+    isUpdating: false
+  })),
+
+  handleAction(UpsertEmployeeScreenActions.updateUserFailure, (state, { payload }) => ({
+    ...state,
+    isUpdating: false,
+    updateErrorMessage: payload.message
   }))
 ]);
