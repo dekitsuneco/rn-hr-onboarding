@@ -29,6 +29,6 @@ export const authReducer = createReducer(initialState, (handleAction) => [
   handleAction(AuthActions.authorizeFailure, (state, { payload }) => ({
     ...state,
     isAuthorizing: false,
-    errorMessage: payload.message
+    errorMessage: payload.response?.data?.message || payload.message
   }))
 ]);
