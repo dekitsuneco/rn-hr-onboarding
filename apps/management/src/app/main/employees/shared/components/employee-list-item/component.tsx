@@ -28,7 +28,7 @@ const labels = ['Onboarding'];
 
 export function EmployeeItem({ item }: Props): ReactElement {
   const translate = useTranslation('MAIN.EMPLOYEES.EMPLOYEES_LIST');
-  const { firstName, lastName, email, roleID, position, phone } = item;
+  const { fullName, email, roleID, position, phone } = item;
 
   const handleEditPress = (): void => {
     appNavigationService.navigate('UpsertEmployee', { employee: instanceToPlain(item) });
@@ -41,9 +41,7 @@ export function EmployeeItem({ item }: Props): ReactElement {
       </View>
       <View style={style.info}>
         <View style={style.infoItem}>
-          <AppText>
-            {firstName} {lastName}
-          </AppText>
+          <AppText>{fullName}</AppText>
           {!!position && <AppText style={style.positionText}>{position}</AppText>}
         </View>
         <View style={style.infoItem}>

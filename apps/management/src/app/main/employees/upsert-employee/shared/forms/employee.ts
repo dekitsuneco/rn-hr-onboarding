@@ -1,3 +1,4 @@
+import { Entity } from 'features/data/base-entity/config';
 import { DateTime } from 'luxon';
 import { useTranslation } from 'utils/i18n';
 import * as Yup from 'yup';
@@ -5,6 +6,7 @@ import * as Yup from 'yup';
 const translateValidation = useTranslation('MAIN.EMPLOYEES.UPSERT_EMPLOYEE.EMPLOYEE_FORM.VALIDATION');
 
 export class EmployeeForm {
+  public id?: Entity['id'];
   public avatarID: number;
   public firstName: string;
   public lastName: string;
@@ -41,20 +43,20 @@ export class EmployeeForm {
   }
 
   constructor(employee?: Partial<EmployeeForm>) {
-    this.avatarID = 1;
-    this.firstName = '';
-    this.lastName = '';
-    this.dateOfBirth = null;
-    this.email = '';
-    this.phone = '';
-    this.position = '';
-    this.startsOn = null;
-    this.roleID = 3;
-    this.hrID = null;
-    this.managerID = null;
-    this.leadID = null;
-    this.isOnboardingRequired = true;
-    employee && Object.assign(this, employee);
+    this.id = employee?.id;
+    this.avatarID = employee?.avatarID || 1;
+    this.firstName = employee?.firstName;
+    this.lastName = employee?.lastName;
+    this.dateOfBirth = employee?.dateOfBirth;
+    this.email = employee?.email;
+    this.phone = employee?.phone;
+    this.position = employee?.position;
+    this.startsOn = employee?.startsOn;
+    this.roleID = employee?.roleID;
+    this.hrID = employee?.hrID;
+    this.managerID = employee?.managerID;
+    this.leadID = employee?.leadID;
+    this.isOnboardingRequired = employee?.isOnboardingRequired;
   }
 } // TODO temporary form, change it later
 

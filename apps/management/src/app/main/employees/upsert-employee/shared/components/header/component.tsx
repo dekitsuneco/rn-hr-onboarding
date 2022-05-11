@@ -10,18 +10,21 @@ import { useTranslation } from 'utils/i18n';
 import { createStyles } from '@styles';
 import { variables } from '@styles';
 import { AppText } from 'ui-kit/text';
-import { plainToInstance } from 'class-transformer';
-import { User } from 'features/data';
+import { useSelector } from 'react-redux';
+import { entityStoreSelectors } from 'features/data/base-entity/store';
 
-export function UpsertEmployeHeader(props: AppHeaderProps): ReactElement {
+export function UpsertEmployeeHeader(props: AppHeaderProps): ReactElement {
   const route = props.route as RouteProp<EmployeesNavigationParams, 'UpsertEmployee'>;
-  const editableEmployee = plainToInstance(User, route?.params?.employee);
+  const editableEmployee = route?.params?.employee
+    ? useSelector(entityStoreSelectors.user.item(route?.params?.employee.id))
+    : null;
+
   const { isTablet } = useScreenDimensions();
   const translate = useTranslation('MAIN.EMPLOYEES.UPSERT_EMPLOYEE.UPSERT_EMPLOYEE_HEADER');
 
   return (
     <AppHeader
-      titleContent={editableEmployee && editableEmployee.firstName + ' ' + editableEmployee.lastName}
+      titleContent={editableEmployee && editableEmployee.fullName}
       rightContent={
         !!editableEmployee && (
           <View style={style.rightContent}>

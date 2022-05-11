@@ -7,16 +7,16 @@ export class UpsertEmployeeScreenActions {
     '[Upsert Employee Screen] Create User'
   );
 
-  public static updateUser = actionWithPayload<EmployeeForm>(
-    '[Upsert Employee Screen] Update User'
-  );
-
   public static createUserFailure = actionWithPayload<AxiosError>(
     '[Upsert Employee Screen] Create User Failure'
   );
 
   public static createUserSuccess = action(
     '[Upsert Employee Screen] Create User Success'
+  );
+
+  public static updateUser = actionWithPayload<EmployeeForm>(
+    '[Upsert Employee Screen] Update User'
   );
 
   public static updateUserFailure = actionWithPayload<AxiosError>(
